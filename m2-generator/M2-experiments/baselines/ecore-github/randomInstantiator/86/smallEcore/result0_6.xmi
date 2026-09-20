@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="aqMrUZ8r6qYt0emiZkemO6NvY8UPzMNgl7dhtJzMzpTYj3BGqZ7LZ7rMpEAi">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="pvzLj0yiPYi3WRV39CQr21KXHeVnarkg8xz25cmVbc7lHe5JDTAMYZuQsZFwgp">
+    <eLiterals name="Ehi3Q7ra2mupRdQpjC1g8dtKTQteveMUpfGcXjL35lZsUpY7zG8vcHx2ElvvM"/>
+    <eLiterals name="C1W57SA62xCVGRNgXbtxufGwX3A1xhoOTBk14DcSZCFuhcU5FuwLmebsQga"/>
+    <eLiterals name="lTa3tbmyv92NeOy60V3sVGMx6QQkQHrEDTc2Uks2J7uTdgBzGD0XXdsMSToFwY"/>
+    <eLiterals name="Dh9Qj8ejN8c6bPQ2iTtlXz9AnzvQBRTRChLk987mpebQOHtEeEI95azfRHVFmlo8oo"/>
+    <eLiterals name="9Tfvcl9LQUGCJbISvjpcBr1aebejABX5E4u3VOQNhkq9NFlxqp3B1ML8YQOdgzdaXd7"/>
+    <eLiterals name="ZSerM0j3ekVriJ2wPbNw0fr31UlGPQhpcskQP7kFw5ElvZoCE82OrCFhYGQJy11h"/>
+    <eLiterals name="HhEgK6rKJwKmX85pG8xRLPV0CQmyyRupkf3BYQzFE2Ki6VeOULbqFCkdXO6lA2Tc6WL"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="gfrQrZlVdCHf198mRNvQl6CHPkCrF9XkbEjavamJFGiVz0noD7y3sTigqL" eSuperTypes="//@eClassifiers.4 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="gr0OPLBDxJHD1agpUwAnuW7tLCiKrZcylhFXwxDfzpRmIKaZLx94VcUKVc0ZPIkdof"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="y7cNTBgNCt64S90I0riJgWuu8Aic2RlPRncmmldNzlHVnOSNbj5WStKhGBwRcX7e"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="gyDvNrxYkMuK1qvBKcBQeWBygOrrZMPLGOcUeXIGeowS280crGXKnA5HwzU7NurH" abstract="true" eSuperTypes="//@eClassifiers.4 //@eClassifiers.1 //@eClassifiers.5"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="399tPDPlsmoFGWxNMyU4iviE7bwR3pBrF0Oh5IKXbiMisqprsypr3yHUdjjllMxis9GQ9x" abstract="true" eSuperTypes="//@eClassifiers.5 //@eClassifiers.4 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="YE4XHWCnlYlAOzg88cRVE3Wl3H2Id6FpAytnfYxwhLorJ6IaE7oWjczgApgWknhK"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="gvNWLy5DEto2q5TPSowi69ZuXBAD1ufVa1tjh5E3pYICpma2Bd9VnOO07k"/>
+</smallEcore:EPackage>

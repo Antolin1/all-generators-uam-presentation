@@ -1,0 +1,33 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_yl7ykEwPEeeHjNyIDoQfPg" specification="interface Input:&#10;// Define events and&#10;// and variables here&#10;in event a&#10;internal:&#10;event b" name="clock">
+    <regions xmi:id="_ynstIkwPEeeHjNyIDoQfPg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_yozgYEwPEeeHjNyIDoQfPg">
+        <outgoingTransitions xmi:id="_hyZHcEwQEeeHjNyIDoQfPg" specification="" target="_d3FvgEwQEeeHjNyIDoQfPg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_d3FvgEwQEeeHjNyIDoQfPg" name="watch" incomingTransitions="_hyZHcEwQEeeHjNyIDoQfPg">
+        <regions xmi:id="_d3GWkUwQEeeHjNyIDoQfPg" name="x">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_2-G3QEwQEeeHjNyIDoQfPg">
+            <outgoingTransitions xmi:id="_gc1PcEwgEeeHjNyIDoQfPg" specification="" target="_58i-UEwQEeeHjNyIDoQfPg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_58i-UEwQEeeHjNyIDoQfPg" name="zero" incomingTransitions="_RdHu4EwgEeeHjNyIDoQfPg _gc1PcEwgEeeHjNyIDoQfPg">
+            <outgoingTransitions xmi:id="_NVekEEwgEeeHjNyIDoQfPg" specification="Input.a" target="_LJw6cEwgEeeHjNyIDoQfPg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_LJw6cEwgEeeHjNyIDoQfPg" name="one" incomingTransitions="_NVekEEwgEeeHjNyIDoQfPg">
+            <outgoingTransitions xmi:id="_RdHu4EwgEeeHjNyIDoQfPg" specification="Input.a/raise b" target="_58i-UEwQEeeHjNyIDoQfPg"/>
+          </vertices>
+        </regions>
+        <regions xmi:id="_d3GWkkwQEeeHjNyIDoQfPg" name="y">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_4fw3S0wQEeeHjNyIDoQfPg">
+            <outgoingTransitions xmi:id="_jYqHYEwgEeeHjNyIDoQfPg" specification="" target="_hZ7w4EwgEeeHjNyIDoQfPg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_hZ7w4EwgEeeHjNyIDoQfPg" name="zero" incomingTransitions="_jYqHYEwgEeeHjNyIDoQfPg _qKuREEwgEeeHjNyIDoQfPg">
+            <outgoingTransitions xmi:id="_mziS0EwgEeeHjNyIDoQfPg" specification="b" target="_kGDY4EwgEeeHjNyIDoQfPg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_kGDY4EwgEeeHjNyIDoQfPg" name="one" incomingTransitions="_mziS0EwgEeeHjNyIDoQfPg">
+            <outgoingTransitions xmi:id="_qKuREEwgEeeHjNyIDoQfPg" specification="b" target="_hZ7w4EwgEeeHjNyIDoQfPg"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

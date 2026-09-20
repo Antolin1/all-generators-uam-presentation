@@ -1,0 +1,16 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_fhXWMF_SEea7Gq00qZ1cGQ" specification="internal:&#10;event cancel&#10;&#10;var t: integer&#10;&#10;operation speak(seconds:integer)&#10;operation launchRocket(): void" name="Houston">
+    <regions xmi:id="_fhX9Ql_SEea7Gq00qZ1cGQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_fhc1wV_SEea7Gq00qZ1cGQ">
+        <outgoingTransitions xmi:id="_DTfY4GCbEeatm9_iUm69JQ" specification="/ t = 10" target="_DTcVkGCbEeatm9_iUm69JQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DTcVkGCbEeatm9_iUm69JQ" specification="" name="Countdown" incomingTransitions="_DTfY4GCbEeatm9_iUm69JQ _05MHkGLAEea3ecP381Vdag">
+        <outgoingTransitions xmi:id="_sg4jYGLBEea3ecP381Vdag" specification="[t == 0] / launchRocket()&#10;" target="_K7-pUGLBEea3ecP381Vdag"/>
+        <outgoingTransitions xmi:id="_g4y7YGLAEea3ecP381Vdag" specification="cancel" target="_Mg-4QGLBEea3ecP381Vdag"/>
+        <outgoingTransitions xmi:id="_05MHkGLAEea3ecP381Vdag" specification="every 1s [t &gt; 0] / speak(t); t -= 1" target="_DTcVkGCbEeatm9_iUm69JQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_K7-pUGLBEea3ecP381Vdag" specification="" name="Rocket launched" incomingTransitions="_sg4jYGLBEea3ecP381Vdag"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_Mg-4QGLBEea3ecP381Vdag" name="Countdown canceled" incomingTransitions="_g4y7YGLAEea3ecP381Vdag"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

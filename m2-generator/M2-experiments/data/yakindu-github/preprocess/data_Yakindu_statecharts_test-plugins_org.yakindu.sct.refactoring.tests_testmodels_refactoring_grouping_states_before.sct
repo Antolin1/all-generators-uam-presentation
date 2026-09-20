@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_NEjmkMdmEeGOoP2Ze98WBQ" specification="interface :&#10;in event event1&#10;in event event2&#10;in event event3&#10;" name="group_states">
+    <regions xmi:id="_NEjmk8dmEeGOoP2Ze98WBQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_NEkNpsdmEeGOoP2Ze98WBQ">
+        <outgoingTransitions xmi:id="_NEmC08dmEeGOoP2Ze98WBQ" target="_NEk0t8dmEeGOoP2Ze98WBQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_NEk0t8dmEeGOoP2Ze98WBQ" name="A" incomingTransitions="_NEmC08dmEeGOoP2Ze98WBQ">
+        <outgoingTransitions xmi:id="_QTY6EMdmEeGOoP2Ze98WBQ" specification="event1" target="_OTYKIMdmEeGOoP2Ze98WBQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_XzbkEMdmEeGOoP2Ze98WBQ" name="E" incomingTransitions="_YboMgMdmEeGOoP2Ze98WBQ"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_OTYKIMdmEeGOoP2Ze98WBQ" specification="" name="B" incomingTransitions="_QTY6EMdmEeGOoP2Ze98WBQ">
+        <outgoingTransitions xmi:id="_SJMlIMdmEeGOoP2Ze98WBQ" specification="event2" target="_Rr0soMdmEeGOoP2Ze98WBQ"/>
+        <outgoingTransitions xmi:id="_U8B5IMdmEeGOoP2Ze98WBQ" specification="" target="_Tmj7AMdmEeGOoP2Ze98WBQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Rr0soMdmEeGOoP2Ze98WBQ" specification="" name="C" incomingTransitions="_SJMlIMdmEeGOoP2Ze98WBQ">
+        <outgoingTransitions xmi:id="_UaJ7IMdmEeGOoP2Ze98WBQ" specification="" target="_Tmj7AMdmEeGOoP2Ze98WBQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Tmj7AMdmEeGOoP2Ze98WBQ" specification="" name="D" incomingTransitions="_UaJ7IMdmEeGOoP2Ze98WBQ _U8B5IMdmEeGOoP2Ze98WBQ">
+        <outgoingTransitions xmi:id="_YboMgMdmEeGOoP2Ze98WBQ" specification="event3" target="_XzbkEMdmEeGOoP2Ze98WBQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

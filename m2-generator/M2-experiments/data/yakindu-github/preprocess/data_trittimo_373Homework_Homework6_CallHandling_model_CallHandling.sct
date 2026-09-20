@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_OOtmUCbKEeeRyr-y17Qxtg" specification="interface User:&#13;&#10;&#9;in event acceptCall&#13;&#10;&#9;in event dismissCall&#13;&#10;&#9;operation speak(): void&#13;&#10;&#13;&#10;interface Phone:&#13;&#10;&#9;var duration : integer&#13;&#10;&#9;var count : integer&#13;&#10;&#9;in event incomingCall&#13;&#10;&#9;operation ring(count : integer) : void&#13;&#10;&#9;&#13;&#10;&#9;" name="CallHandling">
+    <regions xmi:id="_OOtmVSbKEeeRyr-y17Qxtg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_OOtmXybKEeeRyr-y17Qxtg">
+        <outgoingTransitions xmi:id="_OOtmeybKEeeRyr-y17Qxtg" target="_OOtmaybKEeeRyr-y17Qxtg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_OOtmaybKEeeRyr-y17Qxtg" name="Idle" incomingTransitions="_OOtmeybKEeeRyr-y17Qxtg _ejxJMCbKEeeRyr-y17Qxtg">
+        <outgoingTransitions xmi:id="_UU6IhCbKEeeRyr-y17Qxtg" specification="Phone.incomingCall" target="_UUwXgCbKEeeRyr-y17Qxtg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_UUwXgCbKEeeRyr-y17Qxtg" specification="entry / Phone.count = 0&#13;&#10;every 2s / Phone.ring(Phone.count); Phone.count += 1" name="IncomingCall" incomingTransitions="_UU6IhCbKEeeRyr-y17Qxtg">
+        <outgoingTransitions xmi:id="_YIUIvybKEeeRyr-y17Qxtg" specification="User.acceptCall&#13;&#10;" target="_YIUIsCbKEeeRyr-y17Qxtg"/>
+        <outgoingTransitions xmi:id="_jjlSICbKEeeRyr-y17Qxtg" specification="User.dismissCall" target="_brhwwCbKEeeRyr-y17Qxtg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_YIUIsCbKEeeRyr-y17Qxtg" specification="entry / Phone.duration = 0&#13;&#10;every 1s / User.speak(); Phone.duration += 1" name="ActiveCall" incomingTransitions="_YIUIvybKEeeRyr-y17Qxtg">
+        <outgoingTransitions xmi:id="_brhwzybKEeeRyr-y17Qxtg" specification="User.dismissCall&#13;&#10;" target="_brhwwCbKEeeRyr-y17Qxtg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_brhwwCbKEeeRyr-y17Qxtg" name="DismissCall" incomingTransitions="_brhwzybKEeeRyr-y17Qxtg _jjlSICbKEeeRyr-y17Qxtg">
+        <outgoingTransitions xmi:id="_ejxJMCbKEeeRyr-y17Qxtg" specification="after 2s" target="_OOtmaybKEeeRyr-y17Qxtg"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

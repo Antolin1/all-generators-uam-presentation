@@ -1,0 +1,18 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_wA2voFsWEeeoX9fYhVNXSg" specification="interface:&#13;&#10;&#13;&#10;in event allocateExit1&#13;&#10;in event allocateExit2&#13;&#10;in event allocateExit3&#13;&#10;in event allocateExit4&#13;&#10;in event exitClear&#13;&#10;in event exitAllocated&#13;&#10;in event validAllocation&#13;&#10;&#13;&#10;out event allocatingExit&#13;&#10;out event exitBusy&#13;&#10;&#13;&#10;var platformHandling : integer" name="ExistsManager">
+    <regions xmi:id="_wA2vo1sWEeeoX9fYhVNXSg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_wBJqllsWEeeoX9fYhVNXSg">
+        <outgoingTransitions xmi:id="_wBJqr1sWEeeoX9fYhVNXSg" target="_wBJqn1sWEeeoX9fYhVNXSg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_wBJqn1sWEeeoX9fYhVNXSg" name="Idle" incomingTransitions="_wBJqr1sWEeeoX9fYhVNXSg _at4Z4FsZEeeoX9fYhVNXSg">
+        <outgoingTransitions xmi:id="_Z73jkFsYEeeoX9fYhVNXSg" specification="allocateExit1 / platformHandling = 1" target="_Z7RtsFsYEeeoX9fYhVNXSg"/>
+        <outgoingTransitions xmi:id="_XxykwFswEeeoX9fYhVNXSg" specification="allocateExit3 / platformHandling = 3" target="_Z7RtsFsYEeeoX9fYhVNXSg"/>
+        <outgoingTransitions xmi:id="_Y6ZLkFswEeeoX9fYhVNXSg" specification="allocateExit2 / platformHandling = 2" target="_Z7RtsFsYEeeoX9fYhVNXSg"/>
+        <outgoingTransitions xmi:id="_ZYcZgFswEeeoX9fYhVNXSg" specification="allocateExit4 / platformHandling = 4" target="_Z7RtsFsYEeeoX9fYhVNXSg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Z7RtsFsYEeeoX9fYhVNXSg" specification="entry / raise exitAllocated" name="Busy" incomingTransitions="_Z73jkFsYEeeoX9fYhVNXSg _XxykwFswEeeoX9fYhVNXSg _Y6ZLkFswEeeoX9fYhVNXSg _ZYcZgFswEeeoX9fYhVNXSg">
+        <outgoingTransitions xmi:id="_at4Z4FsZEeeoX9fYhVNXSg" specification="exitClear" target="_wBJqn1sWEeeoX9fYhVNXSg"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

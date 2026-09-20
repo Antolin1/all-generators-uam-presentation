@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>de.hub.randomemf</groupId>
+  <artifactId>randomemf-server</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <!-- RandomEMF (2015) se escribió contra Xtext 2.9 / Eclipse Mars: es la última versión
+         donde su workflow y sus fragmentos legacy funcionan tal cual. Requiere JDK 8. -->
+    <xtext.version>2.9.2</xtext.version>
+    <emf.version>2.11.0</emf.version>
+    <!-- clon de RandomEMF, relativo a este pom; el Dockerfile respeta la misma disposición -->
+    <rcore.upstream>${project.basedir}/../RandomEMF/plugins/de.hub.rcore</rcore.upstream>
+    <!-- el nombre del directorio debe coincidir con el nombre del proyecto (de.hub.rcore): EMF codegen
+         resuelve platform:/resource/de.hub.rcore/... escaneando un "workspace" -->
+    <rcore.dir>${project.build.directory}/workspace/de.hub.rcore</rcore.dir>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.common</artifactId><version>2.11.0-v20150805-0538</version></dependency>
+      <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.ecore</artifactId><version>2.11.1-v20150805-0538</version></dependency>
+      <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.ecore.xmi</artifactId><version>2.11.1-v20150805-0538</version></dependency>
+      <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.codegen</artifactId><version>2.11.0-v20150806-0404</version></dependency>
+      <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.codegen.ecore</artifactId><version>2.11.0-v20150806-0404</version></dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>org.eclipse.xtext.xbase</artifactId>
+      <version>${xtext.version}</version>
+      <exclusions>
+        <!-- los POMs de Xtext 2.9 usan rangos abiertos que arrastran EMF/JDT de 2025 (Java 17+) -->
+        <exclusion><groupId>org.eclipse.platform</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>org.eclipse.jdt</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>net.java.dev.jna</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>org.osgi</groupId><artifactId>*</artifactId></exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
+      <version>${xtext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.xtend</groupId>
+      <artifactId>org.eclipse.xtend.lib</artifactId>
+      <version>${xtext.version}</version>
+    </dependency>
+
+    <!-- solo para generar el lenguaje (workflow MWE2 + fragmentos legacy) -->
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>org.eclipse.xtext.xtext</artifactId>
+      <version>${xtext.version}</version>
+      <exclusions>
+        <!-- los POMs de Xtext 2.9 usan rangos abiertos que arrastran EMF/JDT de 2025 (Java 17+) -->
+        <exclusion><groupId>org.eclipse.platform</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>org.eclipse.jdt</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>net.java.dev.jna</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>org.osgi</groupId><artifactId>*</artifactId></exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>org.eclipse.xtext.generator</artifactId>
+      <version>${xtext.version}</version>
+      <exclusions>
+        <!-- los POMs de Xtext 2.9 usan rangos abiertos que arrastran EMF/JDT de 2025 (Java 17+) -->
+        <exclusion><groupId>org.eclipse.platform</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>org.eclipse.jdt</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>net.java.dev.jna</groupId><artifactId>*</artifactId></exclusion>
+        <exclusion><groupId>org.osgi</groupId><artifactId>*</artifactId></exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.emf</groupId>
+      <artifactId>org.eclipse.emf.mwe2.launch</artifactId>
+      <version>2.8.3</version>
+    </dependency>
+
+    <!-- dependencias Ivy de de.hub.rcore (ivy.xml) -->
+    <dependency>
+      <groupId>colt</groupId>
+      <artifactId>colt</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.3</version>
+    </dependency>
+
+    <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.codegen.ecore</artifactId></dependency>
+    <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.ecore.xmi</artifactId></dependency>
+    <dependency>
+      <groupId>org.eclipse.jdt</groupId>
+      <artifactId>org.eclipse.jdt.core</artifactId>
+      <version>3.10.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.13.5</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource><directory>${project.basedir}/src/main/resources</directory></resource>
+      <!-- Rcore.xtext y RandomEMF.xtextbin se cargan por classpath en tiempo de ejecución -->
+      <resource>
+        <directory>${rcore.dir}/src-gen</directory>
+        <excludes><exclude>**/*.java</exclude></excludes>
+      </resource>
+      <resource>
+        <directory>${rcore.dir}/src</directory>
+        <excludes><exclude>**/*.java</exclude><exclude>**/*.xtend</exclude><exclude>**/*.mwe2</exclude></excludes>
+      </resource>
+      <!-- el ejemplo del propio RandomEMF, sin copiarlo -->
+      <resource>
+        <directory>${project.basedir}/../RandomEMF/plugins/de.hub.rcore.example/src/de/hub/rcore/example</directory>
+        <includes><include>RandomEcore.rcore</include></includes>
+        <targetPath>examples</targetPath>
+      </resource>
+    </resources>
+    <plugins>
+      <!-- 1. copia del plugin de.hub.rcore: la generación escribe en target/, el clon queda intacto -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>copy-rcore</id>
+            <phase>initialize</phase>
+            <goals><goal>copy-resources</goal></goals>
+            <configuration>
+              <outputDirectory>${rcore.dir}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${rcore.upstream}</directory>
+                  <excludes><exclude>bin/**</exclude><exclude>src-gen/**</exclude><exclude>xtend-gen/**</exclude></excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <!-- el launcher de MWE2 resuelve el módulo y la gramática por classpath; exec-maven-plugin
+               solo expande <classpath/> (no admite directorios extra), así que van a target/classes -->
+          <execution>
+            <id>stage-workflow</id>
+            <phase>initialize</phase>
+            <goals><goal>copy-resources</goal></goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+              <resources>
+                <resource><directory>${project.basedir}/workflow</directory></resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stage-grammar</id>
+            <phase>initialize</phase>
+            <goals><goal>copy-resources</goal></goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}/de/hub/randomemf</outputDirectory>
+              <resources>
+                <resource><directory>${rcore.dir}/src/de/hub/randomemf</directory><includes><include>Rcore.xtext</include></includes></resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- 2. MWE2: gramática Rcore.xtext -> parser, EPackage randomEMF, serializer, ... en target/rcore/src-gen -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>generate-rcore-language</id>
+            <phase>generate-sources</phase>
+            <goals><goal>exec</goal></goals>
+            <configuration>
+              <executable>java</executable>
+              <workingDirectory>${rcore.dir}</workingDirectory>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath/>
+                <argument>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</argument>
+                <argument>de.hub.randomemf.GenerateRcoreHeadless</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>add-rcore-sources</id>
+            <phase>generate-sources</phase>
+            <goals><goal>add-source</goal></goals>
+            <configuration>
+              <sources>
+                <source>${rcore.dir}/src</source>
+                <source>${rcore.dir}/src-gen</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- 3. Xtend -> Java (inferrer, formatter, RandomNames, Ocl, ...) -->
+      <plugin>
+        <groupId>org.eclipse.xtend</groupId>
+        <artifactId>xtend-maven-plugin</artifactId>
+        <version>${xtext.version}</version>
+        <dependencies>
+          <!-- el plugin declara EMF con rangos abiertos y acaba mezclando jars de Equinox de
+               distintos grupos/firmantes (SecurityException); se fija la misma versión que arriba -->
+          <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.common</artifactId><version>2.11.0-v20150805-0538</version></dependency>
+          <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.ecore</artifactId><version>2.11.1-v20150805-0538</version></dependency>
+          <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.ecore.xmi</artifactId><version>2.11.1-v20150805-0538</version></dependency>
+          <dependency>
+            <groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.codegen</artifactId><version>2.11.0-v20150806-0404</version>
+            <exclusions><exclusion><groupId>org.eclipse.platform</groupId><artifactId>*</artifactId></exclusion></exclusions>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <goals><goal>compile</goal></goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/xtend-gen</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.6.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals><goal>copy-dependencies</goal></goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              <includeScope>runtime</includeScope>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

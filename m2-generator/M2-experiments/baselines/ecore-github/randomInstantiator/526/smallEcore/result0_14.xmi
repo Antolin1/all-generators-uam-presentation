@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="b4bhxd25t6kt8JwJRFBd3AhkcSovacHTCr4vRrBMlsivLO21TqpP4nSGwn3Y9dYfXNVK">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="0aoFhy9mLoU5lp2MtOANrZnVbRKXaGaKskDBsRGgqsm1eNHmp5mkNbMV1J3xOFpI">
+    <eLiterals name="K9JQV2dTIqixbpbxwAsVO7ebiMe681ti5FoeTXylCPniXF39XbNL34XWAqhOtmW3p"/>
+    <eLiterals name="9oDewo3cmuFwLQPv2mfCgwpjdLiYAPRP17IScemxKk0ORzwjI1LILpsXi7Hf0KJ"/>
+    <eLiterals name="TEJdmdic5bDcwgLN8l1vdly3mkm98tJw2a86mdOkjATISxcv1kcvcvg9y9PSf5fFeEAh2R"/>
+    <eLiterals name="zQBMaSHjYN1V854LbKymyv5iitznRlMLbQImyZJOPcDFpjv1ko7KqTVMeDFP9MgeddL"/>
+    <eLiterals name="l415YDq8vZLBSxBSNITukS9Kj4rLKZzWku1LsiMBb8gHyjNWjjJutfnyVXaZ"/>
+    <eLiterals name="N8H4L6yoiIPOqeNBtypOdChl9Mz6udDUHuotYW64PL4Sdh51veQencChNKjXokfxaaZqc"/>
+    <eLiterals name="aEsT0do9MfC0SOdDu6XiLqIUmggmJaf5diyNBFx7kQXpVq5kXvmNp1B4SFIqHfG"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="IHtvp7Z9DJ8Aqy08ytFsNFqeMA8TCIzM5aeMO5mWvxk9nHo8pXTd4OivZu9GEFUlp" abstract="true" eSuperTypes="//@eClassifiers.3 //@eClassifiers.1">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="5WP7kMn3rn4hGKC5mgUnDCG0eyC2qWQ2J7ajBccd6F0f8J63HWmVosypJQe1f1FrgPBTG" lowerBound="1392897856" upperBound="-1687821466" eType="//@eClassifiers.6" eOpposite="//@eClassifiers.1/@eStructuralFeatures.7"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="VFoh8XGpK9ogmLMWV3WC7Q7TYjmyYcu3cqbdmIm0AGv94Qs3RHnzeak9mQm6Y" lowerBound="486308990" upperBound="-1050591939" eType="//@eClassifiers.7"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="fSSKMtKxSZDV4gJxudiN8tzEo7XjNZZtxmWAUZf0DNeSRrjcILUcXUAEpr3mA0aeu0" lowerBound="-108375020" upperBound="302651921" eType="//@eClassifiers.5" containment="true" eOpposite="//@eClassifiers.1/@eStructuralFeatures.2"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="gWCttAWLnVTAo0OlNNh5Fux6mYiyRAcjaEl2RX28jhA4fkKZDDctNExnZ4KYOWe" lowerBound="1191994834" upperBound="-394545398" eType="//@eClassifiers.6"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="hXQr77B0O0Rx8XT5wyklVUOOGXgiyj38K3LwbKW7yD9JipAXkDB7ZgFJxe" lowerBound="503181420" upperBound="-2050453556" eType="//@eClassifiers.6"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="ZCfAwUyafaGBkN6J4SEAGleltcrCXivJKLFf3kQTPp9wwtnCUT3tEEm1J2qfV" lowerBound="1099091803" upperBound="496896023" eType="//@eClassifiers.0" containment="true" eOpposite="//@eClassifiers.1/@eStructuralFeatures.7"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="OXEEt7ujR6wG5LyvkjsvM69ZdEwFhU2lyQdeshIfXMo4ED8xwAvtktp7VICe38B" lowerBound="405735550" upperBound="-1153797534" eType="//@eClassifiers.0" containment="true" eOpposite="//@eClassifiers.1/@eStructuralFeatures.5"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="7ZuX3W7Y4DEfK2maUjo1PnVamE2u78xiODiJCPRRTIuKGYSHa97OiBtby2ri" lowerBound="-537585762" upperBound="274013115" eType="//@eClassifiers.0" containment="true" eOpposite="//@eClassifiers.1/@eStructuralFeatures.7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="5GtbAoCsVHKkHwdQc3bABc1N8IYk9CveYMRWlUIYZguIpe4fItsKlUEP5AuMY"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="9EVqOkPJoAFihOHV2sWcV4JIYMTQB6LUqWWeHwk4dlILAr1yOasa22S9zD90MByf9" abstract="true" eSuperTypes="//@eClassifiers.1 //@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="lTPUzbPWgqfDwRVm3i2hlYFLvCDNAp6n7VS7gkHVc2GwTMWxIdFJyVwSG4ZNrQ9dCe"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="AF45P2uzeAdp9Dzqpt07pVrxuV22K39ocU0JGDSVhcp28VIxVAkAlHqPbTMR4w"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="WXfwLcoyAQhsnR202dEN8Tgb31NqH1W4jdcoOrJFZsadASF0SqoXM9ybsuYFyimKO3pnEW"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="On9IxFH66xZKUsIZtRGRnJXBZzzAb3Ir6TA9L0FB4riYX1baMLPgD6k7QYySRAF5"/>
+</smallEcore:EPackage>

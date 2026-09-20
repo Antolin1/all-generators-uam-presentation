@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_GW8KEMCfEee4x7eCGzvYUw" specification="interface gui:&#10;in event button1&#10;in event button2&#10;in event complete&#10;&#10;out event stateA&#10;out event doSomething&#10;out event stopping : boolean&#10;out event triggerStop&#10;out event stopped&#10;" name="DelayedExit">
+    <regions xmi:id="_GXdugMCfEee4x7eCGzvYUw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_GYN8cMCfEee4x7eCGzvYUw">
+        <outgoingTransitions xmi:id="_GYdNAMCfEee4x7eCGzvYUw" target="_GYS08MCfEee4x7eCGzvYUw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_GYS08MCfEee4x7eCGzvYUw" specification="entry / raise gui.stateA&#10;gui.button1 / raise gui.stopped&#10;" name="StateA" incomingTransitions="_GYdNAMCfEee4x7eCGzvYUw _b1_s0MDEEee2Dd2XYfETdg">
+        <outgoingTransitions xmi:id="_JYezAMCgEee4x7eCGzvYUw" specification="gui.button1, gui.button2" target="_H6OsUMCgEee4x7eCGzvYUw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_H6OsUMCgEee4x7eCGzvYUw" specification="entry / raise gui.doSomething&#10;exit / raise gui.triggerStop&#10;" name="Do Something" incomingTransitions="_JYezAMCgEee4x7eCGzvYUw _jnHfwMDEEee2Dd2XYfETdg">
+        <outgoingTransitions xmi:id="_Uudz0MCgEee4x7eCGzvYUw" specification="gui.button2" target="_fvE3MMDEEee2Dd2XYfETdg"/>
+        <outgoingTransitions xmi:id="_THdZwMCgEee4x7eCGzvYUw" specification="gui.button1" target="_Yx30gMDEEee2Dd2XYfETdg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Yx30gMDEEee2Dd2XYfETdg" specification="entry / raise gui.stopping : true&#10;exit  / raise gui.stopping : false" name="Wait Button 1" incomingTransitions="_THdZwMCgEee4x7eCGzvYUw">
+        <outgoingTransitions xmi:id="_b1_s0MDEEee2Dd2XYfETdg" specification="gui.complete" target="_GYS08MCfEee4x7eCGzvYUw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_fvE3MMDEEee2Dd2XYfETdg" specification="entry / raise gui.stopping : true&#10;exit  / raise gui.stopping : false" name="Wait Button 2" incomingTransitions="_Uudz0MCgEee4x7eCGzvYUw">
+        <outgoingTransitions xmi:id="_jnHfwMDEEee2Dd2XYfETdg" specification="gui.complete" target="_H6OsUMCgEee4x7eCGzvYUw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

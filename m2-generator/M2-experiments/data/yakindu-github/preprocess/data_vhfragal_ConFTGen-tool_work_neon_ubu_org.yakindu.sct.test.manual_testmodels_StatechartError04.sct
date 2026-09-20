@@ -1,0 +1,11 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_0n_QAENNEeGWX9OCVC4O3A" name="StatechartError04" specification="">
+    <regions xmi:id="_0oAeIkNNEeGWX9OCVC4O3A" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_0oEvkUNNEeGWX9OCVC4O3A">
+        <outgoingTransitions xmi:id="_0oGkxUNNEeGWX9OCVC4O3A" specification="" target="_0oFWpENNEeGWX9OCVC4O3A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_0oFWpENNEeGWX9OCVC4O3A" name="A" incomingTransitions="_0oGkxUNNEeGWX9OCVC4O3A"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_2j6UsENOEeGWX9OCVC4O3A" name="B"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,14 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_9zJfgPv-EeqK3OVC6jJlVQ" specification="interface Loss1:&#13;&#10;&#9;in event NewData&#13;&#10;&#13;&#10;interface Loss2:&#13;&#10;&#9;in event NewData&#13;&#10;&#13;&#10;interface Loss3:&#13;&#10;&#9;in event NewData&#13;&#10;&#9;&#13;&#10;interface Lossout:&#13;&#10;&#9;in event NewData" name="DataLossCollector">
+    <regions xmi:id="_9zKGmfv-EeqK3OVC6jJlVQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_9zLUtvv-EeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_9zNw8fv-EeqK3OVC6jJlVQ" target="_9zL7x_v-EeqK3OVC6jJlVQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_9zL7x_v-EeqK3OVC6jJlVQ" name="StateA" incomingTransitions="_9zNw8fv-EeqK3OVC6jJlVQ _R9OzMPv_EeqK3OVC6jJlVQ _VU6gsPv_EeqK3OVC6jJlVQ _ZoXS4Pv_EeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_R9OzMPv_EeqK3OVC6jJlVQ" specification="Loss1.NewData/raise Lossout.NewData" target="_9zL7x_v-EeqK3OVC6jJlVQ"/>
+        <outgoingTransitions xmi:id="_VU6gsPv_EeqK3OVC6jJlVQ" specification="Loss2.NewData/raise Lossout.NewData" target="_9zL7x_v-EeqK3OVC6jJlVQ"/>
+        <outgoingTransitions xmi:id="_ZoXS4Pv_EeqK3OVC6jJlVQ" specification="Loss3.NewData/raise Lossout.NewData" target="_9zL7x_v-EeqK3OVC6jJlVQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

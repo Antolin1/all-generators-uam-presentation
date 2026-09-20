@@ -1,0 +1,20 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_x1l-kDuyEeqHDpP_Gx8Z-w" specification="@EventDriven&#10;@ChildFirstExecution&#10;&#10;interface:&#10;&#9;in event Up&#10;&#9;in event Down&#10;&#9;in event Start&#10;&#9;in event Alpha&#10;&#9;operation initialize()&#10;&#9;operation inc()&#10;&#9;operation dec()&#10;&#9;operation startProcess() &#10;&#9;operation endProcess() &#10;&#9;operation process() &#10;&#9;operation condition():boolean" name="DoWhile">
+    <regions xmi:id="_x1oa0DuyEeqHDpP_Gx8Z-w" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_x3Bh8TuyEeqHDpP_Gx8Z-w">
+        <outgoingTransitions xmi:id="_x3HBgTuyEeqHDpP_Gx8Z-w" specification="/initialize()" target="_x3DXJDuyEeqHDpP_Gx8Z-w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_x3DXJDuyEeqHDpP_Gx8Z-w" specification="Up/inc()&#13;&#10;Down/dec()" name="StateA" incomingTransitions="_x3HBgTuyEeqHDpP_Gx8Z-w">
+        <outgoingTransitions xmi:id="_01vdIDxzEeqfhJw6Ql7qAA" specification="Start/startProcess()" target="__bEZ4DxvEeqfhJw6Ql7qAA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="__bEZ4DxvEeqfhJw6Ql7qAA" specification="" name="StateB" incomingTransitions="_01vdIDxzEeqfhJw6Ql7qAA _6ziUcDx3EeqfhJw6Ql7qAA">
+        <outgoingTransitions xmi:id="_1JEsADx3EeqfhJw6Ql7qAA" specification="Alpha/process()" target="_x8OVgDx3EeqfhJw6Ql7qAA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_x8OVgDx3EeqfhJw6Ql7qAA" incomingTransitions="_1JEsADx3EeqfhJw6Ql7qAA">
+        <outgoingTransitions xmi:id="_4Q9C8Dx3EeqfhJw6Ql7qAA" specification="[condition()]" target="_y15IcDx3EeqfhJw6Ql7qAA"/>
+        <outgoingTransitions xmi:id="_6ziUcDx3EeqfhJw6Ql7qAA" specification="else" target="__bEZ4DxvEeqfhJw6Ql7qAA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_y15IcDx3EeqfhJw6Ql7qAA" specification="entry/endProcess()" name="StateC" incomingTransitions="_4Q9C8Dx3EeqfhJw6Ql7qAA"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

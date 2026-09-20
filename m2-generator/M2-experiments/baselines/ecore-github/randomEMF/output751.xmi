@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="">
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.0 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.3"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.19" eOpposite="//@eClassifiers.19/@eStructuralFeatures.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.0">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.4"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.0 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.9">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.8"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.4"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.4"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.31" eOpposite="//@eClassifiers.31/@eStructuralFeatures.1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.2 //@eClassifiers.11"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.14"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.4" eOpposite="//@eClassifiers.4/@eStructuralFeatures.6"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.46" eOpposite="//@eClassifiers.46/@eStructuralFeatures.2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.17"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.8"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.13"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.22"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.17"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.23"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.14">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.20"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.17"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.20">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.13"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.13" eOpposite="//@eClassifiers.13/@eStructuralFeatures.3"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.16"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.7"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.77" eOpposite="//@eClassifiers.77/@eStructuralFeatures.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.21"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.9">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.28"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.16"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.39"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.35"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.30 //@eClassifiers.22"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.17">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.30"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.21"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.19" eOpposite="//@eClassifiers.19/@eStructuralFeatures.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.41"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.44"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.14">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.7"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.16"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.34"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.9"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.46"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.43">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.20"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.37"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.34 //@eClassifiers.0"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.10"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.17">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.24"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.17 //@eClassifiers.5"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.30">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.26"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.77" eOpposite="//@eClassifiers.77/@eStructuralFeatures.3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.39"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.30"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.44"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.38"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.42"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="">
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+    <eLiterals name=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.9 //@eClassifiers.62"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.21"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.60"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.44"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.15"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.56"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.18 //@eClassifiers.6">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.35"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.49">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.58"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.16"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.21"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.31" eOpposite="//@eClassifiers.31/@eStructuralFeatures.4"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.25"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.29"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.60" eOpposite="//@eClassifiers.60/@eStructuralFeatures.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.8"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.3"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.45"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.19"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.37"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.67"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.20">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.23"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="" eSuperTypes="//@eClassifiers.55"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.5"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.16"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.82"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.53"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.54"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.57"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.39"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.18"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="" upperBound="1" eType="//@eClassifiers.38"/>
+  </eClassifiers>
+</smallEcore:EPackage>

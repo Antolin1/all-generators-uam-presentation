@@ -1,0 +1,45 @@
+# M2 (Model Mime) Playground
+#
+#   docker compose up --build
+#   → http://localhost:8100
+#
+# Puertos distintos a los de ../randomemf (8080/8081) y ../atlanmod-instantiator (8090/8091): pueden estar los tres en marcha.
+# Solo se publican en 127.0.0.1: es una herramienta local.
+#
+# GPU: el entrenamiento usa tu GPU NVIDIA (necesita el driver y NVIDIA Container Toolkit / Docker Desktop con WSL2).
+# Sin GPU, borra el bloque `deploy` del backend: M2 cae solo a la CPU (mucho más lento).
+
+name: m2-generator
+
+services:
+  backend:
+    build:
+      context: .                      # necesita M2/ y backend/
+      dockerfile: backend/Dockerfile
+    image: m2-generator-backend
+    shm_size: 2gb                     # los DataLoader de PyTorch reparten los lotes por memoria compartida
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+    volumes:
+      - ./M2-experiments/data:/data:ro        # los datasets y sus metamodelos
+      - ./M2/models:/pretrained:ro            # los modelos que trae M2 ya entrenados
+      - ./trained-models:/models              # los que entrenes aquí (se conservan al parar los contenedores)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - "127.0.0.1:8101:8081"         # solo para depurar la API (curl); el front usa la red interna
+
+  frontend:
+    build:
+      context: ./frontend
+    image: m2-generator-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8100:80"

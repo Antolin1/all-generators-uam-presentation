@@ -1,0 +1,18 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_uloUELswEeifzfwrFtyExg" specification="internal:&#10;event e" name="TransitionBlockingAlwaysTrueStates">
+    <regions xmi:id="_umFnELswEeifzfwrFtyExg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_umfPsLswEeifzfwrFtyExg">
+        <outgoingTransitions xmi:id="_umq14LswEeifzfwrFtyExg" target="_umiTALswEeifzfwrFtyExg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_umiTALswEeifzfwrFtyExg" specification="// transition with prio 3, 4, 5, 6 should contain warning" name="StateA" incomingTransitions="_umq14LswEeifzfwrFtyExg">
+        <outgoingTransitions xmi:id="_h9S8kL2LEeiQPKhtb2DO6A" specification="e" target="_5g7xsLv5Eei2le46Yda-SA"/>
+        <outgoingTransitions xmi:id="_6Z72QLv5Eei2le46Yda-SA" specification="always" target="_5g7xsLv5Eei2le46Yda-SA"/>
+        <outgoingTransitions xmi:id="_7F5kYLv5Eei2le46Yda-SA" specification="oncycle" target="_5g7xsLv5Eei2le46Yda-SA"/>
+        <outgoingTransitions xmi:id="_8hq-0Lv5Eei2le46Yda-SA" specification="else" target="_5g7xsLv5Eei2le46Yda-SA"/>
+        <outgoingTransitions xmi:id="_9gwdQLv5Eei2le46Yda-SA" specification="default" target="_5g7xsLv5Eei2le46Yda-SA"/>
+        <outgoingTransitions xmi:id="_-xBLQLv5Eei2le46Yda-SA" specification="always" target="_5g7xsLv5Eei2le46Yda-SA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_5g7xsLv5Eei2le46Yda-SA" name="StateB" incomingTransitions="_6Z72QLv5Eei2le46Yda-SA _7F5kYLv5Eei2le46Yda-SA _8hq-0Lv5Eei2le46Yda-SA _9gwdQLv5Eei2le46Yda-SA _-xBLQLv5Eei2le46Yda-SA _h9S8kL2LEeiQPKhtb2DO6A"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

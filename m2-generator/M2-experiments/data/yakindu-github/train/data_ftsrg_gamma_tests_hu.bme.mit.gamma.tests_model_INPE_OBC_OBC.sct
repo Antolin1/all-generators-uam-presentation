@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_i1R6wD_IEeqqM953aO1YNQ" specification="interface PL:&#13;&#10;&#9;in event getData : integer&#13;&#10;&#9;out event sendData : integer&#13;&#10;&#9;&#13;&#10;interface:&#13;&#10;&#9;var PLGetData : integer&#13;&#10;&#9;var writeOBC : integer&#13;&#10;&#9;var OBCData : integer&#13;&#10;&#9;var sendOBC : integer" name="OBC">
+    <regions xmi:id="_i1R6yj_IEeqqM953aO1YNQ" name="main_region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_i1YBZj_IEeqqM953aO1YNQ">
+        <outgoingTransitions xmi:id="_i1YBgj_IEeqqM953aO1YNQ" target="_i1YBcj_IEeqqM953aO1YNQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_i1YBcj_IEeqqM953aO1YNQ" name="OBC_IDLE" incomingTransitions="_i1YBgj_IEeqqM953aO1YNQ _WLdH8D_SEeqHVZjk_M15kA _49_SwD_SEeqHVZjk_M15kA">
+        <outgoingTransitions xmi:id="_25OC0D_LEeqqM953aO1YNQ" specification="PL.getData [valueof(PL.getData) == 0] /&#13;&#10;&#9;PLGetData = valueof(PL.getData);&#13;&#10;&#9;sendOBC = 1;&#13;&#10;&#9;raise PL.sendData : sendOBC" target="_yej1YD_LEeqqM953aO1YNQ"/>
+        <outgoingTransitions xmi:id="__9024D_LEeqqM953aO1YNQ" specification="PL.getData [valueof(PL.getData) == 1] /&#13;&#10;&#9;PLGetData = valueof(PL.getData);&#13;&#10;&#9;sendOBC = 2;&#13;&#10;&#9;raise PL.sendData : sendOBC;&#13;&#10;&#9;writeOBC = 2" target="_yej1YD_LEeqqM953aO1YNQ"/>
+        <outgoingTransitions xmi:id="_S5aXID_MEeqqM953aO1YNQ" specification="PL.getData [valueof(PL.getData) != 0 &amp;&amp; &#13;&#10;&#9;valueof(PL.getData) != 1 &amp;&amp; &#13;&#10;&#9;valueof(PL.getData) != 2] /&#13;&#10;&#9;PLGetData = valueof(PL.getData);&#13;&#10;&#9;sendOBC = 0;&#13;&#10;&#9;raise PL.sendData : sendOBC" target="_yej1YD_LEeqqM953aO1YNQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_yej1YD_LEeqqM953aO1YNQ" name="OBC_SEND" incomingTransitions="_25OC0D_LEeqqM953aO1YNQ __9024D_LEeqqM953aO1YNQ _S5aXID_MEeqqM953aO1YNQ">
+        <outgoingTransitions xmi:id="_D20S8D_SEeqHVZjk_M15kA" specification="always" target="_D2oFsD_SEeqHVZjk_M15kA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_D2oFsD_SEeqHVZjk_M15kA" specification="" name="OBC_Receive" incomingTransitions="_D20S8D_SEeqHVZjk_M15kA _NtAU8D_SEeqHVZjk_M15kA">
+        <outgoingTransitions xmi:id="_WLdH8D_SEeqHVZjk_M15kA" specification="always [PLGetData != 1 &amp;&amp; &#13;&#10;&#9;PLGetData != 2 &amp;&amp;&#13;&#10;&#9;writeOBC != 1]" target="_i1YBcj_IEeqqM953aO1YNQ"/>
+        <outgoingTransitions xmi:id="_j-LQ8D_SEeqHVZjk_M15kA" specification="PL.getData [valueof(PL.getData) == 2] /&#13;&#10;&#9;OBCData = valueof (PL.getData)" target="_MAw1kD_SEeqHVZjk_M15kA"/>
+        <outgoingTransitions xmi:id="_49_SwD_SEeqHVZjk_M15kA" specification="PL.getData [valueof(PL.getData) == 1 ||&#13;&#10;&#9;writeOBC == 1] /&#13;&#10;&#9;PLGetData = valueof(PL.getData)" target="_i1YBcj_IEeqqM953aO1YNQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_MAw1kD_SEeqHVZjk_M15kA" name="OBC_Write" incomingTransitions="_j-LQ8D_SEeqHVZjk_M15kA">
+        <outgoingTransitions xmi:id="_NtAU8D_SEeqHVZjk_M15kA" specification="always / writeOBC = 1" target="_D2oFsD_SEeqHVZjk_M15kA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

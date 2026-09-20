@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rdsSimplified:Database xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rdsSimplified="http://www.example.org/rdsSimplified" xsi:schemaLocation="http://www.example.org/rdsSimplified inputs/rdsSimplified.ecore">
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <indexes>
+      <indexColumns column="//@elements.0/@columns.6"/>
+      <indexColumns column="//@elements.0/@columns.1"/>
+    </indexes>
+    <indexes/>
+    <indexes>
+      <indexColumns column="//@elements.0/@columns.5"/>
+    </indexes>
+    <indexes/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.9"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.3"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.7"/>
+      <indexColumns column="//@elements.1/@columns.9"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.9"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.3"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.9"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.13"/>
+      <indexColumns column="//@elements.1/@columns.9"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.11"/>
+      <indexColumns column="//@elements.1/@columns.3"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.3"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.3"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.11"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.1"/>
+      <indexColumns column="//@elements.1/@columns.9"/>
+      <indexColumns column="//@elements.1/@columns.14"/>
+      <indexColumns column="//@elements.1/@columns.2"/>
+      <indexColumns column="//@elements.1/@columns.13"/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.13"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.11"/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.11"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.2"/>
+      <indexColumns column="//@elements.1/@columns.8"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.3"/>
+      <indexColumns column="//@elements.1/@columns.2"/>
+      <indexColumns column="//@elements.1/@columns.3"/>
+      <indexColumns column="//@elements.1/@columns.14"/>
+      <indexColumns column="//@elements.1/@columns.13"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.0"/>
+      <indexColumns column="//@elements.1/@columns.10"/>
+      <indexColumns column="//@elements.1/@columns.14"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.1/@columns.1"/>
+      <indexColumns column="//@elements.1/@columns.3"/>
+    </indexes>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table">
+    <indexes/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns/>
+    <indexes>
+      <indexColumns column="//@elements.4/@columns.1"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.4/@columns.2"/>
+      <indexColumns column="//@elements.4/@columns.2"/>
+      <indexColumns column="//@elements.4/@columns.1"/>
+      <indexColumns column="//@elements.4/@columns.2"/>
+    </indexes>
+    <indexes>
+      <indexColumns/>
+      <indexColumns/>
+      <indexColumns column="//@elements.4/@columns.1"/>
+      <indexColumns/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.4/@columns.2"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.4/@columns.1"/>
+      <indexColumns column="//@elements.4/@columns.1"/>
+      <indexColumns column="//@elements.4/@columns.1"/>
+    </indexes>
+    <indexes>
+      <indexColumns/>
+      <indexColumns column="//@elements.4/@columns.1"/>
+      <indexColumns column="//@elements.4/@columns.0"/>
+    </indexes>
+    <indexes>
+      <indexColumns/>
+    </indexes>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <indexes/>
+    <indexes>
+      <indexColumns column="//@elements.6/@columns.3"/>
+      <indexColumns/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.6/@columns.2"/>
+      <indexColumns column="//@elements.6/@columns.4"/>
+      <indexColumns column="//@elements.6/@columns.4"/>
+      <indexColumns column="//@elements.6/@columns.0"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.6/@columns.1"/>
+      <indexColumns column="//@elements.6/@columns.0"/>
+      <indexColumns column="//@elements.6/@columns.4"/>
+      <indexColumns column="//@elements.6/@columns.0"/>
+      <indexColumns column="//@elements.6/@columns.3"/>
+      <indexColumns column="//@elements.6/@columns.2"/>
+      <indexColumns column="//@elements.6/@columns.0"/>
+      <indexColumns/>
+      <indexColumns column="//@elements.6/@columns.2"/>
+    </indexes>
+    <indexes>
+      <indexColumns/>
+      <indexColumns column="//@elements.6/@columns.3"/>
+      <indexColumns column="//@elements.6/@columns.1"/>
+      <indexColumns column="//@elements.6/@columns.3"/>
+      <indexColumns column="//@elements.6/@columns.4"/>
+      <indexColumns column="//@elements.6/@columns.0"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.6/@columns.4"/>
+      <indexColumns column="//@elements.6/@columns.0"/>
+      <indexColumns column="//@elements.6/@columns.0"/>
+      <indexColumns column="//@elements.6/@columns.1"/>
+      <indexColumns column="//@elements.6/@columns.3"/>
+      <indexColumns/>
+    </indexes>
+    <indexes/>
+    <indexes>
+      <indexColumns column="//@elements.6/@columns.0"/>
+      <indexColumns column="//@elements.6/@columns.2"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.6/@columns.2"/>
+      <indexColumns column="//@elements.6/@columns.2"/>
+    </indexes>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <indexes>
+      <indexColumns column="//@elements.7/@columns.2"/>
+      <indexColumns/>
+    </indexes>
+    <indexes/>
+    <indexes>
+      <indexColumns column="//@elements.7/@columns.1"/>
+      <indexColumns column="//@elements.7/@columns.1"/>
+      <indexColumns column="//@elements.7/@columns.2"/>
+      <indexColumns column="//@elements.7/@columns.1"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.7/@columns.2"/>
+      <indexColumns column="//@elements.7/@columns.0"/>
+      <indexColumns column="//@elements.7/@columns.0"/>
+      <indexColumns column="//@elements.7/@columns.1"/>
+      <indexColumns column="//@elements.7/@columns.1"/>
+      <indexColumns column="//@elements.7/@columns.0"/>
+    </indexes>
+    <indexes>
+      <indexColumns/>
+      <indexColumns/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.7/@columns.1"/>
+      <indexColumns column="//@elements.7/@columns.1"/>
+      <indexColumns column="//@elements.7/@columns.0"/>
+      <indexColumns column="//@elements.7/@columns.0"/>
+    </indexes>
+    <indexes>
+      <indexColumns column="//@elements.7/@columns.2"/>
+      <indexColumns/>
+    </indexes>
+  </elements>
+</rdsSimplified:Database>

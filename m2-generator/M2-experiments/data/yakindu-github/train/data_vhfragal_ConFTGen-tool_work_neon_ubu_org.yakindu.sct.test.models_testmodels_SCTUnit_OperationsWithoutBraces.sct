@@ -1,0 +1,34 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_q84ncKViEeSQle4cTwdamg" specification="interface:&#13;&#10;operation myBoolOp() : boolean&#13;&#10;operation myIntOp() : integer&#13;&#10;operation myRealOp() : real" name="OperationsWithoutBraces">
+    <regions xmi:id="_q84nc6ViEeSQle4cTwdamg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_q85OhqViEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_q87DtaViEeSQle4cTwdamg" target="_q851l6ViEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_q851l6ViEeSQle4cTwdamg" name="A" incomingTransitions="_q87DtaViEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_B1xqwKVjEeSQle4cTwdamg" specification="always [!myBoolOp]" target="_-TWs4KViEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_-TWs4KViEeSQle4cTwdamg" name="B" incomingTransitions="_B1xqwKVjEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_CF4jUKVjEeSQle4cTwdamg" specification="always[myIntOp == 0]" target="_-le-sKViEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_-le-sKViEeSQle4cTwdamg" name="C" incomingTransitions="_CF4jUKVjEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_CYadwKVjEeSQle4cTwdamg" specification="always [myRealOp == 0.0]" target="_BesAcKVjEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_BesAcKVjEeSQle4cTwdamg" name="D" incomingTransitions="_CYadwKVjEeSQle4cTwdamg"/>
+    </regions>
+    <regions xmi:id="_bwRd4KVjEeSQle4cTwdamg" name="another region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_d0cVEKVjEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_d0cVEaVjEeSQle4cTwdamg" target="_d0cVEqVjEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_d0cVEqVjEeSQle4cTwdamg" name="A" incomingTransitions="_d0cVEaVjEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_d0cVFaVjEeSQle4cTwdamg" specification="always [!myBoolOp()]" target="_d0djMKVjEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_d0djMKVjEeSQle4cTwdamg" name="B" incomingTransitions="_d0cVFaVjEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_d0djM6VjEeSQle4cTwdamg" specification="always[myIntOp() == 0]" target="_d0exUKVjEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_d0exUKVjEeSQle4cTwdamg" name="C" incomingTransitions="_d0djM6VjEeSQle4cTwdamg">
+        <outgoingTransitions xmi:id="_d0exU6VjEeSQle4cTwdamg" specification="always [myRealOp() == 0.0]" target="_d0f_cKVjEeSQle4cTwdamg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_d0f_cKVjEeSQle4cTwdamg" name="D" incomingTransitions="_d0exU6VjEeSQle4cTwdamg"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

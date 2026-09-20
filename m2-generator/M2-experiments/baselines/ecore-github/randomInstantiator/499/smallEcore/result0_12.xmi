@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="4f8Vzm6XUhynVo0a6DSdSJePQR2eVreyokzMTsBBb0AUFlHdodFeSXS3ZjZS">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="7kYuV09XduVVYzwFkpdI914wJ7BvJ9n6kJE0YBCWo3lfFlry6FDFLXnEhxonNFBXzf">
+    <eLiterals name="7X7qUCSAt7c89O8YzeQChWM5RfFmBZDpBSicb8ky2AquoSt6zWVcY6LjQItcOsjJ8tO"/>
+    <eLiterals name="FvQdErgrn02omQ06z9WlyGqr4A8F5KintYIRKudpj7yOFLROj1qoNxZ5eXfMKafM"/>
+    <eLiterals name="ceMTXSI8yCUedyIrwc6jOe1Jfoq1JnQ9KMjEDCuuLefThjTBYZXnrLC5QFroQAq3av"/>
+    <eLiterals name="HVoMkqwCi00NrorKCHGyrcYLS2JY5ichxoAW7OiYnzMVCC8o5RZqReugkSpJ0rg7"/>
+    <eLiterals name="ykNXIzbhm6dfnraOSKCyiperq0k1EvZVmYiefT38CQukTdTIBBxR7QubAJiVd"/>
+    <eLiterals name="kXL6YS54ZxF7YbtjGJNuPU9tDotT7HydZNTVQMjLWqlh7Zf13IgdYTQGlY4HHHaih0"/>
+    <eLiterals name="ybKSJC7U1jiNMyZNIgUhVLXpYRSrhJU20IYqiayBIQuVkPFVnjamMDmt1czWvRIf"/>
+    <eLiterals name="N6HnAtvXNb3s5OSacPvuKLEhXbhFgpjoaNlxGh4WuSLL6JPJMXShAs1EbzUeb5NmgNIP8"/>
+    <eLiterals name="Hrq6hxraeUfIo7GSAc2dkVpQflXaf23HlClBcBJfawxANKzT8HfNopMUiYZXZo42Cdd9X9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="zfttoxemRJ1nxgyiX0IVvH73sCQ5brxsD5uYOQSyI09hI5SEUHNyy3tDNZ1aX0FrU3U"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="AD9v52xn5cLsAYsoM50xDrCUhjFZYp0Yr9DMQ4NFxCJ1ZXpwK1wjwYEVQrHQJ"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="8Nn1RixmwWsD07WHfgZlmovevRRGmeSjsgLtCwXlAH8EGah0o6SZtXBfjnWJYW5QX" eSuperTypes="//@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="QC0qKAo7yol0YqMj88ekGHEGWIfNwRXqF7rIRj4IN9auvhw7xNKcRoqBoCGS5uIlsH9"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="FeYdJAjgZcYTpMlWi27dZDRzeNfCqBjU1XmWg8ZpknIldAyT66eymOx5Sn8Sezw5JbDT7U"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="lJkBauJzu8G6Z8d84DQAW4zDW5QWfXyKrPBFIVEn7k8kcroABEWLVeaaLUBinANM8HON"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="qKdmQ8W6nUsy0SivbEx6zfHfeEkwSEkwDXSXswo5wyGtiAZyipqAiTutlUXAL"/>
+</smallEcore:EPackage>

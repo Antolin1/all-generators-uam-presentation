@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_3AQUYJOAEeWuO-fDDpYHyA" specification="&#10;@EventDriven&#10;&#10;internal:&#10;&#9;var brightness: integer&#10;&#9;&#10;&#10;interface:&#10;&#9;in event on_button&#10;&#9;in event off_button&#10;&#9;&#10;&#10;interface sensor:&#10;&#9;in event motion" name="LightSwitch">
+    <regions xmi:id="_3AQ7cpOAEeWuO-fDDpYHyA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_3ASJk5OAEeWuO-fDDpYHyA">
+        <outgoingTransitions xmi:id="_H7wVUDeaEeaQIqD3TyMHVw" target="_DKe-sDeaEeaQIqD3TyMHVw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DKe-sDeaEeaQIqD3TyMHVw" specification="" name="MotionSensingMode" incomingTransitions="_H7wVUDeaEeaQIqD3TyMHVw _XkcV4DekEeaQIqD3TyMHVw">
+        <outgoingTransitions xmi:id="_ZolX4DekEeaQIqD3TyMHVw" specification="on_button" target="_HslsYDekEeaQIqD3TyMHVw"/>
+        <regions xmi:id="_DKgz4DeaEeaQIqD3TyMHVw" name="r1">
+          <vertices xsi:type="sgraph:State" xmi:id="_Oh-bYDeaEeaQIqD3TyMHVw" specification="entry / &#13;&#10;brightness = 0" name="Off" incomingTransitions="_YfxhQDeaEeaQIqD3TyMHVw _gm-R4DeaEeaQIqD3TyMHVw">
+            <outgoingTransitions xmi:id="_gISx0DeaEeaQIqD3TyMHVw" specification="sensor.motion" target="_eMfMcDeaEeaQIqD3TyMHVw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_YJ4w0DeaEeaQIqD3TyMHVw">
+            <outgoingTransitions xmi:id="_YfxhQDeaEeaQIqD3TyMHVw" specification="" target="_Oh-bYDeaEeaQIqD3TyMHVw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_eMfMcDeaEeaQIqD3TyMHVw" specification="entry /&#10;brightness = 1" name="On" incomingTransitions="_gISx0DeaEeaQIqD3TyMHVw _FFds0EgxEeaqQLPHnkgH_g">
+            <outgoingTransitions xmi:id="_gm-R4DeaEeaQIqD3TyMHVw" specification="after 30s" target="_Oh-bYDeaEeaQIqD3TyMHVw"/>
+            <outgoingTransitions xmi:id="_FFds0EgxEeaqQLPHnkgH_g" specification="sensor.motion" target="_eMfMcDeaEeaQIqD3TyMHVw"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_HslsYDekEeaQIqD3TyMHVw" specification="" name="ManualMode" incomingTransitions="_NvUD0DekEeaQIqD3TyMHVw _ZolX4DekEeaQIqD3TyMHVw">
+        <outgoingTransitions xmi:id="_NvUD0DekEeaQIqD3TyMHVw" specification="on_button [brightness &lt; 10] / brightness += 1" target="_HslsYDekEeaQIqD3TyMHVw"/>
+        <outgoingTransitions xmi:id="_XkcV4DekEeaQIqD3TyMHVw" specification="off_button" target="_DKe-sDeaEeaQIqD3TyMHVw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

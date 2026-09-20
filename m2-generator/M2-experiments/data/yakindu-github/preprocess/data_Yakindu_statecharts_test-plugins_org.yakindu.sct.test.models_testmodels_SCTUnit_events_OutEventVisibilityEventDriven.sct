@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_gMUBEMsfEem77MjUSNqtug" specification="namespace events&#10;&#10;@EventDriven&#10;@ChildFirstExecution&#10;&#10;interface:&#10;in event i: integer&#10;out event o1&#10;out event o2&#10;&#10;internal:&#10;event l" namespace="events" name="OutEventVisibilityEventDriven">
+    <regions xmi:id="_gMVPM8sfEem77MjUSNqtug" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_gMlt4csfEem77MjUSNqtug">
+        <outgoingTransitions xmi:id="_gMpYQMsfEem77MjUSNqtug" target="_gMm8B8sfEem77MjUSNqtug"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_gMm8B8sfEem77MjUSNqtug" name="A" incomingTransitions="_gMpYQMsfEem77MjUSNqtug">
+        <outgoingTransitions xmi:id="_GPk80MsgEem77MjUSNqtug" specification="i [valueof (i) == 1] &#10;&#9;/ raise o1; raise l" target="_GPePIMsgEem77MjUSNqtug"/>
+        <outgoingTransitions xmi:id="_mExz0MsgEem77MjUSNqtug" specification="i / raise o1" target="_lCf3cMsgEem77MjUSNqtug"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_GPePIMsgEem77MjUSNqtug" name="B" incomingTransitions="_GPk80MsgEem77MjUSNqtug _9-HngMsgEem77MjUSNqtug">
+        <outgoingTransitions xmi:id="_9-HngMsgEem77MjUSNqtug" specification="l / raise o2" target="_GPePIMsgEem77MjUSNqtug"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_lCf3cMsgEem77MjUSNqtug" name="C" incomingTransitions="_mExz0MsgEem77MjUSNqtug">
+        <outgoingTransitions xmi:id="_E6TWgMshEem77MjUSNqtug" specification="i / raise o2" target="_E6OeAMshEem77MjUSNqtug"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_E6OeAMshEem77MjUSNqtug" name="D" incomingTransitions="_E6TWgMshEem77MjUSNqtug">
+        <outgoingTransitions xmi:id="_LF1EoMshEem77MjUSNqtug" specification="i / raise o1; raise o2" target="_LFwMIMshEem77MjUSNqtug"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_LFwMIMshEem77MjUSNqtug" name="E" incomingTransitions="_LF1EoMshEem77MjUSNqtug"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

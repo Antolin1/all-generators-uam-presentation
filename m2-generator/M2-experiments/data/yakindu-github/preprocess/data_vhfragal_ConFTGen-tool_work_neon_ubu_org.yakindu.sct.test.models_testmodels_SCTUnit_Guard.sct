@@ -1,0 +1,16 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_RHEiAHNtEeGtAMDjlTj9eQ" specification="interface:&#13;&#10;in event Event1&#13;&#10;in event Event2&#13;&#10;in event Return&#13;&#10;var MyVar : integer = 0" name="Guard">
+    <regions xmi:id="_RHIMYnNtEeGtAMDjlTj9eQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_RHZSIXNtEeGtAMDjlTj9eQ">
+        <outgoingTransitions xmi:id="_RHjDIXNtEeGtAMDjlTj9eQ" target="_RHc8gXNtEeGtAMDjlTj9eQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_RHc8gXNtEeGtAMDjlTj9eQ" name="A" incomingTransitions="_RHjDIXNtEeGtAMDjlTj9eQ _a5PQkHN2EeGvE6zPcInM6Q">
+        <outgoingTransitions xmi:id="_Wl3F8HNtEeGtAMDjlTj9eQ" specification="Event1 [MyVar == 10]" target="_V-iAMHNtEeGtAMDjlTj9eQ"/>
+        <outgoingTransitions xmi:id="_WXQTIHN2EeGvE6zPcInM6Q" specification="Event2" target="_V-iAMHNtEeGtAMDjlTj9eQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_V-iAMHNtEeGtAMDjlTj9eQ" specification="entry / MyVar = 10" name="B" incomingTransitions="_Wl3F8HNtEeGtAMDjlTj9eQ _WXQTIHN2EeGvE6zPcInM6Q">
+        <outgoingTransitions xmi:id="_a5PQkHN2EeGvE6zPcInM6Q" specification="Return" target="_RHc8gXNtEeGtAMDjlTj9eQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

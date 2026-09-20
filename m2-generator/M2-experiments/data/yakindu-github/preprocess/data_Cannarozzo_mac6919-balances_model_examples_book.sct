@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_WraT4CRfEeu3lb7DwkgYwg" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;internal:&#10;&#9;var onShelf : boolean = false&#10;&#9;var bar : integer&#10;   event finish&#10;&#9;&#10;&#10;interface:&#10;&#9;operation localOperation (int1 : integer, int2 : integer): integer&#10;&#10;interface BookCopy:&#10;&#9;in  event borrow&#10;&#9;in event return&#10;&#9;&#10;//create a orthogonal composite state for count operations&#10;// Define events&#10;// and variables here. &#10;// Use CTRL + Space for content assist." name="book">
+    <regions xmi:id="_Wra68yRfEeu3lb7DwkgYwg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_WrbiBCRfEeu3lb7DwkgYwg">
+        <outgoingTransitions xmi:id="_WrdXMSRfEeu3lb7DwkgYwg" target="_coPesCRfEeu3lb7DwkgYwg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_WrcJFyRfEeu3lb7DwkgYwg" specification="entry / onShelf = false" name="OnLoan" incomingTransitions="_dENB8CRfEeu3lb7DwkgYwg">
+        <outgoingTransitions xmi:id="_coVlUCRfEeu3lb7DwkgYwg" specification="BookCopy.return" target="_coPesCRfEeu3lb7DwkgYwg"/>
+        <outgoingTransitions xmi:id="_CGRAwCSfEeupX6Bec5qlFg" specification="finish" target="_71NSYCSeEeupX6Bec5qlFg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_coPesCRfEeu3lb7DwkgYwg" specification="entry / onShelf = true " name="OnTheShelf" incomingTransitions="_coVlUCRfEeu3lb7DwkgYwg _WrdXMSRfEeu3lb7DwkgYwg">
+        <outgoingTransitions xmi:id="_dENB8CRfEeu3lb7DwkgYwg" specification="BookCopy.borrow" target="_WrcJFyRfEeu3lb7DwkgYwg"/>
+        <outgoingTransitions xmi:id="_KRBaUCRgEeu3lb7DwkgYwg" specification="finish" target="_JxciYCRgEeu3lb7DwkgYwg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_JxciYCRgEeu3lb7DwkgYwg" incomingTransitions="_KRBaUCRgEeu3lb7DwkgYwg"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_71NSYCSeEeupX6Bec5qlFg" specification="entry/ &#13;&#10;bar = localOperation(2,2)" name="foo" incomingTransitions="_CGRAwCSfEeupX6Bec5qlFg"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

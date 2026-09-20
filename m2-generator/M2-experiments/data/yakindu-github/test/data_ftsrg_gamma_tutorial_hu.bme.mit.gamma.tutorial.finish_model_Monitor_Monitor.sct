@@ -1,0 +1,26 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_peOisF6QEeee0_nDeJNXNQ" specification="interface LightInputs:&#10;  in event displayRed&#10;  in event displayGreen&#10;  in event displayYellow&#10;  in event displayNone" name="Monitor">
+    <regions xmi:id="_peS0Il6QEeee0_nDeJNXNQ" name="main_region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_peXsoF6QEeee0_nDeJNXNQ">
+        <outgoingTransitions xmi:id="_58MUEAAtEeiXOL9BWiMosA" specification="" target="_peZh1F6QEeee0_nDeJNXNQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_peZh1F6QEeee0_nDeJNXNQ" name="Other" incomingTransitions="_6XELwGI4EeeMqan5DllsWw _879xcGI4EeeMqan5DllsWw _Fl9GEGI5EeeMqan5DllsWw _H0KDAGI5EeeMqan5DllsWw _58MUEAAtEeiXOL9BWiMosA">
+        <outgoingTransitions xmi:id="_D7nAcF6REeee0_nDeJNXNQ" specification="LightInputs.&#13;&#10;displayGreen" target="_D7d2gF6REeee0_nDeJNXNQ"/>
+        <outgoingTransitions xmi:id="_NxOasF6REeee0_nDeJNXNQ" specification="LightInputs.&#13;&#10;displayRed" target="_NxI7IF6REeee0_nDeJNXNQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_D7d2gF6REeee0_nDeJNXNQ" name="Green" incomingTransitions="_D7nAcF6REeee0_nDeJNXNQ _V1PUcF6REeee0_nDeJNXNQ">
+        <outgoingTransitions xmi:id="_5xsfQF6SEeee0_nDeJNXNQ" specification="LightInputs.displayGreen" target="_GJQjwF6REeee0_nDeJNXNQ"/>
+        <outgoingTransitions xmi:id="_80UzIGCdEee7ELj1Pq16xg" specification="LightInputs.displayRed" target="_NxI7IF6REeee0_nDeJNXNQ"/>
+        <outgoingTransitions xmi:id="_Fl9GEGI5EeeMqan5DllsWw" specification="LightInputs.&#13;&#10;displayNone" target="_peZh1F6QEeee0_nDeJNXNQ"/>
+        <outgoingTransitions xmi:id="_H0KDAGI5EeeMqan5DllsWw" specification="LightInputs.&#13;&#10;displayYellow" target="_peZh1F6QEeee0_nDeJNXNQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_GJQjwF6REeee0_nDeJNXNQ" name="Error" incomingTransitions="_5xsfQF6SEeee0_nDeJNXNQ _C4Z1cGCeEee7ELj1Pq16xg"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_NxI7IF6REeee0_nDeJNXNQ" name="Red" incomingTransitions="_NxOasF6REeee0_nDeJNXNQ _80UzIGCdEee7ELj1Pq16xg">
+        <outgoingTransitions xmi:id="_V1PUcF6REeee0_nDeJNXNQ" specification="LightInputs.displayGreen" target="_D7d2gF6REeee0_nDeJNXNQ"/>
+        <outgoingTransitions xmi:id="_C4Z1cGCeEee7ELj1Pq16xg" specification="LightInputs.displayRed" target="_GJQjwF6REeee0_nDeJNXNQ"/>
+        <outgoingTransitions xmi:id="_6XELwGI4EeeMqan5DllsWw" specification="LightInputs.&#13;&#10;displayNone" target="_peZh1F6QEeee0_nDeJNXNQ"/>
+        <outgoingTransitions xmi:id="_879xcGI4EeeMqan5DllsWw" specification="LightInputs.&#13;&#10;displayYellow" target="_peZh1F6QEeee0_nDeJNXNQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

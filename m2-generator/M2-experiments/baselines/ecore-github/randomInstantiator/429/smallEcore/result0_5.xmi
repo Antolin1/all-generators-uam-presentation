@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="WgXpx9xAM4f7rspeUVSQ0bX1JgaBFGBHleto8E4MlTW0z3hxmKNVyEgQ51w62VXyGb">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="aM4fvPzLBuINTvxSVdQRBov3jstheG5dR7wv8cxTWFVTz2oOCUY4JadCSR6">
+    <eLiterals name="IbzkDuzwdwD2uFPwLq16Lp1Cu25lNAZIVWVNY39zAKcdni3vEEL3XgSRj3"/>
+    <eLiterals name="FDiL8ixecEjPyJZVPTxBWwuoTTuQVZrU55tegn13WKWwkvg0EngRap5x88V"/>
+    <eLiterals name="jXnll3D4uJnrTlHwvb9qCbo3yYnMx84Wcs30yINsG07vzx8OBU1Cpd9SrYpWJ0"/>
+    <eLiterals name="rKFOCTMM3LOOdFOZUr9NLVAnjN3vWKC1SsksrO4d6WQxLvQOvGqFGDMyT7IWA"/>
+    <eLiterals name="V9SC2LkJnV7BXIQsmVdDRFnsQZfoB7ZJ9rjb0QJ6f1vDBGj9ModUj3Vaven1bXmpNBVdT"/>
+    <eLiterals name="T5socoGGuOQbU3LUWgEJnynDaeZO4ckzWIL4LGaSZXiE5LD7EJ3WLsdMIC0IGF"/>
+    <eLiterals name="u5uEYvbHIENLNlaaWaYS7C4NlbXL9YqnPNT20xifaARlp6VHlQKBp7HFyUlVjkBJ3PFu"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="KRy5VvloNhbbfzyb3K8ZilBEnVx7dmqLbAkvox9iFkuFi2HbrRHKdbWsuaW85iB5me" eSuperTypes="//@eClassifiers.5 //@eClassifiers.7 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="rkqbqoBOmOp4LJw6YmY1qR0q1pCDH9ZZpToaABqWFs24nAWNuIJHfanDoMkR6En"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="7pvtwZD1p49TlCCKrXSdEORzAJqZhL4LZAiFe1zSkXpKSNSYY1Z9vq03OtbWEEv"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="w93PmJT0t56jyb6VRqx5EEqYXP5B2WIkDmPn917AWjqzZKqEWupYGwQssJc"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="D7gLT2i16JwLGCu2F4m8Z1HVOPLhApSXSeYmIh1zK3Goa6scwOw2gkegQAoP" eSuperTypes="//@eClassifiers.7 //@eClassifiers.5 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="Nrp9v0xBsrR7pY6yiLfxIw5NYfb6Hp9chK0l4OIkWAYJV0IlW9ukE2wHyYyc938hQNZC"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="gK6wiaa64py7ebdnmQKqSfoabB9Tm4nfIGzvLLadg8aGpvZ4H6f4H8B1IT3uc11sUHq" eSuperTypes="//@eClassifiers.1 //@eClassifiers.5 //@eClassifiers.7"/>
+</smallEcore:EPackage>

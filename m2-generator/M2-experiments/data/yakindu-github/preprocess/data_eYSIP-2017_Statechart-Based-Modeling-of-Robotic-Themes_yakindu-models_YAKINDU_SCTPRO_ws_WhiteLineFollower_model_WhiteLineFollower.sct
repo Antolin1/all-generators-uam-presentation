@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_TiaQUEw0EeeHjNyIDoQfPg" specification="interface Input:&#10;// Define events and&#10;// and variables here&#10;operation forward():void&#10;operation right():void&#10;operation left():void&#10;operation stop():void&#10;var left_sensor:integer&#10;var right_sensor:integer&#10;var center_sensor:integer" name="WhiteLineFollower">
+    <regions xmi:id="_TjCidEw0EeeHjNyIDoQfPg" name="White Line Follower">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_TkkMcUw0EeeHjNyIDoQfPg">
+        <outgoingTransitions xmi:id="_TkwZsEw0EeeHjNyIDoQfPg" specification="" target="_TksvVkw0EeeHjNyIDoQfPg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_TksvVkw0EeeHjNyIDoQfPg" specification="entry/Input.forward()" name="OnLine" incomingTransitions="_TkwZsEw0EeeHjNyIDoQfPg _sg4YsEw3EeeHjNyIDoQfPg _uhqksEw3EeeHjNyIDoQfPg">
+        <outgoingTransitions xmi:id="_6WT3cEw3EeeHjNyIDoQfPg" specification="[Input.left_sensor&lt;16]" target="_UTrDQEw2EeeHjNyIDoQfPg"/>
+        <outgoingTransitions xmi:id="_8jZaEEw3EeeHjNyIDoQfPg" specification="[Input.right_sensor&lt;16]" target="_SlqpUEw2EeeHjNyIDoQfPg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_SlqpUEw2EeeHjNyIDoQfPg" specification="entry/Input.right()" name="LeftOfLine" incomingTransitions="_8jZaEEw3EeeHjNyIDoQfPg _OFeJsEw4EeeHjNyIDoQfPg">
+        <outgoingTransitions xmi:id="_sg4YsEw3EeeHjNyIDoQfPg" specification="[Input.center_sensor&lt;16]" target="_TksvVkw0EeeHjNyIDoQfPg"/>
+        <outgoingTransitions xmi:id="_2Yf-EEw3EeeHjNyIDoQfPg" specification="[Input.center_sensor&gt;16 &amp;&amp; &#13;&#10;Input.right_sensor&gt;16]" target="_XaEMcEw2EeeHjNyIDoQfPg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_UTrDQEw2EeeHjNyIDoQfPg" specification="entry/Input.left()" name="RightOfLine" incomingTransitions="_6WT3cEw3EeeHjNyIDoQfPg _HQ9I8Ew4EeeHjNyIDoQfPg">
+        <outgoingTransitions xmi:id="_uhqksEw3EeeHjNyIDoQfPg" specification="[Input.center_sensor&lt;16]" target="_TksvVkw0EeeHjNyIDoQfPg"/>
+        <outgoingTransitions xmi:id="_32ciwEw3EeeHjNyIDoQfPg" specification="[Input.center_sensor&gt;16 &amp;&amp; &#13;&#10;Input.left_sensor&gt;16]" target="_XaEMcEw2EeeHjNyIDoQfPg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_XaEMcEw2EeeHjNyIDoQfPg" specification="entry/Input.stop()" name="OutOfLine" incomingTransitions="_2Yf-EEw3EeeHjNyIDoQfPg _32ciwEw3EeeHjNyIDoQfPg">
+        <outgoingTransitions xmi:id="_HQ9I8Ew4EeeHjNyIDoQfPg" specification="[Input.left_sensor&lt;16]" target="_UTrDQEw2EeeHjNyIDoQfPg"/>
+        <outgoingTransitions xmi:id="_OFeJsEw4EeeHjNyIDoQfPg" specification="[Input.right_sensor&lt;16]" target="_SlqpUEw2EeeHjNyIDoQfPg"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

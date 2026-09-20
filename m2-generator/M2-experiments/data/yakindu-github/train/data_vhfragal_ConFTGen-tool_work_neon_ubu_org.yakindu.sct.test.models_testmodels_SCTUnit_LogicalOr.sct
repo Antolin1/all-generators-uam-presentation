@@ -1,0 +1,12 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_W3v4UCA6EeO5Bsh-9TRWYA" specification="&#10;interface: &#10;&#10;&#9;var x : integer = 1&#10;&#9;var b : boolean = false&#10;&#9;&#10;&#9;" name="LogicalOr">
+    <regions xmi:id="_W3wfYiA6EeO5Bsh-9TRWYA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_W3zisCA6EeO5Bsh-9TRWYA">
+        <outgoingTransitions xmi:id="_W31X4yA6EeO5Bsh-9TRWYA" target="_W30JxCA6EeO5Bsh-9TRWYA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_W30JxCA6EeO5Bsh-9TRWYA" specification="" name="A" incomingTransitions="_W31X4yA6EeO5Bsh-9TRWYA _7zD4ECA7EeO5Bsh-9TRWYA">
+        <outgoingTransitions xmi:id="_7zD4ECA7EeO5Bsh-9TRWYA" specification="[x==1] / b = ( (x+=1) != 2 || (x*= 2)  == 4 )" target="_W30JxCA6EeO5Bsh-9TRWYA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

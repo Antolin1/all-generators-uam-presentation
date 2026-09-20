@@ -1,0 +1,30 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_nVDVoKf3Eeai1MQIRTN9hA" specification="interface:&#10;&#9;var roomNumber:integer&#10;&#9;in event switchRoom&#10;&#10;interface reception:&#10;&#9;in event doCheckIn&#10;&#9;in event doCheckOut&#10;&#9;&#10;interface admin:&#10;&#9;in event doBlockRoom&#10;&#9;in event doUnblockRoom&#10;&#9;&#10;interface room:&#10;&#9;in event checkIn : integer&#10;&#9;in event checkOut : integer&#10;&#9;&#10;&#9;in event block : integer&#10;&#9;in event unblock : integer&#10;&#9;" name="assignment4_easy">
+    <regions xmi:id="_nVEjwqf3Eeai1MQIRTN9hA" name="Receptionist">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_nVHnEaf3Eeai1MQIRTN9hA">
+        <outgoingTransitions xmi:id="_nVJcQ6f3Eeai1MQIRTN9hA" target="_nVIOJ6f3Eeai1MQIRTN9hA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_nVIOJ6f3Eeai1MQIRTN9hA" name="Idle" incomingTransitions="_nVJcQ6f3Eeai1MQIRTN9hA _9miasKf3Eeai1MQIRTN9hA _tv748Kf4Eeai1MQIRTN9hA">
+        <outgoingTransitions xmi:id="_9miasKf3Eeai1MQIRTN9hA" specification="reception.doCheckIn/raise room.checkIn : roomNumber" target="_nVIOJ6f3Eeai1MQIRTN9hA"/>
+        <outgoingTransitions xmi:id="_tv748Kf4Eeai1MQIRTN9hA" specification="reception.doCheckOut/raise room.checkOut : roomNumber" target="_nVIOJ6f3Eeai1MQIRTN9hA"/>
+      </vertices>
+    </regions>
+    <regions xmi:id="_pHQBIKf5EeaPELw6Hy3jPQ" name="Admin">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_rb3IEKf5EeaPELw6Hy3jPQ">
+        <outgoingTransitions xmi:id="_tYcwkKf5EeaPELw6Hy3jPQ" specification="" target="_r9lVEKf5EeaPELw6Hy3jPQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_r9lVEKf5EeaPELw6Hy3jPQ" name="Idle" incomingTransitions="_tYcwkKf5EeaPELw6Hy3jPQ _unfWkKf5EeaPELw6Hy3jPQ _vG7EkKf5EeaPELw6Hy3jPQ">
+        <outgoingTransitions xmi:id="_unfWkKf5EeaPELw6Hy3jPQ" specification="admin.doUnblockRoom/raise room.unblock : roomNumber" target="_r9lVEKf5EeaPELw6Hy3jPQ"/>
+        <outgoingTransitions xmi:id="_vG7EkKf5EeaPELw6Hy3jPQ" specification="admin.doBlockRoom/raise room.block : &#10;roomNumber" target="_r9lVEKf5EeaPELw6Hy3jPQ"/>
+      </vertices>
+    </regions>
+    <regions xmi:id="_1cT0IKp8Eea9rP9r4tEs6w" name="roomSwitch">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_29vKoKp8Eea9rP9r4tEs6w">
+        <outgoingTransitions xmi:id="_4GcfIKp8Eea9rP9r4tEs6w" specification="" target="_3MsMoKp8Eea9rP9r4tEs6w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_3MsMoKp8Eea9rP9r4tEs6w" name="idle" incomingTransitions="_4GcfIKp8Eea9rP9r4tEs6w _4VUooKp8Eea9rP9r4tEs6w">
+        <outgoingTransitions xmi:id="_4VUooKp8Eea9rP9r4tEs6w" specification="switchRoom/roomNumber = (roomNumber+1)%2" target="_3MsMoKp8Eea9rP9r4tEs6w"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

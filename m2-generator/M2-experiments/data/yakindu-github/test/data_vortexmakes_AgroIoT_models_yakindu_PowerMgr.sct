@@ -1,0 +1,16 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_yt0KkDjpEemSZunftq3MwQ" specification="interface:&#10;&#10;in event evGStatus&#10;in event evBatChrStatus&#10;&#10;operation init()&#10;operation updateMemStatus()&#10;operation usbSync()&#10;operation updateStatus()&#10;operation storeStatus()&#10;operation tracePowerFail()&#10;operation Backup_sync()&#10;operation RKH_TRC_FLUSH()&#10;operation RKH_TRC_CLOSE()&#10;operation trace_msd_close()&#10;operation BatChr_shutDown()&#10;operation bsp_reset()&#10;&#10;operation isPowerFail(): boolean" name="PowerMgr" documentation="- This model follows the logic states of both CLOCK_1S and CLOCK_3S digital signals.&#13;&#10;- While the relay validator works, the expected sequence of logic states is as follows: &quot;1,0,2,0,0,0&quot;. Each number is formed by CLOCK_1S | (CLOCK_3S &lt;&lt; 1)&#13;&#10;- The inputs of this model is provided by ClockSignal state machine on the falling edge of it.&#13;&#10;- The A/D converter is supposed to be in continuos mode.">
+    <regions xmi:id="_yt2m0zjpEemSZunftq3MwQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_yt7fUDjpEemSZunftq3MwQ">
+        <outgoingTransitions xmi:id="_yt97kzjpEemSZunftq3MwQ" specification="/init()" target="_yt8GZzjpEemSZunftq3MwQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_yt8GZzjpEemSZunftq3MwQ" specification="evGStatus /updateStatus();&#13;&#10;                 updateMemStatus()" name="Ready" incomingTransitions="_yt97kzjpEemSZunftq3MwQ">
+        <outgoingTransitions xmi:id="_MCgkoOUSEemMB6bmaFt2TA" specification="evBatChrStatus[isPowerFail()]" target="_yaYWsL4UEeq7A8kS1S1neA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_60EiQHp4EeqnXJ7pLrXguA" incomingTransitions="_2gWtkL4UEeq7A8kS1S1neA"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_yaYWsL4UEeq7A8kS1S1neA" specification="entry/storeStatus();&#13;&#10;tracePowerFail();&#13;&#10;Backup_sync()" name="ShuttingDown" incomingTransitions="_MCgkoOUSEemMB6bmaFt2TA">
+        <outgoingTransitions xmi:id="_2gWtkL4UEeq7A8kS1S1neA" specification="after 2s / RKH_TRC_FLUSH();&#13;&#10;&#9;&#9;&#9;&#9;RKH_TRC_CLOSE();&#13;&#10;&#9;&#9;&#9;&#9;BatChr_shutDown()" target="_60EiQHp4EeqnXJ7pLrXguA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

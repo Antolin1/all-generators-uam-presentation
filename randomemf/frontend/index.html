@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RandomEMF Playground</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b5bdb'/%3E%3Ccircle cx='9' cy='9' r='3.2' fill='white'/%3E%3Ccircle cx='23' cy='11' r='3.2' fill='white'/%3E%3Ccircle cx='15' cy='23' r='3.2' fill='white'/%3E%3Cpath d='M9 9L23 11M9 9L15 23M23 11L15 23' stroke='white' stroke-width='1.6' fill='none'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>RandomEMF</h1>
+          <span class="tagline">Playground</span>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>Ejemplo</span>
+        <select id="example"></select>
+      </label>
+
+      <div class="field seed">
+        <span>Semilla</span>
+        <div class="seed-row">
+          <input id="seed" type="number" step="1" min="0" title="Semilla del generador aleatorio" />
+          <button id="seed-lock" class="icon-btn" type="button" aria-pressed="false" title="Fijar la semilla: cada Generate usa la misma y el resultado es idéntico"></button>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>Máx. objetos</span>
+        <input id="max-objects" type="number" min="1" max="5000" step="1" title="Máximo de objetos que puede crear el generador (cuenta los objetos ya terminados)" />
+      </label>
+
+      <div id="params" class="params"></div>
+
+      <div class="spacer"></div>
+
+      <span id="backend-status" class="pill" data-state="connecting">Conectando…</span>
+      <button id="generate" class="primary" type="button" title="Generar un modelo (Ctrl+Enter)">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor" /></svg>
+        Generate
+      </button>
+    </header>
+
+    <main id="workspace">
+      <section class="panel editor-panel" aria-label="Editor rcore">
+        <div class="panel-head">
+          <h2>Generador <span class="muted">.rcore</span></h2>
+          <span id="metamodel" class="muted mono ellipsis"></span>
+          <div class="spacer"></div>
+          <button id="open-metamodels" class="ghost" type="button" title="Metamodelos disponibles y cómo usar los tuyos">Metamodelos</button>
+        </div>
+        <div id="editor" class="editor"></div>
+        <div id="problems" class="problems" data-empty="true">
+          <button id="problems-toggle" class="problems-head" type="button" aria-expanded="true">
+            <span id="problems-summary">Sin problemas</span>
+          </button>
+          <ul id="problems-list"></ul>
+        </div>
+      </section>
+
+      <div class="splitter v" id="split-v" role="separator" aria-orientation="vertical" tabindex="0"></div>
+
+      <div class="right">
+        <section class="panel graph-panel" aria-label="Sintaxis abstracta">
+          <div class="panel-head">
+            <h2>Sintaxis abstracta</h2>
+            <div class="spacer"></div>
+            <label class="check" title="Al mover el cursor por el editor, resalta en el grafo los objetos que creó la regla bajo el cursor">
+              <input id="cursor-highlight" type="checkbox" /> regla bajo el cursor
+            </label>
+            <label class="check" title="Mostrar objetos que creó EMF por su cuenta y ninguna regla (p. ej. EGenericType)">
+              <input id="show-implicit" type="checkbox" /> implícitos
+            </label>
+            <div class="seg" role="group" aria-label="Orientación">
+              <button id="dir-down" type="button" data-dir="DOWN" title="Árbol de arriba abajo">↓</button>
+              <button id="dir-right" type="button" data-dir="RIGHT" title="Árbol de izquierda a derecha">→</button>
+            </div>
+            <button id="fit" class="ghost" type="button" title="Ajustar a la vista">Ajustar</button>
+          </div>
+          <div id="graph" class="graph"></div>
+          <div class="graph-foot">
+            <span><svg width="34" height="10"><use href="#legend-containment" /></svg> contención</span>
+            <span><svg width="34" height="10"><use href="#legend-reference" /></svg> referencia</span>
+            <span class="ext">objeto externo</span>
+            <span class="hint">rueda: zoom · arrastrar: mover · clic: seleccionar</span>
+            <div class="spacer"></div>
+            <span id="graph-stats"></span>
+          </div>
+        </section>
+
+        <div class="splitter h" id="split-h" role="separator" aria-orientation="horizontal" tabindex="0"></div>
+
+        <section class="panel rules-panel" aria-label="Reglas aplicadas">
+          <div class="panel-head tabs" role="tablist">
+            <button role="tab" data-tab="tree" aria-selected="true">Reglas aplicadas</button>
+            <button role="tab" data-tab="summary" aria-selected="false">Resumen</button>
+            <button role="tab" data-tab="java" aria-selected="false">Java generado</button>
+            <div class="spacer"></div>
+            <span id="rules-stats" class="muted"></span>
+          </div>
+          <div id="tab-tree" class="tab-body" role="tabpanel"></div>
+          <div id="tab-summary" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-java" class="tab-body" role="tabpanel" hidden></div>
+        </section>
+      </div>
+    </main>
+
+    <dialog id="metamodels-dialog" aria-labelledby="mm-title">
+      <form method="dialog" class="mm-head">
+        <h2 id="mm-title">Metamodelos</h2>
+        <span class="spacer"></span>
+        <button id="mm-reload" class="ghost" type="button" title="Volver a generar el código de todos los metamodelos">Recargar</button>
+        <button class="ghost" value="close">Cerrar</button>
+      </form>
+      <p class="mm-help">
+        Cualquier <code>.ecore</code> que copies en la carpeta <b class="mono" id="mm-dir">metamodels/</b> del proyecto se detecta solo:
+        el backend genera su código EMF, lo compila y lo registra (si hay un <code>.genmodel</code> con el mismo nombre, lo respeta).
+        En el generador se referencia con <code>in "…"</code>, con el nombre del paquete tras <code>for</code>.
+      </p>
+      <ul id="mm-list" class="mm-list"></ul>
+    </dialog>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <g id="legend-containment"><line x1="8" y1="5" x2="34" y2="5" stroke="var(--edge)" stroke-width="1.6" /><path d="M0 5 L4 2 L8 5 L4 8 Z" fill="var(--edge)" /></g>
+        <g id="legend-reference"><line x1="0" y1="5" x2="27" y2="5" stroke="var(--ref)" stroke-width="1.6" stroke-dasharray="4 3" /><path d="M34 5 L27 1.8 L27 8.2 Z" fill="var(--ref)" /></g>
+      </defs>
+    </svg>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

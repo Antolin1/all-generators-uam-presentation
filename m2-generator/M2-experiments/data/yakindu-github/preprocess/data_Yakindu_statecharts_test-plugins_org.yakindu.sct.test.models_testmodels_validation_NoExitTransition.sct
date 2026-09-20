@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_y5zQgFjvEeicW6NqCSWe_g" specification="@CycleBased(200)&#10;&#10;interface:&#10;in event e1&#10;in event e2" name="NoExitTransition">
+    <regions xmi:id="_y52T0FjvEeicW6NqCSWe_g" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_y57zYFjvEeicW6NqCSWe_g">
+        <outgoingTransitions xmi:id="_y5-Po1jvEeicW6NqCSWe_g" target="_y58ad1jvEeicW6NqCSWe_g"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_y58ad1jvEeicW6NqCSWe_g" name="StateA" incomingTransitions="_y5-Po1jvEeicW6NqCSWe_g">
+        <outgoingTransitions xmi:id="_DkiLolj0EeicW6NqCSWe_g" specification="e2" target="_DkhkkFj0EeicW6NqCSWe_g"/>
+        <regions xmi:id="__AmGYFjzEeicW6NqCSWe_g" name="">
+          <vertices xsi:type="sgraph:Entry" xmi:id="__AmGYVjzEeicW6NqCSWe_g">
+            <outgoingTransitions xmi:id="__AmGYljzEeicW6NqCSWe_g" specification="" target="__An7kFjzEeicW6NqCSWe_g"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="__An7kFjzEeicW6NqCSWe_g" specification="" name="State1" incomingTransitions="__AmGYljzEeicW6NqCSWe_g">
+            <outgoingTransitions xmi:id="_BfTkgFj0EeicW6NqCSWe_g" specification="e1" target="_AcVroFj0EeicW6NqCSWe_g"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Exit" xmi:id="_AcVroFj0EeicW6NqCSWe_g" incomingTransitions="_BfTkgFj0EeicW6NqCSWe_g"/>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DkhkkFj0EeicW6NqCSWe_g" name="end" incomingTransitions="_DkiLolj0EeicW6NqCSWe_g"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

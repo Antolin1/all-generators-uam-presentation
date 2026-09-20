@@ -1,0 +1,13 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_y5LOcOlFEeap2s9VhFHffQ" specification="interface:&#10;// Define events and &#10;// and variables here&#10;operation myVarOperation(name... : string) : void&#10;&#10;interface IF2:&#10;operation myVarOperation2(argCount : integer, args... : integer ) : void&#10;&#10;internal:&#10;operation myInternalVarOperation(test...: real) : integer" name="VariadicFunctions">
+    <regions xmi:id="_y594oOlFEeap2s9VhFHffQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_y6p1IOlFEeap2s9VhFHffQ">
+        <outgoingTransitions xmi:id="_y7EE0OlFEeap2s9VhFHffQ" target="_y6utoOlFEeap2s9VhFHffQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_y6utoOlFEeap2s9VhFHffQ" specification="entry / myVarOperation() ; myVarOperation(&quot;one&quot;); myVarOperation(&quot;one&quot;,&quot;two&quot;,&quot;three&quot;)" name="StateA" incomingTransitions="_y7EE0OlFEeap2s9VhFHffQ">
+        <outgoingTransitions xmi:id="_rglpwOllEeaqy98R6GTawQ" specification="always / myInternalVarOperation(0.0,0.2)" target="_qngssOllEeaqy98R6GTawQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_qngssOllEeaqy98R6GTawQ" specification="entry / IF2.myVarOperation2(1);  IF2.myVarOperation2(1,2); IF2.myVarOperation2(1,2,3,4)" name="StateB" incomingTransitions="_rglpwOllEeaqy98R6GTawQ"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

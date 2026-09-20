@@ -1,0 +1,31 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_WbIqMFgXEeeNwJt_ornpOA" specification="namespace executionorder&#10;&#10;@ChildFirstExecution&#10;&#10;interface:&#10;// Define events and&#10;// and variables here. &#10;//Use CTRL + Space for content assist.&#10;&#10;in event e&#10;&#10;var disable_a : boolean&#10;var disable_aa : boolean&#10;var disable_aaa : boolean&#10;&#10;&#10;var a_reacted : boolean&#10;var aa_reacted : boolean&#10;var aaa_reacted : boolean&#10;&#10;var a_local : boolean&#10;var aa_local : boolean&#10;var aaa_local : boolean&#10;&#10;" namespace="executionorder" name="ChildFirstExecutionHierarchy">
+    <regions xmi:id="_WbJ4UlgXEeeNwJt_ornpOA" name="r">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_WbZv8VgXEeeNwJt_ornpOA">
+        <outgoingTransitions xmi:id="_WbcMMlgXEeeNwJt_ornpOA" target="_Wba-EVgXEeeNwJt_ornpOA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Wba-EVgXEeeNwJt_ornpOA" specification="entry / &#10;&#9;a_reacted = false;&#10;&#9;aa_reacted = false;&#10;&#9;aaa_reacted = false;&#10;&#9;a_local = false;&#10;&#9;aa_local = false;&#10;&#9;aaa_local = false;&#10;&#9;disable_a = false;&#10;&#9;disable_aa = false;&#10;&#9;disable_aaa = false&#10;&#9;&#10;always / a_local = true" name="A" incomingTransitions="_WbcMMlgXEeeNwJt_ornpOA _w7SIEFgXEeeNwJt_ornpOA">
+        <outgoingTransitions xmi:id="_n4jjUFgXEeeNwJt_ornpOA" specification="e [! disable_a] / a_reacted = true" target="_lgGeMFgXEeeNwJt_ornpOA"/>
+        <regions xmi:id="_euckTVgXEeeNwJt_ornpOA" name="r">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_euckTlgXEeeNwJt_ornpOA">
+            <outgoingTransitions xmi:id="_euckT1gXEeeNwJt_ornpOA" specification="" target="_euckUFgXEeeNwJt_ornpOA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_euckUFgXEeeNwJt_ornpOA" specification="always / aa_local = true" name="AA" incomingTransitions="_euckT1gXEeeNwJt_ornpOA">
+            <outgoingTransitions xmi:id="_rKGMkFgXEeeNwJt_ornpOA" specification="e [! disable_aa] / aa_reacted = true" target="_lgGeMFgXEeeNwJt_ornpOA"/>
+            <regions xmi:id="_fjqU8FgXEeeNwJt_ornpOA" name="r">
+              <vertices xsi:type="sgraph:Entry" xmi:id="_fjqU8VgXEeeNwJt_ornpOA">
+                <outgoingTransitions xmi:id="_fjqU8lgXEeeNwJt_ornpOA" specification="" target="_fjqU81gXEeeNwJt_ornpOA"/>
+              </vertices>
+              <vertices xsi:type="sgraph:State" xmi:id="_fjqU81gXEeeNwJt_ornpOA" specification="always / aaa_local = true" name="AAA" incomingTransitions="_fjqU8lgXEeeNwJt_ornpOA">
+                <outgoingTransitions xmi:id="_p3XZYFgXEeeNwJt_ornpOA" specification="e [! disable_aaa] / aaa_reacted = true" target="_lgGeMFgXEeeNwJt_ornpOA"/>
+              </vertices>
+            </regions>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_lgGeMFgXEeeNwJt_ornpOA" name="B" incomingTransitions="_n4jjUFgXEeeNwJt_ornpOA _p3XZYFgXEeeNwJt_ornpOA _rKGMkFgXEeeNwJt_ornpOA">
+        <outgoingTransitions xmi:id="_w7SIEFgXEeeNwJt_ornpOA" specification="e" target="_Wba-EVgXEeeNwJt_ornpOA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,27 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_DYt1UMqFEeGCh8O3kx-14A" specification="interface :&#13;&#10;in event auto&#13;&#10;in event break&#13;&#10;var case : boolean&#13;&#10;var do : integer&#13;&#10;var continue : boolean&#13;&#10;var double : boolean&#13;&#10;var enum: boolean&#13;&#10;var extern : boolean&#13;&#10;var float : boolean&#13;&#10;var for : boolean&#13;&#10;var goto : boolean&#13;&#10;var if :boolean&#13;&#10;var int : boolean&#13;&#10;var long : boolean&#13;&#10;var register : boolean&#13;&#10;var return : boolean&#13;&#10;var short : boolean&#13;&#10;var signed : boolean&#13;&#10;var sizeof : boolean&#13;&#10;var static : boolean&#13;&#10;var struct : boolean&#13;&#10;var switch : boolean&#13;&#10;var typedef : boolean&#13;&#10;var union : boolean&#13;&#10;var unsigned : boolean&#13;&#10;var void : boolean&#13;&#10;var volatile : boolean&#13;&#10;var while : boolean" name="CKeywords">
+    <regions xmi:id="_DZ6IIsqFEeGCh8O3kx-14A" name="auto">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_Daf-AcqFEeGCh8O3kx-14A">
+        <outgoingTransitions xmi:id="_DapvDsqFEeGCh8O3kx-14A" target="_Daf-DMqFEeGCh8O3kx-14A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Daf-DMqFEeGCh8O3kx-14A" specification="entry /&#13;&#10; case = true;&#13;&#10; do = 0;&#13;&#10; continue = true;&#13;&#10; double = true;&#13;&#10; enum= true;&#13;&#10; extern = true;&#13;&#10; float = true;&#13;&#10; for = true;&#13;&#10; goto = true;&#13;&#10; if = true;&#13;&#10; int = true;&#13;&#10; long = true;&#13;&#10; register = true;&#13;&#10; return = true;&#13;&#10; short = true;&#13;&#10; signed = true;&#13;&#10; sizeof = true;&#13;&#10; static = true;&#13;&#10; struct = true;&#13;&#10; switch = true;&#13;&#10; typedef = true;&#13;&#10; union = true;&#13;&#10; unsigned = true;&#13;&#10; void = true;&#13;&#10; volatile = true;&#13;&#10; while = true" name="char" incomingTransitions="_DapvDsqFEeGCh8O3kx-14A">
+        <outgoingTransitions xmi:id="_ekRnsMqFEeGCh8O3kx-14A" specification="auto[case]/do +=1" target="_YS1e0MqFEeGCh8O3kx-14A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_YS1e0MqFEeGCh8O3kx-14A" name="loop" incomingTransitions="_ekRnsMqFEeGCh8O3kx-14A">
+        <regions xmi:id="_YS1e0sqFEeGCh8O3kx-14A" name="switch">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_9teoQOLXEeG2O7J-yxt9BQ" name="" kind="SHALLOW_HISTORY">
+            <outgoingTransitions xmi:id="_W9psAOLYEeG2O7J-yxt9BQ" specification="" target="_S1dHkOLYEeG2O7J-yxt9BQ"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_S1dHkOLYEeG2O7J-yxt9BQ" name="case" incomingTransitions="_W9psAOLYEeG2O7J-yxt9BQ">
+            <regions xmi:id="_S1dHkuLYEeG2O7J-yxt9BQ" name="enum">
+              <vertices xsi:type="sgraph:Entry" xmi:id="_YIAmUOLYEeG2O7J-yxt9BQ" name="" kind="DEEP_HISTORY">
+                <outgoingTransitions xmi:id="_2Q998OLYEeG2O7J-yxt9BQ" specification="" target="_bEhRYMqHEeGCh8O3kx-14A"/>
+              </vertices>
+              <vertices xsi:type="sgraph:State" xmi:id="_bEhRYMqHEeGCh8O3kx-14A" specification="entry /&#13;&#10; case = false;&#13;&#10; do = 0;&#13;&#10; continue = false;&#13;&#10; double = false;&#13;&#10; enum= false;&#13;&#10; extern = false;&#13;&#10; float = false;&#13;&#10; for = false;&#13;&#10; goto = false;&#13;&#10; if = false;&#13;&#10; int = false;&#13;&#10; long = false;&#13;&#10; register = false;&#13;&#10; return = false;&#13;&#10; short = false;&#13;&#10; signed = false;&#13;&#10; sizeof = false;&#13;&#10; static = false;&#13;&#10; struct = false;&#13;&#10; switch = false;&#13;&#10; typedef = false;&#13;&#10; union = false;&#13;&#10; unsigned = false;&#13;&#10; void = false;&#13;&#10; volatile = false;&#13;&#10; while = false" name="asm" incomingTransitions="_2Q998OLYEeG2O7J-yxt9BQ"/>
+            </regions>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

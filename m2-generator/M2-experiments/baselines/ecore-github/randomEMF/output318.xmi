@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="">
+  <eClassifiers xsi:type="smallEcore:EClass" name=""/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.2" eOpposite="//@eClassifiers.2/@eStructuralFeatures.5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="" upperBound="1" eType="//@eClassifiers.1" eOpposite="//@eClassifiers.1/@eStructuralFeatures.0"/>
+  </eClassifiers>
+</smallEcore:EPackage>

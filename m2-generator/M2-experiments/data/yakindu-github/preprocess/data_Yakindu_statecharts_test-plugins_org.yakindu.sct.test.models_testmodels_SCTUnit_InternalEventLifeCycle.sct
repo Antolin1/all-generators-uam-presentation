@@ -1,0 +1,26 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_PaEEIPZzEeGjYrgSHyBHaA" specification="&#10;interface:&#10;&#9;in event e&#10;&#9;in event f&#10;&#9;&#10;internal:&#10;&#9;event i1&#10;&#9;event i2&#10;&#10;&#9;" name="InternalEventLifeCycle">
+    <regions xmi:id="_Pa2uUPZzEeGjYrgSHyBHaA" name="r1">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_PbYSwPZzEeGjYrgSHyBHaA">
+        <outgoingTransitions xmi:id="_PbfngPZzEeGjYrgSHyBHaA" target="_PbaH8PZzEeGjYrgSHyBHaA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_PbaH8PZzEeGjYrgSHyBHaA" specification="e / raise i1" name="A" incomingTransitions="_PbfngPZzEeGjYrgSHyBHaA _NskyIPZ0EeGjYrgSHyBHaA">
+        <outgoingTransitions xmi:id="_tiPYoPZzEeGjYrgSHyBHaA" specification="i2" target="_l_cVkPZzEeGjYrgSHyBHaA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_l_cVkPZzEeGjYrgSHyBHaA" name="B" incomingTransitions="_tiPYoPZzEeGjYrgSHyBHaA">
+        <outgoingTransitions xmi:id="_NskyIPZ0EeGjYrgSHyBHaA" specification="e" target="_PbaH8PZzEeGjYrgSHyBHaA"/>
+      </vertices>
+    </regions>
+    <regions xmi:id="_1kk3YPZzEeGjYrgSHyBHaA" name="r2">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_7st6UPZzEeGjYrgSHyBHaA">
+        <outgoingTransitions xmi:id="_8v_8QPZzEeGjYrgSHyBHaA" target="_8vWcAPZzEeGjYrgSHyBHaA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_8vWcAPZzEeGjYrgSHyBHaA" name="C" incomingTransitions="_8v_8QPZzEeGjYrgSHyBHaA _IJcgwPZ0EeGjYrgSHyBHaA">
+        <outgoingTransitions xmi:id="_-pRLAPZzEeGjYrgSHyBHaA" specification="i1" target="_-ow0sPZzEeGjYrgSHyBHaA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_-ow0sPZzEeGjYrgSHyBHaA" specification="" name="D" incomingTransitions="_-pRLAPZzEeGjYrgSHyBHaA">
+        <outgoingTransitions xmi:id="_IJcgwPZ0EeGjYrgSHyBHaA" specification="f / raise i2" target="_8vWcAPZzEeGjYrgSHyBHaA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,25 @@
+import epackage	"inputs/put_here_metamodel"
+import viatra	"src/queries/constraints.vql"
+
+generate {
+	metamodel = { package put_here_package }
+	constraints = { package queries }
+	solver = put_here_solver
+	scope = {
+		#node += put_here_nodes,
+		#<put_here_package::root_class> += 1..1
+	}
+	
+	config = {
+		runtime = set_runtime,
+		log-level = normal
+	}
+	
+	runs = 1
+	number = set_number
+	
+	debug =			"outputs/debug"
+	log =			"outputs/log.txt"
+	output =		"outputs/models"
+	statistics =		"outputs/stats.csv" 
+}

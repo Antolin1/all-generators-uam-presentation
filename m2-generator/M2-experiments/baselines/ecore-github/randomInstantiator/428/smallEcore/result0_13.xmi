@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="xTgoL0ZrRTGveDvDJJDdCSoPpWMTRcisX2yz6Mj1oLEsWOzGxM95Ko9ZqXJPcQIc">
+  <eClassifiers xsi:type="smallEcore:EDataType" name="219JikQHJ3W8S8pqhCSRrdIcSLHEmAkb4aTkxQbO6xDNc3mWxgqW5nBXzFYEqWOQZ"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="op7ZKn8y0BmQh4ifApu9s1Olev8pUGvtuHXUQfKXWdjqToXVSRIHaNlBfHmnCMQYpV5Vqa">
+    <eLiterals name="SQOe1niykdhim2kUnyF6jA5k5VSpo9sNXINLAA30hJtE8M8C142OCafognLge90kn9V"/>
+    <eLiterals name="bJRoN5Nz8jUKAjuivX59eCHwsAvhtYRkU8OIctkMCuVXLhf5hkrMeqxR39Mc4x3v"/>
+    <eLiterals name="eGU43LlY2oUkwDTZ0wetjAmNhffpmh8soAM4vy47AQPlwS4HTpm4VaGFYQbXWGZndk"/>
+    <eLiterals name="2liEPLiidQk7qW8XDb1c5XDXN96jZT939hsScc8DyvQngvTDGq5B7R21Xaa59xROGxL1YE"/>
+    <eLiterals name="BBNv46QNhCT1FVEOglYpapt1uBHqppLewn0834AdVRFWe7sHBkbKskR1W8tDtANpoy9zQW"/>
+    <eLiterals name="EnOXeGmvVDNxJJw364x8BHvrzux1HdWdFkGBKfm7mknr56ZkvIexBWsSRChG"/>
+    <eLiterals name="BDCEH3iNLoYJ416DpsOOwggHLx1lN9kQl0Qu6ecgnF0LxxZajrNfrPTUOUsLstTKF12g"/>
+    <eLiterals name="ps9AxPw3ws0Hz1uUhOyM4BcfpIpxJewWGKVr1HuSD5EXv9GT0YYFZjci364cCaFzO"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="Dx3J8ZBksfYMQoxEG6hs5YOS0bxnbY5foRxJaXwoJuM4aW3U4xYuqCaxZYvIJbJzroQ"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="Xe7jXI98JFTLmSH8UBcPZhpf10Es7NJUv8bLj3YqW1ExlN8p5UlgHoIGyn9aavhEOU"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="FgRyQFJpptpcD5mnhLgYL51nMeP14D3X1qq8Y8KtcN7L5slqxET7ODdIrj"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="HG0ChDRJIl7Lo4ESXpnCIhsgGe11dAlmWj68BzZxrSKqxavyj6zsGMR2V5MDNr14d"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="EVsiIQAdpbIFkDKZgUjq9XO5gWfnBrHSmcHNA0lcOBi14cKmEaNRSR8iRCB94lrgHKjs5i"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="hmdiDGAKZh0IfchmLDtB5JqWBCm6nffa7MIK9NE1wpHWIxhS3nQgE3IbxU7z3JH4eQxXGR"/>
+</smallEcore:EPackage>

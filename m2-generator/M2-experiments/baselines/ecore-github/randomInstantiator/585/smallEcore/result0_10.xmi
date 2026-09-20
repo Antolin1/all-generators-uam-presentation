@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="6FpH89pJNZwhlzERlhTSGA95cxO6xhS1DkWopHawDXn2LVtKdx2nKKoisWS4MlCk">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="svyQv2bNwmoaYgerFl5OZPtEOW1b6Istab4s5jg5acHHtv6x6nmJIcVfrAM8nhc">
+    <eLiterals name="ARDciukQcmidrTw2T6n1yqaN9dlwQJHG5AYbguGtVoGfRN0XJXZFh0rSjzChWS"/>
+    <eLiterals name="IaVl6joQGVXIMbGezTuOZaHOFvend04KpyIUDuhkXcgfkNSvrj3SUNkqTc"/>
+    <eLiterals name="HnAmBkXhZgr1lslFGibFFMWsA5ttuZoidsK6m5DuEePOECydvPPUoQwOcOg"/>
+    <eLiterals name="XplQocLbNp5LtV1DxXAkGuFQnDGl2UzM1wZQR37yPh8VVqLoLeXjfZykv961JAwYVC"/>
+    <eLiterals name="EFGsJNu2NtroufuwpGv1vNHs3xJViAun1D8a6jEMFe4E9RnuWy0xEcUN3hlxlqWZbZ"/>
+    <eLiterals name="2jgZpvKfYMMW9sZTsCPu0XOFGuADpaONC0czgnkFrg9SxMR9qi9CsWArdudzH"/>
+    <eLiterals name="dAkgNypeIv33kiJJjE4qLNy4Vio26RDwSAoKgswcWYqk2UYwfbpkV4D1mXVzizmK9Zf"/>
+    <eLiterals name="gkmaTrmIT8nn18UQhQfnNZawWi4FRroqDByWeYA8k1JwvwPPICBf6IJPQ0ZEkFzBS"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="ZfAdHlnFXFsTGDaFrgiOt6WgVw7XXg5WZfAnPOGQvbdcY3h4IArY5PSYkTa6eDSMlru6"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="qZTtBa92XADtT7ROiRr9VgrdULUEkkeT75R4JG3s7qTH9zecVXMz03jDKBfyt2xFc2jq"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="8LTxUu4ayIOuNxPw4lhpq0gaN2Wp9zKjMhw7Sm7c2rnCD5cU7wCFEjbxUDLkMgmcm9"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="fTM97BvtxJAUZ42r07VnJmbkLV9p6mtodUNzof6J6xptyUV1ROuHwB9R7w"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="QHxyCHOE2HeNdSinMCb5yLY4RZcluPWOCqroW4KdUomRRzsdeSnF3YF24bHgm9vD"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="27Xh7LlcscOp2UL7eNVuZb0S4X367flaNCvJ4vshPSByeK1nqbShF9a2lH81Nfti9" eSuperTypes="//@eClassifiers.6"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="PQWaMJYCwjP98ZVx6H2ZhOOHnhzr9Iv1huxGElQMLmKOMnw8HtOGAHUwByl"/>
+</smallEcore:EPackage>

@@ -1,0 +1,17 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_1rd3MITgEeqMco_UTryCEw" specification="&#10;interface Status:&#10;&#9;in event Full&#10;&#9;in event Free&#10;&#9;&#10;interface InPicStream:&#10;&#9;in event NewData&#10;&#10;interface NetworkStream:&#10;&#9;out event NewData&#10;&#10;interface LocalStream:&#10;&#9;out event NewData" name="SmartControl">
+    <regions xmi:id="_FlXjkITrEeqy_LD7Uhmb4Q" name="mainregion">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_KANXMITrEeqy_LD7Uhmb4Q">
+        <outgoingTransitions xmi:id="_VAX5AITrEeqy_LD7Uhmb4Q" specification="" target="_MtT2oITrEeqy_LD7Uhmb4Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Kef1sITrEeqy_LD7Uhmb4Q" name="SendToCloud" incomingTransitions="_V9UpcITrEeqy_LD7Uhmb4Q _x1Jr8ITrEeqy_LD7Uhmb4Q">
+        <outgoingTransitions xmi:id="_ZOcb8ITrEeqy_LD7Uhmb4Q" specification="Status.Free" target="_MtT2oITrEeqy_LD7Uhmb4Q"/>
+        <outgoingTransitions xmi:id="_x1Jr8ITrEeqy_LD7Uhmb4Q" specification="InPicStream.NewData/&#10;raise LocalStream.NewData" target="_Kef1sITrEeqy_LD7Uhmb4Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_MtT2oITrEeqy_LD7Uhmb4Q" name="SendToLocal" incomingTransitions="_VAX5AITrEeqy_LD7Uhmb4Q _ZOcb8ITrEeqy_LD7Uhmb4Q _tXcKgITrEeqy_LD7Uhmb4Q">
+        <outgoingTransitions xmi:id="_V9UpcITrEeqy_LD7Uhmb4Q" specification="Status.Full" target="_Kef1sITrEeqy_LD7Uhmb4Q"/>
+        <outgoingTransitions xmi:id="_tXcKgITrEeqy_LD7Uhmb4Q" specification="InPicStream.NewData/&#10;raise LocalStream.NewData" target="_MtT2oITrEeqy_LD7Uhmb4Q"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

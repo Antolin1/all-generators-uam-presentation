@@ -1,0 +1,32 @@
+# RandomEMF Playground
+#
+#   docker compose up --build
+#   → http://localhost:8080
+#
+# ATENCIÓN: el backend compila y ejecuta el código de los .rcore (expresiones Xbase = Java arbitrario).
+# Es una herramienta local: por eso los puertos solo se publican en 127.0.0.1. No lo expongas a internet.
+
+services:
+  backend:
+    build:
+      context: .                      # necesita RandomEMF/ y backend/
+      dockerfile: backend/Dockerfile
+    image: randomemf-backend
+    environment:
+      JAVA_OPTS: "-Xmx1g"
+      METAMODELS_DIR: /metamodels
+    volumes:
+      # tus metamodelos (*.ecore, opcionalmente con su *.genmodel) y generadores (*.rcore); se detectan sin reiniciar
+      - ./metamodels:/metamodels:ro
+    ports:
+      - "127.0.0.1:8081:8081"         # solo para depurar la API (curl); el front usa la red interna
+
+  frontend:
+    build:
+      context: ./frontend
+    image: randomemf-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:80"

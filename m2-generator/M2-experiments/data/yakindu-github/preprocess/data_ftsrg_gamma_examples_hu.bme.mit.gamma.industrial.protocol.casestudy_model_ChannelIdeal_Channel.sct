@@ -1,0 +1,18 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_cpjO8A8NEeqviYeA6lqTwA" specification="interface Input:&#13;&#10;&#9;in event OrionDisconn&#13;&#10;&#9;in event OrionDisconnCause&#13;&#10;&#9;in event OrionConnReq&#13;&#10;&#9;in event OrionAppData&#13;&#10;&#9;in event OrionKeepAlive&#13;&#10;&#9;in event OrionConnConf&#13;&#10;&#9;in event OrionConnResp&#13;&#10;&#13;&#10;interface Output:&#13;&#10;&#9;out event OrionDisconn&#13;&#10;&#9;out event OrionDisconnCause&#13;&#10;&#9;out event OrionConnReq&#13;&#10;&#9;out event OrionAppData&#13;&#10;&#9;out event OrionKeepAlive&#13;&#10;&#9;out event OrionConnConf&#13;&#10;&#9;out event OrionConnResp&#13;&#10;" name="Channel">
+    <regions xmi:id="_dsvZDTefEeqap6JXeGBmlQ" name="OrionDisconnRegion">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_dsvZDjefEeqap6JXeGBmlQ">
+        <outgoingTransitions xmi:id="_dsvZDzefEeqap6JXeGBmlQ" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_dsvZEDefEeqap6JXeGBmlQ" specification="" name="IdleOrionDisconn" incomingTransitions="_dsvZDzefEeqap6JXeGBmlQ _dsvZEjefEeqap6JXeGBmlQ _87jlVTefEeqap6JXeGBmlQ _9ldeIjefEeqap6JXeGBmlQ _-BItgjefEeqap6JXeGBmlQ _-O0kMjefEeqap6JXeGBmlQ _-WUTUjefEeqap6JXeGBmlQ _-gTVlDefEeqap6JXeGBmlQ">
+        <outgoingTransitions xmi:id="_dsvZEjefEeqap6JXeGBmlQ" specification="Input.OrionDisconn / raise Output.OrionDisconn" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+        <outgoingTransitions xmi:id="_87jlVTefEeqap6JXeGBmlQ" specification="Input.OrionDisconnCause / raise Output.OrionDisconnCause" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+        <outgoingTransitions xmi:id="_9ldeIjefEeqap6JXeGBmlQ" specification="Input.OrionConnReq / raise Output.OrionConnReq" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+        <outgoingTransitions xmi:id="_-BItgjefEeqap6JXeGBmlQ" specification="Input.OrionAppData / raise Output.OrionAppData" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+        <outgoingTransitions xmi:id="_-O0kMjefEeqap6JXeGBmlQ" specification="Input.OrionKeepAlive / raise Output.OrionKeepAlive" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+        <outgoingTransitions xmi:id="_-WUTUjefEeqap6JXeGBmlQ" specification="Input.OrionConnConf / raise Output.OrionConnConf" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+        <outgoingTransitions xmi:id="_-gTVlDefEeqap6JXeGBmlQ" specification="Input.OrionConnResp / raise Output.OrionConnResp" target="_dsvZEDefEeqap6JXeGBmlQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

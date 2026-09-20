@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="bvyH6DOPVumZ10Tzcbch9y2x8bKVaC70HDzbUpXEUiRlWGQxgkSWGlSzsSuUAUF4">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="v1JhyBERVh8S5jKlQ7AcDVjgNT5Vfc6Yzd844228zMkaIMj8HxyMD0of0Btc4DUH">
+    <eLiterals name="b7FQd5ZaY0ZT94EarxTCuWXvFxRtZymlH5cgqekDnLARk9XQ8Zm43Jn2xj"/>
+    <eLiterals name="HNFYM2yHyUOFgUvkK27VSbZlG8hzNq45pzZMXe5qpKxJxrm4ZwhnlIbgOaCLtr8pIqlZ"/>
+    <eLiterals name="uaSVhVh32S54b3XbWubpGiJToOUXNSl0C3rXVJnTiGqevXJeqjUVOILaka1TjHsTL2C2r"/>
+    <eLiterals name="XFTujh83nKM6M7DW4tHEjNjSb4aMIyvsXqcu24Dzpqnyas4r9PvAUNgYBl4aV"/>
+    <eLiterals name="JLYlGwR3o5qZx4oGyhDPBrEk5EWXf9NO3QCN3469Uee1EKtEKB7H5SfISxwlJwx"/>
+    <eLiterals name="HHvYzyaIylck9uRAjX0BNlY2s587G8Ns1bcdBslXGLeXEgdsAmWwCA7MAnxPjdMTuqX"/>
+    <eLiterals name="hQnn1NSoRHgNPqTNJs8N3wGhOwFUfJq7jbOS8hlzbEjzdHNU3kFAEjJwV1n5jXt"/>
+    <eLiterals name="6zmQ8ZdGJKwzzEvAcso3DGuwCzfSWqUuCZ3Dzws8Vm5xIqGly7nqZCs9lndH"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="1MYRfbAwmvgMepFshYsAdScd7HquUFf63wUBqFOrGxjCcFMUKd25fYxqvCYCyw" abstract="true" eSuperTypes="//@eClassifiers.2 //@eClassifiers.4 //@eClassifiers.1 //@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="EHd5PFnDbdtFf6J3SNHdNsJNjBrJsdgtPZxDElLXnaxSqrouR9qHmO1YNYoWNysMQJYQl" eSuperTypes="//@eClassifiers.1 //@eClassifiers.2 //@eClassifiers.4"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="SwE3lhHOz8559iGtXAa6H7moSK9GIk72bhP9klXNkyJM2WAbEJtHavIgs7ZbSF8" eSuperTypes="//@eClassifiers.2 //@eClassifiers.4 //@eClassifiers.3 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="XdulFnN26V8N2jcIgK7w96bpQbE3hWeFXteuUed4yXXhSlIWYXZzyguQRNP" abstract="true" eSuperTypes="//@eClassifiers.3 //@eClassifiers.1 //@eClassifiers.2 //@eClassifiers.4"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="mPHZL9RordwRxdIbn1NJsPdksmRtrd5hV88gQgreb5CoKINiTaMyV1vQLuNE7Z"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="iXS7k9JTr8e2uR3uWhwsbVXJiyu4C5CrUsSLBYrabaXJREVP0ldwYWH2EJtwQ3rA"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="vYbo5Il8FthCQVhjsUckxMsfKcpBmqZqtwlz7tzOKV2K6NbH0MnOWPF82R3J4ZsEbYRloz"/>
+</smallEcore:EPackage>

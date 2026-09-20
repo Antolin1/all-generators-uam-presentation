@@ -1,0 +1,30 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_KzeksN4jEeqoxMjXeuiunA" specification="@CycleBased(200)&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;internal:&#10;var priority_level : integer&#10;event IRQ&#10;event return_from_interrupt&#10;&#10;interface core:&#10;var BASEPRI : integer = 0&#10;var PRIMASK: integer = 0&#10;&#10;interface nvic:&#10;var EN : boolean = false&#10;var PEND : boolean = false&#10;var ACTIVE : boolean = false&#10;var PRI : integer = 0&#10;" name="Interrupts">
+    <regions xmi:id="_K0FosN4jEeqoxMjXeuiunA" name="main region">
+      <vertices xsi:type="sgraph:State" xmi:id="_9F62QN4nEeqoxMjXeuiunA" specification="IRQ / nvic.PEND = true&#13;&#10;always / priority_level = (1 - core.PRIMASK) *(((core.BASEPRI - 1) &amp; 0xFF) + 1)" name="Core + NVIC" incomingTransitions="_M77FoN4oEeqoxMjXeuiunA">
+        <regions xmi:id="_9F7dUd4nEeqoxMjXeuiunA" name="r1">
+          <vertices xsi:type="sgraph:State" xmi:id="_aaR6cN4jEeqoxMjXeuiunA" specification="entry&#13;&#10;/ nvic.PEND = false" name="Active" incomingTransitions="_5Lzt8N4jEeqoxMjXeuiunA _0_JDwN4kEeqoxMjXeuiunA">
+            <outgoingTransitions xmi:id="_QbdEYN4kEeqoxMjXeuiunA" specification="return_from_interrupt / nvic.ACTIVE = false" target="_K1bFcN4jEeqoxMjXeuiunA"/>
+            <outgoingTransitions xmi:id="_uk6yUN4kEeqoxMjXeuiunA" specification="[nvic.PEND &amp;&amp; nvic.EN &amp;&amp;&#13;&#10;(nvic.PRI &lt; priority_level)]" target="_b30PcN4jEeqoxMjXeuiunA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_K1bFcN4jEeqoxMjXeuiunA" name="Inactive" incomingTransitions="_K1ev0N4jEeqoxMjXeuiunA _QbdEYN4kEeqoxMjXeuiunA _uyRSAOMrEeqx3Za8NSj6oQ">
+            <outgoingTransitions xmi:id="_qvWrcN4jEeqoxMjXeuiunA" specification="[nvic.PEND]" target="_XO15MN4jEeqoxMjXeuiunA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_XO15MN4jEeqoxMjXeuiunA" specification="" name="Pending" incomingTransitions="_qvWrcN4jEeqoxMjXeuiunA">
+            <outgoingTransitions xmi:id="_5Lzt8N4jEeqoxMjXeuiunA" specification="[nvic.EN &amp;&amp;&#13;&#10;(nvic.PRI &lt; priority_level)]&#13;&#10;/ nvic.ACTIVE = true" target="_aaR6cN4jEeqoxMjXeuiunA"/>
+            <outgoingTransitions xmi:id="_uyRSAOMrEeqx3Za8NSj6oQ" specification="[!nvic.PEND]" target="_K1bFcN4jEeqoxMjXeuiunA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_K1ZQQN4jEeqoxMjXeuiunA">
+            <outgoingTransitions xmi:id="_K1ev0N4jEeqoxMjXeuiunA" specification="" target="_K1bFcN4jEeqoxMjXeuiunA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_b30PcN4jEeqoxMjXeuiunA" name="Active and Pending" incomingTransitions="_uk6yUN4kEeqoxMjXeuiunA">
+            <outgoingTransitions xmi:id="_0_JDwN4kEeqoxMjXeuiunA" specification="return_from_interrupt" target="_aaR6cN4jEeqoxMjXeuiunA"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_MZmbsN4oEeqoxMjXeuiunA">
+        <outgoingTransitions xmi:id="_M77FoN4oEeqoxMjXeuiunA" specification="" target="_9F62QN4nEeqoxMjXeuiunA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

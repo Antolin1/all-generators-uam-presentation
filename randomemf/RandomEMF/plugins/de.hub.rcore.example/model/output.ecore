@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="scrShYQYaSD" nsURI="http://qxDVgEob" nsPrefix="J">
+  <eClassifiers xsi:type="ecore:EClass" name="xvHXdRr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="VSMbxzKCXwhSgFqrC" ordered="false" upperBound="-1" eType="//HVOwDYkMdHvynG"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="BASoFcxsCI" upperBound="-1" eType="//ak"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="njevJtUoy" ordered="false" upperBound="-1" eType="//ak" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keJwdNxMQ" ordered="false" eType="//ak"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="JZZCZDdtPb" ordered="false" upperBound="-1" eType="//ak" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ak">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="kykuZBWLRVLW" ordered="false" upperBound="-1" eType="//ak"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="XObnJr" eType="//xvHXdRr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gQaACsS" ordered="false" eType="//xvHXdRr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CXmvqzTe">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EByte"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zBIcb">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MHQpVCYtERyk">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ECharacterObject"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HVOwDYkMdHvynG">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vdjNPHX">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,29 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_fPU_MGqYEee3LqRbPtDM3g" specification="&#10;interface robot:&#10;&#9;operation spew()&#10;&#9;operation get_distance_mm() : real&#10;&#9;operation set_speed(speed : real) : void&#10;&#9;&#10;&#9;in event initialized&#10;&#9;in event on_button_press&#10;&#10;internal:&#10;&#9;var baseline : real" name="main">
+    <regions xmi:id="_fPrkgmqYEee3LqRbPtDM3g" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_fP_GgGqYEee3LqRbPtDM3g">
+        <outgoingTransitions xmi:id="_fQF0MGqYEee3LqRbPtDM3g" target="_l6cx8HThEeexQ65Fl98lXg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_gabe8HThEeexQ65Fl98lXg" specification="every 1s / robot.spew()" name="running" incomingTransitions="_py8GcHThEeexQ65Fl98lXg">
+        <regions xmi:id="_gacGAXThEeexQ65Fl98lXg" name="inner region">
+          <vertices xsi:type="sgraph:State" xmi:id="_vqa4oGqYEee3LqRbPtDM3g" specification="entry/ baseline = robot.get_distance_mm();&#10;robot.set_speed(0.5)&#10;exit/ robot.set_speed(0.0)" name="moving 10cm" incomingTransitions="_v75vEHWtEeexQ65Fl98lXg">
+            <outgoingTransitions xmi:id="_8lxUwGqYEee3LqRbPtDM3g" specification="[robot.get_distance_mm() - baseline &gt;= 100]" target="_fQA7sGqYEee3LqRbPtDM3g"/>
+            <outgoingTransitions xmi:id="_eAyp4HToEeexQ65Fl98lXg" specification="robot.on_button_press" target="_fQA7sGqYEee3LqRbPtDM3g"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_fQA7sGqYEee3LqRbPtDM3g" specification="" name="waiting for button" incomingTransitions="_8lxUwGqYEee3LqRbPtDM3g _og0-UHThEeexQ65Fl98lXg _eAyp4HToEeexQ65Fl98lXg">
+            <outgoingTransitions xmi:id="_08FmkGqYEee3LqRbPtDM3g" specification="robot.on_button_press" target="_sENEwHWtEeexQ65Fl98lXg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_oBL08HThEeexQ65Fl98lXg">
+            <outgoingTransitions xmi:id="_og0-UHThEeexQ65Fl98lXg" target="_fQA7sGqYEee3LqRbPtDM3g"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_sENEwHWtEeexQ65Fl98lXg" name="waiting for finger" incomingTransitions="_08FmkGqYEee3LqRbPtDM3g">
+            <outgoingTransitions xmi:id="_v75vEHWtEeexQ65Fl98lXg" specification="after 500ms" target="_vqa4oGqYEee3LqRbPtDM3g"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_l6cx8HThEeexQ65Fl98lXg" name="initializing" incomingTransitions="_fQF0MGqYEee3LqRbPtDM3g">
+        <outgoingTransitions xmi:id="_py8GcHThEeexQ65Fl98lXg" specification="robot.initialized" target="_gabe8HThEeexQ65Fl98lXg"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

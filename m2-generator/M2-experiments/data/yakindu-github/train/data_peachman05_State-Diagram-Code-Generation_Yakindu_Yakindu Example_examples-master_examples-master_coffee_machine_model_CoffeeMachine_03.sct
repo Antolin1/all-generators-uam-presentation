@@ -1,0 +1,33 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_3AQUYJOAEeWuO-fDDpYHyA" specification="interface User:&#10;&#9;in event on&#10;&#9;in event off&#10;&#9;in event cancel&#10;&#9;in event cappuchino&#10;" name="Coffee Machine">
+    <regions xmi:id="_3AQ7cpOAEeWuO-fDDpYHyA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_3ASJk5OAEeWuO-fDDpYHyA">
+        <outgoingTransitions xmi:id="_3AT-w5OAEeWuO-fDDpYHyA" target="_YzPiwJjcEeWLmIbak1Hh1Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_3ASwp5OAEeWuO-fDDpYHyA" specification="" name="Idle" incomingTransitions="_IEYG0JjeEeWLmIbak1Hh1Q _DcCwEJmqEeWjeMXFC0M_gw _TqPdAJmqEeWjeMXFC0M_gw">
+        <outgoingTransitions xmi:id="_5bRIYJjdEeWLmIbak1Hh1Q" specification="User.off" target="_YzPiwJjcEeWLmIbak1Hh1Q"/>
+        <outgoingTransitions xmi:id="_PbPtAJmqEeWjeMXFC0M_gw" specification="User.cappuchino" target="_qZJv0JmoEeWjeMXFC0M_gw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_YzPiwJjcEeWLmIbak1Hh1Q" name="Off" incomingTransitions="_3AT-w5OAEeWuO-fDDpYHyA _5bRIYJjdEeWLmIbak1Hh1Q">
+        <outgoingTransitions xmi:id="_IEYG0JjeEeWLmIbak1Hh1Q" specification="User.on" target="_3ASwp5OAEeWuO-fDDpYHyA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_qZJv0JmoEeWjeMXFC0M_gw" specification="" name="Cappuchino" incomingTransitions="_PbPtAJmqEeWjeMXFC0M_gw">
+        <outgoingTransitions xmi:id="_DcCwEJmqEeWjeMXFC0M_gw" specification="User.cancel" target="_3ASwp5OAEeWuO-fDDpYHyA"/>
+        <regions xmi:id="_qZhjQJmoEeWjeMXFC0M_gw" name="inner region">
+          <vertices xsi:type="sgraph:State" xmi:id="_R5190JjjEeWLmIbak1Hh1Q" specification="" name="Milling Beans" incomingTransitions="_vBt2YZmoEeWjeMXFC0M_gw">
+            <outgoingTransitions xmi:id="_JU0SoJjsEeWLmIbak1Hh1Q" specification="after 9s" target="_JUPD0JjsEeWLmIbak1Hh1Q"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_JUPD0JjsEeWLmIbak1Hh1Q" specification="" name="Pouring Milk" incomingTransitions="_JU0SoJjsEeWLmIbak1Hh1Q">
+            <outgoingTransitions xmi:id="_aFxHUJjsEeWLmIbak1Hh1Q" specification="after 31s" target="_aFNtsJjsEeWLmIbak1Hh1Q"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_aFNtsJjsEeWLmIbak1Hh1Q" specification="" name="Pouring Coffee" incomingTransitions="_aFxHUJjsEeWLmIbak1Hh1Q">
+            <outgoingTransitions xmi:id="_TqPdAJmqEeWjeMXFC0M_gw" specification="after 50 s" target="_3ASwp5OAEeWuO-fDDpYHyA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_vBt2YJmoEeWjeMXFC0M_gw" name="">
+            <outgoingTransitions xmi:id="_vBt2YZmoEeWjeMXFC0M_gw" specification="" target="_R5190JjjEeWLmIbak1Hh1Q"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

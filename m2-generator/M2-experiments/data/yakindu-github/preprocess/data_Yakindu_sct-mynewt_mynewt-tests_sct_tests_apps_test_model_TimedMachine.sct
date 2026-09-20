@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_THL7cKuZEeisVr1QnuFQ2Q" specification="@EventDriven&#10;@ChildFirstExecution&#10;&#10;interface:&#10;&#10;in event testAfter&#10;in event testEvery&#10;&#10;var counter : integer = 0" name="TimedMachine">
+    <regions xmi:id="_THOXsKuZEeisVr1QnuFQ2Q" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_THT3QauZEeisVr1QnuFQ2Q">
+        <outgoingTransitions xmi:id="_THWThauZEeisVr1QnuFQ2Q" target="_THVFYKuZEeisVr1QnuFQ2Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_THVFYKuZEeisVr1QnuFQ2Q" name="WaitForEvents" incomingTransitions="_THWThauZEeisVr1QnuFQ2Q _f0RSEKuZEeisVr1QnuFQ2Q _-D88wKuZEeisVr1QnuFQ2Q">
+        <outgoingTransitions xmi:id="_doJYwKuZEeisVr1QnuFQ2Q" specification="testAfter" target="_Z5ANgKuZEeisVr1QnuFQ2Q"/>
+        <outgoingTransitions xmi:id="_8Vq2AKuZEeisVr1QnuFQ2Q" specification="testEvery" target="_wusL0KuZEeisVr1QnuFQ2Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Z5ANgKuZEeisVr1QnuFQ2Q" name="WaitForAfter" incomingTransitions="_doJYwKuZEeisVr1QnuFQ2Q">
+        <outgoingTransitions xmi:id="_f0RSEKuZEeisVr1QnuFQ2Q" specification="after 100ms" target="_THVFYKuZEeisVr1QnuFQ2Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_wusL0KuZEeisVr1QnuFQ2Q" specification="[counter &lt; 5] &#10;&#9;/ counter += 1" name="ProcessEvery" incomingTransitions="_8Vq2AKuZEeisVr1QnuFQ2Q">
+        <outgoingTransitions xmi:id="_-D88wKuZEeisVr1QnuFQ2Q" specification="every 10 ms  [counter == 5]" target="_THVFYKuZEeisVr1QnuFQ2Q"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

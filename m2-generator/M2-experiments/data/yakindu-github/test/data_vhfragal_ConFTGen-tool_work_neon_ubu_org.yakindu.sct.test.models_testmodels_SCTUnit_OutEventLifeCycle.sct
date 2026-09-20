@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_UYAMsCdmEeKIUcvKJ7R2Xg" specification="&#10;&#10;interface :&#10;&#10;&#9;in event e&#10;&#9;out event f&#10;&#9;&#10;&#9;var f_available_in_cycle : boolean = false&#9;&#10;&#9;var f_available_in_next_cycle : boolean = false" name="OutEventLifeCycle">
+    <regions xmi:id="_UYCB4idmEeKIUcvKJ7R2Xg" name="r1">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_UYHhcSdmEeKIUcvKJ7R2Xg">
+        <outgoingTransitions xmi:id="_UYKkwydmEeKIUcvKJ7R2Xg" target="_UYIvlCdmEeKIUcvKJ7R2Xg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_UYIvlCdmEeKIUcvKJ7R2Xg" specification="" name="A" incomingTransitions="_UYKkwydmEeKIUcvKJ7R2Xg">
+        <outgoingTransitions xmi:id="_GO1zUCkLEeKkhf1edRNNAA" specification="e / raise f" target="_Eq3fICkLEeKkhf1edRNNAA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Eq3fICkLEeKkhf1edRNNAA" specification="f / f_available_in_next_cycle = true" name="B" incomingTransitions="_GO1zUCkLEeKkhf1edRNNAA"/>
+    </regions>
+    <regions xmi:id="__V-TgCkJEeKkhf1edRNNAA" name="r2">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_BZRoACkKEeKkhf1edRNNAA">
+        <outgoingTransitions xmi:id="_CzZcoCkKEeKkhf1edRNNAA" specification="" target="_BuK58CkKEeKkhf1edRNNAA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_BuK58CkKEeKkhf1edRNNAA" specification="f / f_available_in_cycle = true" name="B" incomingTransitions="_CzZcoCkKEeKkhf1edRNNAA"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

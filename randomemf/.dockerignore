@@ -1,0 +1,10 @@
+**/.git
+**/target
+**/node_modules
+**/dist
+frontend
+RandomEMF/plugins/de.hub.rcore.ui
+RandomEMF/plugins/de.hub.rcore.sdk
+RandomEMF/plugins/de.hub.rcore.examples.railway.zip
+RandomEMF/plugins/de.hub.rcore.example/model
+metamodels

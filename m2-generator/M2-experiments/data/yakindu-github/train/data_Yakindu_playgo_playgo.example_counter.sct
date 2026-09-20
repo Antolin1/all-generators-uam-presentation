@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_1kO5UOGqEeS7gJ7wDdK4LQ" specification="interface counter:&#13;&#10;in event start&#13;&#10;in event new_cycle&#13;&#10;in event interrupt&#13;&#10;var state: integer&#13;&#10;" name="counter">
+    <regions xmi:id="_1kU_8uGqEeS7gJ7wDdK4LQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_1kU__OGqEeS7gJ7wDdK4LQ">
+        <outgoingTransitions xmi:id="_1kVAFuGqEeS7gJ7wDdK4LQ" target="_1kVAB-GqEeS7gJ7wDdK4LQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_1kVAB-GqEeS7gJ7wDdK4LQ" name="init" incomingTransitions="_1kVAFuGqEeS7gJ7wDdK4LQ">
+        <outgoingTransitions xmi:id="_-NjfnOGqEeS7gJ7wDdK4LQ" specification="counter.start" target="_-NdY8OGqEeS7gJ7wDdK4LQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_-NdY8OGqEeS7gJ7wDdK4LQ" specification="entry /&#13;&#10;counter.state += 1&#13;&#10;" name="s1" incomingTransitions="_-NjfnOGqEeS7gJ7wDdK4LQ _S4k9IOGrEeS7gJ7wDdK4LQ">
+        <outgoingTransitions xmi:id="_HSV50OGrEeS7gJ7wDdK4LQ" specification="after 2 s [counter.state == 1] " target="_HSPzMOGrEeS7gJ7wDdK4LQ"/>
+        <outgoingTransitions xmi:id="_diQRkOGrEeS7gJ7wDdK4LQ" specification="counter.interrupt" target="_c8xl8OGrEeS7gJ7wDdK4LQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_HSPzMOGrEeS7gJ7wDdK4LQ" specification="entry /&#13;&#10;counter.state += 1" name="s2" incomingTransitions="_HSV50OGrEeS7gJ7wDdK4LQ">
+        <outgoingTransitions xmi:id="_L_OfvuGrEeS7gJ7wDdK4LQ" specification="after 2 s [counter.state == 2]&#13;&#10;" target="_L_OfsOGrEeS7gJ7wDdK4LQ"/>
+        <outgoingTransitions xmi:id="_ezkIcOGrEeS7gJ7wDdK4LQ" specification="counter.interrupt" target="_c8xl8OGrEeS7gJ7wDdK4LQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_L_OfsOGrEeS7gJ7wDdK4LQ" specification="entry /&#13;&#10;counter.state += 1" name="s3" incomingTransitions="_L_OfvuGrEeS7gJ7wDdK4LQ">
+        <outgoingTransitions xmi:id="_S4k9IOGrEeS7gJ7wDdK4LQ" specification="after 2 s [counter.state == 3]/&#13;&#10;raise counter.new_cycle&#13;&#10;" target="_-NdY8OGqEeS7gJ7wDdK4LQ"/>
+        <outgoingTransitions xmi:id="_eMN0kOGrEeS7gJ7wDdK4LQ" specification="counter.interrupt" target="_c8xl8OGrEeS7gJ7wDdK4LQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_c8xl8OGrEeS7gJ7wDdK4LQ" incomingTransitions="_diQRkOGrEeS7gJ7wDdK4LQ _eMN0kOGrEeS7gJ7wDdK4LQ _ezkIcOGrEeS7gJ7wDdK4LQ"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

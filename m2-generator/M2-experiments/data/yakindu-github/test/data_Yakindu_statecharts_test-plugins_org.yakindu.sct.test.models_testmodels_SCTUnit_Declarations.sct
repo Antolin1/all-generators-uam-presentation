@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_q_6awBdtEeKwmK9jeAVSYw" specification="interface:&#10;in event evA&#10;out event evB : void&#10;in event evC : boolean&#10;out event evD : integer&#10;in event evE : real&#10;out event evF : string&#10;var varA : boolean = false&#10;var varB : integer = 1&#10;var varC : real = 1.0&#10;var varD : string = &quot;myString&quot;&#10;var varE : integer = 0x10&#10;&#10;interface ifA:&#10;in event evA&#10;out event evB : void&#10;in event evC : boolean&#10;out event evD : integer&#10;in event evE : real&#10;out event evF : string&#10;var varA : boolean = false&#10;var varB : integer = 1&#10;var varC : real = 1.0&#10;var varD : string = &quot;myString&quot;&#10;var varE : integer = 0x10&#10;&#10;internal :&#10;event evInA&#10;event evInB : void&#10;event evInC : boolean&#10;event evInD : integer&#10;event evInE : real&#10;event evInF : string&#10;var varInA : boolean = false&#10;var varInB : integer = 1&#10;var varInC : real = 1.0&#10;var varInD : string = &quot;myString&quot;&#10;var varInE : integer = 0x10" name="Declarations">
+    <regions xmi:id="_q_7B0hdtEeKwmK9jeAVSYw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_q_-FIRdtEeKwmK9jeAVSYw">
+        <outgoingTransitions xmi:id="_q__6UxdtEeKwmK9jeAVSYw" target="_q_-sNxdtEeKwmK9jeAVSYw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_q_-sNxdtEeKwmK9jeAVSYw" specification="entry / varInA = false; &#13;&#10;varInB = 1;&#13;&#10;varInC = 1.1;&#13;&#10;varInD = &quot;blub&quot;;&#13;&#10;varInE = 1" name="A" incomingTransitions="_q__6UxdtEeKwmK9jeAVSYw _3jecAEAXEeWKFbQG1_24Pw _4u7igEAXEeWKFbQG1_24Pw _Ha8rAEAYEeWKFbQG1_24Pw">
+        <outgoingTransitions xmi:id="_kyJD8EAXEeWKFbQG1_24Pw" specification="evInA" target="_kJUJYEAXEeWKFbQG1_24Pw"/>
+        <outgoingTransitions xmi:id="_4u7igEAXEeWKFbQG1_24Pw" specification="evInC" target="_q_-sNxdtEeKwmK9jeAVSYw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_kJUJYEAXEeWKFbQG1_24Pw" name="B" incomingTransitions="_kyJD8EAXEeWKFbQG1_24Pw _8vi4QEAXEeWKFbQG1_24Pw _AYWyAEAYEeWKFbQG1_24Pw">
+        <outgoingTransitions xmi:id="_3jecAEAXEeWKFbQG1_24Pw" specification="evInB" target="_q_-sNxdtEeKwmK9jeAVSYw"/>
+        <outgoingTransitions xmi:id="_8vi4QEAXEeWKFbQG1_24Pw" specification="evInD" target="_kJUJYEAXEeWKFbQG1_24Pw"/>
+        <outgoingTransitions xmi:id="_AYWyAEAYEeWKFbQG1_24Pw" specification="evInE" target="_kJUJYEAXEeWKFbQG1_24Pw"/>
+        <outgoingTransitions xmi:id="_Ha8rAEAYEeWKFbQG1_24Pw" specification="evInF" target="_q_-sNxdtEeKwmK9jeAVSYw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

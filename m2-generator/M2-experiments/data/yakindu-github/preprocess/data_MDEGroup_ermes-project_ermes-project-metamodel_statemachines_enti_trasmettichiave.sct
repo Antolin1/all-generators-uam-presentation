@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_gZpxACAQEeurCIF0F-Xa4A" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;&#10;interface:&#10;&#9;const ESTRATTA: string = 'Estratta'&#10;&#9;const INSERITA: string = 'Inserita'&#10;&#10;&#10;/* Interfaccia Stato */&#9;&#10;interface Status:&#10;&#9;var stato:string&#10;&#9;var forzatura: string&#9;&#10;&#9;var comandoPiazzale:string&#10;&#9;&#10;&#9;&#10;&#9;operation comunicateStatus(status: string)&#10;&#9;operation comunicateForzatura(forzatura: string)&#10;&#10;&#10;&#10;/* Interfaccia Forzature */&#10;interface ComandoManuale:&#10;&#9;const FORZATURA_NESSUNA: string = &quot;Nessuna&quot;&#10;&#9;&#10;&#10;&#10;/* Interfaccia Trigger */&#10;interface ComandoPiazzale:&#10;&#9;var sblocco:boolean&#10;&#9;in event CMD_Estrazione&#10;&#9;in event CMD_Inserimento&#10;&#10;&#10;&#10;/* Interfaccia Feedback */&#10;interface ControlloPiazzale:&#10;&#9;var Scrittura:string" name="trasmettichiave">
+    <regions xmi:id="_gZrmMyAQEeurCIF0F-Xa4A" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_gZyT4SAQEeurCIF0F-Xa4A">
+        <outgoingTransitions xmi:id="_gZ0wICAQEeurCIF0F-Xa4A" specification="" target="_gZy69yAQEeurCIF0F-Xa4A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_gZy69yAQEeurCIF0F-Xa4A" specification="entry / ControlloPiazzale.Scrittura = INSERITA;&#10;Status.stato = INSERITA;&#10;Status.comunicateStatus(Status.stato)" name="Inserita" incomingTransitions="_gZ0wICAQEeurCIF0F-Xa4A _K1VXICAUEeurCIF0F-Xa4A _TUIvcCAUEeurCIF0F-Xa4A">
+        <outgoingTransitions xmi:id="_K1VXICAUEeurCIF0F-Xa4A" specification="ComandoPiazzale.CMD_Inserimento" target="_gZy69yAQEeurCIF0F-Xa4A"/>
+        <outgoingTransitions xmi:id="_Bjq-YCQNEeupgJtO9iaUwA" specification="ComandoPiazzale.CMD_Estrazione" target="_q3ev4CASEeurCIF0F-Xa4A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_q3ev4CASEeurCIF0F-Xa4A" specification="entry / ControlloPiazzale.Scrittura = ESTRATTA;&#10;Status.stato = ESTRATTA;&#10;Status.comunicateStatus(Status.stato)" name="Estratta" incomingTransitions="_XJc0ICAUEeurCIF0F-Xa4A _Bjq-YCQNEeupgJtO9iaUwA">
+        <outgoingTransitions xmi:id="_TUIvcCAUEeurCIF0F-Xa4A" specification="ComandoPiazzale.CMD_Inserimento" target="_gZy69yAQEeurCIF0F-Xa4A"/>
+        <outgoingTransitions xmi:id="_XJc0ICAUEeurCIF0F-Xa4A" specification="ComandoPiazzale.CMD_Estrazione" target="_q3ev4CASEeurCIF0F-Xa4A"/>
+      </vertices>
+    </regions>
+    <regions xmi:id="__HvscCJ1EeupgJtO9iaUwA" name="Forzature">
+      <vertices xsi:type="sgraph:State" xmi:id="__9YT8CJ1EeupgJtO9iaUwA" specification="entry / Status.forzatura = ComandoManuale.FORZATURA_NESSUNA;&#10;Status.comunicateForzatura(Status.forzatura)" name="NessunaForzatura" incomingTransitions="_ApCgECJ2EeupgJtO9iaUwA"/>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_ANl6MCJ2EeupgJtO9iaUwA">
+        <outgoingTransitions xmi:id="_ApCgECJ2EeupgJtO9iaUwA" specification="" target="__9YT8CJ1EeupgJtO9iaUwA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

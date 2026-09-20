@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="7h21bnxUEKbS6ZX7WEQpcgoWuNyYI9W5trvCgQwMmHHt6IlbbByM0ur3BcE">
+  <eClassifiers xsi:type="smallEcore:EDataType" name="mi7E01nkLeiX6vhyenZJfXuJVLieQunVswEbVU8rJbO467OlGIeaYIr7eIIwh"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="YnjR7HibGEu2WE5FacVDTKmNEPnx0uX8x7hV321OfyNbBjwlafPzBUaFi66dazHI1HE">
+    <eLiterals name="gJIevCRs6EG8sJ4lc3kqagHbadP5boY3i58Aw7KBNF7Pi5vBB52nO01c5cXru4ldZskV"/>
+    <eLiterals name="HurVo3s5nrA9LfSYoskaKWtxTvenY63vxl6o1WFmNJzr3wXiperLIZ6ehJ5LR2HsLMNkD"/>
+    <eLiterals name="wnSDTpIJzIMAsZvRfNdDsNqw3HjALPdepsjGjlBSxVG7DtfynS4oXsbEy9M07e7hD"/>
+    <eLiterals name="UKfnQIGOFMDLwsapWkL2ugTLb5LgBBTUkv7FyrxWc5mh2K4S2ewMkoHbCQv"/>
+    <eLiterals name="CUFzz8eER3L9Y55pQASb4mONt8NSes2x9UO4efpx81h4EJM1wIkFGKLdXoj6eVJ"/>
+    <eLiterals name="RkBhF2kIacG6BPA0gNhXbdiFXWVfT6g6bFmwn0mJSAZxmkholT6GYdWbTbPHDir9i8y7NZ"/>
+    <eLiterals name="3NFlXhcbO0kdISbbG4iTDTSi8QOaN4e45q7ej7ST6ODMEQFdbGzZn9f9gLch"/>
+    <eLiterals name="yvs1uqfAxxqmChDuYtMJHtF4VEgaL8ZtQxbQWlygs7YCTyKcqnBezm2ScLwjyGVga"/>
+    <eLiterals name="r07OQamcFnJNBbmqvjbLNTxmdo2EApkyjuuoGHK3GsNLf8fcbDKNb34ycB57i7G1b86C"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="NwBWvkFGbZCY7js2rfz6M6khkKitoiwGrNzlVs9I7HlxYoPY4G0nVTO1EyJzft6n"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="WcWeldhdPbMT8mgQ68jWvSxWe05aGe8P8oeZYq3tMSIuslya9sxwcwWVAA1WHBd1" abstract="true" eSuperTypes="//@eClassifiers.6 //@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="lrsoWpRyuT0ZAQgZ7eQhXqgsY7GN9dneaCgJwJm2Og72XMGfvH40HYiedqQPnf7zQSjKJd"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="ra962UTuHxhhwMjw3D0Ihwbz7sQzJjHVSqF2mWzkOugCkdbbazxVXpl5jAcsfPINdrnUJ"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="ab62VguIy9W7AIHwr793P9H0hqr6BFvrkYpq6FCHWzuIR3srlNSK51i2saU" abstract="true" eSuperTypes="//@eClassifiers.6 //@eClassifiers.3"/>
+</smallEcore:EPackage>

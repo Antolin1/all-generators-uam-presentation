@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_ccQwQAp-EeiulbV63YX_cg" specification="interface:&#10;// Define events and&#10;// and variables here. &#10;//Use CTRL + Space for content assist." name="before_orthogonal1">
+    <regions xmi:id="_ccRXUAp-EeiulbV63YX_cg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_ccSlcQp-EeiulbV63YX_cg">
+        <outgoingTransitions xmi:id="_ccUaogp-EeiulbV63YX_cg" target="_ccTMhAp-EeiulbV63YX_cg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ccTMhAp-EeiulbV63YX_cg" name="StateA" incomingTransitions="_ccUaogp-EeiulbV63YX_cg">
+        <regions xmi:id="_djbzsAp-EeiulbV63YX_cg" name="">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_djbzsQp-EeiulbV63YX_cg">
+            <outgoingTransitions xmi:id="_djbzsgp-EeiulbV63YX_cg" specification="" target="_djcawAp-EeiulbV63YX_cg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_djcawAp-EeiulbV63YX_cg" name="State1" incomingTransitions="_djbzsgp-EeiulbV63YX_cg"/>
+        </regions>
+        <regions xmi:id="_d0OBsAp-EeiulbV63YX_cg" name="">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_d0OBsQp-EeiulbV63YX_cg">
+            <outgoingTransitions xmi:id="_d0OBsgp-EeiulbV63YX_cg" specification="" target="_d0OBswp-EeiulbV63YX_cg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_d0OBswp-EeiulbV63YX_cg" name="State1" incomingTransitions="_d0OBsgp-EeiulbV63YX_cg"/>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

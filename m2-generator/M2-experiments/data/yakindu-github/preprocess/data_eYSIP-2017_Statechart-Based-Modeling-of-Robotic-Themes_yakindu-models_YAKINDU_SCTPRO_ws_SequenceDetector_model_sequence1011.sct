@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_cwqvoEdSEee_y42kUa6N9w" specification="interface:&#10;// Define events and&#10;// and variables here&#10;internal:&#10;&#9;event one_received&#10;&#9;event zero_received&#10;&#9;var output: integer&#10;&#9;" name="sequence1011">
+    <regions xmi:id="_cwtL4EdSEee_y42kUa6N9w" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_cw6AMUdSEee_y42kUa6N9w">
+        <outgoingTransitions xmi:id="_cxEYQUdSEee_y42kUa6N9w" target="_cw_fwUdSEee_y42kUa6N9w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_cw_fwUdSEee_y42kUa6N9w" specification="" name="nothing detected" incomingTransitions="_cxEYQUdSEee_y42kUa6N9w _7AZLsEdUEee_y42kUa6N9w">
+        <outgoingTransitions xmi:id="_rSgL8EdTEee_y42kUa6N9w" specification="one_received/output=0" target="_lYz0sEdTEee_y42kUa6N9w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_lYz0sEdTEee_y42kUa6N9w" name="1st detected" incomingTransitions="_rSgL8EdTEee_y42kUa6N9w _vRXYwEdUEee_y42kUa6N9w">
+        <outgoingTransitions xmi:id="_ekBRsEdUEee_y42kUa6N9w" specification="zero_received/output=0" target="_TjotcEdUEee_y42kUa6N9w"/>
+        <outgoingTransitions xmi:id="_vRXYwEdUEee_y42kUa6N9w" specification="one_received/output=0" target="_lYz0sEdTEee_y42kUa6N9w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_TjotcEdUEee_y42kUa6N9w" name="2nd detected" incomingTransitions="_ekBRsEdUEee_y42kUa6N9w _EilToEdVEee_y42kUa6N9w">
+        <outgoingTransitions xmi:id="_kIRkcEdUEee_y42kUa6N9w" specification="one_received/output=0" target="_YCZXwEdUEee_y42kUa6N9w"/>
+        <outgoingTransitions xmi:id="_7AZLsEdUEee_y42kUa6N9w" specification="zero_received/output=0" target="_cw_fwUdSEee_y42kUa6N9w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_YCZXwEdUEee_y42kUa6N9w" name="3rd detected" incomingTransitions="_kIRkcEdUEee_y42kUa6N9w">
+        <outgoingTransitions xmi:id="_EilToEdVEee_y42kUa6N9w" specification="zero_received/output=0" target="_TjotcEdUEee_y42kUa6N9w"/>
+        <outgoingTransitions xmi:id="_eAOLoEdVEee_y42kUa6N9w" specification="one_received/output=1" target="_alntAEdVEee_y42kUa6N9w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_alntAEdVEee_y42kUa6N9w" incomingTransitions="_eAOLoEdVEee_y42kUa6N9w"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

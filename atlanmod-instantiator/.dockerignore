@@ -1,0 +1,8 @@
+**/.git
+**/target
+**/node_modules
+**/dist
+frontend
+metamodels
+mondo-atlzoo-benchmark/fr.inria.atlanmod.instantiator/dist
+mondo-atlzoo-benchmark/fr.inria.atlanmod.instantiator/.settings

@@ -1,0 +1,32 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_sVGfIF1REeeQSrn72MQqaA" specification="interface PoliceInterrupt:&#10;  in event police&#10;  &#10;interface PriorityPolice:&#10;  out event police&#10;&#10;interface SecondaryPolice:&#10;  out event police&#10;  &#10;interface PriorityControl:&#10;  out event toggle&#10;  &#10;interface SecondaryControl:&#10;  out event toggle&#10;" name="Controller">
+    <regions xmi:id="_sVVvsl1REeeQSrn72MQqaA" name="main_region">
+      <vertices xsi:type="sgraph:State" xmi:id="_KyARAF1TEeeQSrn72MQqaA" specification="" name="Operating" incomingTransitions="_VzwHMF1TEeeQSrn72MQqaA _bfV9wF1jEeeQSrn72MQqaA">
+        <outgoingTransitions xmi:id="_bfV9wF1jEeeQSrn72MQqaA" specification="PoliceInterrupt.police / &#13;&#10;raise PriorityPolice.police;&#13;&#10;raise SecondaryPolice.police" target="_KyARAF1TEeeQSrn72MQqaA"/>
+        <regions xmi:id="_KyBfIF1TEeeQSrn72MQqaA" name="operating">
+          <vertices xsi:type="sgraph:State" xmi:id="_sVrG4V1REeeQSrn72MQqaA" specification="entry / &#13;&#10;&#9;raise PriorityControl.toggle" name="Init" incomingTransitions="_SMTsIF1jEeeQSrn72MQqaA">
+            <outgoingTransitions xmi:id="_aLjDUF1SEeeQSrn72MQqaA" specification="after 2s" target="_aLVA4F1SEeeQSrn72MQqaA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_aLVA4F1SEeeQSrn72MQqaA" specification="entry / raise PriorityControl.toggle" name="PriorityPrepares" incomingTransitions="_aLjDUF1SEeeQSrn72MQqaA _03nA0F1TEeeQSrn72MQqaA">
+            <outgoingTransitions xmi:id="_9IOBkF1SEeeQSrn72MQqaA" specification="after 1s" target="_9IEQkF1SEeeQSrn72MQqaA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_9IEQkF1SEeeQSrn72MQqaA" specification="entry / raise PriorityControl.toggle;&#13;&#10;&#9;raise SecondaryControl.toggle" name="Secondary" incomingTransitions="_9IOBkF1SEeeQSrn72MQqaA">
+            <outgoingTransitions xmi:id="_gm3EcF1TEeeQSrn72MQqaA" specification="after 2s" target="_gmvIoF1TEeeQSrn72MQqaA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_gmvIoF1TEeeQSrn72MQqaA" specification="entry / raise SecondaryControl.toggle" name="SecondaryPrepares" incomingTransitions="_gm3EcF1TEeeQSrn72MQqaA">
+            <outgoingTransitions xmi:id="_qwgN8F1TEeeQSrn72MQqaA" specification="after 1s" target="_qwXrEF1TEeeQSrn72MQqaA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_qwXrEF1TEeeQSrn72MQqaA" specification="entry / raise PriorityControl.toggle;&#13;&#10;&#9;raise SecondaryControl.toggle" name="Priority" incomingTransitions="_qwgN8F1TEeeQSrn72MQqaA">
+            <outgoingTransitions xmi:id="_03nA0F1TEeeQSrn72MQqaA" specification="after 2s" target="_aLVA4F1SEeeQSrn72MQqaA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_RimAwF1jEeeQSrn72MQqaA" kind="SHALLOW_HISTORY">
+            <outgoingTransitions xmi:id="_SMTsIF1jEeeQSrn72MQqaA" target="_sVrG4V1REeeQSrn72MQqaA"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_VCjTwF1TEeeQSrn72MQqaA">
+        <outgoingTransitions xmi:id="_VzwHMF1TEeeQSrn72MQqaA" specification="" target="_KyARAF1TEeeQSrn72MQqaA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

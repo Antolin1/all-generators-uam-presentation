@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_x651cKsyEeKkYoDxSIY5_A" name="InvalidSyncronizationUsage">
+    <regions xmi:id="_m4P_UKs9EeKkYoDxSIY5_A">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_nhDrwKs9EeKkYoDxSIY5_A">
+        <outgoingTransitions xmi:id="_zAF64Ks9EeKK78DmuDPJ0w" specification="" target="_n6e4YKs9EeKkYoDxSIY5_A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_n6e4YKs9EeKkYoDxSIY5_A" name="A" incomingTransitions="_zAF64Ks9EeKK78DmuDPJ0w">
+        <outgoingTransitions xmi:id="_0IgUcKs9EeKK78DmuDPJ0w" specification="" target="_o14JoKs9EeKkYoDxSIY5_A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Synchronization" xmi:id="_o14JoKs9EeKkYoDxSIY5_A" incomingTransitions="_0IgUcKs9EeKK78DmuDPJ0w">
+        <outgoingTransitions xmi:id="_095EUKs9EeKK78DmuDPJ0w" specification="" target="_parf0Ks9EeKkYoDxSIY5_A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_parf0Ks9EeKkYoDxSIY5_A" name="B" incomingTransitions="_095EUKs9EeKK78DmuDPJ0w">
+        <outgoingTransitions xmi:id="_1zIDMKs9EeKK78DmuDPJ0w" specification="" target="_yRDqoKs9EeKK78DmuDPJ0w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_wCs8sKs9EeKK78DmuDPJ0w" incomingTransitions="_3QpKEKs9EeKK78DmuDPJ0w"/>
+      <vertices xsi:type="sgraph:Synchronization" xmi:id="_yRDqoKs9EeKK78DmuDPJ0w" incomingTransitions="_1zIDMKs9EeKK78DmuDPJ0w">
+        <outgoingTransitions xmi:id="_3QpKEKs9EeKK78DmuDPJ0w" specification="" target="_wCs8sKs9EeKK78DmuDPJ0w"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

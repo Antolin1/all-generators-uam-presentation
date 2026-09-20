@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_x651cKsyEeKkYoDxSIY5_A" specification="" name="TransitionNotExistingNamedExitPoint">
+    <regions xmi:id="_x67DkqsyEeKkYoDxSIY5_A" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_x6_VA6syEeKkYoDxSIY5_A">
+        <outgoingTransitions xmi:id="_x7C_YasyEeKkYoDxSIY5_A" target="_ttT-MKszEeKkYoDxSIY5_A"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ttT-MKszEeKkYoDxSIY5_A" specification="" name="B" incomingTransitions="_x7C_YasyEeKkYoDxSIY5_A">
+        <outgoingTransitions xmi:id="_x9vuIKzfEeK3BbA-xenOSw" specification="# C &gt;" target="_N-dcMKv2EeKJqNG1GG2jEA"/>
+        <regions xmi:id="_Ixvy0KwOEeKDK5u47htxww">
+          <vertices xsi:type="sgraph:State" xmi:id="_6Gc6oKzfEeK3BbA-xenOSw" name="A" incomingTransitions="_8CCdkKzfEeK3BbA-xenOSw"/>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_7KHXEKzfEeK3BbA-xenOSw">
+            <outgoingTransitions xmi:id="_8CCdkKzfEeK3BbA-xenOSw" specification="" target="_6Gc6oKzfEeK3BbA-xenOSw"/>
+          </vertices>
+        </regions>
+        <regions xmi:id="_JE2VAKwOEeKDK5u47htxww">
+          <vertices xsi:type="sgraph:State" xmi:id="_6psKkKzfEeK3BbA-xenOSw" name="A" incomingTransitions="_8eDEIKzfEeK3BbA-xenOSw"/>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_7hsJkKzfEeK3BbA-xenOSw">
+            <outgoingTransitions xmi:id="_8eDEIKzfEeK3BbA-xenOSw" specification="" target="_6psKkKzfEeK3BbA-xenOSw"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_N-dcMKv2EeKJqNG1GG2jEA" name="C" incomingTransitions="_x9vuIKzfEeK3BbA-xenOSw"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

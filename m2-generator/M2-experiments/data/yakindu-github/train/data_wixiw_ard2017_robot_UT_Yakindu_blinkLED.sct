@@ -1,0 +1,18 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_DufrkCN3Eee1NfsMrTIlvw" specification="interface:&#10;&#9;in event start&#10;&#10;interface BSP:&#10;&#9;operation setLed(on : integer)" name="blinkLED">
+    <regions xmi:id="_Du57QSN3Eee1NfsMrTIlvw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_DvWnMCN3Eee1NfsMrTIlvw">
+        <outgoingTransitions xmi:id="_DvejACN3Eee1NfsMrTIlvw" target="_LscusCN5Eee1NfsMrTIlvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DvYcYCN3Eee1NfsMrTIlvw" specification="entry / BSP.setLed(0)" name="LEDOff" incomingTransitions="_MQgI4CN3Eee1NfsMrTIlvw _PUFjwCN5Eee1NfsMrTIlvw">
+        <outgoingTransitions xmi:id="_KEQ60CN3Eee1NfsMrTIlvw" specification="after 1s" target="_G-dngCN3Eee1NfsMrTIlvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_G-dngCN3Eee1NfsMrTIlvw" specification="entry / BSP.setLed(1)" name="LEDOn" incomingTransitions="_KEQ60CN3Eee1NfsMrTIlvw">
+        <outgoingTransitions xmi:id="_MQgI4CN3Eee1NfsMrTIlvw" specification="after 1s" target="_DvYcYCN3Eee1NfsMrTIlvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_LscusCN5Eee1NfsMrTIlvw" name="Init" incomingTransitions="_DvejACN3Eee1NfsMrTIlvw">
+        <outgoingTransitions xmi:id="_PUFjwCN5Eee1NfsMrTIlvw" specification="start" target="_DvYcYCN3Eee1NfsMrTIlvw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

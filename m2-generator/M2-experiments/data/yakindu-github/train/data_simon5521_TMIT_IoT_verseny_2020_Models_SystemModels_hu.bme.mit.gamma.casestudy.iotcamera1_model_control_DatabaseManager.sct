@@ -1,0 +1,17 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_xF9soIgKEeqlMohFgj5rhw" specification="internal :&#10;&#9;var alma:integer=4&#10;&#10;interface LPNumFromEdgeRec:&#10;&#9;in event NewData&#10;&#9;&#10;interface LPNumFromCloudRec:&#10;&#9;in event NewData&#10;&#9;&#10;interface SaveImg:&#10;&#9;in event NewData&#10;&#9;&#10;&#9;&#10;persistent interface HWEvents:&#10;&#9;in event Restart&#10;&#9;in event SoftwareError&#10;&#10;" name="DatabaseManager">
+    <regions xmi:id="_xGClI4gKEeqlMohFgj5rhw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_xGJ54YgKEeqlMohFgj5rhw">
+        <outgoingTransitions xmi:id="_xGOyYYgKEeqlMohFgj5rhw" target="_xGLvFIgKEeqlMohFgj5rhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_xGLvFIgKEeqlMohFgj5rhw" specification="entry/&#10;raise SaveImg.NewData" name="Work" incomingTransitions="_xGOyYYgKEeqlMohFgj5rhw _9AOfMIgKEeqlMohFgj5rhw _hEQHEIgLEeqlMohFgj5rhw">
+        <outgoingTransitions xmi:id="_9AOfMIgKEeqlMohFgj5rhw" specification="LPNumFromEdgeRec.NewData,&#10;LPNumFromCloudRec.NewData" target="_xGLvFIgKEeqlMohFgj5rhw"/>
+        <outgoingTransitions xmi:id="_d0RkEIgLEeqlMohFgj5rhw" specification="HWEvents.SoftwareError" target="_bYjIgIgLEeqlMohFgj5rhw"/>
+        <outgoingTransitions xmi:id="_u_MocAKgEeuty5KKgHK1BA" specification="after alma s" target="_bYjIgIgLEeqlMohFgj5rhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_bYjIgIgLEeqlMohFgj5rhw" name="Stopped" incomingTransitions="_d0RkEIgLEeqlMohFgj5rhw _u_MocAKgEeuty5KKgHK1BA">
+        <outgoingTransitions xmi:id="_hEQHEIgLEeqlMohFgj5rhw" specification="HWEvents.Restart" target="_xGLvFIgKEeqlMohFgj5rhw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

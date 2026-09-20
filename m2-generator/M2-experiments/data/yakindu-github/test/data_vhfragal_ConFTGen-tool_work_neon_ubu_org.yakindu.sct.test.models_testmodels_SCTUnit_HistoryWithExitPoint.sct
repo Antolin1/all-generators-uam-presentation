@@ -1,0 +1,29 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_Vq7iQH00EeOVe4RUhhrB-g" specification="interface:&#10;in event push&#10;in event back&#10;in event next" name="HistoryWithExitPoint">
+    <regions xmi:id="_VrTVsn00EeOVe4RUhhrB-g" name="mr">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_VrT8wX00EeOVe4RUhhrB-g">
+        <outgoingTransitions xmi:id="_VrVK4X00EeOVe4RUhhrB-g" target="_VrT8zH00EeOVe4RUhhrB-g"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_VrT8zH00EeOVe4RUhhrB-g" name="A" incomingTransitions="_VrVK4X00EeOVe4RUhhrB-g _6mHboH00EeOVe4RUhhrB-g">
+        <outgoingTransitions xmi:id="_X2aiYH00EeOVe4RUhhrB-g" specification="# exit_to_B &gt;" target="_Xd8_EH00EeOVe4RUhhrB-g"/>
+        <regions xmi:id="_xZ5jsH00EeOVe4RUhhrB-g" name="r">
+          <vertices xsi:type="sgraph:State" xmi:id="_xtSZwH00EeOVe4RUhhrB-g" name="X1" incomingTransitions="__NgdgH00EeOVe4RUhhrB-g _FwCWYH01EeOVe4RUhhrB-g">
+            <outgoingTransitions xmi:id="_0x9EoH00EeOVe4RUhhrB-g" specification="next" target="_0EapMH00EeOVe4RUhhrB-g"/>
+            <outgoingTransitions xmi:id="_E3iysH02EeOVe4RUhhrB-g" specification="push" target="_EWTG0H02EeOVe4RUhhrB-g"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_0EapMH00EeOVe4RUhhrB-g" name="X2" incomingTransitions="_0x9EoH00EeOVe4RUhhrB-g">
+            <outgoingTransitions xmi:id="_FwCWYH01EeOVe4RUhhrB-g" specification="next" target="_xtSZwH00EeOVe4RUhhrB-g"/>
+            <outgoingTransitions xmi:id="_Fydi0H02EeOVe4RUhhrB-g" specification="push" target="_EWTG0H02EeOVe4RUhhrB-g"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_9H1xgH00EeOVe4RUhhrB-g" kind="SHALLOW_HISTORY">
+            <outgoingTransitions xmi:id="__NgdgH00EeOVe4RUhhrB-g" specification="" target="_xtSZwH00EeOVe4RUhhrB-g"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Exit" xmi:id="_EWTG0H02EeOVe4RUhhrB-g" name="exit_to_B" incomingTransitions="_Fydi0H02EeOVe4RUhhrB-g _E3iysH02EeOVe4RUhhrB-g"/>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Xd8_EH00EeOVe4RUhhrB-g" name="B" incomingTransitions="_X2aiYH00EeOVe4RUhhrB-g">
+        <outgoingTransitions xmi:id="_6mHboH00EeOVe4RUhhrB-g" specification="back" target="_VrT8zH00EeOVe4RUhhrB-g"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

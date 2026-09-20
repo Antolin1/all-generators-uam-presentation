@@ -1,0 +1,21 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_sY7EALEAEeiCp9ZwnHu_Vw" specification="@EventDriven&#10;@ChildFirstExecution&#10;&#10;import : &quot;../src/sm/Blinklight.h&quot;&#10;&#10;interface:&#10;&#10;in event left&#10;var leftBL : pointer&lt;Blinklight&gt;&#10;&#10;in event right&#10;var rightBL : pointer&lt;Blinklight&gt;&#10;&#10;in event off" name="directionblinker" domainID="com.yakindu.domain.c">
+    <regions xmi:id="_sY8SI7EAEeiCp9ZwnHu_Vw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_sZBxsbEAEeiCp9ZwnHu_Vw">
+        <outgoingTransitions xmi:id="_sZEN8rEAEeiCp9ZwnHu_Vw" target="_sZCYx7EAEeiCp9ZwnHu_Vw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_sZCYx7EAEeiCp9ZwnHu_Vw" specification="entry / &#10;  blinklightIface_raise_off(leftBL);&#10;  blinklightIface_raise_off(rightBL)" name="Off" incomingTransitions="_sZEN8rEAEeiCp9ZwnHu_Vw _ZQhaULEBEeiCp9ZwnHu_Vw _c5V7ILEBEeiCp9ZwnHu_Vw">
+        <outgoingTransitions xmi:id="_y60DsLEAEeiCp9ZwnHu_Vw" specification="right" target="_y6zcoLEAEeiCp9ZwnHu_Vw"/>
+        <outgoingTransitions xmi:id="_WIAKMLEBEeiCp9ZwnHu_Vw" specification="left" target="_24sOgLEAEeiCp9ZwnHu_Vw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_y6zcoLEAEeiCp9ZwnHu_Vw" specification="entry / blinklightIface_raise_on(rightBL)&#10;exit / blinklightIface_raise_off(rightBL)" name="Right" incomingTransitions="_y60DsLEAEeiCp9ZwnHu_Vw _jBsZcLEBEeiCp9ZwnHu_Vw">
+        <outgoingTransitions xmi:id="_24s1kLEAEeiCp9ZwnHu_Vw" specification="left" target="_24sOgLEAEeiCp9ZwnHu_Vw"/>
+        <outgoingTransitions xmi:id="_c5V7ILEBEeiCp9ZwnHu_Vw" specification="off, after 5s" target="_sZCYx7EAEeiCp9ZwnHu_Vw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_24sOgLEAEeiCp9ZwnHu_Vw" specification="entry / blinklightIface_raise_on(leftBL)&#10;exit / blinklightIface_raise_off(leftBL)" name="Left" incomingTransitions="_24s1kLEAEeiCp9ZwnHu_Vw _WIAKMLEBEeiCp9ZwnHu_Vw">
+        <outgoingTransitions xmi:id="_ZQhaULEBEeiCp9ZwnHu_Vw" specification="off, after 5s" target="_sZCYx7EAEeiCp9ZwnHu_Vw"/>
+        <outgoingTransitions xmi:id="_jBsZcLEBEeiCp9ZwnHu_Vw" specification="right" target="_y6zcoLEAEeiCp9ZwnHu_Vw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

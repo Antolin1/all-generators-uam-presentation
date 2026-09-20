@@ -1,0 +1,16 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_h4E_YD4nEeau3Pk6xrQzUQ" specification="interface User:&#10;&#9;in event JoystickUp&#10;&#9;in event JoystickDown&#10;&#9;in event JoystickLeft&#10;&#9;in event JoystickRight&#10;&#9;in event JoystickClick&#10;&#9;&#10;interface Menu:&#10;&#9;var Duration : integer" name="MainMenu">
+    <regions xmi:id="_h49JID4nEeau3Pk6xrQzUQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_h5yPkD4nEeau3Pk6xrQzUQ" name="">
+        <outgoingTransitions xmi:id="_h6FxkD4nEeau3Pk6xrQzUQ" target="_h56LYD4nEeau3Pk6xrQzUQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_h56LYD4nEeau3Pk6xrQzUQ" specification="" name="MainScreen" incomingTransitions="_h6FxkD4nEeau3Pk6xrQzUQ _7tB5QD4pEeau3Pk6xrQzUQ _PB1x0D4qEeau3Pk6xrQzUQ">
+        <outgoingTransitions xmi:id="_xCwH4D4pEeau3Pk6xrQzUQ" specification="User.JoystickDown" target="_pbKrcD4pEeau3Pk6xrQzUQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_pbKrcD4pEeau3Pk6xrQzUQ" name="TimerScreen" incomingTransitions="_xCwH4D4pEeau3Pk6xrQzUQ">
+        <outgoingTransitions xmi:id="_7tB5QD4pEeau3Pk6xrQzUQ" specification="User.JoystickUp" target="_h56LYD4nEeau3Pk6xrQzUQ"/>
+        <outgoingTransitions xmi:id="_PB1x0D4qEeau3Pk6xrQzUQ" specification="User.JoystickDown" target="_h56LYD4nEeau3Pk6xrQzUQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

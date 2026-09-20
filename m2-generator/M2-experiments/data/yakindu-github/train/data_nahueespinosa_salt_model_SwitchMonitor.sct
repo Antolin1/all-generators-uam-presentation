@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_FPC0oPVBEeqskp5e76VOlw" specification="@EventDriven&#10;@ChildFirstExecution&#10;&#10;interface:&#10;&#10;out event evSwitchOn&#10;out event evSwitchOff&#10;&#10;operation SwitchMonitorInit()&#10;operation switchRead() : boolean" name="switchMonitor">
+    <regions xmi:id="_FPMlo_VBEeqskp5e76VOlw" name="r1">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_FPWWo_VBEeqskp5e76VOlw">
+        <outgoingTransitions xmi:id="_FPYy4_VBEeqskp5e76VOlw" specification="/ SwitchMonitorInit()" target="_FPXkx_VBEeqskp5e76VOlw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_FPXkx_VBEeqskp5e76VOlw" specification="" name="SwitchOff" incomingTransitions="_FPYy4_VBEeqskp5e76VOlw _poCCwPaoEeqye7i9bztbvA _cjgKkPaqEeqye7i9bztbvA">
+        <outgoingTransitions xmi:id="_Z_3bEPaoEeqye7i9bztbvA" specification="every 20 ms&#13;&#10;[switchRead() == true]" target="_S49p0PaoEeqye7i9bztbvA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_K_nS0PVGEeqskp5e76VOlw" specification="" name="SwitchOn" incomingTransitions="_j3BGYPaoEeqye7i9bztbvA _e7bEMPaqEeqye7i9bztbvA">
+        <outgoingTransitions xmi:id="_ZDH0EPaqEeqye7i9bztbvA" specification="every 20 ms&#13;&#10;[switchRead() == false]" target="_XVwTUPaqEeqye7i9bztbvA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_S49p0PaoEeqye7i9bztbvA" specification="" name="SwitchRising" incomingTransitions="_Z_3bEPaoEeqye7i9bztbvA">
+        <outgoingTransitions xmi:id="_j3BGYPaoEeqye7i9bztbvA" specification="after 500 ms /&#13;&#10;raise evSwitchOn" target="_K_nS0PVGEeqskp5e76VOlw"/>
+        <outgoingTransitions xmi:id="_poCCwPaoEeqye7i9bztbvA" specification="every 20 ms&#13;&#10;[switchRead() == false]" target="_FPXkx_VBEeqskp5e76VOlw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_XVwTUPaqEeqye7i9bztbvA" name="SwitchFalling" incomingTransitions="_ZDH0EPaqEeqye7i9bztbvA">
+        <outgoingTransitions xmi:id="_cjgKkPaqEeqye7i9bztbvA" specification="after 500 ms /&#13;&#10;raise evSwitchOff" target="_FPXkx_VBEeqskp5e76VOlw"/>
+        <outgoingTransitions xmi:id="_e7bEMPaqEeqye7i9bztbvA" specification="every 20 ms&#13;&#10;[switchRead() == true]" target="_K_nS0PVGEeqskp5e76VOlw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

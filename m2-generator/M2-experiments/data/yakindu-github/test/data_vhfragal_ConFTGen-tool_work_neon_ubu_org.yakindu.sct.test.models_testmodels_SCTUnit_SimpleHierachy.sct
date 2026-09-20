@@ -1,0 +1,20 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_7tWuQHNzEeGtAMDjlTj9eQ" specification="interface:&#13;&#10;in event Event1 : void" name="SimpleHierachy">
+    <regions xmi:id="_7tYjcnNzEeGtAMDjlTj9eQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_7tbmwXNzEeGtAMDjlTj9eQ">
+        <outgoingTransitions xmi:id="_7tiUcXNzEeGtAMDjlTj9eQ" target="_7teqEHNzEeGtAMDjlTj9eQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_7teqEHNzEeGtAMDjlTj9eQ" name="A" incomingTransitions="_7tiUcXNzEeGtAMDjlTj9eQ">
+        <outgoingTransitions xmi:id="_9lmCQHNzEeGtAMDjlTj9eQ" specification="Event1" target="_8YlckHNzEeGtAMDjlTj9eQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_8YlckHNzEeGtAMDjlTj9eQ" name="B" incomingTransitions="_9lmCQHNzEeGtAMDjlTj9eQ">
+        <regions xmi:id="_-bcsMHNzEeGtAMDjlTj9eQ" name="subregion1">
+          <vertices xsi:type="sgraph:State" xmi:id="_EUXAUHN0EeGtAMDjlTj9eQ" name="B1" incomingTransitions="_GE5J0HN0EeGtAMDjlTj9eQ"/>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_Fq8_0HN0EeGtAMDjlTj9eQ">
+            <outgoingTransitions xmi:id="_GE5J0HN0EeGtAMDjlTj9eQ" specification="" target="_EUXAUHN0EeGtAMDjlTj9eQ"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

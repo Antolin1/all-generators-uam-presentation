@@ -1,0 +1,34 @@
+# EMF Instantiator Playground (AtlanMod)
+#
+#   docker compose up --build
+#   → http://localhost:8090
+#
+# Los puertos son distintos a los de ../randomemf (8080/8081) para poder tener ambos en marcha.
+# Solo se publican en 127.0.0.1: es una herramienta local.
+
+name: atlanmod-instantiator
+
+services:
+  backend:
+    build:
+      context: .                      # necesita mondo-atlzoo-benchmark/ y backend/
+      dockerfile: backend/Dockerfile
+    image: atlanmod-instantiator-backend
+    environment:
+      JAVA_OPTS: "-Xmx1g"
+      METAMODELS_DIR: /metamodels
+    volumes:
+      # tus metamodelos (*.ecore); se detectan sin reiniciar
+      - ./metamodels:/metamodels:ro
+    ports:
+      - "127.0.0.1:8091:8081"         # solo para depurar la API (curl); el front usa la red interna
+
+  frontend:
+    build:
+      context: ./frontend
+    image: atlanmod-instantiator-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8090:80"

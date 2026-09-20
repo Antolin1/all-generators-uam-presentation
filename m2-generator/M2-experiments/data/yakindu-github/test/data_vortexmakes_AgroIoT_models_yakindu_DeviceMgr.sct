@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_6LQ78PdJEemTQNOn_wVLIw" specification="interface:&#10;&#9;in event evClose&#10;&#9;in event evOpen&#10;&#9;in event evEndOfPolling&#10;&#9;operation init()&#10;&#9;operation stopPs()&#10;&#9;operation startPs()&#10;&#9;operation restartPs()" name="DeviceMgr">
+    <regions xmi:id="_6LdwQPdJEemTQNOn_wVLIw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_6LlsEfdJEemTQNOn_wVLIw">
+        <outgoingTransitions xmi:id="_6LrLofdJEemTQNOn_wVLIw" specification="/ init()" target="_6LnhRPdJEemTQNOn_wVLIw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_6LnhRPdJEemTQNOn_wVLIw" name="Inactive" incomingTransitions="_6LrLofdJEemTQNOn_wVLIw _gxNcEPdMEemTQNOn_wVLIw">
+        <outgoingTransitions xmi:id="_0PnyAPdLEemTQNOn_wVLIw" specification="evOpen / startPs()" target="_zLNusfdLEemTQNOn_wVLIw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_zLNusfdLEemTQNOn_wVLIw" name="Active" incomingTransitions="_0PnyAPdLEemTQNOn_wVLIw _SJ3GYDMoEeumIbQoFPTMGQ">
+        <outgoingTransitions xmi:id="_gxNcEPdMEemTQNOn_wVLIw" specification="evClose / stopPs()" target="_6LnhRPdJEemTQNOn_wVLIw"/>
+        <outgoingTransitions xmi:id="_OcdAgDMoEeumIbQoFPTMGQ" specification="after 1s /* or 0.5s */" target="_Hk3doDMoEeumIbQoFPTMGQ"/>
+        <regions xmi:id="_zLPj4_dLEemTQNOn_wVLIw" name="r1">
+          <vertices xsi:type="sgraph:State" xmi:id="_3qJ_MPdLEemTQNOn_wVLIw" name="Polling" incomingTransitions="_8j1D4PdLEemTQNOn_wVLIw">
+            <outgoingTransitions xmi:id="_GQOQsPdMEemTQNOn_wVLIw" specification="evEndOfPolling" target="_ERy1IPdMEemTQNOn_wVLIw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_72LTsPdLEemTQNOn_wVLIw">
+            <outgoingTransitions xmi:id="_8j1D4PdLEemTQNOn_wVLIw" specification="" target="_3qJ_MPdLEemTQNOn_wVLIw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_ERy1IPdMEemTQNOn_wVLIw" specification="" name="WaitEndOfCycle" incomingTransitions="_GQOQsPdMEemTQNOn_wVLIw"/>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Hk3doDMoEeumIbQoFPTMGQ" name="Starting" incomingTransitions="_OcdAgDMoEeumIbQoFPTMGQ">
+        <outgoingTransitions xmi:id="_SJ3GYDMoEeumIbQoFPTMGQ" specification="always/ restartPs()" target="_zLNusfdLEemTQNOn_wVLIw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

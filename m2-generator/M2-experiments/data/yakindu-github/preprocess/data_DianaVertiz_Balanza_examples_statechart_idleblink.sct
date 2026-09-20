@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_9SC7oNT0EeWW7qBcXsHUvw" specification="internal:&#10;&#9;var iTick : integer&#10;&#9;const MS_DELAY : integer = 200&#10;interface:&#10;&#9;in event evButton&#10;&#9;in event evTick&#10;&#9;operation opLED(onoff:boolean)" name="idleblink">
+    <regions xmi:id="_9SEJwtT0EeWW7qBcXsHUvw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_9SGmANT0EeWW7qBcXsHUvw">
+        <outgoingTransitions xmi:id="_9SK3c9T0EeWW7qBcXsHUvw" target="_9SH0JNT0EeWW7qBcXsHUvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_9SH0JNT0EeWW7qBcXsHUvw" specification="entry/opLED(false)" name="IDLE" incomingTransitions="_9SK3c9T0EeWW7qBcXsHUvw _EK6Q4NT1EeWW7qBcXsHUvw">
+        <outgoingTransitions xmi:id="_DgxuwNT1EeWW7qBcXsHUvw" specification="evButton" target="__Gk0UNT0EeWW7qBcXsHUvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="__Gk0UNT0EeWW7qBcXsHUvw" specification="" name="BLINK" incomingTransitions="_DgxuwNT1EeWW7qBcXsHUvw">
+        <outgoingTransitions xmi:id="_EK6Q4NT1EeWW7qBcXsHUvw" specification="evButton" target="_9SH0JNT0EeWW7qBcXsHUvw"/>
+        <regions xmi:id="__GmpgNT0EeWW7qBcXsHUvw" name="blink region">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_G3KbwNT1EeWW7qBcXsHUvw">
+            <outgoingTransitions xmi:id="_Wpr5UNT1EeWW7qBcXsHUvw" specification="/iTick=0" target="_K9_uQNT1EeWW7qBcXsHUvw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_K9_uQNT1EeWW7qBcXsHUvw" specification="entry/opLED(true)" name="ON" incomingTransitions="_Wpr5UNT1EeWW7qBcXsHUvw _iBEBQNT1EeWW7qBcXsHUvw _L0hJwNT5EeWW7qBcXsHUvw">
+            <outgoingTransitions xmi:id="_qVlcMNT1EeWW7qBcXsHUvw" specification="evTick[iTick==MS_DELAY]&#10;/iTick=0" target="_MnsP8NT1EeWW7qBcXsHUvw"/>
+            <outgoingTransitions xmi:id="_L0hJwNT5EeWW7qBcXsHUvw" specification="evTick[iTick&lt;MS_DELAY]&#10;/iTick=iTick+1" target="_K9_uQNT1EeWW7qBcXsHUvw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_MnsP8NT1EeWW7qBcXsHUvw" specification="entry/opLED(false)" name="OFF" incomingTransitions="_qVlcMNT1EeWW7qBcXsHUvw _YSY_sNT5EeWW7qBcXsHUvw">
+            <outgoingTransitions xmi:id="_iBEBQNT1EeWW7qBcXsHUvw" specification="evTick[iTick==MS_DELAY]&#10;/iTick=0" target="_K9_uQNT1EeWW7qBcXsHUvw"/>
+            <outgoingTransitions xmi:id="_YSY_sNT5EeWW7qBcXsHUvw" specification="evTick[iTick&lt;MS_DELAY]&#10;/iTick=iTick+1" target="_MnsP8NT1EeWW7qBcXsHUvw"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

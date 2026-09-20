@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_c4qVUJpjEeWXkOTCWHzaSw" specification="interface:&#10;out event ev_out:integer&#10;in event ev_in:integer&#10;var myVar:integer&#10;operation displayTime()&#10;&#10;var afterCalls:integer=0&#10;var cycles:integer = 0&#10;var s2_entered:integer = 0&#10;&#10;internal:&#10;every 1s / displayTime()&#10;oncycle / cycles += 1" name="RunnableTest">
+    <regions xmi:id="_c4sKgppjEeWXkOTCWHzaSw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_c4xqEJpjEeWXkOTCWHzaSw">
+        <outgoingTransitions xmi:id="_c4zfQppjEeWXkOTCWHzaSw" target="_5l5RUNGDEeW7UJ0cPg0J-Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_Hsdb4NCeEeWFO75CgJFf1g" incomingTransitions="_JBzeMNCeEeWFO75CgJFf1g"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_5l5RUNGDEeW7UJ0cPg0J-Q" specification="" name="Composite_s1_s2" incomingTransitions="_c4zfQppjEeWXkOTCWHzaSw">
+        <outgoingTransitions xmi:id="_JBzeMNCeEeWFO75CgJFf1g" specification="after 10 s" target="_Hsdb4NCeEeWFO75CgJFf1g"/>
+        <regions xmi:id="_5m4IwNGDEeW7UJ0cPg0J-Q" name="inner region">
+          <vertices xsi:type="sgraph:State" xmi:id="_c4yRJJpjEeWXkOTCWHzaSw" specification="entry / raise ev_out:2" name="s1" incomingTransitions="_AWDNcMZ2EeWX2I-CIBP2Cw _CFOf4NCZEeWFO75CgJFf1g _GpayANGEEeW7UJ0cPg0J-Q">
+            <outgoingTransitions xmi:id="_UgX9gMDrEeWLXPYSPFoy-Q" specification="ev_in" target="_NmkNEMDrEeWLXPYSPFoy-Q"/>
+            <outgoingTransitions xmi:id="_AWDNcMZ2EeWX2I-CIBP2Cw" specification="after 500 ms / afterCalls += 1" target="_c4yRJJpjEeWXkOTCWHzaSw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_NmkNEMDrEeWLXPYSPFoy-Q" specification="entry / s2_entered += 1" name="s2" incomingTransitions="_UgX9gMDrEeWLXPYSPFoy-Q">
+            <outgoingTransitions xmi:id="_CFOf4NCZEeWFO75CgJFf1g" specification="ev_in" target="_c4yRJJpjEeWXkOTCWHzaSw"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_FxazANGEEeW7UJ0cPg0J-Q">
+            <outgoingTransitions xmi:id="_GpayANGEEeW7UJ0cPg0J-Q" specification="" target="_c4yRJJpjEeWXkOTCWHzaSw"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

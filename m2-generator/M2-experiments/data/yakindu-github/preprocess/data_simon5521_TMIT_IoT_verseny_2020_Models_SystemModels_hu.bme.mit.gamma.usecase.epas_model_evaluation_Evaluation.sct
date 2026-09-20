@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_fy1dkNVFEemxm9eGinoW5Q" specification="interface AMonitor:&#10;&#9;in event warning&#10;&#9;in event selfsteering&#10;&#9;in event loa&#10;&#9;&#10;interface BMonitor:&#10;&#9;in event warning&#10;&#9;in event selfsteering&#10;&#9;in event loa&#10;&#10;&#10;interface Eval:&#10;&#9;out event SS&#10;&#9;out event SLoA&#10;&#9;&#10;internal:&#10;&#9;var sides:integer" name="Evaluation">
+    <regions xmi:id="_fy2EqdVFEemxm9eGinoW5Q" name="evaluation">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_fy3SwdVFEemxm9eGinoW5Q">
+        <outgoingTransitions xmi:id="_2he_wNVFEemxm9eGinoW5Q" specification="/sides=2" target="_1kd94NVFEemxm9eGinoW5Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_1kd94NVFEemxm9eGinoW5Q" name="Operation" incomingTransitions="_2he_wNVFEemxm9eGinoW5Q _lP2N8NVHEemvGJPGARiGeg">
+        <outgoingTransitions xmi:id="_RePhINVGEemxm9eGinoW5Q" specification="AMonitor.selfsteering,&#10;BMonitor.selfsteering/&#10;raise Eval.SS" target="_NwOXQNVGEemxm9eGinoW5Q"/>
+        <outgoingTransitions xmi:id="_bUszcNVHEemvGJPGARiGeg" specification="AMonitor.loa,&#10;BMonitor.loa / sides-=1" target="_WwK4UNVHEemvGJPGARiGeg"/>
+        <regions xmi:id="_1kek8NVFEemxm9eGinoW5Q" name="r1">
+          <vertices xsi:type="sgraph:State" xmi:id="_5_bGQNVFEemxm9eGinoW5Q" specification="" name="Normal" incomingTransitions="_9hVGwNVFEemxm9eGinoW5Q">
+            <outgoingTransitions xmi:id="__TdywNVFEemxm9eGinoW5Q" specification="AMonitor.warning,&#10;BMonitor.warning" target="_-H6loNVFEemxm9eGinoW5Q"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_9Hx-UNVFEemxm9eGinoW5Q">
+            <outgoingTransitions xmi:id="_9hVGwNVFEemxm9eGinoW5Q" specification="" target="_5_bGQNVFEemxm9eGinoW5Q"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_-H6loNVFEemxm9eGinoW5Q" name="Warning" incomingTransitions="__TdywNVFEemxm9eGinoW5Q"/>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_NwOXQNVGEemxm9eGinoW5Q" specification="entry / raise Eval.SS" name="Selfsteering" incomingTransitions="_RePhINVGEemxm9eGinoW5Q"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_Z1ijQNVGEemxm9eGinoW5Q" specification="entry/&#10;raise Eval.SLoA" name="LoA" incomingTransitions="_iAyQ8NVHEemvGJPGARiGeg"/>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_WwK4UNVHEemvGJPGARiGeg" incomingTransitions="_bUszcNVHEemvGJPGARiGeg">
+        <outgoingTransitions xmi:id="_iAyQ8NVHEemvGJPGARiGeg" specification="[sides==0]" target="_Z1ijQNVGEemxm9eGinoW5Q"/>
+        <outgoingTransitions xmi:id="_lP2N8NVHEemvGJPGARiGeg" specification="default" target="_1kd94NVFEemxm9eGinoW5Q"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

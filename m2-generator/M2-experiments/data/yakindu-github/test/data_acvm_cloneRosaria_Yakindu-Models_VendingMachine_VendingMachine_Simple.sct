@@ -1,0 +1,21 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_JrrIILreEea1MdTc6sJwSA" specification="interface:&#10;// Define events and&#10;// and variables here&#10;in event coin_deposited&#10;in event selection&#10;in event change_returned&#10;in event change_requested&#10;in event dispensed&#10;in event empty&#10;in event temp_control_failure&#10;in event reset&#10;var coins: integer&#10;var temp:integer" name="VendingMachine_Simple">
+    <regions xmi:id="_JrvZkLreEea1MdTc6sJwSA" name="main">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_sblBlLr5Eea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_sblBlbr5Eea1MdTc6sJwSA" target="_sbmPkLr5Eea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_sbmPkLr5Eea1MdTc6sJwSA" name="Idle" incomingTransitions="_sblBlbr5Eea1MdTc6sJwSA _sboEwrr5Eea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_sbmPk7r5Eea1MdTc6sJwSA" specification="coin_deposited" target="_sbp58Lr5Eea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_sbndsLr5Eea1MdTc6sJwSA" name="Give_Change" incomingTransitions="_sbs9Qrr5Eea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_sboEwrr5Eea1MdTc6sJwSA" specification="change_returned" target="_sbmPkLr5Eea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_sbp58Lr5Eea1MdTc6sJwSA" name="Count_coins" incomingTransitions="_sbmPk7r5Eea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_sbqhArr5Eea1MdTc6sJwSA" specification="selection [coins&gt;1]" target="_sbsWMLr5Eea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_sbsWMLr5Eea1MdTc6sJwSA" name="Dispense" incomingTransitions="_sbqhArr5Eea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_sbs9Qrr5Eea1MdTc6sJwSA" specification="dispensed, change_requested" target="_sbndsLr5Eea1MdTc6sJwSA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore">
+  <smallEcore:EPackage name="t0W4cAViYcwDvzl9Otdu1mH5b1MEeRht8UcCgkIiBc5ivoMWg7mRYuIG29">
+    <eClassifiers xsi:type="smallEcore:EClass" name="hQLD00VAjcEd9qLE5NB4hKikkitGw4dxXoQBX0A8aJ7YmS18xbz4NUfL6xqUYd7" eSuperTypes="/1/@eClassifiers.3 /0/@eClassifiers.0 /1/@eClassifiers.0">
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="86zlONdXKk1AXn4cGAY1f4Leti4qNNOyQZxiPwdYkUJN7ozAAZ5DPGy74676WMLp6T5Vv" lowerBound="1748035167" upperBound="902670825" eType="/1/@eClassifiers.0" containment="true" eOpposite="/1/@eClassifiers.3/@eStructuralFeatures.7"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="S18asMbKhVQNQdpXI3pSIp71cGGHOFkmIPUuylX0h94H8Sx8yYys6C8K47izb6AKVf" lowerBound="-359585409" upperBound="-826231211" eType="/0/@eClassifiers.4" eOpposite="/1/@eClassifiers.0/@eStructuralFeatures.3"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="pzPLYbpy8JMWQCw2QKI2Jd0kbyhNM2dpZrhzTIllprHUL8ktaCCJSfIluJe7bJr8ILydre" lowerBound="1262793372" upperBound="1849139095" eType="/1/@eClassifiers.0" eOpposite="/1/@eClassifiers.2/@eStructuralFeatures.1"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="imYgjngs5Oz2o9SkNnH45axQewcBlcysyiMS1cOqXMykDi9IrH6t53hVXWOTeiD99HmB" lowerBound="510142866" upperBound="-595169066" eType="/1/@eClassifiers.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="UwxphwN9oP2kvZ5yzMuQNTJyqX7gIY3CbRiAVypNYeU4RDLvp4xDQketpwICypkF" lowerBound="1666586040" upperBound="-1492310845" eType="/1/@eClassifiers.3" containment="true" eOpposite="/1/@eClassifiers.4/@eStructuralFeatures.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="5yVhax3yUhv7cByUCEO6NW74tLWl0fCBZJ3mf9MLEp2bugSnSvVmHSoGAd" lowerBound="-851356133" upperBound="-1051007045" eType="/0/@eClassifiers.7" containment="true" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.1"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="9p4DEeGIDvvy7IztMEGdgVl9BbKim6WIH985cVb51z2Av8qeFInyVUt9chtNjhl2lFT" lowerBound="-311537300" upperBound="829770954" eType="/1/@eClassifiers.5" containment="true" eOpposite="/1/@eClassifiers.3/@eStructuralFeatures.5"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EEnum" name="OZ3xPxltVlBSLb50he0QunwzfpSUPVsdaTD9xyeZpo2kOap55Az7BXR1p0oIFjwCn">
+      <eLiterals name="YkxigpDllDHUSOTo4zg4D7xknExX4zkemoYohjzEV2fc35OZiJtKnV1vC4D9fjX5pdfV"/>
+      <eLiterals name="Y9Q8EPPMH6Ck1ZQkScNoSRL3D2Q3I6vzE4cXzZ4oqurjX84vXxakVfmiftIowkc"/>
+      <eLiterals name="DuhL59Be45tmPV3Z8r83Apro4e9i0LVjRvQegNEoZqeL3Y7JHLvs3jCdXV1ulaxPP"/>
+      <eLiterals name="LRPRT34LCrjvQWsi9yjd1FqRFM7quzkhl7OAi4ak9sGN114KS7xMtmmRYxlBbv"/>
+      <eLiterals name="dczuvaKE8brXMRFDU7ma2T4Enh0QR81pEPuijdGbG58COuQdAivaKzDwAcFDR0v2QpkI"/>
+      <eLiterals name="K17Lnw0FVZziPoxTvyeoIoF7NMTZhMtvE2rdKyViTXCMnKgZGwcR5oMvrB5qmvJyn"/>
+      <eLiterals name="WD8C8WkdKMjep90GNPI5lY6ba9XzL7hsm2DL8YGm1gFoDADzm1tM0xaQEHmBsB"/>
+      <eLiterals name="rU3sNc1QOxS6rVukvRZNocp3TDweVz7FXqxUWBtyg820w1U3ZKQueBHD3Dq0PLmwGk"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EEnum" name="1iN4DFwrAHodOfdcdyHRVAxZWZkcVNwQ79RF8rKXBjqhGcVDF7KJZRl7Zz0GkIj">
+      <eLiterals name="iTSC7YkHkysgk8bCQ91MLU5wPubwjunEGTlUbcrRrMdYqkI8jnYbEGX7NYcpD"/>
+      <eLiterals name="ggnWNdcupFXwml5D6rkFtEar20KVAp8jV93cJx52UsXg9noqcYyNtBvq5GVDOKA1"/>
+      <eLiterals name="S6tM1djLKIbUmaXaq4jTxwVgoO3YuLwU6OIz6c1Q552Au9gShaGwa2m1mbgCr"/>
+      <eLiterals name="Yb8k0YqPCVlxD7MpEtSrWqVxxVcmYlLckZ0o57nFV7Xahlpn8Yldkh6otXZv"/>
+      <eLiterals name="D3kLkZKWGgVAy5tittQIYnE4vphFe3MOjgi6G8G0sRXFLK9DpUdDHaUXF1cNuo"/>
+      <eLiterals name="2ak6z73AbAlmCVWIArcYMD4S1gOC4yysk4xoVwHP6JJowR0kAiczWdsqwHuJANcJr6"/>
+      <eLiterals name="pD0st0DjiVzFec6Djaj7u6QIGtiiLHNztJQFNcgo6ZnV8ReyTCx4Hffv6jM4StA2Is"/>
+      <eLiterals name="birupelkK4YjaYcahLinGFtLFLJEuxle2kPZ7LoREQ7oLGPaKDOv73pD0XSTYK8a"/>
+      <eLiterals name="6KyH5Tqcpmx4swnQUVKngoDOFBIrkLJSa3Od5TtIkqyw2W90D6TnXaLpcduaB5l3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EDataType" name="ex0a2pcmVp3YHDyOSwQcU8HVUYzxUFVAv8onu8LKx3MHBBqlsuQ7E31aV4OQflMIz4EMNN"/>
+    <eClassifiers xsi:type="smallEcore:EDataType" name="HLWm9nuWWuvaDxfXCYJSD2KblpsXy7u7mp2Lu7vguTaibgzwtXAwDQjdCNq6dshjwVQL"/>
+    <eClassifiers xsi:type="smallEcore:EDataType" name="SP3pE12CZmqBKs8dXendmSp2LkqGcSfqRZ6rtlrBnYcbTvc7oXnCaRttoR"/>
+    <eClassifiers xsi:type="smallEcore:EDataType" name="9RpQPDfZEWRAuCsaDoNPQbEymVX9c16PFPxmwHC5LlTtP0Hlqfha5A3N7pwJDM6fYrp"/>
+    <eClassifiers xsi:type="smallEcore:EEnum" name="MePkZs1Lny2CLFZn42T74o3Dqy2vylX4UIyMpfLXw67sug3UOruIl3nD5uNTygxUFwt">
+      <eLiterals name="aAhZIPUA3502Xq7b0ZlOVTOdKGTWTbaP9krokj4v2UhM4t1ckNKs46KXkL4TuNZb"/>
+      <eLiterals name="9xrp7xCaqDRrDPP0qwhHEkjWy8ZKzW9lzXdXhuFbTmEAdMPaRd3fFIVIfKhVHjvxkX"/>
+      <eLiterals name="IWCfmsDtrAECKoZDt3ZDbgMf9bVWeht5ArydM9Zt8u94WanBMtZlO4HhZJItNTQ1v"/>
+      <eLiterals name="Y5LNRP2tFFJhOeDb0A6Y9L1EsnSkqjIWLjeWf0Y2uzUdYY1u5yhTOoA2GsX"/>
+      <eLiterals name="mB4ZxrCbl9YcJCpbHBe0a84tlQmmjWR2kOTqFJD8SXEmYq1slpAOQCZNTm"/>
+      <eLiterals name="pT3MdYwcCJsUtJhOwrvjJLtgVob4vrqfMVwa1RVRHJoknlPnx4lO4XIICgG"/>
+      <eLiterals name="d56QxM89f7zJezlZsNFBAIcMzWunjAWCyHoUe0bMNmayp0EtZQhk0DEPgsOOwhGy"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EEnum" name="iUHKnRjBgLSngEkrMU6SivzIQMczHEd6L2Jk6k4Ptxftsje5GOfwARZI876DcD6reroE">
+      <eLiterals name="vpvMZpHeaMMOWiAcQHxmh02E7VrBmSTudTWXHJdPVJOBHZmBC40LM2Ze7rzr6ReQxI"/>
+      <eLiterals name="wo9F1BXS8Mv2UpFFdOcf0uMjU69J1rn0BbSJjsAhzjaUGY4s3XnOaPFC7hVyG8H"/>
+      <eLiterals name="iXmoV3X1ezrDpT631aRDCIQL1B3IpDQJqOhsAQsL9r2alaFHC1cNRyOnaJ"/>
+      <eLiterals name="PCehvKieTNSdAYpH9XDvMBJ6kVPf9NZdARySrJvOiyjV8r6HGeiRxksdb2Imi9H"/>
+      <eLiterals name="eNulfCBYaokws0OxLnBwWOLodOthfUzvEZLNAaczAqZfxpier0JADNWv8AsKvz44MLsFxp"/>
+      <eLiterals name="7QH7dNf7gMs5sHlPTb6UmtvpOxjjQwgmVFo2slqAm1cliBy3e9EeGXESUdvVy2wsQSUbj9"/>
+      <eLiterals name="nMU1ijsCnkdTBr4zD2JceXnfYYlKrMy9Hl3oSMOTiDJTvkdFgpXilcETtE8"/>
+    </eClassifiers>
+  </smallEcore:EPackage>
+  <smallEcore:EPackage name="mKMwfWU19kte6zgL6Q7pwvXUK01k3TLnZ3cCuvUQCol8A97PcsNYJU9oMgcu2PIlLVoVa">
+    <eClassifiers xsi:type="smallEcore:EClass" name="4RufjisSHsdYVj4Yfoe0fsTLdzHI0bcoIr2i5OYm4jWsOuvTeH0XVil5GuAl" eSuperTypes="/0/@eClassifiers.0 /1/@eClassifiers.0 /1/@eClassifiers.4 /1/@eClassifiers.5">
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="ObYpwouPKhorboNUTcvxm6g22GDoprh0Y02iKXdYbGB7bDjA3BZPpVKGXOMB" lowerBound="1454621363" upperBound="-1423472578" eType="/0/@eClassifiers.6"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="1RygoTVt6qL3EGACSI4aPsqQZ9jD7rA9ZS6VmHexHRvK48GrrDC20DtvFnW6yQ6fdkJBP" lowerBound="848397888" upperBound="1951801609" eType="/1/@eClassifiers.4"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="k8GmM1GPFvT3QK5uODgr8cdCJb4PtoLeJQ28JeFLrmPa1hsp308TLjjJAwzMzw" lowerBound="-2072345275" upperBound="626556692" eType="/1/@eClassifiers.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="v1bSRJ1NPC67vdetGpHEAqvNgpSXM9sbiOwIzZpHNkvax5azl6aI2SA5jj5LUq" lowerBound="-71575671" upperBound="610648850" eType="/1/@eClassifiers.3" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.2"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="qk9L5Tda922mHIwfM6egC9mE24mi13bHNelj4calrigs3m4LlvCMKEfaEFytpqcuA9N" lowerBound="1280333975" upperBound="-730015741" eType="/1/@eClassifiers.2"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="LC12Y3Y0UcW9nQxYMjlhrMTMjgK93gg5ZOG9Msiv79cR91EI1Njsr6SUrLMc6yLKp" lowerBound="-878127468" upperBound="-2073043935" eType="/0/@eClassifiers.4"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="Dixeth8DT3y80WZC5jG9R3X1y8Er35bJALTtYC4pQJjyJSMxDdYHBvsHQu4t1SvrI2gD" lowerBound="-635045701" upperBound="385364995" eType="/0/@eClassifiers.6" containment="true" eOpposite="/1/@eClassifiers.2/@eStructuralFeatures.5"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EEnum" name="GICVTdhxXQR1xKVlH8CwGmaIMmf4KttzvefOCM6SI553qrUuwNHWyIvetS36">
+      <eLiterals name="ZWNFaMDlOe7DoRl2AdTHamvUIl3NfBQ8i7J2YgqlAySf8fj4IZeUzi8VnnYfEe83g6N4a"/>
+      <eLiterals name="1z9RaoEL3IglT5glc3a94GojpgZgqC8LupyWrUFucsX8uUzm9YQCLdntdooLivLPNdCd"/>
+      <eLiterals name="3g5rdjoMWmToedhQZBvZUWztP1aLHV6AK7rOh6jn9S8BB4WgpWf5AsN0aL4JLFa"/>
+      <eLiterals name="HKgivjrhQyyhRQiFdA3xuPaZszTrIeUd7VSpiZG6flIW6h11DBSo8HJuyWNT9S"/>
+      <eLiterals name="rejNgHEWLXIDO8XbQTTUiSsH6rn6X3cJMBluV7xA54I3hbTEtAGsbdhE3Af"/>
+      <eLiterals name="rJjttRERbkmoxpWjZrIbE1gpwdiWd407sjFdrfgMfiFeCeUpsYpGQHh2Uf5"/>
+      <eLiterals name="Vu1tIwUwY29qevazdw0sk61ymniGTqiEeYmJTbxcBJUGjarlOI9gLFG5HBeSL4Ns"/>
+      <eLiterals name="xlnUesnQ5MHRIWp1b2EQ1gMEBYI0aTLmI42cSYwidiXREscGMkwtt44zSm7NEXlgE6"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EClass" name="eWVazknr5OGvP5W373sWZ2Fqshm6Ln0rbMvTbc2qyUGa4D8RySBEEfJjjzXJFIE2LkqI" abstract="true" eSuperTypes="/1/@eClassifiers.7 /0/@eClassifiers.0 /1/@eClassifiers.4 /1/@eClassifiers.0 /1/@eClassifiers.3">
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="TPcplE8ipyaydHqOLd22KDp6XpFfGLQLjPwAcIeLYjMpN7Q1bKiXSbYpulv0pXoSGbP" lowerBound="1410034839" upperBound="-1036010140" eType="/1/@eClassifiers.1" containment="true" eOpposite="/1/@eClassifiers.5/@eStructuralFeatures.1"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="l8Xqb27f8f6HSO4SUikAhscP5Dvwow0agPxHveqDi0SRKlzdKsWhCvaUVVRvA4tbijIzRM" lowerBound="1483392647" upperBound="2016065111" eType="/1/@eClassifiers.0" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.1"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="Siqzhcr8RBxVwTpU7hxZxoMiuekq2zS50jdGt38BFA5cDmfTHx3AWjVOZKBgj4ftCdiHR" lowerBound="-23934501" upperBound="-632853432" eType="/0/@eClassifiers.3" containment="true" eOpposite="/1/@eClassifiers.4/@eStructuralFeatures.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="LsVrHmXuRhtueLcwDIoI5Cf8Ppp2o6b4EvBzGIg5EjuM1AXKWa7fi9T5H7XviMXm" lowerBound="1464001322" upperBound="-704103405" eType="/0/@eClassifiers.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="ucM6LWXUUXIdyPSE9ylxqn1zyN3RFKyu6P8dGvirfctipo8EV5eJWNolsLFpncCa" lowerBound="1933047448" upperBound="-569188049" eType="/1/@eClassifiers.4"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="mPesLqn9etfNUTAiL4mEUzBpQeXSeq9OrKhMXBdvtki9nJHiUaDR2rzEUwjCrKgjLl" lowerBound="1832131989" upperBound="1530378317" eType="/1/@eClassifiers.5" containment="true" eOpposite="/1/@eClassifiers.4/@eStructuralFeatures.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="KaRjOWFgZ4nMsBZfsQoLJ1k1QYcgw3vcNeOuZtmBqGV6PClJRUJf1NX7YkfA" lowerBound="-1476425577" upperBound="-1259620726" eType="/1/@eClassifiers.3" containment="true" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.1"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="LXpl3ffFqtllkgBthMEuUR5p16nyExCs6Axy5gFkzFfNVEFz6VVDStqq4vLDfQW" lowerBound="1454735434" upperBound="1927342337" eType="/0/@eClassifiers.1" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.4"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EClass" name="OJS1QmbjLY9n9RXb84aNU95m8HTEVKEg4GBQLTM9H53ySikjQJGV6w6h4Ss0B" abstract="true" eSuperTypes="/1/@eClassifiers.5 /1/@eClassifiers.2 /1/@eClassifiers.7 /1/@eClassifiers.3 /1/@eClassifiers.0">
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="QCZfguC12BIwAdJwKJfBV25gAeN8kpOa4t0XH3PCnBnPkVj425GjgQacAkJe3nKP8c4J3" lowerBound="-370202177" upperBound="-2081470406" eType="/0/@eClassifiers.5" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="eyLn2YVht8cyX5A6mg5P4okFTEei3MX3e4kvZCuLhYYnRkR7vPvbGj8vA3SkljYcN3EtX" lowerBound="308284622" upperBound="-391910176" eType="/0/@eClassifiers.3" containment="true" eOpposite="/1/@eClassifiers.3/@eStructuralFeatures.6"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="KRZscDVpr3JAVpMUqWoil7liDfIQAZsL2sKeePkd5rxYZwZN09ltcgirouo" lowerBound="-722719319" upperBound="656937246" eType="/0/@eClassifiers.6"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="k339lc9vufn3DiRBsJYfkc4j1HinKY6GX0eZnmDO7hJaDY4JCgINEr22Yjtu2ZdjBq" lowerBound="1075960374" upperBound="-881221990" eType="/1/@eClassifiers.0" eOpposite="/1/@eClassifiers.3/@eStructuralFeatures.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="E1gTfOCv9I9WC8YJsCFTQJy0X3OB5lqgNJL4sUqbFyx6M06XNS1RMEYhmTtLAx3nO" lowerBound="44613642" upperBound="-696039013" eType="/0/@eClassifiers.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="pImcK8HB8Dfm3GtSrVAbbtU2w5JJiHuEvPVwufmsn9b8Ga2tRz762csMYulaC" lowerBound="2089161565" upperBound="-1250560263" eType="/0/@eClassifiers.5" eOpposite="/1/@eClassifiers.3/@eStructuralFeatures.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="chZ738v5X63iHSoprhkLYptvauiMJdfi1J0hAGw3Ie1xJL79G3ufgBZzIKG" lowerBound="794910908" upperBound="571826629" eType="/1/@eClassifiers.5" eOpposite="/1/@eClassifiers.2/@eStructuralFeatures.2"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="5qc3QWHGbRfAl1ILXPmodogjnGdsfS4vBvLCrFQUVI0VotJOmqoSvxC0H5VW" lowerBound="-345939497" upperBound="1961551896" eType="/0/@eClassifiers.1" containment="true" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="83cBZ6YFyZm6cFpogf9YpOKCwVfa5eubOoK2aRjPkGkO9oMuYpWpxFhPjy3RlIex4" lowerBound="-2092968371" upperBound="713054414" eType="/0/@eClassifiers.6"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EClass" name="RaRMoBKcmhCEYieN1qw3G7tdmqagDEVCUyI4FaKTZTi1PVqXzqxWgh55KaT2hKguf" abstract="true" eSuperTypes="/1/@eClassifiers.7 /1/@eClassifiers.5 /1/@eClassifiers.3 /0/@eClassifiers.0 /1/@eClassifiers.2">
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="QrdFUNtmMokWCIKcduNXgo0BgraALIVUniZcDAFZduHYovzBOyFCfDemlPgW1cBxF3Xx8i" lowerBound="1206157870" upperBound="-1057724644" eType="/0/@eClassifiers.5" containment="true" eOpposite="/1/@eClassifiers.2/@eStructuralFeatures.7"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="zKbHwAIJr7q1aRZ3aEJsyK9EaE5VMQBBUyJ2iw3qTyfIO2Bo3HkA0OBIkoOQEJ" lowerBound="127159983" upperBound="-329013779" eType="/1/@eClassifiers.7" eOpposite="/1/@eClassifiers.5/@eStructuralFeatures.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="Dl9BXrMVXSQ961aMDv9lgoMqyfIWQcKmk8SA9METyy3IJfu9BO312ptAZxnPKzPrlUbk9" lowerBound="510490952" upperBound="-764957710" eType="/0/@eClassifiers.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="fApr8scEN97Wu1ryZq4ydTD2SpePHuh4irOzwEQN7kLx0fkYrpqFWbQVeX94wgeLhporYV" lowerBound="-1388867744" upperBound="239722987" eType="/1/@eClassifiers.4"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="LRbw02YnxprZDbZDnWfuSEovMGWen1uH5Oj5FsqgrAywtAuWoxnGwObhDWUp3E9x" lowerBound="-450847380" upperBound="173207220" eType="/0/@eClassifiers.2" eOpposite="/0/@eClassifiers.0/@eStructuralFeatures.1"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="A8GiXjshlcR7Os9dISVeo8U3VmaRScx5HuroXTBWWPFgwg75nuZ4wdU7LSF9oCOD6" lowerBound="-257597902" upperBound="-468451640" eType="/0/@eClassifiers.6"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="Y1UNbk8uuo39CMurFE7olJT0NnzNI6cwfDXjurkisynn6ynIw6xkW31GE7oRsfVVaC7VY" lowerBound="-1976465900" upperBound="2088760781" eType="/0/@eClassifiers.6" containment="true" eOpposite="/1/@eClassifiers.3/@eStructuralFeatures.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="aaPIB3xK99pCK48cjb8fV7Vtl3i0gLZZikkeL0pCRBrZKaJE9GyF4UoLPVOhUuf" lowerBound="-970863784" upperBound="-1209236420" eType="/0/@eClassifiers.8"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EClass" name="hG0vpp1Ly406We8V1k359GTJDf76jE34D3hVERTspJ1qrjxVIvSkNxGf2k1" eSuperTypes="/1/@eClassifiers.3 /1/@eClassifiers.7 /1/@eClassifiers.2 /1/@eClassifiers.5 /1/@eClassifiers.0">
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="cv71OBSeFSbXjmsp5FP3KVlAT7zsBPNSYwbPzsPlH0EUuQl0kp5wdOTeVNbM1QjzJsocBZ" lowerBound="-565439993" upperBound="-689253757" eType="/1/@eClassifiers.1" containment="true" eOpposite="/1/@eClassifiers.2/@eStructuralFeatures.7"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="os22zj2Rps35hWfXvEFWzTYDD6ZatEiTBL5Ld87uNd3bJUfRhlKr1W29oOFmq4U" lowerBound="-1873792883" upperBound="119634854" eType="/0/@eClassifiers.8" containment="true" eOpposite="/1/@eClassifiers.2/@eStructuralFeatures.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="9E2OoLCPSTLyYP7pGAuHRIMxpUYnpVIdT7G9CxGbR29IDH810oj1TVsrQqkjUQFMz" lowerBound="-685849338" upperBound="-1513673328" eType="/1/@eClassifiers.5" eOpposite="/1/@eClassifiers.4/@eStructuralFeatures.0"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="sm8fzJoHN1zJCDrO8HZoGKopE8Xl9yyY9kqDBvR1Dp4vqgXMg2KmlAR78Co" lowerBound="-2129842594" upperBound="-741553405" eType="/0/@eClassifiers.2"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="9TyWEQ11HjknOBxRg3nYA5h3Kis3LXHsvigWOZimcKdU4FmPW957HKRGtSf8" lowerBound="1860914742" upperBound="620372863" eType="/1/@eClassifiers.6"/>
+      <eStructuralFeatures xsi:type="smallEcore:EReference" name="cnPoAJzZA5qWqcfwMc6d2d9eNdc4x7Rmt8iNQDlPaCKTxj33NzQKwtcuDptsoo" lowerBound="360447665" upperBound="1813816284" eType="/0/@eClassifiers.7" eOpposite="/1/@eClassifiers.3/@eStructuralFeatures.5"/>
+      <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="rgjw6511vEAeSFrJNj2Cpktv03v6wa5HZoYsNYXQIrPVsebVkBD7BV3tGs9REN7LnL1" lowerBound="-640388249" upperBound="-1647592581" eType="/1/@eClassifiers.3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="smallEcore:EEnum" name="pUkimBBgia3JPSIQVE80q9iW2JSw7cKm47oGCOEJ0wtQZPgD8rsiYUkowNjk4V3E"/>
+    <eClassifiers xsi:type="smallEcore:EClass" name="3P7G5mb38Ip6o7NYfVIxlYozDAYOPZgoILNyWz0zNuOrSyJ9e4P67A6ngtQnV" eSuperTypes="/1/@eClassifiers.2 /1/@eClassifiers.5 /1/@eClassifiers.7 /0/@eClassifiers.0"/>
+    <eClassifiers xsi:type="smallEcore:EDataType" name="QT4oAejUp0S0GJn6ZFn4ZaUurFuCPZQ7Umsw2M8DE3X82xMTQWOfdtgY0QSNPcCMPIVvNn"/>
+  </smallEcore:EPackage>
+</xmi:XMI>

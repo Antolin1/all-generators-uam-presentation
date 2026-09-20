@@ -1,0 +1,15 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_O_-jsDkTEeanS76kJ96c-g" specification="namespace declarations&#10;&#10;&#10;interface:&#10;&#10;const B : integer = 1&#10;const C : integer = 2&#10;&#10;&#10;interface A:&#10;// Define events and&#10;// and variables here&#10;&#10;in event e : integer&#10;&#10;" namespace="declarations" name="ConstOnlyDefaultScope">
+    <regions xmi:id="_PAAY4jkTEeanS76kJ96c-g" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_PAEDQTkTEeanS76kJ96c-g">
+        <outgoingTransitions xmi:id="_PAGfgzkTEeanS76kJ96c-g" target="_PAFRZzkTEeanS76kJ96c-g"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_PAFRZzkTEeanS76kJ96c-g" name="A" incomingTransitions="_PAGfgzkTEeanS76kJ96c-g">
+        <outgoingTransitions xmi:id="_eKVOADkTEeanS76kJ96c-g" specification="A.e [valueof(A.e) == B]" target="_eKPucDkTEeanS76kJ96c-g"/>
+        <outgoingTransitions xmi:id="_nNQnEDkTEeanS76kJ96c-g" specification="A.e [valueof(A.e) == C]" target="_nNLukDkTEeanS76kJ96c-g"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_eKPucDkTEeanS76kJ96c-g" name="B" incomingTransitions="_eKVOADkTEeanS76kJ96c-g"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_nNLukDkTEeanS76kJ96c-g" name="C" incomingTransitions="_nNQnEDkTEeanS76kJ96c-g"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

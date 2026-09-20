@@ -1,0 +1,24 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_xYP-kGDlEemqYINM_DNSsw" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;interface:&#10;// Define events&#10;&#10;//out &#10;//in&#10; in event a&#10; in event b&#10;&#10;&#10;// and variables here. &#10;var x : integer&#10;var y : integer&#10;&#10;// Use CTRL + Space for content assist." name="Exemple">
+    <regions xmi:id="_xYoZFmDlEemqYINM_DNSsw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_xZAzkGDlEemqYINM_DNSsw">
+        <outgoingTransitions xmi:id="_xZG6NWDlEemqYINM_DNSsw" target="_xZAznGDlEemqYINM_DNSsw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_xZAznGDlEemqYINM_DNSsw" specification="entry / y=1&#13;&#10;entry / x=0" name="Etat1" incomingTransitions="_xZG6NWDlEemqYINM_DNSsw _CNoAQGDmEemqYINM_DNSsw">
+        <outgoingTransitions xmi:id="_7qbZAGDlEemqYINM_DNSsw" specification="a" target="_3RNWAGDlEemqYINM_DNSsw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_3RNWAGDlEemqYINM_DNSsw" name="Etat2" incomingTransitions="_7qbZAGDlEemqYINM_DNSsw">
+        <outgoingTransitions xmi:id="__EtHgGDlEemqYINM_DNSsw" specification="b" target="_4ObzQGDlEemqYINM_DNSsw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_4ObzQGDlEemqYINM_DNSsw" name="Etat3" incomingTransitions="__EtHgGDlEemqYINM_DNSsw">
+        <outgoingTransitions xmi:id="_CNoAQGDmEemqYINM_DNSsw" specification="a" target="_xZAznGDlEemqYINM_DNSsw"/>
+        <regions xmi:id="_Fgwk8GDmEemqYINM_DNSsw">
+          <vertices xsi:type="sgraph:State" xmi:id="_F4BOYGDmEemqYINM_DNSsw" name="Etat4" incomingTransitions="_IWCI8GDmEemqYINM_DNSsw"/>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_HnNUEGDmEemqYINM_DNSsw">
+            <outgoingTransitions xmi:id="_IWCI8GDmEemqYINM_DNSsw" specification="" target="_F4BOYGDmEemqYINM_DNSsw"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

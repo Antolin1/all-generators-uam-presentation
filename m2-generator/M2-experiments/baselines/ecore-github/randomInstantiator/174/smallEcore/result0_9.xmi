@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="bYxf6nqYgT67aSjTnLfb3L7aVyHmaLcSq5UpyT0PRUC9Us4QoCylw63XLWEXK">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="hRVR3Oeparyo2RQwjmfV7uii0mHoKncXHXRIq10fx3Ih0CXst2w5Xl7FPDFdgA3P">
+    <eLiterals name="ZwCNy5iurm4VpSV18Lqz6tDaXvKBdtMtljQATDw9qvgbifnaiFc8XQQTC7ErfuAIzfRuZq"/>
+    <eLiterals name="pnSyIfP1aezbxb7Cw4q3rpH84havSl4v3zjSiy2jd1vtovbd9BrvXKWurT3QDK"/>
+    <eLiterals name="Jh0qm2teaW3rD3t7s5YNnTFBjFAPdqXGMSTFJC8EVT0h16H5BKjHmpJdLNIafcZP"/>
+    <eLiterals name="2AisewrFavgQWc1DVshAsuXwvfizDJEU9z3G7y8e1f5dBtmg214LvF4nLM"/>
+    <eLiterals name="2LpPE6ED6WfVAtye3944ctgwn8NlyN0tbQxYekAUDLQ7eJ91TDPZWFn9DOYKr0XuduEL"/>
+    <eLiterals name="TrEtmXGUfQJy1M8rh67YEfVzFqgDFwMXYcBmA0azZQmfpfoRwTUfIPHfhk"/>
+    <eLiterals name="RsOaBKfc0PKeLyv3wEpFb08drO4pwXCzSrVNU1OW71yUdwGBigVkrwfMPOP1xCxe90CbX9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="u5qSH2UH6ICSIKO8ItVK4oA1b2iqSEnnhRoUmw0qwgJHkdolzQCmfyTQfokWA1x4X" abstract="true" eSuperTypes="//@eClassifiers.1 //@eClassifiers.2 //@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="PPsEtdf5VuQFLzdLuQKWqtZZ4FEvdfNhgD1NAAszx17wrT2sh7YPn4aavC" abstract="true" eSuperTypes="//@eClassifiers.1 //@eClassifiers.3 //@eClassifiers.2"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="fT5Jut9TrQx6vTSYuB0LgcvzGGBou5Qvj5KypuDWniSJPKUdxBrdzCkHGSb07" eSuperTypes="//@eClassifiers.2 //@eClassifiers.3 //@eClassifiers.1"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="Hskw4B7cwjyJXhTkZkZ42QnqgxXCwLaPHZdrdmjv9Zp2D8Jr0PDMqEO7eJNvaI5ZOVB"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="9VtR8WnjNW2cRiyEyWPj4dPPC9UQt3B8dRQWg0Kr7P99IQy8b5hgeTqu3hQt"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="UlmWAnljKdqCrwGeLRNNOjwwrWuEAiSOiUXv56iw4vLNXCKc6sqUzccFaDVzOnk"/>
+</smallEcore:EPackage>

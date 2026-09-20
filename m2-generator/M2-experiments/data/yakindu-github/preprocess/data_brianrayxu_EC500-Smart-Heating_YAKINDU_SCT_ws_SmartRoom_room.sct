@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_p2QoUAigEeqxO47HGj-BGg" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;interface:&#10;// Define events&#10;// and variables here. &#10;var userSensed : integer&#10;operation get_Users() : integer&#10;var tempTarget : integer&#10;var CurLight : integer&#10;operation manSetTemp() : integer&#10;operation manSetLighting() : integer&#10;var userInput : boolean" name="room">
+    <regions xmi:id="_p2QoWgigEeqxO47HGj-BGg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_p2RPZgigEeqxO47HGj-BGg">
+        <outgoingTransitions xmi:id="_p2R2fQigEeqxO47HGj-BGg" target="_p2RPcgigEeqxO47HGj-BGg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_p2RPcgigEeqxO47HGj-BGg" specification="every 1s/userSensed = get_Users()" name="Idle" incomingTransitions="_p2R2fQigEeqxO47HGj-BGg">
+        <outgoingTransitions xmi:id="_4VCmEAigEeqxO47HGj-BGg" specification="[userSensed != 0]" target="_r-m04AigEeqxO47HGj-BGg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_r-m04AigEeqxO47HGj-BGg" specification="" name="userSensed" incomingTransitions="_4VCmEAigEeqxO47HGj-BGg">
+        <regions xmi:id="_Fpb-4AiiEeqxO47HGj-BGg" name="Manual Vs Automatic Control">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_GGXygAiiEeqxO47HGj-BGg">
+            <outgoingTransitions xmi:id="_IrGZEAiiEeqxO47HGj-BGg" specification="" target="_Gc3m8AiiEeqxO47HGj-BGg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_Gc3m8AiiEeqxO47HGj-BGg" name="Automatic" incomingTransitions="_IrGZEAiiEeqxO47HGj-BGg _PPsugAiiEeqxO47HGj-BGg">
+            <outgoingTransitions xmi:id="_MWklQAiiEeqxO47HGj-BGg" specification="[userInput == true]" target="_MWhh8AiiEeqxO47HGj-BGg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_MWhh8AiiEeqxO47HGj-BGg" specification="entry/tempTarget = manSetTemp();&#10;CurLight = manSetLighting()" name="Manual Control" incomingTransitions="_MWklQAiiEeqxO47HGj-BGg">
+            <outgoingTransitions xmi:id="_PPsugAiiEeqxO47HGj-BGg" specification="[userInput == false]" target="_Gc3m8AiiEeqxO47HGj-BGg"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

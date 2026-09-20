@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_cpjO8A8NEeqviYeA6lqTwA" specification="interface Operation:&#13;&#10;&#9;in event fail&#13;&#10;&#9;in event recover&#13;&#10;&#9;&#13;&#10;interface Input:&#13;&#10;&#9;in event OrionDisconn&#13;&#10;&#9;in event OrionDisconnCause&#13;&#10;&#9;in event OrionConnReq&#13;&#10;&#9;in event OrionAppData&#13;&#10;&#9;in event OrionKeepAlive&#13;&#10;&#9;in event OrionConnConf&#13;&#10;&#9;in event OrionConnResp&#13;&#10;&#13;&#10;interface Output:&#13;&#10;&#9;out event OrionDisconn&#13;&#10;&#9;out event OrionDisconnCause&#13;&#10;&#9;out event OrionConnReq&#13;&#10;&#9;out event OrionAppData&#13;&#10;&#9;out event OrionKeepAlive&#13;&#10;&#9;out event OrionConnConf&#13;&#10;&#9;out event OrionConnResp&#13;&#10;&#9;&#13;&#10;internal:&#13;&#10;&#9;const LOST_MESSAGE_MAX&#13;&#10;&#9;&#9;: integer = 1&#13;&#10;&#9;var lostMessageCount : integer = 0" name="Channel">
+    <regions xmi:id="_cpjO-g8NEeqviYeA6lqTwA" name="MainRegion">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_cqlwxg8NEeqviYeA6lqTwA">
+        <outgoingTransitions xmi:id="_cqlw4g8NEeqviYeA6lqTwA" target="_cqlw0g8NEeqviYeA6lqTwA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_cqlw0g8NEeqviYeA6lqTwA" specification="" name="Operating" incomingTransitions="_cqlw4g8NEeqviYeA6lqTwA _tVwjwBIREeqy880cRs4wag _qzZUsBIREeqy880cRs4wag">
+        <outgoingTransitions xmi:id="_Jt1pEBIREeqy880cRs4wag" specification="Input.OrionConnReq" target="_HNkrwBIREeqy880cRs4wag"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_HNkrwBIREeqy880cRs4wag" incomingTransitions="_Jt1pEBIREeqy880cRs4wag">
+        <outgoingTransitions xmi:id="_iW1YEBIREeqy880cRs4wag" specification="default" target="_IAxDQBIREeqy880cRs4wag"/>
+        <outgoingTransitions xmi:id="_le4uIBIREeqy880cRs4wag" specification="[lostMessageCount&lt;&#13;&#10;&#9;LOST_MESSAGE_MAX] " target="_HvMLEBIREeqy880cRs4wag"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_HvMLEBIREeqy880cRs4wag" incomingTransitions="_le4uIBIREeqy880cRs4wag">
+        <outgoingTransitions xmi:id="_n_55YBIREeqy880cRs4wag" specification="" target="_IAxDQBIREeqy880cRs4wag"/>
+        <outgoingTransitions xmi:id="_qzZUsBIREeqy880cRs4wag" specification="/ lostMessageCount++" target="_cqlw0g8NEeqviYeA6lqTwA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_IAxDQBIREeqy880cRs4wag" incomingTransitions="_iW1YEBIREeqy880cRs4wag _n_55YBIREeqy880cRs4wag">
+        <outgoingTransitions xmi:id="_tVwjwBIREeqy880cRs4wag" specification="/ raise Output.OrionConnReq" target="_cqlw0g8NEeqviYeA6lqTwA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

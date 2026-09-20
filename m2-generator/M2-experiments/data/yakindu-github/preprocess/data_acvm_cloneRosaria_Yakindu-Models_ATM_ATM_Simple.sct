@@ -1,0 +1,20 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_-s-k8LroEea1MdTc6sJwSA" specification="interface:&#10;// Define events and&#10;// and variables here&#10;in event turnOn&#10;in event turnOff&#10;in event cancel&#10;in event cardInserted&#10;&#10;" name="ATM_Simple">
+    <regions xmi:id="_-s-k87roEea1MdTc6sJwSA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_-s-k_broEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_3Raq8LrrEea1MdTc6sJwSA" target="_gazfkLrrEea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_gazfkLrrEea1MdTc6sJwSA" name="Off" incomingTransitions="_3Raq8LrrEea1MdTc6sJwSA _yWWs4LrwEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_-2Q_oLrvEea1MdTc6sJwSA" specification="turnOn" target="_wmzQQLrvEea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_wmzQQLrvEea1MdTc6sJwSA" name="Iddle" incomingTransitions="_-2Q_oLrvEea1MdTc6sJwSA _RsKHkLrwEea1MdTc6sJwSA _bviRALrwEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_NoEnELrwEea1MdTc6sJwSA" specification="cardInserted" target="_yxgNQLrvEea1MdTc6sJwSA"/>
+        <outgoingTransitions xmi:id="_yWWs4LrwEea1MdTc6sJwSA" specification="turnOff" target="_gazfkLrrEea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_yxgNQLrvEea1MdTc6sJwSA" name="Serving_Customer" incomingTransitions="_NoEnELrwEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_RsKHkLrwEea1MdTc6sJwSA" specification="cancel" target="_wmzQQLrvEea1MdTc6sJwSA"/>
+        <outgoingTransitions xmi:id="_bviRALrwEea1MdTc6sJwSA" specification="default" target="_wmzQQLrvEea1MdTc6sJwSA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

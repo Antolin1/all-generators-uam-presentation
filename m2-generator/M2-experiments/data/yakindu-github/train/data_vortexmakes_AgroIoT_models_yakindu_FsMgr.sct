@@ -1,0 +1,31 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_yt0KkDjpEemSZunftq3MwQ" specification="interface:&#10;var result: integer&#10;const FR_OK : integer = 0&#10;&#10;in event evDiskConnected&#10;in event evDiskDisconnected&#10;in event evWrite&#10;in event evRead&#10;in event evOpen&#10;in event evSync&#10;&#10;operation fsOk()&#10;operation fsFail()&#10;operation fsMount(): integer&#10;operation fsOpen()&#10;operation fsSync()&#10;operation fsWrite()&#10;operation fsRead()" name="FsMgr" documentation="- This model follows the logic states of both CLOCK_1S and CLOCK_3S digital signals.&#13;&#10;- While the relay validator works, the expected sequence of logic states is as follows: &quot;1,0,2,0,0,0&quot;. Each number is formed by CLOCK_1S | (CLOCK_3S &lt;&lt; 1)&#13;&#10;- The inputs of this model is provided by ClockSignal state machine on the falling edge of it.&#13;&#10;- The A/D converter is supposed to be in continuos mode.">
+    <regions xmi:id="_yt2m0zjpEemSZunftq3MwQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_yt7fUDjpEemSZunftq3MwQ">
+        <outgoingTransitions xmi:id="_yt97kzjpEemSZunftq3MwQ" specification="" target="_yt8GZzjpEemSZunftq3MwQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_yt8GZzjpEemSZunftq3MwQ" specification="" name="DiskDisconnected" incomingTransitions="_yt97kzjpEemSZunftq3MwQ _MCgkoOUSEemMB6bmaFt2TA">
+        <outgoingTransitions xmi:id="_-hFxkOUSEemMB6bmaFt2TA" specification="evDiskConnected / fsMount()" target="_rccb8OUSEemMB6bmaFt2TA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_rccb8OUSEemMB6bmaFt2TA" name="DiskConnected" incomingTransitions="_-hFxkOUSEemMB6bmaFt2TA">
+        <outgoingTransitions xmi:id="_MCgkoOUSEemMB6bmaFt2TA" specification="evDiskDisconnected" target="_yt8GZzjpEemSZunftq3MwQ"/>
+        <regions xmi:id="_rccb8-USEemMB6bmaFt2TA" name="r1">
+          <vertices xsi:type="sgraph:State" xmi:id="_vTGr0OUPEemMB6bmaFt2TA" name="FsActive" incomingTransitions="_LXli4OUTEemMB6bmaFt2TA">
+            <outgoingTransitions xmi:id="_92rQsOUUEemMB6bmaFt2TA" specification="evWrite / fsWrite()" target="_4woWMOUPEemMB6bmaFt2TA"/>
+            <outgoingTransitions xmi:id="_tCtHwOUVEemMB6bmaFt2TA" specification="evRead / fsRead()" target="_4woWMOUPEemMB6bmaFt2TA"/>
+            <outgoingTransitions xmi:id="_GGNzEOUXEemMB6bmaFt2TA" specification="evOpen / fsOpen()" target="_4woWMOUPEemMB6bmaFt2TA"/>
+            <outgoingTransitions xmi:id="_RA4w4OUXEemMB6bmaFt2TA" specification="evSync / fsSync()" target="_4woWMOUPEemMB6bmaFt2TA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_tNsegOUPEemMB6bmaFt2TA" name="FsError" incomingTransitions="_i_dokOUSEemMB6bmaFt2TA"/>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_z9Ve8OUSEemMB6bmaFt2TA">
+            <outgoingTransitions xmi:id="_zZAKMOUPEemMB6bmaFt2TA" specification="" target="_4woWMOUPEemMB6bmaFt2TA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Choice" xmi:id="_4woWMOUPEemMB6bmaFt2TA" incomingTransitions="_zZAKMOUPEemMB6bmaFt2TA _92rQsOUUEemMB6bmaFt2TA _tCtHwOUVEemMB6bmaFt2TA _GGNzEOUXEemMB6bmaFt2TA _RA4w4OUXEemMB6bmaFt2TA">
+            <outgoingTransitions xmi:id="_i_dokOUSEemMB6bmaFt2TA" specification="else" target="_tNsegOUPEemMB6bmaFt2TA"/>
+            <outgoingTransitions xmi:id="_LXli4OUTEemMB6bmaFt2TA" specification="[result == FR_OK]" target="_vTGr0OUPEemMB6bmaFt2TA"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

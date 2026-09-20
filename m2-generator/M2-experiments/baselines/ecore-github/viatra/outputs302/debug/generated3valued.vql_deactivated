@@ -1,0 +1,2005 @@
+import epackage "http://www.bme.hu/mit/inf/dslreasoner/viatrasolver/partialinterpretationlanguage"
+import epackage "http://www.bme.hu/mit/inf/dslreasoner/logic/model/problem"
+import epackage "http://www.bme.hu/mit/inf/dslreasoner/logic/model/language"
+
+//////////
+// 0. Util
+//////////
+private pattern interpretation(problem:LogicProblem, interpretation:PartialInterpretation) {
+	PartialInterpretation.problem(interpretation,problem);
+}
+	
+/////////////////////////
+// 0.1 Existence
+/////////////////////////
+/** [[exist(element)]]=1 */
+private pattern mustExist(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	find interpretation(problem,interpretation);
+	LogicProblem.elements(problem,element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+}
+
+/** [[exist(element)]]>=1/2 */
+private pattern mayExist(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+    find mustExist(problem,interpretation,element);
+} or {
+    find interpretation(problem,interpretation);
+    neg find elementCloseWorld(element);
+    PartialInterpretation.openWorldElements(interpretation,element);
+}
+
+private pattern elementCloseWorld(element:DefinedElement) {
+	PartialInterpretation.openWorldElements(i,element);
+	PartialInterpretation.maxNewElements(i,0);
+} or {
+	Scope.targetTypeInterpretation(scope,interpretation);
+	PartialTypeInterpratation.elements(interpretation,element);
+	Scope.maxNewElements(scope,0);
+}
+
+////////////////////////
+// 0.2 Equivalence
+////////////////////////
+pattern mayEquivalent(problem:LogicProblem, interpretation:PartialInterpretation, a: DefinedElement, b: DefinedElement)
+// For non-primitive type. Boolean types always must equivalent or cannot equivalent
+{
+	find mayExist(problem,interpretation,a);
+	find mayExist(problem,interpretation,b);
+	a == b;
+}
+
+pattern mustEquivalent(problem:LogicProblem, interpretation:PartialInterpretation, a: DefinedElement, b: DefinedElement) {
+// For non-primitive and Boolean primitive type
+	find mustExist(problem,interpretation,a);
+	find mustExist(problem,interpretation,b);
+	a == b;
+}
+
+//////////
+// 1. Problem-Specific Base Indexers
+//////////
+// 1.1 Type Indexers
+//////////
+// 1.1.1 Required Patterns by TypeIndexer
+//////////
+
+private pattern typeInterpretation(problem:LogicProblem, interpretation:PartialInterpretation, type:TypeDeclaration, typeInterpretation:PartialComplexTypeInterpretation) {
+	find interpretation(problem,interpretation);
+	LogicProblem.types(problem,type);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+}
+
+private pattern directInstanceOf(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement, type:Type) {
+	find interpretation(problem,interpretation);
+	LogicProblem.types(problem,type);
+	TypeDefinition.elements(type,element);
+} or {
+	find interpretation(problem,interpretation);
+	find typeInterpretation(problem,interpretation,type,typeInterpretation);
+	PartialComplexTypeInterpretation.elements(typeInterpretation,element);
+}
+
+private pattern isPrimitive(element: PrimitiveElement) {
+	PrimitiveElement(element);
+}
+
+//////////
+// 1.1.2 primitive Type Indexers
+//////////
+// Currently unused. Refer primitive types as:
+// > PrimitiveElement(element)
+// specific types are referred as:
+// > BooleanElement(variableName)
+// > IntegerElement(variableName)
+// > RealElement(variableName)
+// > StringElement(variableName)
+// And their value as
+// > BooleanElement.value(variableName,value)
+// > IntegerElement.value(variableName,value)
+// > RealElement.value(variableName,value)
+// > StringElement.value(variableName,value)
+// Whether a value is set is defined by:
+// > PrimitiveElement.valueSet(variableName,isFilled);
+
+//////////
+// 1.1.3 domain-specific Type Indexers
+//////////
+/**
+ * An element must be an instance of type "ENamedElement class".
+ */
+private pattern mustInstanceOfENamedElement_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"ENamedElement class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewENamedElement_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"ENamedElement class");
+}
+
+/**
+ * An element may be an instance of type "ENamedElement class".
+ */
+private pattern mayInstanceOfENamedElement_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewENamedElement_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewENamedElement_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfENamedElement_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EClassifier class".
+ */
+private pattern mustInstanceOfEClassifier_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EClassifier class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEClassifier_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EClassifier class");
+}
+
+/**
+ * An element may be an instance of type "EClassifier class".
+ */
+private pattern mayInstanceOfEClassifier_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEDataType_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEClassifier_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEDataType_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEClassifier_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEClassifier_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EClass class".
+ */
+private pattern mustInstanceOfEClass_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EClass class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEClass_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EClass class");
+}
+
+/**
+ * An element may be an instance of type "EClass class".
+ */
+private pattern mayInstanceOfEClass_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEDataType_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEClass_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEDataType_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEClass_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEClass_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "ETypedElement class".
+ */
+private pattern mustInstanceOfETypedElement_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"ETypedElement class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewETypedElement_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"ETypedElement class");
+}
+
+/**
+ * An element may be an instance of type "ETypedElement class".
+ */
+private pattern mayInstanceOfETypedElement_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEStructuralFeature_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewETypedElement_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEStructuralFeature_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewETypedElement_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfETypedElement_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EStructuralFeature class".
+ */
+private pattern mustInstanceOfEStructuralFeature_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EStructuralFeature class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEStructuralFeature_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EStructuralFeature class");
+}
+
+/**
+ * An element may be an instance of type "EStructuralFeature class".
+ */
+private pattern mayInstanceOfEStructuralFeature_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEReference_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEAttribute_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEStructuralFeature_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEReference_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEAttribute_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEStructuralFeature_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEStructuralFeature_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EReference class".
+ */
+private pattern mustInstanceOfEReference_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EReference class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEReference_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EReference class");
+}
+
+/**
+ * An element may be an instance of type "EReference class".
+ */
+private pattern mayInstanceOfEReference_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEAttribute_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEReference_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEAttribute_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEReference_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEReference_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EAttribute class".
+ */
+private pattern mustInstanceOfEAttribute_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EAttribute class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEAttribute_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EAttribute class");
+}
+
+/**
+ * An element may be an instance of type "EAttribute class".
+ */
+private pattern mayInstanceOfEAttribute_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEReference_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEAttribute_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEReference_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEAttribute_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEAttribute_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EPackage class".
+ */
+private pattern mustInstanceOfEPackage_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EPackage class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEPackage_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EPackage class");
+}
+
+/**
+ * An element may be an instance of type "EPackage class".
+ */
+private pattern mayInstanceOfEPackage_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEPackage_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEPackage_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEPackage_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EDataType class".
+ */
+private pattern mustInstanceOfEDataType_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EDataType class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEDataType_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EDataType class");
+}
+
+/**
+ * An element may be an instance of type "EDataType class".
+ */
+private pattern mayInstanceOfEDataType_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEEnum_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEDataType_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEEnum_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEDataType_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEDataType_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EEnum class".
+ */
+private pattern mustInstanceOfEEnum_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EEnum class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEEnum_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EEnum class");
+}
+
+/**
+ * An element may be an instance of type "EEnum class".
+ */
+private pattern mayInstanceOfEEnum_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEEnum_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEEnum_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEEnum_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "EEnumLiteral class".
+ */
+private pattern mustInstanceOfEEnumLiteral_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"EEnumLiteral class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewEEnumLiteral_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"EEnumLiteral class");
+}
+
+/**
+ * An element may be an instance of type "EEnumLiteral class".
+ */
+private pattern mayInstanceOfEEnumLiteral_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEEnumLiteral_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find scopeDisallowsNewEEnumLiteral_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfEEnumLiteral_class(problem,interpretation,element); }
+
+//////////
+// 1.2 Relation Declaration Indexers
+//////////
+/**
+ * Matcher for detecting tuples t where []ePackage reference EClassifier(source,target)
+ */
+private pattern mustInRelationePackage_reference_EClassifier(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"ePackage reference EClassifier");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>ePackage reference EClassifier(source,target)
+ */
+private pattern mayInRelationePackage_reference_EClassifier(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEClassifier_class(problem,interpretation,source);
+	find mayInstanceOfEPackage_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationePackage_reference_EClassifier(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+	// The eOpposite of the reference is containment, then a referene cannot be created if
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,source,_);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationePackage_reference_EClassifier(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eStructuralFeatures reference EClass(source,target)
+ */
+private pattern mustInRelationeStructuralFeatures_reference_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eStructuralFeatures reference EClass");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eStructuralFeatures reference EClass(source,target)
+ */
+private pattern mayInRelationeStructuralFeatures_reference_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEClass_class(problem,interpretation,source);
+	find mayInstanceOfEStructuralFeature_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference to the target,
+	// the upper bound of the opposite reference multiplicity should be considered.
+	numberOfExistingOppositeReferences == count find mustInRelationeContainingClass_reference_EStructuralFeature(problem,interpretation,target,_);
+	numberOfExistingOppositeReferences != 1;
+	// The reference is containment, then a new reference cannot be create if:
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,_,target);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationeStructuralFeatures_reference_EClass(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eSuperTypes reference EClass(source,target)
+ */
+private pattern mustInRelationeSuperTypes_reference_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eSuperTypes reference EClass");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eSuperTypes reference EClass(source,target)
+ */
+private pattern mayInRelationeSuperTypes_reference_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEClass_class(problem,interpretation,source);
+	find mayInstanceOfEClass_class(problem,interpretation,target);
+} or {
+	find mustInRelationeSuperTypes_reference_EClass(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eType reference ETypedElement(source,target)
+ */
+private pattern mustInRelationeType_reference_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eType reference ETypedElement");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eType reference ETypedElement(source,target)
+ */
+private pattern mayInRelationeType_reference_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfETypedElement_class(problem,interpretation,source);
+	find mayInstanceOfEClassifier_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationeType_reference_ETypedElement(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationeType_reference_ETypedElement(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eContainingClass reference EStructuralFeature(source,target)
+ */
+private pattern mustInRelationeContainingClass_reference_EStructuralFeature(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eContainingClass reference EStructuralFeature");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eContainingClass reference EStructuralFeature(source,target)
+ */
+private pattern mayInRelationeContainingClass_reference_EStructuralFeature(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEStructuralFeature_class(problem,interpretation,source);
+	find mayInstanceOfEClass_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationeContainingClass_reference_EStructuralFeature(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+	// The eOpposite of the reference is containment, then a referene cannot be created if
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,source,_);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationeContainingClass_reference_EStructuralFeature(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eOpposite reference EReference(source,target)
+ */
+private pattern mustInRelationeOpposite_reference_EReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eOpposite reference EReference");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eOpposite reference EReference(source,target)
+ */
+private pattern mayInRelationeOpposite_reference_EReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEReference_class(problem,interpretation,source);
+	find mayInstanceOfEReference_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationeOpposite_reference_EReference(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eClassifiers reference EPackage(source,target)
+ */
+private pattern mustInRelationeClassifiers_reference_EPackage(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eClassifiers reference EPackage");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eClassifiers reference EPackage(source,target)
+ */
+private pattern mayInRelationeClassifiers_reference_EPackage(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEPackage_class(problem,interpretation,source);
+	find mayInstanceOfEClassifier_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference to the target,
+	// the upper bound of the opposite reference multiplicity should be considered.
+	numberOfExistingOppositeReferences == count find mustInRelationePackage_reference_EClassifier(problem,interpretation,target,_);
+	numberOfExistingOppositeReferences != 1;
+	// The reference is containment, then a new reference cannot be create if:
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,_,target);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationeClassifiers_reference_EPackage(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eLiterals reference EEnum(source,target)
+ */
+private pattern mustInRelationeLiterals_reference_EEnum(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eLiterals reference EEnum");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eLiterals reference EEnum(source,target)
+ */
+private pattern mayInRelationeLiterals_reference_EEnum(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEEnum_class(problem,interpretation,source);
+	find mayInstanceOfEEnumLiteral_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference to the target,
+	// the upper bound of the opposite reference multiplicity should be considered.
+	numberOfExistingOppositeReferences == count find mustInRelationeEnum_reference_EEnumLiteral(problem,interpretation,target,_);
+	numberOfExistingOppositeReferences != 1;
+	// The reference is containment, then a new reference cannot be create if:
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,_,target);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationeLiterals_reference_EEnum(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []eEnum reference EEnumLiteral(source,target)
+ */
+private pattern mustInRelationeEnum_reference_EEnumLiteral(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eEnum reference EEnumLiteral");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>eEnum reference EEnumLiteral(source,target)
+ */
+private pattern mayInRelationeEnum_reference_EEnumLiteral(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEEnumLiteral_class(problem,interpretation,source);
+	find mayInstanceOfEEnum_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationeEnum_reference_EEnumLiteral(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+	// The eOpposite of the reference is containment, then a referene cannot be created if
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,source,_);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationeEnum_reference_EEnumLiteral(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []name attribute ENamedElement(source,target)
+ */
+private pattern mustInRelationname_attribute_ENamedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"name attribute ENamedElement");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>name attribute ENamedElement(source,target)
+ */
+private pattern mayInRelationname_attribute_ENamedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfENamedElement_class(problem,interpretation,source);
+	StringElement(target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationname_attribute_ENamedElement(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationname_attribute_ENamedElement(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []abstract attribute EClass(source,target)
+ */
+private pattern mustInRelationabstract_attribute_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"abstract attribute EClass");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>abstract attribute EClass(source,target)
+ */
+private pattern mayInRelationabstract_attribute_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEClass_class(problem,interpretation,source);
+	BooleanElement(target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationabstract_attribute_EClass(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationabstract_attribute_EClass(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []lowerBound attribute ETypedElement(source,target)
+ */
+private pattern mustInRelationlowerBound_attribute_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"lowerBound attribute ETypedElement");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>lowerBound attribute ETypedElement(source,target)
+ */
+private pattern mayInRelationlowerBound_attribute_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfETypedElement_class(problem,interpretation,source);
+	IntegerElement(target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationlowerBound_attribute_ETypedElement(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationlowerBound_attribute_ETypedElement(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []upperBound attribute ETypedElement(source,target)
+ */
+private pattern mustInRelationupperBound_attribute_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"upperBound attribute ETypedElement");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>upperBound attribute ETypedElement(source,target)
+ */
+private pattern mayInRelationupperBound_attribute_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfETypedElement_class(problem,interpretation,source);
+	IntegerElement(target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationupperBound_attribute_ETypedElement(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationupperBound_attribute_ETypedElement(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []containment attribute EReference(source,target)
+ */
+private pattern mustInRelationcontainment_attribute_EReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"containment attribute EReference");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>containment attribute EReference(source,target)
+ */
+private pattern mayInRelationcontainment_attribute_EReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfEReference_class(problem,interpretation,source);
+	BooleanElement(target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationcontainment_attribute_EReference(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationcontainment_attribute_EReference(problem,interpretation,source,target);
+}
+
+//////////
+// 1.3 Relation Definition Indexers
+//////////
+// Must, May and Current queries for pattern queries attributeHasType
+private pattern mustInRelation_pattern_queries_attributeHasType(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a, var_d)
+{
+	find interpretation(problem,interpretation);
+	// var_a exported
+	// var_d exported
+	find mustInstanceOfEDataType_class(problem,interpretation,var_d);
+	find mustInstanceOfEAttribute_class(problem,interpretation,var_a);
+	find mustInRelationeType_reference_ETypedElement(problem,interpretation,var_a,var_d);
+}
+private pattern mayInRelation_pattern_queries_attributeHasType(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a, var_d)
+{
+	find interpretation(problem,interpretation);
+	// var_a exported
+	// var_d exported
+	find mayInstanceOfEDataType_class(problem,interpretation,var_d);
+	find mayInstanceOfEAttribute_class(problem,interpretation,var_a);
+	find mayInRelationeType_reference_ETypedElement(problem,interpretation,var_a,var_d);
+}
+private pattern currentInRelation_pattern_queries_attributeHasType(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a, var_d)
+{
+	find interpretation(problem,interpretation);
+	// var_a exported
+	// var_d exported
+	find mustInstanceOfEDataType_class(problem,interpretation,var_d);
+	find mustInstanceOfEAttribute_class(problem,interpretation,var_a);
+	find mustInRelationeType_reference_ETypedElement(problem,interpretation,var_a,var_d);
+}
+// Must, May and Current queries for pattern queries attributeHasNotTypeConstraint
+private pattern mustInRelation_pattern_queries_attributeHasNotTypeConstraint(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a)
+{
+	find interpretation(problem,interpretation);
+	// var_a exported
+	find mustInstanceOfEAttribute_class(problem,interpretation,var_a);
+	neg find mayInRelation_pattern_queries_attributeHasType(problem,interpretation,var_a,_var__0);
+}
+private pattern mayInRelation_pattern_queries_attributeHasNotTypeConstraint(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a)
+{
+	find interpretation(problem,interpretation);
+	// var_a exported
+	find mayInstanceOfEAttribute_class(problem,interpretation,var_a);
+	neg find mustInRelation_pattern_queries_attributeHasType(problem,interpretation,var_a,_var__0);
+}
+private pattern currentInRelation_pattern_queries_attributeHasNotTypeConstraint(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a)
+{
+	find interpretation(problem,interpretation);
+	// var_a exported
+	find mustInstanceOfEAttribute_class(problem,interpretation,var_a);
+	neg find currentInRelation_pattern_queries_attributeHasType(problem,interpretation,var_a,_var__0);
+}
+// Must, May and Current queries for pattern queries child
+private pattern mustInRelation_pattern_queries_child(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_c1 exported
+	// var_c2 exported
+	find mustInRelationeSuperTypes_reference_EClass(problem,interpretation,var_c1,var_c2);
+	find mustInstanceOfEClass_class(problem,interpretation,var_c2);
+}
+private pattern mayInRelation_pattern_queries_child(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_c1 exported
+	// var_c2 exported
+	find mayInRelationeSuperTypes_reference_EClass(problem,interpretation,var_c1,var_c2);
+	find mayInstanceOfEClass_class(problem,interpretation,var_c2);
+}
+private pattern currentInRelation_pattern_queries_child(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_c1 exported
+	// var_c2 exported
+	find mustInRelationeSuperTypes_reference_EClass(problem,interpretation,var_c1,var_c2);
+	find mustInstanceOfEClass_class(problem,interpretation,var_c2);
+}
+private pattern twoParam_mustInRelation_pattern_queries_child(var_c1, var_c2) {
+	find mustInRelation_pattern_queries_child(_,_,var_c1, var_c2);
+}
+private pattern twoParam_mayInRelation_pattern_queries_child(var_c1, var_c2) {
+	find mayInRelation_pattern_queries_child(_,_,var_c1, var_c2);
+}
+private pattern twoParam_currentInRelation_pattern_queries_child(var_c1, var_c2) {
+	find currentInRelation_pattern_queries_child(_,_,var_c1, var_c2);
+}
+// Must, May and Current queries for pattern queries noCycles
+private pattern mustInRelation_pattern_queries_noCycles(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_c exported
+	find twoParam_mustInRelation_pattern_queries_child+(var_c,var_c);
+}
+private pattern mayInRelation_pattern_queries_noCycles(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_c exported
+	find twoParam_mayInRelation_pattern_queries_child+(var_c,var_c);
+}
+private pattern currentInRelation_pattern_queries_noCycles(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_c exported
+	find twoParam_currentInRelation_pattern_queries_child+(var_c,var_c);
+}
+// Must, May and Current queries for pattern queries referenceHasType
+private pattern mustInRelation_pattern_queries_referenceHasType(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_c exported
+	find mustInstanceOfEClass_class(problem,interpretation,var_c);
+	find mustInstanceOfEReference_class(problem,interpretation,var_r);
+	find mustInRelationeType_reference_ETypedElement(problem,interpretation,var_r,var_c);
+}
+private pattern mayInRelation_pattern_queries_referenceHasType(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_c exported
+	find mayInstanceOfEClass_class(problem,interpretation,var_c);
+	find mayInstanceOfEReference_class(problem,interpretation,var_r);
+	find mayInRelationeType_reference_ETypedElement(problem,interpretation,var_r,var_c);
+}
+private pattern currentInRelation_pattern_queries_referenceHasType(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_c exported
+	find mustInstanceOfEClass_class(problem,interpretation,var_c);
+	find mustInstanceOfEReference_class(problem,interpretation,var_r);
+	find mustInRelationeType_reference_ETypedElement(problem,interpretation,var_r,var_c);
+}
+// Must, May and Current queries for pattern queries classHasReference
+private pattern mustInRelation_pattern_queries_classHasReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_c exported
+	find mustInstanceOfEReference_class(problem,interpretation,var_r);
+	find mustInRelationeStructuralFeatures_reference_EClass(problem,interpretation,var_c,var_r);
+}
+private pattern mayInRelation_pattern_queries_classHasReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_c exported
+	find mayInstanceOfEReference_class(problem,interpretation,var_r);
+	find mayInRelationeStructuralFeatures_reference_EClass(problem,interpretation,var_c,var_r);
+}
+private pattern currentInRelation_pattern_queries_classHasReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_c exported
+	find mustInstanceOfEReference_class(problem,interpretation,var_r);
+	find mustInRelationeStructuralFeatures_reference_EClass(problem,interpretation,var_c,var_r);
+}
+// Must, May and Current queries for pattern queries referenceHasNotTypeConstraint
+private pattern mustInRelation_pattern_queries_referenceHasNotTypeConstraint(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mustInstanceOfEReference_class(problem,interpretation,var_r);
+	neg find mayInRelation_pattern_queries_referenceHasType(problem,interpretation,var_r,_var__0);
+}
+private pattern mayInRelation_pattern_queries_referenceHasNotTypeConstraint(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mayInstanceOfEReference_class(problem,interpretation,var_r);
+	neg find mustInRelation_pattern_queries_referenceHasType(problem,interpretation,var_r,_var__0);
+}
+private pattern currentInRelation_pattern_queries_referenceHasNotTypeConstraint(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mustInstanceOfEReference_class(problem,interpretation,var_r);
+	neg find currentInRelation_pattern_queries_referenceHasType(problem,interpretation,var_r,_var__0);
+}
+// Must, May and Current queries for pattern queries oppositeOfitself
+private pattern mustInRelation_pattern_queries_oppositeOfitself(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_r);
+}
+private pattern mayInRelation_pattern_queries_oppositeOfitself(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mayInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_r);
+}
+private pattern currentInRelation_pattern_queries_oppositeOfitself(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_r);
+}
+// Must, May and Current queries for pattern queries isOpposite
+private pattern mustInRelation_pattern_queries_isOpposite(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_rr exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mustInstanceOfEReference_class(problem,interpretation,var_rr);
+}
+private pattern mayInRelation_pattern_queries_isOpposite(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_rr exported
+	find mayInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mayInstanceOfEReference_class(problem,interpretation,var_rr);
+}
+private pattern currentInRelation_pattern_queries_isOpposite(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_rr exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mustInstanceOfEReference_class(problem,interpretation,var_rr);
+}
+// Must, May and Current queries for pattern queries oppositeRestriction
+private pattern mustInRelation_pattern_queries_oppositeRestriction(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_rr exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mustInstanceOfEReference_class(problem,interpretation,var_rr);
+	neg find mayInRelation_pattern_queries_isOpposite(problem,interpretation,var_rr,var_r);
+}
+private pattern mayInRelation_pattern_queries_oppositeRestriction(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_rr exported
+	find mayInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mayInstanceOfEReference_class(problem,interpretation,var_rr);
+	neg find mustInRelation_pattern_queries_isOpposite(problem,interpretation,var_rr,var_r);
+}
+private pattern currentInRelation_pattern_queries_oppositeRestriction(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	// var_rr exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mustInstanceOfEReference_class(problem,interpretation,var_rr);
+	neg find currentInRelation_pattern_queries_isOpposite(problem,interpretation,var_rr,var_r);
+}
+// Must, May and Current queries for pattern queries oppositeRestrictionSameClasses
+private pattern mustInRelation_pattern_queries_oppositeRestrictionSameClasses(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mustInstanceOfEReference_class(problem,interpretation,var_rr);
+	find mustInRelationeType_reference_ETypedElement(problem,interpretation,var_r,var_c1);
+	find mustInstanceOfEClassifier_class(problem,interpretation,var_c1);
+	find mustInRelationeStructuralFeatures_reference_EClass(problem,interpretation,var_c4,var_rr);
+	neg find mayEquivalent(problem, interpretation, var_c1, var_c4);
+}
+private pattern mayInRelation_pattern_queries_oppositeRestrictionSameClasses(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mayInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mayInstanceOfEReference_class(problem,interpretation,var_rr);
+	find mayInRelationeType_reference_ETypedElement(problem,interpretation,var_r,var_c1);
+	find mayInstanceOfEClassifier_class(problem,interpretation,var_c1);
+	find mayInRelationeStructuralFeatures_reference_EClass(problem,interpretation,var_c4,var_rr);
+	neg find mustEquivalent(problem, interpretation, var_c1, var_c4);
+}
+private pattern currentInRelation_pattern_queries_oppositeRestrictionSameClasses(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	find mustInRelationeOpposite_reference_EReference(problem,interpretation,var_r,var_rr);
+	find mustInstanceOfEReference_class(problem,interpretation,var_rr);
+	find mustInRelationeType_reference_ETypedElement(problem,interpretation,var_r,var_c1);
+	find mustInstanceOfEClassifier_class(problem,interpretation,var_c1);
+	find mustInRelationeStructuralFeatures_reference_EClass(problem,interpretation,var_c4,var_rr);
+	neg find mustEquivalent(problem, interpretation, var_c1, var_c4);
+}
+
+//////////
+// 1.4 Containment Indexer
+//////////
+private pattern mustContains2(source: DefinedElement, target: DefinedElement) {
+	find mustContains4(_,_,source,target);
+}
+	
+private pattern mustContains4(problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target: DefinedElement)
+	{ find mustInRelationeStructuralFeatures_reference_EClass(problem,interpretation,source,target); }or
+	
+	{ find mustInRelationeClassifiers_reference_EPackage(problem,interpretation,source,target); }or
+	
+	{ find mustInRelationeLiterals_reference_EEnum(problem,interpretation,source,target); }
+
+private pattern mustTransitiveContains(source,target) {
+	find mustContains2+(source,target);
+}
+
+//////////
+// 2. Invalidation Indexers
+//////////
+// 2.1 Invalidated by WF Queries
+//////////
+pattern invalidatedBy_pattern_queries_attributeHasNotTypeConstraint(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a)
+{
+	find mustInRelation_pattern_queries_attributeHasNotTypeConstraint(problem,interpretation,var_a);
+}
+pattern invalidatedBy_pattern_queries_noCycles(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c)
+{
+	find mustInRelation_pattern_queries_noCycles(problem,interpretation,var_c);
+}
+pattern invalidatedBy_pattern_queries_referenceHasNotTypeConstraint(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find mustInRelation_pattern_queries_referenceHasNotTypeConstraint(problem,interpretation,var_r);
+}
+pattern invalidatedBy_pattern_queries_oppositeOfitself(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find mustInRelation_pattern_queries_oppositeOfitself(problem,interpretation,var_r);
+}
+pattern invalidatedBy_pattern_queries_oppositeRestriction(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find mustInRelation_pattern_queries_oppositeRestriction(problem,interpretation,var_r,var_rr);
+}
+pattern invalidatedBy_pattern_queries_oppositeRestrictionSameClasses(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find mustInRelation_pattern_queries_oppositeRestrictionSameClasses(problem,interpretation,var_r);
+}
+
+//////////
+// 3. Unfinishedness Indexers
+//////////
+// 3.1 Unfinishedness Measured by Multiplicity
+//////////
+private pattern existingMultiplicity_eStructuralFeatures_reference_EClass(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfEClass_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationeStructuralFeatures_reference_EClass(problem,interpretation,object,_);
+}
+
+
+private pattern existingMultiplicity_eClassifiers_reference_EPackage(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfEPackage_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationeClassifiers_reference_EPackage(problem,interpretation,object,_);
+}
+
+
+private pattern existingMultiplicity_eLiterals_reference_EEnum(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfEEnum_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationeLiterals_reference_EEnum(problem,interpretation,object,_);
+}
+
+
+
+//////////
+// 3.2 Unfinishedness Measured by WF Queries
+//////////
+pattern unfinishedBy_pattern_queries_attributeHasNotTypeConstraint(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_a)
+{
+	find currentInRelation_pattern_queries_attributeHasNotTypeConstraint(problem,interpretation,var_a);
+}
+pattern unfinishedBy_pattern_queries_noCycles(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_c)
+{
+	find currentInRelation_pattern_queries_noCycles(problem,interpretation,var_c);
+}
+pattern unfinishedBy_pattern_queries_referenceHasNotTypeConstraint(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find currentInRelation_pattern_queries_referenceHasNotTypeConstraint(problem,interpretation,var_r);
+}
+pattern unfinishedBy_pattern_queries_oppositeOfitself(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find currentInRelation_pattern_queries_oppositeOfitself(problem,interpretation,var_r);
+}
+pattern unfinishedBy_pattern_queries_oppositeRestriction(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_rr)
+{
+	find currentInRelation_pattern_queries_oppositeRestriction(problem,interpretation,var_r,var_rr);
+}
+pattern unfinishedBy_pattern_queries_oppositeRestrictionSameClasses(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r)
+{
+	find currentInRelation_pattern_queries_oppositeRestrictionSameClasses(problem,interpretation,var_r);
+}
+
+//////////
+// 4. Refinement Indexers
+//////////
+// 4.1 Object constructors
+//////////
+pattern hasElementInContainment(problem:LogicProblem, interpretation:PartialInterpretation)
+{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfENamedElement_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEEnum_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEStructuralFeature_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEDataType_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEClass_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEPackage_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEReference_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEAttribute_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEClassifier_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfETypedElement_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfEEnumLiteral_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}
+pattern createObject_EEnum_class_by_eClassifiers_reference_EPackage_with_ePackage_reference_EClassifier(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, inverseInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EEnum class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"eClassifiers reference EPackage");
+	PartialInterpretation.partialrelationinterpretation(interpretation,inverseInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(inverseInterpretation,"ePackage reference EClassifier");
+	find mustInstanceOfEPackage_class(problem,interpretation,container);
+	find mayInstanceOfEEnum_class(problem,interpretation,newObject);
+	find mayInRelationeClassifiers_reference_EPackage(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EEnum_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EEnum class");
+	find mayInstanceOfEEnum_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EReference_class_by_eStructuralFeatures_reference_EClass_with_eContainingClass_reference_EStructuralFeature(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, inverseInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EReference class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"eStructuralFeatures reference EClass");
+	PartialInterpretation.partialrelationinterpretation(interpretation,inverseInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(inverseInterpretation,"eContainingClass reference EStructuralFeature");
+	find mustInstanceOfEClass_class(problem,interpretation,container);
+	find mayInstanceOfEReference_class(problem,interpretation,newObject);
+	find mayInRelationeStructuralFeatures_reference_EClass(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EReference_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EReference class");
+	find mayInstanceOfEReference_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EPackage_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EPackage class");
+	find mayInstanceOfEPackage_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EDataType_class_by_eClassifiers_reference_EPackage_with_ePackage_reference_EClassifier(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, inverseInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EDataType class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"eClassifiers reference EPackage");
+	PartialInterpretation.partialrelationinterpretation(interpretation,inverseInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(inverseInterpretation,"ePackage reference EClassifier");
+	find mustInstanceOfEPackage_class(problem,interpretation,container);
+	find mayInstanceOfEDataType_class(problem,interpretation,newObject);
+	find mayInRelationeClassifiers_reference_EPackage(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EDataType_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EDataType class");
+	find mayInstanceOfEDataType_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EAttribute_class_by_eStructuralFeatures_reference_EClass_with_eContainingClass_reference_EStructuralFeature(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, inverseInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EAttribute class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"eStructuralFeatures reference EClass");
+	PartialInterpretation.partialrelationinterpretation(interpretation,inverseInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(inverseInterpretation,"eContainingClass reference EStructuralFeature");
+	find mustInstanceOfEClass_class(problem,interpretation,container);
+	find mayInstanceOfEAttribute_class(problem,interpretation,newObject);
+	find mayInRelationeStructuralFeatures_reference_EClass(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EAttribute_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EAttribute class");
+	find mayInstanceOfEAttribute_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EClass_class_by_eClassifiers_reference_EPackage_with_ePackage_reference_EClassifier(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, inverseInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EClass class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"eClassifiers reference EPackage");
+	PartialInterpretation.partialrelationinterpretation(interpretation,inverseInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(inverseInterpretation,"ePackage reference EClassifier");
+	find mustInstanceOfEPackage_class(problem,interpretation,container);
+	find mayInstanceOfEClass_class(problem,interpretation,newObject);
+	find mayInRelationeClassifiers_reference_EPackage(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EClass_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EClass class");
+	find mayInstanceOfEClass_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EEnumLiteral_class_by_eLiterals_reference_EEnum_with_eEnum_reference_EEnumLiteral(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, inverseInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EEnumLiteral class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"eLiterals reference EEnum");
+	PartialInterpretation.partialrelationinterpretation(interpretation,inverseInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(inverseInterpretation,"eEnum reference EEnumLiteral");
+	find mustInstanceOfEEnum_class(problem,interpretation,container);
+	find mayInstanceOfEEnumLiteral_class(problem,interpretation,newObject);
+	find mayInRelationeLiterals_reference_EEnum(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_EEnumLiteral_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"EEnumLiteral class");
+	find mayInstanceOfEEnumLiteral_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+
+//////////
+// 4.2 Type refinement
+//////////
+pattern refineTypeTo_EEnum_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfEEnum_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnum_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+}
+pattern refineTypeTo_EReference_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfEReference_class(problem,interpretation,element);
+	neg find mustInstanceOfEReference_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEAttribute_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+}
+pattern refineTypeTo_EPackage_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+}
+pattern refineTypeTo_EDataType_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfEDataType_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnum_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEDataType_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+}
+pattern refineTypeTo_EAttribute_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfEAttribute_class(problem,interpretation,element);
+	neg find mustInstanceOfEReference_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEAttribute_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+}
+pattern refineTypeTo_EClass_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfEDataType_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEClass_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+}
+pattern refineTypeTo_EEnumLiteral_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEPackage_class(problem,interpretation,element);
+	neg find mustInstanceOfETypedElement_class(problem,interpretation,element);
+	neg find mustInstanceOfEEnumLiteral_class(problem,interpretation,element);
+	neg find mustInstanceOfEClassifier_class(problem,interpretation,element);
+}
+
+//////////
+// 4.3 Relation refinement
+//////////
+pattern refineRelation_eSuperTypes_reference_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eSuperTypes reference EClass");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfEClass_class(problem,interpretation,from);
+	find mustInstanceOfEClass_class(problem,interpretation,to);
+	find mayInRelationeSuperTypes_reference_EClass(problem,interpretation,from,to);
+	neg find mustInRelationeSuperTypes_reference_EClass(problem,interpretation,from,to);
+}
+
+pattern refineRelation_eType_reference_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eType reference ETypedElement");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfETypedElement_class(problem,interpretation,from);
+	find mustInstanceOfEClassifier_class(problem,interpretation,to);
+	find mayInRelationeType_reference_ETypedElement(problem,interpretation,from,to);
+	neg find mustInRelationeType_reference_ETypedElement(problem,interpretation,from,to);
+}
+
+pattern refineRelation_eOpposite_reference_EReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"eOpposite reference EReference");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfEReference_class(problem,interpretation,from);
+	find mustInstanceOfEReference_class(problem,interpretation,to);
+	find mayInRelationeOpposite_reference_EReference(problem,interpretation,from,to);
+	neg find mustInRelationeOpposite_reference_EReference(problem,interpretation,from,to);
+}
+
+pattern refineRelation_name_attribute_ENamedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"name attribute ENamedElement");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfENamedElement_class(problem,interpretation,from);
+	StringElement(to);
+	find mayInRelationname_attribute_ENamedElement(problem,interpretation,from,to);
+	neg find mustInRelationname_attribute_ENamedElement(problem,interpretation,from,to);
+}
+
+pattern refineRelation_abstract_attribute_EClass(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"abstract attribute EClass");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfEClass_class(problem,interpretation,from);
+	BooleanElement(to);
+	find mayInRelationabstract_attribute_EClass(problem,interpretation,from,to);
+	neg find mustInRelationabstract_attribute_EClass(problem,interpretation,from,to);
+}
+
+pattern refineRelation_lowerBound_attribute_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"lowerBound attribute ETypedElement");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfETypedElement_class(problem,interpretation,from);
+	IntegerElement(to);
+	find mayInRelationlowerBound_attribute_ETypedElement(problem,interpretation,from,to);
+	neg find mustInRelationlowerBound_attribute_ETypedElement(problem,interpretation,from,to);
+}
+
+pattern refineRelation_upperBound_attribute_ETypedElement(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"upperBound attribute ETypedElement");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfETypedElement_class(problem,interpretation,from);
+	IntegerElement(to);
+	find mayInRelationupperBound_attribute_ETypedElement(problem,interpretation,from,to);
+	neg find mustInRelationupperBound_attribute_ETypedElement(problem,interpretation,from,to);
+}
+
+pattern refineRelation_containment_attribute_EReference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"containment attribute EReference");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfEReference_class(problem,interpretation,from);
+	BooleanElement(to);
+	find mayInRelationcontainment_attribute_EReference(problem,interpretation,from,to);
+	neg find mustInRelationcontainment_attribute_EReference(problem,interpretation,from,to);
+}
+
+
+//////////
+// 5 Hints
+//////////
+
+//////////
+// 6 Unit Propagations
+//////////
+
+// Collected propagation preconditions:
+
+

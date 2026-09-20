@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="12BUAJI3cbczTuZL2tqAPgAorhTB1UbbyK8EFAOFuHOlEM8hwKBuBNJfEKZKUP554GvA">
+  <eClassifiers xsi:type="smallEcore:EDataType" name="hU0L6wUy7ko28K94lUirQwO1RUVQpODKkpt7LKoavNlY0aWeOHGRS6xDb8N"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="fctMyDN0JuPvd1p4jIU1WE2ZUoPegdKoC7AG2WjYrSNPPatOSk7KFfpgAZKptNh1A7El">
+    <eLiterals name="Lc8nvOkjDJEJarNmiJHDBhNNRN46VimC0SP2yy1IcR1KsuJinYYw6jbn8URNUw5C"/>
+    <eLiterals name="KiGg3jE8fqb4xwkoSU8rKhzOejhVjmKhmbjV1bMV2bgXk57HwAv8WrZ56eTYgJ0"/>
+    <eLiterals name="kD5FPYDcZYiDuggLqi4c6c0GQhZOOArtwLFaLuO5euI3jm6fcW6geAsOYTkW1ql2GfeGED"/>
+    <eLiterals name="NMxZ8DR9DlEvLs6FxQRdZDI7NYJtX35e5o074EjwXoVgJ2a8sLNxjSoCC5QdrnQyXve"/>
+    <eLiterals name="DLFnBIvV9ZHAac9552xN76Gd2ecsHUvYeKAKtUewQJVMSYxsbrOVZAMbuq7"/>
+    <eLiterals name="d2JGsdPrhQRGij7fNXHfH5HKiIDYOIxpHlk891qxinRbCZJiuztLIw7uFS6"/>
+    <eLiterals name="n31hYuJg7gWGCQZBXEjjvQkTxSCd1aIdFfpMyr273gCmEQC5yYJ9awQnLtt5jJVy"/>
+    <eLiterals name="EvqxZpj1VxGzIMORCf6NSEx9bfpVrbxWH1FF9NNYZGjjrzuxru1kBZYZDJ7d"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="ftK3jLbBtIlb2oHbcBvor0lNlMW6HhnbmQToQMyne6negy1co4bKdheQ5B3x"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="uMF9LtUtTuDfQgA8KrRtnOXTxaLvTnOgXqHqAZAFL4Hp7gWxS5SoQUcxAxQAo3SDdS" abstract="true" eSuperTypes="//@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="XBHi1tbnSQCI3YVMhI5WoB9GLgs5vygx6DOqcgK7RvH7PXXw2yUAS06I2nv0QazJBYEHqA"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="8UkjGNuJzAu5WHslj5BazWXRXZx1rZs96bhYHQwyr7RufHHkHByaUWFvHl2cY1K"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="dANDcDstK7vNFvMtJnX7sRVgBQS10upj4RiSKQTLsLDcIinmj3k9JKeYvNVaeVJ"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="Qd9llNRuR0n5AYtjSVZ5lSWmw3YBDnYPH0UpVBe7rA2ezrBR79xg6ImrDEJ"/>
+</smallEcore:EPackage>

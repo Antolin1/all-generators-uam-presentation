@@ -1,0 +1,27 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_AX0bQP_3Eeafl6WsllPgUg" specification="interface:&#10;var readonly TactMax: integer = 1000&#10;var readonly TinactMax: integer = 500&#10;var readonly TactMin: integer = 50&#10;in event evInactive&#10;in event evActive&#10;&#10;internal:&#10;operation init()&#10;operation reset()&#10;operation pulse()&#10;operation register()" name="PulseCounter">
+    <regions xmi:id="_AX1CVP_3Eeafl6WsllPgUg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_AX2Qcf_3Eeafl6WsllPgUg">
+        <outgoingTransitions xmi:id="_mmpE8L9SEem7Dd0wTGCnPg" specification="/ init()" target="_miSLMP_3Eeafl6WsllPgUg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_miSLMP_3Eeafl6WsllPgUg" specification="" name="Idle" incomingTransitions="_mmpE8L9SEem7Dd0wTGCnPg _ZmTN8KerEeqDLrUxJY9ibg _d7jW8KerEeqDLrUxJY9ibg _gAOkcKerEeqDLrUxJY9ibg">
+        <outgoingTransitions xmi:id="_aYb1gKerEeqDLrUxJY9ibg" specification="evActive / reset()" target="_E4dF4KerEeqDLrUxJY9ibg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_E4dF4KerEeqDLrUxJY9ibg" specification="" name="Setup" incomingTransitions="_aYb1gKerEeqDLrUxJY9ibg _cwqRIKerEeqDLrUxJY9ibg">
+        <outgoingTransitions xmi:id="_W5iswKerEeqDLrUxJY9ibg" specification="after TactMin ms" target="_KJp5zKerEeqDLrUxJY9ibg"/>
+        <outgoingTransitions xmi:id="_ZmTN8KerEeqDLrUxJY9ibg" specification="evInactive" target="_miSLMP_3Eeafl6WsllPgUg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_KJp5zKerEeqDLrUxJY9ibg" specification="" name="Active" incomingTransitions="_W5iswKerEeqDLrUxJY9ibg">
+        <outgoingTransitions xmi:id="_Um-NMKerEeqDLrUxJY9ibg" specification="evInactive / &#10;pulse()" target="_NLEcUKerEeqDLrUxJY9ibg"/>
+        <outgoingTransitions xmi:id="_VblhAKerEeqDLrUxJY9ibg" specification="after TactMax ms" target="_Qa9fwKerEeqDLrUxJY9ibg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_NLEcUKerEeqDLrUxJY9ibg" specification="" name="Inactive" incomingTransitions="_Um-NMKerEeqDLrUxJY9ibg">
+        <outgoingTransitions xmi:id="_cwqRIKerEeqDLrUxJY9ibg" specification="evActive" target="_E4dF4KerEeqDLrUxJY9ibg"/>
+        <outgoingTransitions xmi:id="_d7jW8KerEeqDLrUxJY9ibg" specification="after TinactMax ms/ register()" target="_miSLMP_3Eeafl6WsllPgUg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Qa9fwKerEeqDLrUxJY9ibg" specification="" name="WaitInactive" incomingTransitions="_VblhAKerEeqDLrUxJY9ibg">
+        <outgoingTransitions xmi:id="_gAOkcKerEeqDLrUxJY9ibg" specification="evInactive" target="_miSLMP_3Eeafl6WsllPgUg"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

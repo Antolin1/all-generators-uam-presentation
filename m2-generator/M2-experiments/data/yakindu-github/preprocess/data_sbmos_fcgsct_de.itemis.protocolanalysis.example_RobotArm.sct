@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_SSAdgE3zEeOBS_FRU6ejug" specification="interface control :&#10;in event move&#10;in event grab&#10;in event release&#10;out event replyMove&#10;out event replyGrab&#10;out event replyRelease" name="RobotArm">
+    <regions xmi:id="_SSCSsk3zEeOBS_FRU6ejug" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_SSYQ8U3zEeOBS_FRU6ejug">
+        <outgoingTransitions xmi:id="_SSatM03zEeOBS_FRU6ejug" target="_SSY4B03zEeOBS_FRU6ejug"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_SSY4B03zEeOBS_FRU6ejug" name="idle" incomingTransitions="_SSatM03zEeOBS_FRU6ejug _-9UVME38EeOGg7oVkhPMtw">
+        <outgoingTransitions xmi:id="_f1sE8E3zEeOBS_FRU6ejug" specification="control.move" target="_aErIkE3zEeOBS_FRU6ejug"/>
+        <outgoingTransitions xmi:id="_wKqIQE3zEeOBS_FRU6ejug" specification="control.grab" target="_ae60kE3zEeOBS_FRU6ejug"/>
+        <outgoingTransitions xmi:id="_8M2YsE38EeOGg7oVkhPMtw" specification="control.release" target="_ZstlcE38EeOGg7oVkhPMtw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_aErIkE3zEeOBS_FRU6ejug" name="moving" incomingTransitions="_f1sE8E3zEeOBS_FRU6ejug"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_ae60kE3zEeOBS_FRU6ejug" name="grabbing" incomingTransitions="_wKqIQE3zEeOBS_FRU6ejug"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_ZstlcE38EeOGg7oVkhPMtw" specification="exit / raise control.replyRelease" name="releasing" incomingTransitions="_8M2YsE38EeOGg7oVkhPMtw">
+        <outgoingTransitions xmi:id="_-9UVME38EeOGg7oVkhPMtw" specification="always" target="_SSY4B03zEeOBS_FRU6ejug"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

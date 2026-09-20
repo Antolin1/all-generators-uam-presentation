@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_AU29oMdiEeGOoP2Ze98WBQ" specification="interface :&#10;var x : integer&#10;var y : integer" name="before_folding">
+    <regions xmi:id="_AU3kssdiEeGOoP2Ze98WBQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_AU4LxsdiEeGOoP2Ze98WBQ">
+        <outgoingTransitions xmi:id="_AU6A88diEeGOoP2Ze98WBQ" target="_AU4y18diEeGOoP2Ze98WBQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_AU4y18diEeGOoP2Ze98WBQ" specification="entry, exit /&#10;  y = 3;&#10;  y += 1&#10;  &#10;entry /&#10;  x = 9&#10;  &#10;exit /&#10;  x = 10 " name="A" incomingTransitions="_AU6A88diEeGOoP2Ze98WBQ">
+        <outgoingTransitions xmi:id="_CSfvAMdiEeGOoP2Ze98WBQ" specification="/ x = 42" target="_BE1pEMdiEeGOoP2Ze98WBQ"/>
+        <outgoingTransitions xmi:id="_JQWKkMdlEeGOoP2Ze98WBQ" specification="" target="_yZnSUPN1EeGld5XQj3v7aA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_BE1pEMdiEeGOoP2Ze98WBQ" specification="" name="B" incomingTransitions="_CSfvAMdiEeGOoP2Ze98WBQ"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_yZnSUPN1EeGld5XQj3v7aA" specification="exit / x = 10" name="CompState" incomingTransitions="_JQWKkMdlEeGOoP2Ze98WBQ">
+        <regions xmi:id="_yZqVoPN1EeGld5XQj3v7aA" name="InnerRegion">
+          <vertices xsi:type="sgraph:State" xmi:id="_0eTG4PN1EeGld5XQj3v7aA" specification="exit /&#10;  x = 11" name="InnerState" incomingTransitions="_NU9ecPN2EeGld5XQj3v7aA">
+            <outgoingTransitions xmi:id="_54p2wPN1EeGld5XQj3v7aA" specification="/ x *= 100" target="_4Tz_4PN1EeGld5XQj3v7aA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_MtnKkPN2EeGld5XQj3v7aA">
+            <outgoingTransitions xmi:id="_NU9ecPN2EeGld5XQj3v7aA" specification="" target="_0eTG4PN1EeGld5XQj3v7aA"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_4Tz_4PN1EeGld5XQj3v7aA" name="D" incomingTransitions="_54p2wPN1EeGld5XQj3v7aA">
+        <outgoingTransitions xmi:id="_fg81wHISEeKt7LlJCM3PJg" specification="" target="_dBUxoHISEeKt7LlJCM3PJg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_dBUxoHISEeKt7LlJCM3PJg" specification="exit / x = 8" name="E" incomingTransitions="_fg81wHISEeKt7LlJCM3PJg"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

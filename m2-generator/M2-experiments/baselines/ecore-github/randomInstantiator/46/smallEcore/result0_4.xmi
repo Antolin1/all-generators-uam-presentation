@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="m2hKcO6zkbKEwdga9asEVVdNcVtIYXYIHlw2GfPy51ceMEIbkAYAcYbylY95QE8TAm">
+  <eClassifiers xsi:type="smallEcore:EDataType" name="tkeGkaUIthpX3Hf3fKroWUWvdfgHs8fm4NFrDxrCH90Y5YXV0TaxqIAfgbSFd0NAe"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="7q5NrbxRuMd4DymCY5qTFoMNj5t4Vecp9XoGEBTUQSfEKYFMbpdrocpVMs2EpxTnOBQ">
+    <eLiterals name="3EvGnYrpbZLHtixgJdsKNqDbifhBcR5YUlMLj0bE1WEoCuKqH9GWhUBuKzFLB"/>
+    <eLiterals name="xCquMvXfuDHm6Qm6HsWv5hN12Bd5Ccym73xpUV1pwX56hFKMUuzkLHlPM5Du"/>
+    <eLiterals name="aAUUqYPzdtKRYiByBGUYLvCyiqCP0GwYdyMqJpiD6jr8LlU4kY6DgNaxjUq0MyIP"/>
+    <eLiterals name="79PWZAIRR0tXW8DbLT6EQw77vqrQYBvEjHdndVxHlWdG8pEIfdQgQCYeSw3rWAz4JnG6"/>
+    <eLiterals name="VU3v7bsy0NSdDc6HtiK4YkTqDif3GoIyruW6ZyGDaOcp1hgrSlK7pQWq0O1tgLN0"/>
+    <eLiterals name="9WwgmqwWzNNEXNwrN7Vog6wIg8pChUY7q5BdVPeWvDT3PeMmHYHpBcIUhlZILandmzX44"/>
+    <eLiterals name="wDojcC4bkVh9Zxy6hQomn6qfbQdIX3Ns5hyVf3WaSmBKIu0R0kSsal0v3Ti1PKu5PcR"/>
+    <eLiterals name="LNFelfSrwEEkpX6jxsF51b3bVF52yM6H8tIztZTxyrxc8wMyVNnxaVDUyYv271cPU7H"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="vZ6K8QLzNwqt1wsG2N6F9fBoFLiiEyQk1sHFclf8pYENP40xegh5ZJ7AymfcS8" abstract="true" eSuperTypes="//@eClassifiers.4 //@eClassifiers.2"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="N6W0R9TzwsmKp9NZn4rODgtsYUe4S4LQHS53Xehg0drHQFIMsnYuRTWXkayNCucwf"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="QPP043gbjNjFca2nR04mKNzdxRwbplOwfLJWxnYzxt3T3kczWQmKwJ3EO452" eSuperTypes="//@eClassifiers.4 //@eClassifiers.2"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="8MNBFv49MrmhXFP3WSD8Y5IY38ejhvZ1bSoJYMR5qCAfprAVCORWat4oXw2UfJS6znuP"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="8p2pjg8xEfFMpIxHvywMtv8zbfrGtmxo7cuo1S0aHkM8YOaII1ZAVfPsysWjiE6uzH"/>
+</smallEcore:EPackage>

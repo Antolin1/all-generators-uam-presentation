@@ -1,0 +1,27 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_JrrIILreEea1MdTc6sJwSA" specification="interface:&#10;// Define events and&#10;// and variables here&#10;in event coin_deposited&#10;in event selection&#10;in event change_returned&#10;in event change_requested&#10;in event dispensed&#10;var coins: integer" name="VendingMachine_Simple">
+    <regions xmi:id="_JrvZkLreEea1MdTc6sJwSA" name="VendingMachine">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_Jryc4breEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_Jr3VYrreEea1MdTc6sJwSA" target="_Jr05JLreEea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Jr05JLreEea1MdTc6sJwSA" name="Idle" incomingTransitions="_Jr3VYrreEea1MdTc6sJwSA _LKeL8LrfEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_JJ1w8LrfEea1MdTc6sJwSA" specification="coin_deposited" target="_nuFL0LreEea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_k_mMULreEea1MdTc6sJwSA" name="Give_Change" incomingTransitions="_c1qbULrfEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_LKeL8LrfEea1MdTc6sJwSA" specification="change_returned" target="_Jr05JLreEea1MdTc6sJwSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_nuFL0LreEea1MdTc6sJwSA" name="Vending" incomingTransitions="_JJ1w8LrfEea1MdTc6sJwSA">
+        <outgoingTransitions xmi:id="_c1qbULrfEea1MdTc6sJwSA" specification="dispensed, change_requested" target="_k_mMULreEea1MdTc6sJwSA"/>
+        <regions xmi:id="_rVkP4LreEea1MdTc6sJwSA" name="Vending region">
+          <vertices xsi:type="sgraph:State" xmi:id="_uD10ALreEea1MdTc6sJwSA" name="Count_coins" incomingTransitions="_Xcv14LrfEea1MdTc6sJwSA">
+            <outgoingTransitions xmi:id="_zUmjALreEea1MdTc6sJwSA" specification="selection [coins&gt;1]" target="_wsAJELreEea1MdTc6sJwSA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_wsAJELreEea1MdTc6sJwSA" name="Dispense" incomingTransitions="_zUmjALreEea1MdTc6sJwSA"/>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_z7HwcLreEea1MdTc6sJwSA">
+            <outgoingTransitions xmi:id="_Xcv14LrfEea1MdTc6sJwSA" specification="" target="_uD10ALreEea1MdTc6sJwSA"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

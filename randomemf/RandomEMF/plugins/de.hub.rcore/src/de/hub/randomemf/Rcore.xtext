@@ -1,0 +1,39 @@
+grammar de.hub.randomemf.RandomEMF with org.eclipse.xtext.xbase.Xbase
+
+import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
+generate randomEMF "http://www.hub.de/randomemf/RandomEMF"
+
+Generator:
+	('package' package=QualifiedName)?
+	importSection=XImportSection?
+ 	'generator' name=ValidID ('(' params+=JvmFormalParameter (',' params+=JvmFormalParameter)* ')')? 'for' ecorePackage=[Ecore::EPackage|ID] 'in' importURI=STRING '{'
+ 		(rules += AbstractRule)*
+ 	'}'
+;
+
+AbstractRule:
+	AlternativeRule | ClassRule
+;
+
+AlternativeRule:
+	'alter' name=ValidID ('(' params+=JvmFormalParameter (',' params+=JvmFormalParameter)* ')')? ':' eClass=[Ecore::EClass|ID] '->'
+		inners += Alternative ( '|' inners += Alternative)*
+	';'
+;
+
+Alternative returns InnerRule:
+	{InnerRule}
+	expr = XExpression ('#' number=XExpression)?
+;
+
+ClassRule:
+	name=ValidID ('(' params+=JvmFormalParameter (',' params+=JvmFormalParameter)* ')')? ':' eClass=[Ecore::EClass|ID] '->'
+		(inners+=Feature)*
+	';'
+;
+
+Feature returns InnerRule:
+	{InnerRule}
+	eFeature=[Ecore::EStructuralFeature|ID] (':'concreteValueType=[Ecore::EClass|ID])?(isAddRule ?= '+=' | ':=')
+	((isRef?='@' '(' expr=XExpression ('#' number=XExpression)? ')') | (expr=XExpression ('#' number=XExpression)?))
+;

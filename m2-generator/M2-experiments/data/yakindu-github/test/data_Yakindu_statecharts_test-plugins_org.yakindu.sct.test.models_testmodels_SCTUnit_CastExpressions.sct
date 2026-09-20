@@ -1,0 +1,16 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_Wsw4sCfYEeSpK_WCONv8UQ" specification="interface:&#13;&#10;&#13;&#10;var realValue : real = (5 as real)&#13;&#10;var intValue : integer = (5.5 as integer)" name="CastExpressions">
+    <regions xmi:id="_WsxfwifYEeSpK_WCONv8UQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_Ws1xMSfYEeSpK_WCONv8UQ">
+        <outgoingTransitions xmi:id="_Ws3mYyfYEeSpK_WCONv8UQ" target="_Ws2YRyfYEeSpK_WCONv8UQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Ws2YRyfYEeSpK_WCONv8UQ" specification="" name="A" incomingTransitions="_Ws3mYyfYEeSpK_WCONv8UQ">
+        <outgoingTransitions xmi:id="_myT_8CfYEeSpK_WCONv8UQ" specification="always" target="_mA7mUCfYEeSpK_WCONv8UQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_mA7mUCfYEeSpK_WCONv8UQ" specification="entry / realValue = 3 *  5.5 as integer" name="B" incomingTransitions="_myT_8CfYEeSpK_WCONv8UQ">
+        <outgoingTransitions xmi:id="_tlUsYDG-EeS_kOAaYKgcxg" specification="always [(realValue * 0.1) as real &gt; 1.4 as integer&#13;&#10;&#9;&amp;&amp; (realValue * intValue) as integer &lt; 100 as real]" target="_tRqJgDG-EeS_kOAaYKgcxg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_tRqJgDG-EeS_kOAaYKgcxg" specification="entry / realValue = (realValue * intValue * 10.1) as integer" name="C" incomingTransitions="_tlUsYDG-EeS_kOAaYKgcxg"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

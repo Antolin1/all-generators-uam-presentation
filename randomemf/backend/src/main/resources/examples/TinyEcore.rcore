@@ -1,0 +1,38 @@
+package demo
+
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EcorePackage
+import static de.hub.randomemf.runtime.Random.*
+
+// A small generator with parameters: the front end asks for their values.
+generator TinyEcore(int classes, String prefix) for ecore
+    in "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore" {
+
+  Package: EPackage ->
+    name := "tiny"
+    nsPrefix := "tiny"
+    nsURI := "http://example.org/tiny"
+    eClassifiers += Class#classes
+  ;
+
+  Class: EClass ->
+    name := prefix + ClassName(Normal(4,1))
+    eStructuralFeatures += Feature#Poisson(2)
+  ;
+
+  // '#' after an alternative is its priority
+  alter Feature: EStructuralFeature ->
+    Attribute#3 | Reference#3
+  ;
+
+  Attribute: EAttribute ->
+    name := VarName(Normal(5,2))
+    eType := EcorePackage.eINSTANCE.EString
+  ;
+
+  Reference: EReference ->
+    name := VarName(Normal(5,2))
+    containment := false
+    eType := Uniform(model.EClassifiers.filter[it instanceof EClass])
+  ;
+}

@@ -1,0 +1,1327 @@
+import epackage "http://www.bme.hu/mit/inf/dslreasoner/viatrasolver/partialinterpretationlanguage"
+import epackage "http://www.bme.hu/mit/inf/dslreasoner/logic/model/problem"
+import epackage "http://www.bme.hu/mit/inf/dslreasoner/logic/model/language"
+
+//////////
+// 0. Util
+//////////
+private pattern interpretation(problem:LogicProblem, interpretation:PartialInterpretation) {
+	PartialInterpretation.problem(interpretation,problem);
+}
+	
+/////////////////////////
+// 0.1 Existence
+/////////////////////////
+/** [[exist(element)]]=1 */
+private pattern mustExist(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	find interpretation(problem,interpretation);
+	LogicProblem.elements(problem,element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+}
+
+/** [[exist(element)]]>=1/2 */
+private pattern mayExist(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+    find mustExist(problem,interpretation,element);
+} or {
+    find interpretation(problem,interpretation);
+    neg find elementCloseWorld(element);
+    PartialInterpretation.openWorldElements(interpretation,element);
+}
+
+private pattern elementCloseWorld(element:DefinedElement) {
+	PartialInterpretation.openWorldElements(i,element);
+	PartialInterpretation.maxNewElements(i,0);
+} or {
+	Scope.targetTypeInterpretation(scope,interpretation);
+	PartialTypeInterpratation.elements(interpretation,element);
+	Scope.maxNewElements(scope,0);
+}
+
+////////////////////////
+// 0.2 Equivalence
+////////////////////////
+pattern mayEquivalent(problem:LogicProblem, interpretation:PartialInterpretation, a: DefinedElement, b: DefinedElement)
+// For non-primitive type. Boolean types always must equivalent or cannot equivalent
+{
+	find mayExist(problem,interpretation,a);
+	find mayExist(problem,interpretation,b);
+	a == b;
+}
+
+pattern mustEquivalent(problem:LogicProblem, interpretation:PartialInterpretation, a: DefinedElement, b: DefinedElement) {
+// For non-primitive and Boolean primitive type
+	find mustExist(problem,interpretation,a);
+	find mustExist(problem,interpretation,b);
+	a == b;
+}
+
+//////////
+// 1. Problem-Specific Base Indexers
+//////////
+// 1.1 Type Indexers
+//////////
+// 1.1.1 Required Patterns by TypeIndexer
+//////////
+
+private pattern typeInterpretation(problem:LogicProblem, interpretation:PartialInterpretation, type:TypeDeclaration, typeInterpretation:PartialComplexTypeInterpretation) {
+	find interpretation(problem,interpretation);
+	LogicProblem.types(problem,type);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+}
+
+private pattern directInstanceOf(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement, type:Type) {
+	find interpretation(problem,interpretation);
+	LogicProblem.types(problem,type);
+	TypeDefinition.elements(type,element);
+} or {
+	find interpretation(problem,interpretation);
+	find typeInterpretation(problem,interpretation,type,typeInterpretation);
+	PartialComplexTypeInterpretation.elements(typeInterpretation,element);
+}
+
+private pattern isPrimitive(element: PrimitiveElement) {
+	PrimitiveElement(element);
+}
+
+//////////
+// 1.1.2 primitive Type Indexers
+//////////
+// Currently unused. Refer primitive types as:
+// > PrimitiveElement(element)
+// specific types are referred as:
+// > BooleanElement(variableName)
+// > IntegerElement(variableName)
+// > RealElement(variableName)
+// > StringElement(variableName)
+// And their value as
+// > BooleanElement.value(variableName,value)
+// > IntegerElement.value(variableName,value)
+// > RealElement.value(variableName,value)
+// > StringElement.value(variableName,value)
+// Whether a value is set is defined by:
+// > PrimitiveElement.valueSet(variableName,isFilled);
+
+//////////
+// 1.1.3 domain-specific Type Indexers
+//////////
+/**
+ * An element must be an instance of type "Database class".
+ */
+private pattern mustInstanceOfDatabase_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"Database class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewDatabase_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"Database class");
+}
+
+/**
+ * An element may be an instance of type "Database class".
+ */
+private pattern mayInstanceOfDatabase_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewDatabase_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewDatabase_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfDatabase_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "Element class".
+ */
+private pattern mustInstanceOfElement_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"Element class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewElement_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"Element class");
+}
+
+/**
+ * An element may be an instance of type "Element class".
+ */
+private pattern mayInstanceOfElement_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfTable_class(problem,interpretation,element);
+	neg find mustInstanceOfReference_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find scopeDisallowsNewElement_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfTable_class(problem,interpretation,element);
+	neg find mustInstanceOfReference_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find scopeDisallowsNewElement_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfElement_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "Column class".
+ */
+private pattern mustInstanceOfColumn_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"Column class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewColumn_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"Column class");
+}
+
+/**
+ * An element may be an instance of type "Column class".
+ */
+private pattern mayInstanceOfColumn_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewColumn_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewColumn_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfColumn_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "Table class".
+ */
+private pattern mustInstanceOfTable_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"Table class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewTable_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"Table class");
+}
+
+/**
+ * An element may be an instance of type "Table class".
+ */
+private pattern mayInstanceOfTable_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfReference_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find scopeDisallowsNewTable_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfReference_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find scopeDisallowsNewTable_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfTable_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "Reference class".
+ */
+private pattern mustInstanceOfReference_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"Reference class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewReference_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"Reference class");
+}
+
+/**
+ * An element may be an instance of type "Reference class".
+ */
+private pattern mayInstanceOfReference_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfTable_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find scopeDisallowsNewReference_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfTable_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find scopeDisallowsNewReference_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfReference_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "Index class".
+ */
+private pattern mustInstanceOfIndex_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"Index class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewIndex_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"Index class");
+}
+
+/**
+ * An element may be an instance of type "Index class".
+ */
+private pattern mayInstanceOfIndex_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewIndex_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewIndex_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfIndex_class(problem,interpretation,element); }
+/**
+ * An element must be an instance of type "IndexColumn class".
+ */
+private pattern mustInstanceOfIndexColumn_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement) {
+	Type.name(type,"IndexColumn class");
+	find directInstanceOf(problem,interpretation,element,type);
+}
+private pattern scopeDisallowsNewIndexColumn_class(problem:LogicProblem, interpretation:PartialInterpretation) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.scopes(interpretation,scope);
+	Scope.targetTypeInterpretation(scope,typeInterpretation);
+	Scope.maxNewElements(scope,0);
+	PartialComplexTypeInterpretation.interpretationOf(typeInterpretation,type);
+	Type.name(type,"IndexColumn class");
+}
+
+/**
+ * An element may be an instance of type "IndexColumn class".
+ */
+private pattern mayInstanceOfIndexColumn_class(problem:LogicProblem, interpretation:PartialInterpretation, element:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewIndexColumn_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.openWorldElements(interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+	neg find scopeDisallowsNewIndexColumn_class(problem, interpretation);
+	neg find isPrimitive(element);
+} or
+{ find mustInstanceOfIndexColumn_class(problem,interpretation,element); }
+
+//////////
+// 1.2 Relation Declaration Indexers
+//////////
+/**
+ * Matcher for detecting tuples t where []elements reference Database(source,target)
+ */
+private pattern mustInRelationelements_reference_Database(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"elements reference Database");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>elements reference Database(source,target)
+ */
+private pattern mayInRelationelements_reference_Database(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfDatabase_class(problem,interpretation,source);
+	find mayInstanceOfElement_class(problem,interpretation,target);
+	// The reference is containment, then a new reference cannot be create if:
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,_,target);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationelements_reference_Database(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []foreignReferences reference Column(source,target)
+ */
+private pattern mustInRelationforeignReferences_reference_Column(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"foreignReferences reference Column");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>foreignReferences reference Column(source,target)
+ */
+private pattern mayInRelationforeignReferences_reference_Column(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfColumn_class(problem,interpretation,source);
+	find mayInstanceOfReference_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference to the target,
+	// the upper bound of the opposite reference multiplicity should be considered.
+	numberOfExistingOppositeReferences == count find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,target,_);
+	numberOfExistingOppositeReferences != 1;
+} or {
+	find mustInRelationforeignReferences_reference_Column(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []primaryReferences reference Column(source,target)
+ */
+private pattern mustInRelationprimaryReferences_reference_Column(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"primaryReferences reference Column");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>primaryReferences reference Column(source,target)
+ */
+private pattern mayInRelationprimaryReferences_reference_Column(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfColumn_class(problem,interpretation,source);
+	find mayInstanceOfReference_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference to the target,
+	// the upper bound of the opposite reference multiplicity should be considered.
+	numberOfExistingOppositeReferences == count find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,target,_);
+	numberOfExistingOppositeReferences != 1;
+} or {
+	find mustInRelationprimaryReferences_reference_Column(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []columns reference Table(source,target)
+ */
+private pattern mustInRelationcolumns_reference_Table(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"columns reference Table");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>columns reference Table(source,target)
+ */
+private pattern mayInRelationcolumns_reference_Table(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfTable_class(problem,interpretation,source);
+	find mayInstanceOfColumn_class(problem,interpretation,target);
+	// The reference is containment, then a new reference cannot be create if:
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,_,target);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationcolumns_reference_Table(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []indexes reference Table(source,target)
+ */
+private pattern mustInRelationindexes_reference_Table(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"indexes reference Table");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>indexes reference Table(source,target)
+ */
+private pattern mayInRelationindexes_reference_Table(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfTable_class(problem,interpretation,source);
+	find mayInstanceOfIndex_class(problem,interpretation,target);
+	// The reference is containment, then a new reference cannot be create if:
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,_,target);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationindexes_reference_Table(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []foreignKeyColumns reference Reference(source,target)
+ */
+private pattern mustInRelationforeignKeyColumns_reference_Reference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"foreignKeyColumns reference Reference");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>foreignKeyColumns reference Reference(source,target)
+ */
+private pattern mayInRelationforeignKeyColumns_reference_Reference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfReference_class(problem,interpretation,source);
+	find mayInstanceOfColumn_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []primaryKeyColumns reference Reference(source,target)
+ */
+private pattern mustInRelationprimaryKeyColumns_reference_Reference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"primaryKeyColumns reference Reference");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>primaryKeyColumns reference Reference(source,target)
+ */
+private pattern mayInRelationprimaryKeyColumns_reference_Reference(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfReference_class(problem,interpretation,source);
+	find mayInstanceOfColumn_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []indexColumns reference Index(source,target)
+ */
+private pattern mustInRelationindexColumns_reference_Index(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"indexColumns reference Index");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>indexColumns reference Index(source,target)
+ */
+private pattern mayInRelationindexColumns_reference_Index(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfIndex_class(problem,interpretation,source);
+	find mayInstanceOfIndexColumn_class(problem,interpretation,target);
+	// The reference is containment, then a new reference cannot be create if:
+	// 1. Multiple parents
+	neg find mustContains4(problem,interpretation,_,target);
+	// 2. Circle in the containment hierarchy
+	neg find mustTransitiveContains(source,target);
+} or {
+	find mustInRelationindexColumns_reference_Index(problem,interpretation,source,target);
+}
+/**
+ * Matcher for detecting tuples t where []column reference IndexColumn(source,target)
+ */
+private pattern mustInRelationcolumn_reference_IndexColumn(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"column reference IndexColumn");
+	PartialRelationInterpretation.relationlinks(relationIterpretation,link);
+	BinaryElementRelationLink.param1(link,source);
+	BinaryElementRelationLink.param2(link,target);
+}
+/**
+ * Matcher for detecting tuples t where <>column reference IndexColumn(source,target)
+ */
+private pattern mayInRelationcolumn_reference_IndexColumn(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	// The two endpoint of the link have to exist
+	find mayExist(problem, interpretation, source);
+	find mayExist(problem, interpretation, target);
+	// Type consistency
+	find mayInstanceOfIndexColumn_class(problem,interpretation,source);
+	find mayInstanceOfColumn_class(problem,interpretation,target);
+	// There are "numberOfExistingReferences" currently existing instances of the reference from the source,
+	// the upper bound of the multiplicity should be considered.
+	numberOfExistingReferences == count find mustInRelationcolumn_reference_IndexColumn(problem,interpretation,source,_);
+	numberOfExistingReferences != 1;
+} or {
+	find mustInRelationcolumn_reference_IndexColumn(problem,interpretation,source,target);
+}
+
+//////////
+// 1.3 Relation Definition Indexers
+//////////
+// Must, May and Current queries for pattern queries ref2thesame
+private pattern mustInRelation_pattern_queries_ref2thesame(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	var_c1 == var_c2;
+	// var_c2 exported
+	find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r,var_c2);
+	find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r,var_c2);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c2);
+}
+private pattern mayInRelation_pattern_queries_ref2thesame(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	var_c1 == var_c2;
+	// var_c2 exported
+	find mayInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r,var_c2);
+	find mayInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r,var_c2);
+	find mayInstanceOfColumn_class(problem,interpretation,var_c2);
+}
+private pattern currentInRelation_pattern_queries_ref2thesame(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_r exported
+	var_c1 == var_c2;
+	// var_c2 exported
+	find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r,var_c2);
+	find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r,var_c2);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c2);
+}
+// Must, May and Current queries for pattern queries equalRefs
+private pattern mustInRelation_pattern_queries_equalRefs(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r1, var_r2, var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_r1 exported
+	// var_r2 exported
+	// var_c1 exported
+	// var_c2 exported
+	find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r1,var_c1);
+	find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r2,var_c1);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c1);
+	find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r1,var_c2);
+	find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r2,var_c2);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c2);
+	neg find mayEquivalent(problem, interpretation, var_r1, var_r2);
+}
+private pattern mayInRelation_pattern_queries_equalRefs(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r1, var_r2, var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_r1 exported
+	// var_r2 exported
+	// var_c1 exported
+	// var_c2 exported
+	find mayInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r1,var_c1);
+	find mayInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r2,var_c1);
+	find mayInstanceOfColumn_class(problem,interpretation,var_c1);
+	find mayInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r1,var_c2);
+	find mayInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r2,var_c2);
+	find mayInstanceOfColumn_class(problem,interpretation,var_c2);
+	neg find mustEquivalent(problem, interpretation, var_r1, var_r2);
+}
+private pattern currentInRelation_pattern_queries_equalRefs(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r1, var_r2, var_c1, var_c2)
+{
+	find interpretation(problem,interpretation);
+	// var_r1 exported
+	// var_r2 exported
+	// var_c1 exported
+	// var_c2 exported
+	find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r1,var_c1);
+	find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,var_r2,var_c1);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c1);
+	find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r1,var_c2);
+	find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,var_r2,var_c2);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c2);
+	neg find mustEquivalent(problem, interpretation, var_r1, var_r2);
+}
+// Must, May and Current queries for pattern queries columnInTable
+private pattern mustInRelation_pattern_queries_columnInTable(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_t, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_t exported
+	// var_c exported
+	find mustInRelationcolumns_reference_Table(problem,interpretation,var_t,var_c);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c);
+}
+private pattern mayInRelation_pattern_queries_columnInTable(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_t, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_t exported
+	// var_c exported
+	find mayInRelationcolumns_reference_Table(problem,interpretation,var_t,var_c);
+	find mayInstanceOfColumn_class(problem,interpretation,var_c);
+}
+private pattern currentInRelation_pattern_queries_columnInTable(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_t, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_t exported
+	// var_c exported
+	find mustInRelationcolumns_reference_Table(problem,interpretation,var_t,var_c);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c);
+}
+// Must, May and Current queries for pattern queries icCons
+private pattern mustInRelation_pattern_queries_icCons(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_ic, var_t, var_i, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_ic exported
+	// var_t exported
+	// var_i exported
+	// var_c exported
+	find mustInRelationindexes_reference_Table(problem,interpretation,var_t,var_i);
+	find mustInRelationindexColumns_reference_Index(problem,interpretation,var_i,var_ic);
+	find mustInRelationcolumn_reference_IndexColumn(problem,interpretation,var_ic,var_c);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c);
+	neg find mayInRelation_pattern_queries_columnInTable(problem,interpretation,var_t,var_c);
+}
+private pattern mayInRelation_pattern_queries_icCons(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_ic, var_t, var_i, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_ic exported
+	// var_t exported
+	// var_i exported
+	// var_c exported
+	find mayInRelationindexes_reference_Table(problem,interpretation,var_t,var_i);
+	find mayInRelationindexColumns_reference_Index(problem,interpretation,var_i,var_ic);
+	find mayInRelationcolumn_reference_IndexColumn(problem,interpretation,var_ic,var_c);
+	find mayInstanceOfColumn_class(problem,interpretation,var_c);
+	neg find mustInRelation_pattern_queries_columnInTable(problem,interpretation,var_t,var_c);
+}
+private pattern currentInRelation_pattern_queries_icCons(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	var_ic, var_t, var_i, var_c)
+{
+	find interpretation(problem,interpretation);
+	// var_ic exported
+	// var_t exported
+	// var_i exported
+	// var_c exported
+	find mustInRelationindexes_reference_Table(problem,interpretation,var_t,var_i);
+	find mustInRelationindexColumns_reference_Index(problem,interpretation,var_i,var_ic);
+	find mustInRelationcolumn_reference_IndexColumn(problem,interpretation,var_ic,var_c);
+	find mustInstanceOfColumn_class(problem,interpretation,var_c);
+	neg find currentInRelation_pattern_queries_columnInTable(problem,interpretation,var_t,var_c);
+}
+
+//////////
+// 1.4 Containment Indexer
+//////////
+private pattern mustContains2(source: DefinedElement, target: DefinedElement) {
+	find mustContains4(_,_,source,target);
+}
+	
+private pattern mustContains4(problem:LogicProblem, interpretation:PartialInterpretation,
+	source: DefinedElement, target: DefinedElement)
+	{ find mustInRelationelements_reference_Database(problem,interpretation,source,target); }or
+	
+	{ find mustInRelationcolumns_reference_Table(problem,interpretation,source,target); }or
+	
+	{ find mustInRelationindexes_reference_Table(problem,interpretation,source,target); }or
+	
+	{ find mustInRelationindexColumns_reference_Index(problem,interpretation,source,target); }
+
+private pattern mustTransitiveContains(source,target) {
+	find mustContains2+(source,target);
+}
+
+//////////
+// 2. Invalidation Indexers
+//////////
+// 2.1 Invalidated by WF Queries
+//////////
+pattern invalidatedBy_pattern_queries_ref2thesame(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c1, var_c2)
+{
+	find mustInRelation_pattern_queries_ref2thesame(problem,interpretation,var_r,var_c1,var_c2);
+}
+pattern invalidatedBy_pattern_queries_equalRefs(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r1, var_r2, var_c1, var_c2)
+{
+	find mustInRelation_pattern_queries_equalRefs(problem,interpretation,var_r1,var_r2,var_c1,var_c2);
+}
+pattern invalidatedBy_pattern_queries_icCons(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_ic, var_t, var_i, var_c)
+{
+	find mustInRelation_pattern_queries_icCons(problem,interpretation,var_ic,var_t,var_i,var_c);
+}
+
+//////////
+// 3. Unfinishedness Indexers
+//////////
+// 3.1 Unfinishedness Measured by Multiplicity
+//////////
+private pattern existingMultiplicity_elements_reference_Database(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfDatabase_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationelements_reference_Database(problem,interpretation,object,_);
+}
+
+
+private pattern existingMultiplicity_columns_reference_Table(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfTable_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationcolumns_reference_Table(problem,interpretation,object,_);
+}
+
+
+private pattern existingMultiplicity_indexes_reference_Table(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfTable_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationindexes_reference_Table(problem,interpretation,object,_);
+}
+
+
+private pattern existingMultiplicity_foreignKeyColumns_reference_Reference(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfReference_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,object,_);
+}
+
+
+private pattern existingMultiplicity_primaryKeyColumns_reference_Reference(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfReference_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,object,_);
+}
+
+
+private pattern existingMultiplicity_indexColumns_reference_Index(problem:LogicProblem, interpretation:PartialInterpretation, object:DefinedElement, numberOfExistingReferences:java Integer) {
+	find interpretation(problem,interpretation);
+	find mustExist(problem,interpretation,object);
+	find mustInstanceOfIndex_class(problem,interpretation,object);
+	numberOfExistingReferences == count find mustInRelationindexColumns_reference_Index(problem,interpretation,object,_);
+}
+
+
+
+//////////
+// 3.2 Unfinishedness Measured by WF Queries
+//////////
+pattern unfinishedBy_pattern_queries_ref2thesame(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r, var_c1, var_c2)
+{
+	find currentInRelation_pattern_queries_ref2thesame(problem,interpretation,var_r,var_c1,var_c2);
+}
+pattern unfinishedBy_pattern_queries_equalRefs(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_r1, var_r2, var_c1, var_c2)
+{
+	find currentInRelation_pattern_queries_equalRefs(problem,interpretation,var_r1,var_r2,var_c1,var_c2);
+}
+pattern unfinishedBy_pattern_queries_icCons(problem:LogicProblem, interpretation:PartialInterpretation,
+	var_ic, var_t, var_i, var_c)
+{
+	find currentInRelation_pattern_queries_icCons(problem,interpretation,var_ic,var_t,var_i,var_c);
+}
+
+//////////
+// 4. Refinement Indexers
+//////////
+// 4.1 Object constructors
+//////////
+pattern hasElementInContainment(problem:LogicProblem, interpretation:PartialInterpretation)
+{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfTable_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfReference_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfIndex_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfIndexColumn_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfColumn_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfDatabase_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}or{
+	find interpretation(problem,interpretation);
+	find mustInstanceOfElement_class(problem,interpretation,root);
+	find mustExist(problem, interpretation, root);
+}
+pattern createObject_Database_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Database class");
+	find mayInstanceOfDatabase_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Table_class_by_elements_reference_Database(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Table class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"elements reference Database");
+	find mustInstanceOfDatabase_class(problem,interpretation,container);
+	find mayInstanceOfTable_class(problem,interpretation,newObject);
+	find mayInRelationelements_reference_Database(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Table_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Table class");
+	find mayInstanceOfTable_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Reference_class_by_elements_reference_Database(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Reference class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"elements reference Database");
+	find mustInstanceOfDatabase_class(problem,interpretation,container);
+	find mayInstanceOfReference_class(problem,interpretation,newObject);
+	find mayInRelationelements_reference_Database(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Reference_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Reference class");
+	find mayInstanceOfReference_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_IndexColumn_class_by_indexColumns_reference_Index(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"IndexColumn class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"indexColumns reference Index");
+	find mustInstanceOfIndex_class(problem,interpretation,container);
+	find mayInstanceOfIndexColumn_class(problem,interpretation,newObject);
+	find mayInRelationindexColumns_reference_Index(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_IndexColumn_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"IndexColumn class");
+	find mayInstanceOfIndexColumn_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Index_class_by_indexes_reference_Table(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Index class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"indexes reference Table");
+	find mustInstanceOfTable_class(problem,interpretation,container);
+	find mayInstanceOfIndex_class(problem,interpretation,newObject);
+	find mayInRelationindexes_reference_Table(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Index_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Index class");
+	find mayInstanceOfIndex_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Column_class_by_columns_reference_Table(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationInterpretation:PartialRelationInterpretation, typeInterpretation:PartialComplexTypeInterpretation,
+	container:DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Column class");
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationInterpretation,"columns reference Table");
+	find mustInstanceOfTable_class(problem,interpretation,container);
+	find mayInstanceOfColumn_class(problem,interpretation,newObject);
+	find mayInRelationcolumns_reference_Table(problem,interpretation,container,newObject);
+	find mustExist(problem, interpretation, container);
+	neg find mustExist(problem, interpretation, newObject);
+}
+pattern createObject_Column_class(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	typeInterpretation:PartialComplexTypeInterpretation)
+{
+	find interpretation(problem,interpretation);
+	neg find hasElementInContainment(problem,interpretation);
+	PartialInterpretation.partialtypeinterpratation(interpretation,typeInterpretation);
+	PartialComplexTypeInterpretation.interpretationOf.name(typeInterpretation,"Column class");
+	find mayInstanceOfColumn_class(problem,interpretation,newObject);
+	find mayExist(problem, interpretation, newObject);
+	neg find mustExist(problem, interpretation, newObject);
+}
+
+//////////
+// 4.2 Type refinement
+//////////
+pattern refineTypeTo_Database_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+}
+pattern refineTypeTo_Table_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfTable_class(problem,interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfTable_class(problem,interpretation,element);
+	neg find mustInstanceOfReference_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+}
+pattern refineTypeTo_Reference_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfReference_class(problem,interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfTable_class(problem,interpretation,element);
+	neg find mustInstanceOfReference_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+}
+pattern refineTypeTo_IndexColumn_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+}
+pattern refineTypeTo_Index_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+}
+pattern refineTypeTo_Column_class(problem:LogicProblem, interpretation:PartialInterpretation, element: DefinedElement) {
+	find interpretation(problem,interpretation);
+	PartialInterpretation.newElements(interpretation,element);
+	find mayInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfDatabase_class(problem,interpretation,element);
+	neg find mustInstanceOfIndexColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfIndex_class(problem,interpretation,element);
+	neg find mustInstanceOfColumn_class(problem,interpretation,element);
+	neg find mustInstanceOfElement_class(problem,interpretation,element);
+}
+
+//////////
+// 4.3 Relation refinement
+//////////
+pattern refineRelation_foreignKeyColumns_reference_Reference_and_foreignReferences_reference_Column(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation, oppositeInterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"foreignKeyColumns reference Reference");
+	PartialInterpretation.partialrelationinterpretation(interpretation,oppositeInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(oppositeInterpretation,"foreignReferences reference Column");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfReference_class(problem,interpretation,from);
+	find mustInstanceOfColumn_class(problem,interpretation,to);
+	find mayInRelationforeignKeyColumns_reference_Reference(problem,interpretation,from,to);
+	neg find mustInRelationforeignKeyColumns_reference_Reference(problem,interpretation,from,to);
+}
+
+pattern refineRelation_primaryKeyColumns_reference_Reference_and_primaryReferences_reference_Column(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation, oppositeInterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"primaryKeyColumns reference Reference");
+	PartialInterpretation.partialrelationinterpretation(interpretation,oppositeInterpretation);
+	PartialRelationInterpretation.interpretationOf.name(oppositeInterpretation,"primaryReferences reference Column");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfReference_class(problem,interpretation,from);
+	find mustInstanceOfColumn_class(problem,interpretation,to);
+	find mayInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,from,to);
+	neg find mustInRelationprimaryKeyColumns_reference_Reference(problem,interpretation,from,to);
+}
+
+pattern refineRelation_column_reference_IndexColumn(
+	problem:LogicProblem, interpretation:PartialInterpretation,
+	relationIterpretation:PartialRelationInterpretation,
+	from: DefinedElement, to: DefinedElement)
+{
+	find interpretation(problem,interpretation);
+	PartialInterpretation.partialrelationinterpretation(interpretation,relationIterpretation);
+	PartialRelationInterpretation.interpretationOf.name(relationIterpretation,"column reference IndexColumn");
+	find mustExist(problem, interpretation, from);
+	find mustExist(problem, interpretation, to);
+	find mustInstanceOfIndexColumn_class(problem,interpretation,from);
+	find mustInstanceOfColumn_class(problem,interpretation,to);
+	find mayInRelationcolumn_reference_IndexColumn(problem,interpretation,from,to);
+	neg find mustInRelationcolumn_reference_IndexColumn(problem,interpretation,from,to);
+}
+
+
+//////////
+// 5 Hints
+//////////
+
+//////////
+// 6 Unit Propagations
+//////////
+
+// Collected propagation preconditions:
+
+

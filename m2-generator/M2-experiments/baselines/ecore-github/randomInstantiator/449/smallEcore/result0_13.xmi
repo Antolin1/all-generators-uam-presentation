@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="m3F1PVMQfe2i79UZOYbXOOmVO5ioMYbEGbiaKtFybRYTqxaJx4HmCWWVN9uY">
+  <eClassifiers xsi:type="smallEcore:EDataType" name="lEFOxnLTM5fYwLmFmj8IP8b9tyceHiAXwR5cEsI6ZE1mVwesQA8ayRC1K3A5XcTpw"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="iv680CpCbW5Exlac2WG0gCievlj8wdGl8psyLbhXJwjwe1PDj3EOyv41Qo"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="qpUdIz9P8Qf7rY6i6B1HhLMW6uzh7o8uXcl4E0eN12ROeTCQs36vCD5SSCdABVNUAd9a">
+    <eLiterals name="ZhYdndZXzaqDfTiCOk2Qy6qoJ2qAMsum62eOnJmFYFNuFxMqDkNNKhRQQH8ac2H7u"/>
+    <eLiterals name="QCArGnuNE6FITXQWAT5oTugcuEODto8xJaeQHRchwptctFtyE669TOLcw6Ge"/>
+    <eLiterals name="vagOQBz2QNDg1LJp4LtG4mFrR5BrAi20NosQZTd5jEhGHkPijzXtk426yayBDV6NZNRE"/>
+    <eLiterals name="pUJ7MqZhBiGVybhUfs5TaGQxOybak7l1VGoif9BHTuoY9pmlkaXRBWttXMkupncJ"/>
+    <eLiterals name="VkTCS151cs4QqCHsxY3b8lnFN8GGd68N5coMm8BXjjVeHVc7JNvyCpx3Ml9BWV6J0EVG4u"/>
+    <eLiterals name="XwuWuYY1CHsW0PE7lIRUPAej7W1QQL8xiz3YT9FCAfiuFBOWb0rABXNDaCNXRs"/>
+    <eLiterals name="vOm7q59ftU3RpQWEL3RBttl282RKfPc8k6aTtZ1COpU7A0uNwQTWb4b8ujNczT"/>
+    <eLiterals name="U3LzNuxbyd92nxp26tvBZnWp6fg4FP8F3uDtKbHedmeLvgieNqheSgo34FvFlfw669qF"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="xOcY9m35hmuYUygcNyL7H7Ch7CVxDHranfqpdTinBkU0kYINDvJQPoOWKB" abstract="true" eSuperTypes="//@eClassifiers.3 //@eClassifiers.4"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="U4jgUlWw7UFvpW0UrDVThADCmFzncxnB4B3bWQGio1N6BXbmuWZLVlsH68lisEvhLROo6D" abstract="true" eSuperTypes="//@eClassifiers.4 //@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="wFFDAkEGrCaQAFwlYS1WR4r0Gbyty4g1QxVswlNhMOvo9yIQNZiA4gxiVRv1Dg4dBsx4n"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="kB14aFXbsxuva3wmMs2wZcNMFGnvpBZaUOBeY9EMsGtH6vRyhFUwWNMvUCi"/>
+</smallEcore:EPackage>

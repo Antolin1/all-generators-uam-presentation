@@ -1,0 +1,17 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_x5LMgBOKEea-w_MZcekr9g" specification="internal:&#10;&#9;var x: integer&#10;&#9;event ev1&#10;&#9;event ev2&#10;&#9;// FIXME: Add missing events!" name="Task_tags_example">
+    <regions xmi:id="_x5LzkhOKEea-w_MZcekr9g" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_x5LznBOKEea-w_MZcekr9g">
+        <outgoingTransitions xmi:id="_x5NoxROKEea-w_MZcekr9g" target="_x5MaqxOKEea-w_MZcekr9g"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_x5MaqxOKEea-w_MZcekr9g" name="A" incomingTransitions="_x5NoxROKEea-w_MZcekr9g">
+        <outgoingTransitions xmi:id="_9cNx4BOKEea-w_MZcekr9g" specification="ev2" target="_2WrSkBOKEea-w_MZcekr9g"/>
+        <outgoingTransitions xmi:id="_-KJO4BOKEea-w_MZcekr9g" specification="ev1 [false]&#10;/* FIXME Implement the guard&#10; * condition once it is specified!&#10; */" target="_2o98cBOKEea-w_MZcekr9g"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_2WrSkBOKEea-w_MZcekr9g" specification="" name="C" incomingTransitions="_9cNx4BOKEea-w_MZcekr9g _xSEWMCGhEeagJasKxg8koA"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_2o98cBOKEea-w_MZcekr9g" specification="entry / x = 1&#10;// TODO Add exit action" name="B" incomingTransitions="_-KJO4BOKEea-w_MZcekr9g" documentation="TODO Write a proper documentation!">
+        <outgoingTransitions xmi:id="_xSEWMCGhEeagJasKxg8koA" specification="always" target="_2WrSkBOKEea-w_MZcekr9g"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

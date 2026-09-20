@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_gf9J0LT4EeexEoqOyevFDQ" specification="internal:&#10;var creationTime: uint = block.timestamp&#10;&#10;interface:&#10;in event bid: void&#10;in event reveal : void&#10;in event g: void&#10;in event h: void&#10;in event i : void&#10;" name="StateMachine" domainID="com.yakindu.domain.solidity">
+    <regions xmi:id="_ggFssrT4EeexEoqOyevFDQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_ggNogbT4EeexEoqOyevFDQ">
+        <outgoingTransitions xmi:id="_ggTIEbT4EeexEoqOyevFDQ" specification="" target="_ggPdsLT4EeexEoqOyevFDQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ggPdsLT4EeexEoqOyevFDQ" specification="" name="AcceptingBlindedBids" incomingTransitions="_ggTIEbT4EeexEoqOyevFDQ">
+        <outgoingTransitions xmi:id="_YSinALT5Eeer5r9xlDFCEw" specification="always [block.timestamp &gt;= creationTime +10 ]" target="_VpaooLT5Eeer5r9xlDFCEw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_VpaooLT5Eeer5r9xlDFCEw" name="RevealBids" incomingTransitions="_YSinALT5Eeer5r9xlDFCEw">
+        <outgoingTransitions xmi:id="_a3jhcLT5Eeer5r9xlDFCEw" specification="always [block.timestamp &gt;= creationTime + 12]" target="_YqFkULT5Eeer5r9xlDFCEw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_YqFkULT5Eeer5r9xlDFCEw" name="AnotherState" incomingTransitions="_a3jhcLT5Eeer5r9xlDFCEw">
+        <outgoingTransitions xmi:id="_dpSCMLT5Eeer5r9xlDFCEw" specification="always" target="_bjc-ILT5Eeer5r9xlDFCEw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_bjc-ILT5Eeer5r9xlDFCEw" name="AreWeDoneYet" incomingTransitions="_dpSCMLT5Eeer5r9xlDFCEw">
+        <outgoingTransitions xmi:id="_f7bD8LT5Eeer5r9xlDFCEw" specification="always" target="_enORILT5Eeer5r9xlDFCEw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_enORILT5Eeer5r9xlDFCEw" name="Finished" incomingTransitions="_f7bD8LT5Eeer5r9xlDFCEw"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

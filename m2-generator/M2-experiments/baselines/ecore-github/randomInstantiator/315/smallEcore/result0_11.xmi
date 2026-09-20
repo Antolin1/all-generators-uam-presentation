@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="g6AhVGkCD3YDFLm07LC5KWyk7d7jA50ZwjmYh1AI2MgCFjSMXLfKMztXjsCs0iLVDgoj2">
+  <eClassifiers xsi:type="smallEcore:EDataType" name="NnEfHwowB5ZJEOSAR0YfIgm3ozJVhDsHRO9uuA0Kj5kxtop9S5QGH9cD9DVHN83AkNeujM"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="tpwEcIaYiyQwSPbXeWbCom5i3DLLwmOkt40CuS1yuCRi1YxkXJsAYbRWAVinxA">
+    <eLiterals name="mcooDfKlY9ZlV7oGKea311sx0XmASQrcPSlrye7LiSRQSdLjUD6EbYkism2b"/>
+    <eLiterals name="UZkK7oiigu1IwNFwo9WYJveRE5Xho5mjkaHsDvQza4IzdKBGlA3QDc9ah02PLJenG3i"/>
+    <eLiterals name="Cwvje3k9HbIKJ24WHrIk15ur6ZBJb5tLxcZbmStznpGVS8AxtrIWiYJOluKM2qhySdTTA"/>
+    <eLiterals name="8i94xFFsO1iudfYoTd8gVodCY2EnfNZP5XzHOwSmG4AW2RimG0NwAq1aSqrJHxtJ"/>
+    <eLiterals name="qn36tBaEDcOEAL6xQ9S4JXdAnZr5ZfFUtreti9vfE4Xky9R8Hbo1dWObLC3yqcaXd"/>
+    <eLiterals name="zG3DrhMlX4N3Smb7RrXjJKuPNmp55KtBljHrjMtY0kkcUwiWnkVUPH2WH3CjFr"/>
+    <eLiterals name="iQPiPkSoEOsLN57GVBI6PP9vrkdtjnExpXxAMkgT3Gd4yBybBB7HV4mtWBXH"/>
+    <eLiterals name="qycWw7Js91Zj8KjHLyHoQ2RyssmTDtMYqpNoaBJaxTyEo889GN4HqrzMwn1ZgC3SnTfY9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="FCXNfaJAzA4HaGuqZcyfjLVB91FCFXt1LT8xN8Onk2SMTLWmBZMLqDPIbWFJ" abstract="true" eSuperTypes="//@eClassifiers.4 //@eClassifiers.2 //@eClassifiers.5"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="ME2icbFabOJi7qyA9cszfoEAzJ9IerXciJI2fWvN4na2ZtAs7VpyYoPumcuY7"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="WaBgV09triBobXrBlwQBqTT9R56LLepzb2kUiTMrbDGknrofisj2xIXdOSxXS94" eSuperTypes="//@eClassifiers.4 //@eClassifiers.5 //@eClassifiers.2"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="wB5CG8u0BPaxw36cSflj1Qht5QGJiAqwrpZjdKwUcxzlXgnc1jIx4WtsWBv0XTa7" eSuperTypes="//@eClassifiers.2 //@eClassifiers.4 //@eClassifiers.5"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="XRS1jjHsj7SAWvw1NSxmwUHUE6RKbp0S9Np3B2N7DJI0bROFgWw7L4GV0OfPIVDGDfp"/>
+</smallEcore:EPackage>

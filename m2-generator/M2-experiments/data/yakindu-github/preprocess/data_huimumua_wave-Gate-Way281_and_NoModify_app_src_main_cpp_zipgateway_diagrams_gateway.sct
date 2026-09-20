@@ -1,0 +1,30 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_E7sMIGGwEeKCpZ80Cuvwhw" name="gateway">
+    <regions xmi:id="_E7_uIWGwEeKCpZ80Cuvwhw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_E8Gb0WGwEeKCpZ80Cuvwhw">
+        <outgoingTransitions xmi:id="_E8I4FWGwEeKCpZ80Cuvwhw" target="_E8HC52GwEeKCpZ80Cuvwhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_E8HC52GwEeKCpZ80Cuvwhw" name="Init" incomingTransitions="_E8I4FWGwEeKCpZ80Cuvwhw">
+        <outgoingTransitions xmi:id="_wp4qYGGwEeKCpZ80Cuvwhw" specification="" target="_KXgUkGGwEeKCpZ80Cuvwhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_KXgUkGGwEeKCpZ80Cuvwhw" name="Idle" incomingTransitions="_wp4qYGGwEeKCpZ80Cuvwhw _Qd2yUGGxEeKCpZ80Cuvwhw _SC8g0GGxEeKCpZ80Cuvwhw _S2SpUGGxEeKCpZ80Cuvwhw _WJ8ycGGxEeKCpZ80Cuvwhw">
+        <outgoingTransitions xmi:id="_xoGmIGGwEeKCpZ80Cuvwhw" specification="" target="_LzM2gGGwEeKCpZ80Cuvwhw"/>
+        <outgoingTransitions xmi:id="_1Nv3IGGwEeKCpZ80Cuvwhw" specification="" target="_SvZzoGGwEeKCpZ80Cuvwhw"/>
+        <outgoingTransitions xmi:id="_11PU8GGwEeKCpZ80Cuvwhw" specification="" target="_UNF5oGGwEeKCpZ80Cuvwhw"/>
+        <outgoingTransitions xmi:id="_VqB8QGGxEeKCpZ80Cuvwhw" specification="" target="_NMiLgGGxEeKCpZ80Cuvwhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_LzM2gGGwEeKCpZ80Cuvwhw" name="Forwarding" incomingTransitions="_xoGmIGGwEeKCpZ80Cuvwhw">
+        <outgoingTransitions xmi:id="_Qd2yUGGxEeKCpZ80Cuvwhw" specification="" target="_KXgUkGGwEeKCpZ80Cuvwhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_SvZzoGGwEeKCpZ80Cuvwhw" name="Probing" incomingTransitions="_1Nv3IGGwEeKCpZ80Cuvwhw">
+        <outgoingTransitions xmi:id="_SC8g0GGxEeKCpZ80Cuvwhw" specification="" target="_KXgUkGGwEeKCpZ80Cuvwhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_UNF5oGGwEeKCpZ80Cuvwhw" name="MailboxSend" incomingTransitions="_11PU8GGwEeKCpZ80Cuvwhw">
+        <outgoingTransitions xmi:id="_S2SpUGGxEeKCpZ80Cuvwhw" specification="" target="_KXgUkGGwEeKCpZ80Cuvwhw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_NMiLgGGxEeKCpZ80Cuvwhw" name="NetworkManagement" incomingTransitions="_VqB8QGGxEeKCpZ80Cuvwhw">
+        <outgoingTransitions xmi:id="_WJ8ycGGxEeKCpZ80Cuvwhw" specification="" target="_KXgUkGGwEeKCpZ80Cuvwhw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

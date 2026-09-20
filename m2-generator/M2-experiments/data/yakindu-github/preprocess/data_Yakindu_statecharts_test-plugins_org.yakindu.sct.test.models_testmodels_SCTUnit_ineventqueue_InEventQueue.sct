@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_uu3csBgDEemhUpAihcYpFA" specification="namespace ineventqueue&#10;&#10;@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;interface:&#10;// Define events&#10;// and variables here. &#10;// Use CTRL + Space for content assist.&#10;var cycles : integer = 0&#10;&#10;in event e&#10;in event f : integer&#10;&#10;operation askOracle() : void&#10;&#10;interface i:&#10; &#10;in event g&#10;&#10;&#10;internal:&#10;&#10;event h&#10;&#10;oncycle / cycles += 1&#10;" namespace="ineventqueue" name="InEventQueue">
+    <regions xmi:id="_0KYDIBgDEemhUpAihcYpFA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_0KYDIRgDEemhUpAihcYpFA">
+        <outgoingTransitions xmi:id="_0KYDIhgDEemhUpAihcYpFA" target="_0KYqMBgDEemhUpAihcYpFA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_0KYqMBgDEemhUpAihcYpFA" specification="" name="A" incomingTransitions="_0KYDIhgDEemhUpAihcYpFA _0KbGdhgDEemhUpAihcYpFA">
+        <outgoingTransitions xmi:id="_0KYqMhgDEemhUpAihcYpFA" specification="always" target="_0KafahgDEemhUpAihcYpFA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_0KZRQhgDEemhUpAihcYpFA" specification="f / raise h" name="B" incomingTransitions="_0KbtgBgDEemhUpAihcYpFA">
+        <outgoingTransitions xmi:id="_0KZ4WBgDEemhUpAihcYpFA" specification="always [ !f ]" target="_0KafahgDEemhUpAihcYpFA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_0KafZRgDEemhUpAihcYpFA" name="C" incomingTransitions="_0KbthBgDEemhUpAihcYpFA">
+        <outgoingTransitions xmi:id="_0KafZxgDEemhUpAihcYpFA" specification="always" target="_0KafahgDEemhUpAihcYpFA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_0KafahgDEemhUpAihcYpFA" specification="entry / askOracle&#10;" name="dispatch" incomingTransitions="_0KafZxgDEemhUpAihcYpFA _0KZ4WBgDEemhUpAihcYpFA _0KYqMhgDEemhUpAihcYpFA">
+        <outgoingTransitions xmi:id="_0KbGdhgDEemhUpAihcYpFA" specification="e" target="_0KYqMBgDEemhUpAihcYpFA"/>
+        <outgoingTransitions xmi:id="_0KbtgBgDEemhUpAihcYpFA" specification="f" target="_0KZRQhgDEemhUpAihcYpFA"/>
+        <outgoingTransitions xmi:id="_0KbthBgDEemhUpAihcYpFA" specification="i.g " target="_0KafZRgDEemhUpAihcYpFA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

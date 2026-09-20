@@ -1,0 +1,10 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_DIlH4PZ4EeWYUs-59Co8bA" specification="interface:&#10;" name="default">
+    <regions xmi:id="_DJYZIPZ4EeWYUs-59Co8bA" name="main region">
+      <vertices xsi:type="sgraph:State" xmi:id="_DJ26QPZ4EeWYUs-59Co8bA" name="StateA" incomingTransitions="_d2xcAPcsEeW_G_kvoQD5Ug"/>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_dcxnoPcsEeW_G_kvoQD5Ug" name="Name">
+        <outgoingTransitions xmi:id="_d2xcAPcsEeW_G_kvoQD5Ug" specification="" target="_DJ26QPZ4EeWYUs-59Co8bA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_lIoDMMv-EeGZoP1H_25Cxw" specification="interface:&#13;&#10;out event e1&#13;&#10;in event e2" name="RaiseEvent">
+    <regions xmi:id="_lI6-Isv-EeGZoP1H_25Cxw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_lJEvJsv-EeGZoP1H_25Cxw">
+        <outgoingTransitions xmi:id="_lJN5Ecv-EeGZoP1H_25Cxw" target="_lJEvMcv-EeGZoP1H_25Cxw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_lJEvMcv-EeGZoP1H_25Cxw" name="StateA" incomingTransitions="_lJN5Ecv-EeGZoP1H_25Cxw">
+        <outgoingTransitions xmi:id="_x8CrUMv-EeGZoP1H_25Cxw" specification="e2" target="_wsBN4Mv-EeGZoP1H_25Cxw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_wsBN4Mv-EeGZoP1H_25Cxw" specification="entry / raise e1" name="StateB" incomingTransitions="_x8CrUMv-EeGZoP1H_25Cxw"/>
+    </regions>
+    <regions xmi:id="_z616UMv-EeGZoP1H_25Cxw" name="second region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_1WMeAMv-EeGZoP1H_25Cxw">
+        <outgoingTransitions xmi:id="_3p3JwMv-EeGZoP1H_25Cxw" specification="" target="_18MHAMv-EeGZoP1H_25Cxw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_18MHAMv-EeGZoP1H_25Cxw" name="SateA" incomingTransitions="_3p3JwMv-EeGZoP1H_25Cxw">
+        <outgoingTransitions xmi:id="_6m9NAMv-EeGZoP1H_25Cxw" specification="e1" target="_5QFgsMv-EeGZoP1H_25Cxw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_5QFgsMv-EeGZoP1H_25Cxw" name="StateB" incomingTransitions="_6m9NAMv-EeGZoP1H_25Cxw"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

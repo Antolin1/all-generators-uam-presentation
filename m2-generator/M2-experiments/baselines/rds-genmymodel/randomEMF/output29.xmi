@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rdsSimplified:Database xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rdsSimplified="http://www.example.org/rdsSimplified">
+  <elements xsi:type="rdsSimplified:Table">
+    <columns foreignReferences="//@elements.37"/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns foreignReferences="//@elements.1"/>
+    <columns foreignReferences="//@elements.2" primaryReferences="//@elements.3 //@elements.13"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.0/@columns.8" primaryKeyColumns="//@elements.4/@columns.3"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.0/@columns.9" primaryKeyColumns="//@elements.4/@columns.4"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.4/@columns.5" primaryKeyColumns="//@elements.0/@columns.9"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns foreignReferences="//@elements.10" primaryReferences="//@elements.8 //@elements.25"/>
+    <columns primaryReferences="//@elements.1"/>
+    <columns primaryReferences="//@elements.2"/>
+    <columns foreignReferences="//@elements.3"/>
+    <columns/>
+    <columns/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns foreignReferences="//@elements.12"/>
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns primaryReferences="//@elements.17"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns foreignReferences="//@elements.14"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.9/@columns.2" primaryKeyColumns="//@elements.4/@columns.2"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns foreignReferences="//@elements.8"/>
+    <columns/>
+    <columns foreignReferences="//@elements.23 //@elements.26" primaryReferences="//@elements.32"/>
+    <columns foreignReferences="//@elements.27" primaryReferences="//@elements.36"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.4/@columns.2" primaryKeyColumns="//@elements.11/@columns.0"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns primaryReferences="//@elements.10"/>
+    <columns/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.5/@columns.0" primaryKeyColumns="//@elements.15/@columns.1"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.15/@columns.2" primaryKeyColumns="//@elements.0/@columns.9"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.6/@columns.0" primaryKeyColumns="//@elements.15/@columns.3"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns foreignReferences="//@elements.16" primaryReferences="//@elements.20"/>
+    <columns primaryReferences="//@elements.12"/>
+    <columns foreignReferences="//@elements.13 //@elements.24 //@elements.40"/>
+    <columns foreignReferences="//@elements.21" primaryReferences="//@elements.14"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.15/@columns.0" primaryKeyColumns="//@elements.18/@columns.4"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.18/@columns.5" primaryKeyColumns="//@elements.5/@columns.4"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns primaryReferences="//@elements.35"/>
+    <columns/>
+    <columns/>
+    <columns primaryReferences="//@elements.16"/>
+    <columns foreignReferences="//@elements.17"/>
+    <columns primaryReferences="//@elements.30"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Table"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.22/@columns.0" primaryKeyColumns="//@elements.15/@columns.0"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.15/@columns.3" primaryKeyColumns="//@elements.22/@columns.4"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns foreignReferences="//@elements.20"/>
+    <columns/>
+    <columns primaryReferences="//@elements.29"/>
+    <columns/>
+    <columns primaryReferences="//@elements.21"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.9/@columns.4" primaryKeyColumns="//@elements.28/@columns.2"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.15/@columns.2" primaryKeyColumns="//@elements.28/@columns.3"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.28/@columns.4" primaryKeyColumns="//@elements.4/@columns.2"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.9/@columns.4" primaryKeyColumns="//@elements.28/@columns.6"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.9/@columns.5" primaryKeyColumns="//@elements.28/@columns.6"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns primaryReferences="//@elements.39"/>
+    <columns primaryReferences="//@elements.23"/>
+    <columns primaryReferences="//@elements.24"/>
+    <columns foreignReferences="//@elements.25"/>
+    <columns/>
+    <columns primaryReferences="//@elements.26 //@elements.27"/>
+    <columns/>
+    <columns foreignReferences="//@elements.33"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.31/@columns.0" primaryKeyColumns="//@elements.22/@columns.2"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.31/@columns.1" primaryKeyColumns="//@elements.18/@columns.6"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns foreignReferences="//@elements.29"/>
+    <columns foreignReferences="//@elements.30"/>
+    <columns foreignReferences="//@elements.42"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.34/@columns.2" primaryKeyColumns="//@elements.9/@columns.4"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.28/@columns.8" primaryKeyColumns="//@elements.34/@columns.2"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns foreignReferences="//@elements.32" primaryReferences="//@elements.33"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.38/@columns.0" primaryKeyColumns="//@elements.18/@columns.1"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.38/@columns.0" primaryKeyColumns="//@elements.9/@columns.5"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.0/@columns.0" primaryKeyColumns="//@elements.38/@columns.0"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns foreignReferences="//@elements.35 //@elements.36" primaryReferences="//@elements.37"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.41/@columns.1" primaryKeyColumns="//@elements.28/@columns.1"/>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.15/@columns.2" primaryKeyColumns="//@elements.41/@columns.1"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns foreignReferences="//@elements.39" primaryReferences="//@elements.40"/>
+  </elements>
+  <elements xsi:type="rdsSimplified:Reference" foreignKeyColumns="//@elements.31/@columns.2" primaryKeyColumns="//@elements.43/@columns.3"/>
+  <elements xsi:type="rdsSimplified:Table">
+    <columns/>
+    <columns/>
+    <columns/>
+    <columns primaryReferences="//@elements.42"/>
+    <columns/>
+    <columns/>
+    <columns/>
+  </elements>
+</rdsSimplified:Database>

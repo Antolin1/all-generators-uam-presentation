@@ -1,0 +1,45 @@
+import static de.hub.randomemf.runtime.Random.*
+
+// Máquinas de estados Yakindu simplificadas: regiones con un estado inicial, estados (a veces
+// con regiones anidadas), pseudoestados y transiciones hacia vértices ya existentes.
+// Usa el metamodelo yakindu_simplified.ecore de esta misma carpeta.
+generator YakinduStatecharts for yakindumm
+    in "platform:/resource/metamodels/yakindu_simplified.ecore" {
+
+  Statechart: Statechart ->
+    regions += Region#(1 + Poisson(0.5))
+  ;
+
+  Region: Region ->
+    vertices += Entry
+    vertices += Vertex#(2 + Poisson(2))
+  ;
+
+  // 'depth' cuenta las reglas anidadas: limita la profundidad de los estados compuestos
+  State: State ->
+    outgoingTransitions += Transition#Poisson(1)
+    regions += Region#(if (depth < 9 && UniformBool(0.3)) 1 else 0)
+  ;
+
+  Entry: Entry ->
+    outgoingTransitions += Transition
+  ;
+
+  Choice: Choice ->
+    outgoingTransitions += Transition#2
+  ;
+
+  FinalState: FinalState ->
+  ;
+
+  // Ojo: en RandomEMF la última alternativa de un 'alter' sale menos de lo que indica su prioridad (ver README)
+  alter Vertex: Vertex ->
+    State#6 | Choice#2 | FinalState#3
+  ;
+
+  // Una referencia @(...) se resuelve al final, cuando ya existe el modelo entero; ':State' es la clase
+  // concreta con la que se crea el marcador provisional.
+  Transition: Transition ->
+    target:State := @(Uniform(model.eAllContents.filter(typeof(mm.yakindumm.Vertex)).filter[!(it instanceof mm.yakindumm.Entry)].toList))
+  ;
+}

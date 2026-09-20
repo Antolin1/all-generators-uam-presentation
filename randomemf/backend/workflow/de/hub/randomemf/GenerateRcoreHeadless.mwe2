@@ -1,0 +1,63 @@
+module de.hub.randomemf.GenerateRcoreHeadless
+
+// Variante headless de RandomEMF/plugins/de.hub.rcore/src/de/hub/randomemf/GenerateRcore.mwe2:
+// misma gramática y mismos fragmentos de runtime, pero sin los de UI de Eclipse
+// (outline, quickfix, content assist, refactoring, compare, ...), que aquí no hacen falta.
+
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.xtext.generator.*
+
+// igual que el original: se ejecuta con cwd = directorio del proyecto, dentro de un "workspace"
+var grammarURI = "classpath:/de/hub/randomemf/Rcore.xtext"
+var fileExtensions = "rcore"
+var projectName = "de.hub.rcore"
+var runtimeProject = "../${projectName}"
+var encoding = "UTF-8"
+
+Workflow {
+    bean = StandaloneSetup {
+        scanClassPath = true
+        platformUri = "${runtimeProject}/.."
+        registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+        registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+        registerGeneratedEPackage = "org.eclipse.emf.ecore.EcorePackage"
+        registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+    }
+
+    component = DirectoryCleaner {
+        directory = "${runtimeProject}/src-gen"
+    }
+
+    component = DirectoryCleaner {
+        directory = "${runtimeProject}/model/generated"
+    }
+
+    component = Generator {
+        pathRtProject = runtimeProject
+        projectNameRt = projectName
+        encoding = encoding
+        language = auto-inject {
+            uri = grammarURI
+
+            fragment = grammarAccess.GrammarAccessFragment auto-inject {}
+            fragment = ecore.EMFGeneratorFragment auto-inject {}
+            fragment = serializer.SerializerFragment auto-inject {
+                generateStub = false
+            }
+            fragment = resourceFactory.ResourceFactoryFragment auto-inject {}
+            fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {}
+            fragment = validation.ValidatorFragment auto-inject {}
+            fragment = scoping.ImportNamespacesScopingFragment auto-inject {}
+            fragment = exporting.QualifiedNamesFragment auto-inject {}
+            fragment = builder.BuilderIntegrationFragment auto-inject {}
+            fragment = generator.GeneratorFragment auto-inject {}
+            // el clon ya trae RandomEMFFormatter.xtend: sin stub Java (daría "duplicate class")
+            fragment = formatting.FormatterFragment auto-inject {
+                generateStub = false
+            }
+            fragment = types.TypesGeneratorFragment auto-inject {}
+            fragment = xbase.XbaseGeneratorFragment auto-inject {}
+            fragment = xbase.XtypeGeneratorFragment auto-inject {}
+        }
+    }
+}

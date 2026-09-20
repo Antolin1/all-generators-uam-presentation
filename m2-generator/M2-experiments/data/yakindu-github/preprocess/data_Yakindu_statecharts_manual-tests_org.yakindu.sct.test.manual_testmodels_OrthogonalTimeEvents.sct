@@ -1,0 +1,27 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_ppJqEOxVEeq6I7NcaFK3fA" specification="@EventDriven&#10;@ChildFirstExecution&#10;interface:&#10;in event myEvent" name="OrthogonalTimeEvents">
+    <regions xmi:id="_pprOgOxVEeq6I7NcaFK3fA" name="r1">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_pqNaAOxVEeq6I7NcaFK3fA">
+        <outgoingTransitions xmi:id="_pqVV0OxVEeq6I7NcaFK3fA" target="_pqP2QOxVEeq6I7NcaFK3fA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_pqP2QOxVEeq6I7NcaFK3fA" name="StateA" incomingTransitions="_pqVV0OxVEeq6I7NcaFK3fA">
+        <outgoingTransitions xmi:id="_tTMS4OxVEeq6I7NcaFK3fA" specification="myEvent" target="_sqOOYOxVEeq6I7NcaFK3fA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_sqOOYOxVEeq6I7NcaFK3fA" name="Zig" incomingTransitions="_tTMS4OxVEeq6I7NcaFK3fA _vbD-UOxVEeq6I7NcaFK3fA">
+        <outgoingTransitions xmi:id="_umz24OxVEeq6I7NcaFK3fA" specification="after 1 s" target="_t7nk0OxVEeq6I7NcaFK3fA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_t7nk0OxVEeq6I7NcaFK3fA" name="Zag" incomingTransitions="_umz24OxVEeq6I7NcaFK3fA">
+        <outgoingTransitions xmi:id="_vbD-UOxVEeq6I7NcaFK3fA" specification="after 1 s" target="_sqOOYOxVEeq6I7NcaFK3fA"/>
+      </vertices>
+    </regions>
+    <regions xmi:id="_wLbrUOxVEeq6I7NcaFK3fA" name="r2">
+      <vertices xsi:type="sgraph:State" xmi:id="_wqe-0OxVEeq6I7NcaFK3fA" name="X" incomingTransitions="_xv1dUOxVEeq6I7NcaFK3fA">
+        <outgoingTransitions xmi:id="_x_22UOxVEeq6I7NcaFK3fA" specification="after 5 s" target="_xHUr0OxVEeq6I7NcaFK3fA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_xHUr0OxVEeq6I7NcaFK3fA" name="Y" incomingTransitions="_x_22UOxVEeq6I7NcaFK3fA"/>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_xgCt0OxVEeq6I7NcaFK3fA">
+        <outgoingTransitions xmi:id="_xv1dUOxVEeq6I7NcaFK3fA" specification="" target="_wqe-0OxVEeq6I7NcaFK3fA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

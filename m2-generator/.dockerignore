@@ -1,0 +1,10 @@
+**/.git
+**/__pycache__
+**/node_modules
+**/dist
+M2-experiments
+frontend
+trained-models
+M2/datasets
+M2/models
+M2/tests

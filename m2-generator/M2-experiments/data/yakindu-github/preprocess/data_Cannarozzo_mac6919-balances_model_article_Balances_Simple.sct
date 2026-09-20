@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_wwA14B1nEeuu1vOaP5H_NQ" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;interface:&#10;&#10;    // Define events&#10;// and variables here. &#10;// Use CTRL + Space for content assist.&#10;&#10;&#10;&#10;interface Client:&#10;&#9;in event submit&#10;&#9;in event clientExit&#10;&#10;interface Middleware:&#10;&#9;in event requestDispatcherForward&#10;&#9;in event responseErrorOccurrence&#10;&#9;in event errorResponse&#10;&#9;&#10;interface Api:&#10;&#9;in event response&#10;&#9;in event errorResponse&#10;&#10;" name="CallHandling">
+    <regions xmi:id="_BR0elx8ZEeuYcJuVi0vlWA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_fF-AUCLpEeuod97MscYOzA">
+        <outgoingTransitions xmi:id="_rxGJoCReEeu3lb7DwkgYwg" specification="" target="_nf6ocCReEeu3lb7DwkgYwg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_au7SACRyEeupX6Bec5qlFg" specification="" name="Bank API" incomingTransitions="_IktdlkPdEeu2ivOj1ggFGA">
+        <outgoingTransitions xmi:id="_q0jmcDOUEeuA_rqXCbq7MA" specification="Api.response" target="_nf6ocCReEeu3lb7DwkgYwg"/>
+        <outgoingTransitions xmi:id="_0Mwr8DOUEeuA_rqXCbq7MA" specification="Api.errorResponse" target="_nf6ocCReEeu3lb7DwkgYwg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_IksPdkPdEeu2ivOj1ggFGA" specification="" name="Middleware" incomingTransitions="_pEf-EDOUEeuA_rqXCbq7MA">
+        <outgoingTransitions xmi:id="_IktdlkPdEeu2ivOj1ggFGA" specification="Middleware.requestDispatcherForward" target="_au7SACRyEeupX6Bec5qlFg"/>
+        <outgoingTransitions xmi:id="_I2ejAEPdEeu2ivOj1ggFGA" specification="Middleware.errorResponse" target="_nf6ocCReEeu3lb7DwkgYwg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_nf6ocCReEeu3lb7DwkgYwg" specification="" name="Client" incomingTransitions="_rxGJoCReEeu3lb7DwkgYwg _I2ejAEPdEeu2ivOj1ggFGA _q0jmcDOUEeuA_rqXCbq7MA _0Mwr8DOUEeuA_rqXCbq7MA">
+        <outgoingTransitions xmi:id="_xFP1ICSxEeupX6Bec5qlFg" specification="Client.clientExit" target="_wawtsCSxEeupX6Bec5qlFg"/>
+        <outgoingTransitions xmi:id="_pEf-EDOUEeuA_rqXCbq7MA" specification="Client.submit" target="_IksPdkPdEeu2ivOj1ggFGA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_wawtsCSxEeupX6Bec5qlFg" incomingTransitions="_xFP1ICSxEeupX6Bec5qlFg"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_VTHl4AETEeiXS5l_BRhbwg" specification="interface:&#10;// Define events and&#10;// and variables here. &#10;//Use CTRL + Space for content assist." name="SyncOutgoingTransition">
+    <regions xmi:id="_VTKpMAETEeiXS5l_BRhbwg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_VTUaMQETEeiXS5l_BRhbwg">
+        <outgoingTransitions xmi:id="_VTZ5wQETEeiXS5l_BRhbwg" target="_VTWPYQETEeiXS5l_BRhbwg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_VTWPYQETEeiXS5l_BRhbwg" name="StateA" incomingTransitions="_VTZ5wQETEeiXS5l_BRhbwg">
+        <regions xmi:id="_gOThEAETEeiXS5l_BRhbwg" name="">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_gOThEQETEeiXS5l_BRhbwg">
+            <outgoingTransitions xmi:id="_gOThEgETEeiXS5l_BRhbwg" specification="" target="_gOUIIAETEeiXS5l_BRhbwg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_gOUIIAETEeiXS5l_BRhbwg" name="StateB" incomingTransitions="_gOThEgETEeiXS5l_BRhbwg">
+            <outgoingTransitions xmi:id="_XwTaAAETEeiXS5l_BRhbwg" specification="always" target="_WjwHUAETEeiXS5l_BRhbwg"/>
+          </vertices>
+        </regions>
+        <regions xmi:id="_hL3VgAETEeiXS5l_BRhbwg" name="">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_hL3VgQETEeiXS5l_BRhbwg">
+            <outgoingTransitions xmi:id="_hL38kAETEeiXS5l_BRhbwg" specification="" target="_hL38kQETEeiXS5l_BRhbwg"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_hL38kQETEeiXS5l_BRhbwg" name="State1" incomingTransitions="_hL38kAETEeiXS5l_BRhbwg">
+            <outgoingTransitions xmi:id="_il3OUAETEeiXS5l_BRhbwg" specification="always" target="_WjwHUAETEeiXS5l_BRhbwg"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:Synchronization" xmi:id="_WjwHUAETEeiXS5l_BRhbwg" incomingTransitions="_XwTaAAETEeiXS5l_BRhbwg _il3OUAETEeiXS5l_BRhbwg"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

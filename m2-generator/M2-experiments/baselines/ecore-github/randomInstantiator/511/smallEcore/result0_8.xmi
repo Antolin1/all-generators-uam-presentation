@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="hKXRPC5QDXaHv6QeYmamPa6zGKuQldYwXL4iXlZ0SJuvw3swGd1Sh80DqsGUx5M">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="tTt2MoZ6j4xFm06xAA9MGQujm6dWHmCxe3y1PeUozytgZzdTqJ1aPxAXWMpor">
+    <eLiterals name="hM3q5wm8skzYdi0cwX64CgvswWYOQkcJhauAcbJje6L6iMRO43eL75bqNj0bDMVugz"/>
+    <eLiterals name="YBq2cs2h3Jl8FwC1LnnfTPUshHoGZ7UL3lMz0ein5v6zdsJO05MLvDb73P8P1UML"/>
+    <eLiterals name="NKXSpXs5vZN6GDiArnvPOl9ZZhgVa3V91Q2sso4BXJAu61wJjFoe0KU5pC0"/>
+    <eLiterals name="CXHUctCg84xcWuSWHHW519khUlhTZYkWct83etjyDLhfT9Neu1lruPl1xgNjx"/>
+    <eLiterals name="QKBBJbpzOELGSoLmvN6QYBaU0UqtOQygIjZqYjKPigSCEJWOEIXDQa8kNJNgeasqQ"/>
+    <eLiterals name="0eVPI3ZRnarAkxVfxk5Yjz0dNUNLfx7UMFcjc8NXlnNq1gMWy9IiW5Plhdd2zEzavWXi3"/>
+    <eLiterals name="WhfrC7cGsYYOk6FKMil9pbheVKbP7HjbPWH4O40Igk8k9bpQVQ9DuWCGR6LDTtHBTBpa"/>
+    <eLiterals name="P1AAz4c359rTbWIkvQpIWMKUICPlT2ytXppG70mZ5KiNJnEVZXCDiAsZSfe"/>
+    <eLiterals name="ugSFGAB0fzO0uD9twuYGCE7GyyDcPcF4is3RprHKSWQdBTHYgdEqrrpgCmnIBt3pZHObp"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="Na7G5HAvXIb9atNUR97AC6yTwjfQ2iKKw0IFUnZc9a9g5lPsocsI4Y2bXAlSIc90A"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="X7rA4MVYhwSVV0pCkbMcF5x6LbfDafAnLScCHFru8gbajdzxHMO71VZzoF1rNua8vdVMMS"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="vR1lErA1yhy6xhR4ArqHv9Iv1lhhf9aEKnV61aWM7B74IyFUBwOKYoX7VCZZgwv" abstract="true" eSuperTypes="//@eClassifiers.3"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="fVIKyoMiDWPDtF3COQonT1xYvf2m3I77Il5hIOn5uPdNykrJa8TIDFi5BE7HvUoq8gP"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="CtwHDoCm1djLp5rekvGTnwVTeb224iTbInjfAF7w0cL7SxQTp9eU3ZKRyjL2"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="bbLUSNkQaaFFwY5S2HMdjjlHS8BZMld3thstPfLSmMG0wNwR0Gd9LxAZyU9LLah"/>
+</smallEcore:EPackage>

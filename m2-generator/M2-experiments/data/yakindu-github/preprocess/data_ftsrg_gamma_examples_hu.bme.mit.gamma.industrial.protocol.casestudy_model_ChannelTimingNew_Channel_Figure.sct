@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_cpjO8A8NEeqviYeA6lqTwA" specification="@ChildFirstExecution&#13;&#10;interface Input:&#13;&#10;&#9;in event OrionDisconn&#13;&#10;&#9;in event OrionDisconnCause&#13;&#10;&#9;in event OrionConnReq&#13;&#10;&#9;in event OrionAppData&#13;&#10;&#9;in event OrionKeepAlive&#13;&#10;&#9;in event OrionConnConf&#13;&#10;&#9;in event OrionConnResp&#13;&#10;&#13;&#10;interface Output:&#13;&#10;&#9;out event OrionDisconn&#13;&#10;&#9;out event OrionDisconnCause&#13;&#10;&#9;out event OrionConnReq&#13;&#10;&#9;out event OrionAppData&#13;&#10;&#9;out event OrionKeepAlive&#13;&#10;&#9;out event OrionConnConf&#13;&#10;&#9;out event OrionConnResp&#13;&#10;&#9;&#13;&#10;internal:&#13;&#10;&#9;var messageCount : integer&#13;&#10;&#9;const T : integer = 6" name="Channel">
+    <regions xmi:id="_kq3UUCjHEeqJVOWQqWeE5Q" name="OrionConnReqRegion">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_kq3UUSjHEeqJVOWQqWeE5Q">
+        <outgoingTransitions xmi:id="_kq3UUijHEeqJVOWQqWeE5Q" target="_kq3UUyjHEeqJVOWQqWeE5Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_kq3UUyjHEeqJVOWQqWeE5Q" specification="" name="Idle" incomingTransitions="_kq3UUijHEeqJVOWQqWeE5Q _BgYY4Cy_EeqIV_4enrt-kw">
+        <outgoingTransitions xmi:id="_kq3UVSjHEeqJVOWQqWeE5Q" specification="Input.OrionConnReq" target="_kq3UWijHEeqJVOWQqWeE5Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_kq3UWijHEeqJVOWQqWeE5Q" specification="Input.OrionConnReq /&#13;&#10;  messageCount++" name="Forwarding" incomingTransitions="_kq3UVSjHEeqJVOWQqWeE5Q _EnnPkCy_EeqIV_4enrt-kw">
+        <outgoingTransitions xmi:id="_kq3UZSjHEeqJVOWQqWeE5Q" specification="after T s / raise Output.OrionConnReq " target="_y2v2ACy-EeqIV_4enrt-kw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_y2v2ACy-EeqIV_4enrt-kw" incomingTransitions="_kq3UZSjHEeqJVOWQqWeE5Q">
+        <outgoingTransitions xmi:id="_BgYY4Cy_EeqIV_4enrt-kw" specification="[messageCount &lt;= 0]" target="_kq3UUyjHEeqJVOWQqWeE5Q"/>
+        <outgoingTransitions xmi:id="_EnnPkCy_EeqIV_4enrt-kw" specification="default" target="_kq3UWijHEeqJVOWQqWeE5Q"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

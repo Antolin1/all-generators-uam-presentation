@@ -1,0 +1,16 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_wsWvwPZpEeGg3a5RiiuycA" specification=" &#10;interface:&#10;&#9;in event e &#10;&#9;in event f&#10;&#9;&#10;&#9;var entryCount : integer = 0&#10;&#9;var exitCount : integer = 0" name="ExitOnSelfTransition">
+    <regions xmi:id="_wsbBMvZpEeGg3a5RiiuycA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_wshu4fZpEeGg3a5RiiuycA">
+        <outgoingTransitions xmi:id="_wsmAUPZpEeGg3a5RiiuycA" target="_wsjkEfZpEeGg3a5RiiuycA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_wsjkEfZpEeGg3a5RiiuycA" specification="entry / entryCount += 1&#10;exit / exitCount+=1" name="A" incomingTransitions="_wsmAUPZpEeGg3a5RiiuycA _9iCowPZpEeGg3a5RiiuycA _hMhvQPZqEeGg3a5RiiuycA">
+        <outgoingTransitions xmi:id="_9iCowPZpEeGg3a5RiiuycA" specification="e" target="_wsjkEfZpEeGg3a5RiiuycA"/>
+        <outgoingTransitions xmi:id="_dM7tMPZqEeGg3a5RiiuycA" specification="f" target="_axe-cPZqEeGg3a5RiiuycA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_axe-cPZqEeGg3a5RiiuycA" name="B" incomingTransitions="_dM7tMPZqEeGg3a5RiiuycA">
+        <outgoingTransitions xmi:id="_hMhvQPZqEeGg3a5RiiuycA" specification="f" target="_wsjkEfZpEeGg3a5RiiuycA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

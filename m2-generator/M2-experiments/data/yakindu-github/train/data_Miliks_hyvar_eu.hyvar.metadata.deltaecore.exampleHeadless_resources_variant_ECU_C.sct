@@ -1,0 +1,50 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_b87JgAAMEee3gOE23vWw-w" specification="&#10;interface :&#10;interface Data:&#10;operation initFiat(): void&#10;&#9;var FeaturesA : string&#10;&#9;operation operA () : string&#10;&#9;var FeaturesU : string&#10;&#9;operation operU () : string&#10;&#9;var FeaturesE : string&#10;&#9;operation operE () : string&#10;&#9;var FeaturesG : string&#10;&#9;operation operG () : string&#10;&#9;var FeaturesS : string&#10;&#9;operation operS () : string&#10;&#9;var FeaturesN : string&#10;&#9;operation operN () : string&#10;" name="ECU_C">
+    <regions xmi:id="_b88XvAAMEee3gOE23vWw-w" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_b88XvQAMEee3gOE23vWw-w">
+        <outgoingTransitions xmi:id="_b88XvgAMEee3gOE23vWw-w" target="_b88XvwAMEee3gOE23vWw-w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_b88XvwAMEee3gOE23vWw-w" specification="entry / Data.initFiat()" name="Init" incomingTransitions="_b88XvgAMEee3gOE23vWw-w">
+        <outgoingTransitions xmi:id="_b88-vgAMEee3gOE23vWw-w" specification="always" target="_b88-wwAMEee3gOE23vWw-w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_b88-wwAMEee3gOE23vWw-w" name="Operate" incomingTransitions="_b88-vgAMEee3gOE23vWw-w">
+        <regions xmi:id="_b88-xgAMEee3gOE23vWw-w" name="AmbLight">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_b88-xwAMEee3gOE23vWw-w">
+            <outgoingTransitions xmi:id="_b88-yAAMEee3gOE23vWw-w" specification="" target="_b88-yQAMEee3gOE23vWw-w"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_b88-yQAMEee3gOE23vWw-w" specification="entry / Data.operA()" name="AmbientLighting" incomingTransitions="_b88-yAAMEee3gOE23vWw-w"/>
+        </regions>
+        <regions xmi:id="_b89lzgAMEee3gOE23vWw-w" name="SOSUI">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_b89lzwAMEee3gOE23vWw-w">
+            <outgoingTransitions xmi:id="_b89l0AAMEee3gOE23vWw-w" specification="" target="_b89l0QAMEee3gOE23vWw-w"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_b89l0QAMEee3gOE23vWw-w" specification="entry / Data.operU()" name="SOSUI" incomingTransitions="_b89l0AAMEee3gOE23vWw-w"/>
+        </regions>
+        <regions xmi:id="_b89l4AAMEee3gOE23vWw-w" name="EmergencyCall">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_b89l4QAMEee3gOE23vWw-w">
+            <outgoingTransitions xmi:id="_b89l4gAMEee3gOE23vWw-w" specification="" target="_b8-M0AAMEee3gOE23vWw-w"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_b8-M0AAMEee3gOE23vWw-w" specification="entry / Data.operE()" name="EmergencyCall" incomingTransitions="_b89l4gAMEee3gOE23vWw-w"/>
+        </regions>
+        <regions xmi:id="_b8-M3wAMEee3gOE23vWw-w" name="GearAdvice">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_b8-M4AAMEee3gOE23vWw-w">
+            <outgoingTransitions xmi:id="_b8-M4QAMEee3gOE23vWw-w" specification="" target="_b8-M4gAMEee3gOE23vWw-w"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_b8-M4gAMEee3gOE23vWw-w" specification="entry / Data.operG()" name="GearAdvice" incomingTransitions="_b8-M4QAMEee3gOE23vWw-w"/>
+        </regions>
+        <regions xmi:id="_b8-M8QAMEee3gOE23vWw-w" name="StartStop">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_b8-M8gAMEee3gOE23vWw-w">
+            <outgoingTransitions xmi:id="_b8-M8wAMEee3gOE23vWw-w" specification="" target="_b8-z4AAMEee3gOE23vWw-w"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_b8-z4AAMEee3gOE23vWw-w" specification="entry / Data.operS()" name="StartStop" incomingTransitions="_b8-M8wAMEee3gOE23vWw-w"/>
+        </regions>
+        <regions xmi:id="_b8-z7wAMEee3gOE23vWw-w" name="Navigation">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_b8-z8AAMEee3gOE23vWw-w">
+            <outgoingTransitions xmi:id="_b8-z8QAMEee3gOE23vWw-w" specification="" target="_b8-z8gAMEee3gOE23vWw-w"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_b8-z8gAMEee3gOE23vWw-w" specification="entry / Data.operN()" name="Navigation" incomingTransitions="_b8-z8QAMEee3gOE23vWw-w"/>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

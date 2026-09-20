@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="KRmEMV9smNU5Ko0mnwfQp16IVfVvifmme30pGaD0bkTu2JCr84WVf1oA9vcIGuDcR">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="nIyMYhdwAb82Wr8rGEOhCTQAJs40zolRIhr3dhy4WfXMtlb5PeEJBB7kvAycdVxMN">
+    <eLiterals name="P83C6tW8kVMdL2nLcjTiY2RImtV0GzXr5ezq96wCjjWMawYFLXnCoQGYiE9U6VbCJq"/>
+    <eLiterals name="dSExTdkwDM7bJpMYumEq4FjLaQGPaxYQR9gAWuhYvKnU9fFVa5d5UDf5YCxfB"/>
+    <eLiterals name="FD3ZhK3B5WeIeOLW7IsMuIjIbFl2TJq6abMOOMrUbXxTpwV0oQGM9WF1GwgDs6iOdnE3aC"/>
+    <eLiterals name="x75Wl63mUJB1JsWribfiJb1iS1pl6ZaLZpejA3Ebjlushpe4yMAqvZB89wYUfl"/>
+    <eLiterals name="UKH8FWFRJwrec1Nz9O6yIR2qrfggnpvvEBZPkzqKpSeLE1jOc8Crvt93sRD"/>
+    <eLiterals name="Zl9uZoVG5gxC9HQULEdl6uOvlo34KC9B05GGO4JE5JLXSfvDumCRdzUsVorcSfSO1g2"/>
+    <eLiterals name="dokwoxKL9qHbD4fjA1KJBJVR8xXmT50FxNi59FEBYfW4T6s08qPXzUQTgelymDH"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="n72o21W2XheUOIHqgFE3ezpMPs5HcLpAFYpszk0D13rVh624p7NMn63J9A"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="B1e18oKKveGrd1rtOS73HC70ThDQC7cDoTugudvS7w1wim4SYdLIB4VxSb1Csoa6" abstract="true" eSuperTypes="//@eClassifiers.2 //@eClassifiers.5 //@eClassifiers.6"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="qicclgdek3Cq6wQa779bhHdHaPk1iAFmlikckafDMhZ2CkbQYXNVHMCTF3l0B3LP9Q7"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="9lY0BzLdQBQLCRa8EoFPq4NuJxzDZBTvdW7aTLO3ltcs8d9ZpHbHCHvQD2bqh144gVJ8Rx"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="nl5ii6BLqVrIlPjxsqyqFcnTrUJ4Y7FLLa9iDNvKYm2kv28kXYhoiHtW6o" eSuperTypes="//@eClassifiers.2 //@eClassifiers.5 //@eClassifiers.6"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="V2EHtGHPqlQsy7nzTUMmHB3t9isrlkk9BnJ59ISfvo8h5Ko1HLkgC0f2PcN0ghuw" eSuperTypes="//@eClassifiers.2 //@eClassifiers.6 //@eClassifiers.5"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="m85Qh98teyRWhDo5iHuDLVnsWHs80ajuz3wZ4OtXExXsilKcg4vHjAK5a1ZdmH5c7"/>
+</smallEcore:EPackage>

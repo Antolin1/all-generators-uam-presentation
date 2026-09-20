@@ -1,0 +1,20 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_6_kosO11Eeaky9HhW8GsWQ" specification="interface:&#13;&#10;in event start&#13;&#10;in event white&#13;&#10;in event black&#13;&#10;var whiteTime:integer = 60&#13;&#10;var blackTime:integer = 60" name="example">
+    <regions xmi:id="_6_tyou11Eeaky9HhW8GsWQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_6_tyrO11Eeaky9HhW8GsWQ">
+        <outgoingTransitions xmi:id="_6_4xwe11Eeaky9HhW8GsWQ" target="_6_tyuO11Eeaky9HhW8GsWQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_6_tyuO11Eeaky9HhW8GsWQ" name="Init" incomingTransitions="_6_4xwe11Eeaky9HhW8GsWQ">
+        <outgoingTransitions xmi:id="_dL7kUO12Eeaky9HhW8GsWQ" specification="start" target="_No5UQO12Eeaky9HhW8GsWQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_MlHjEO12Eeaky9HhW8GsWQ" name="Black" incomingTransitions="_eo-xIO12Eeaky9HhW8GsWQ _z1AC8O12Eeaky9HhW8GsWQ">
+        <outgoingTransitions xmi:id="_k2PkoO12Eeaky9HhW8GsWQ" specification="black" target="_No5UQO12Eeaky9HhW8GsWQ"/>
+        <outgoingTransitions xmi:id="_z1AC8O12Eeaky9HhW8GsWQ" specification="after 1 s/&#13;&#10;blackTime-=1" target="_MlHjEO12Eeaky9HhW8GsWQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_No5UQO12Eeaky9HhW8GsWQ" specification="" name="White" incomingTransitions="_dL7kUO12Eeaky9HhW8GsWQ _k2PkoO12Eeaky9HhW8GsWQ _26kFsO12Eeaky9HhW8GsWQ">
+        <outgoingTransitions xmi:id="_eo-xIO12Eeaky9HhW8GsWQ" specification="white" target="_MlHjEO12Eeaky9HhW8GsWQ"/>
+        <outgoingTransitions xmi:id="_26kFsO12Eeaky9HhW8GsWQ" specification="after 1 s/&#13;&#10;whiteTime-=1" target="_No5UQO12Eeaky9HhW8GsWQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

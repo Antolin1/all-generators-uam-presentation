@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_rk3BkPvnEeqK3OVC6jJlVQ" specification="internal:&#13;&#10;&#9;var q_size:integer=0&#13;&#10;&#9;var b_size:integer=20&#13;&#10;&#9;&#13;&#10;interface InStream:&#13;&#10;&#9;in event NewData&#13;&#10;&#13;&#10;interface OutStream:&#13;&#10;&#9;out event NewData&#13;&#10;&#9;&#13;&#10;interface DataLoss:&#13;&#10;&#9;out event NewData&#13;&#10;&#13;&#10;interface ToHW:&#13;&#10;&#9;out event NewData&#13;&#10;&#13;&#10;interface FromHW:&#13;&#10;&#9;in event NewData" name="QueueManager">
+    <regions xmi:id="_rk7TA_vnEeqK3OVC6jJlVQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_rlGSIfvnEeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_rlLxsfvnEeqK3OVC6jJlVQ" target="_DPjDUPvqEeqK3OVC6jJlVQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_rlIHVPvnEeqK3OVC6jJlVQ" name="Working" incomingTransitions="_1UEcYPvoEeqK3OVC6jJlVQ _LHgr0PvvEeqK3OVC6jJlVQ _j0xPwPvvEeqK3OVC6jJlVQ _vE_KUPvwEeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_fNyhwPvoEeqK3OVC6jJlVQ" specification="InStream.NewData/&#13;&#10;q_size+=1" target="_DFKDIPvoEeqK3OVC6jJlVQ"/>
+        <outgoingTransitions xmi:id="_9KowAPvoEeqK3OVC6jJlVQ" specification="FromHW.NewData/&#13;&#10;raise OutStream.NewData" target="_QPkx0PvvEeqK3OVC6jJlVQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_uPqa8PvnEeqK3OVC6jJlVQ" name="Full" incomingTransitions="_kvpn0PvoEeqK3OVC6jJlVQ _BKvrQPvwEeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_BKvrQPvwEeqK3OVC6jJlVQ" specification="InStream.NewData/&#13;&#10;raise DataLoss.NewData" target="_uPqa8PvnEeqK3OVC6jJlVQ"/>
+        <outgoingTransitions xmi:id="_vE_KUPvwEeqK3OVC6jJlVQ" specification="FromHW.NewData/&#13;&#10;q_size-=1;&#13;&#10;raise ToHW.NewData;&#13;&#10;raise OutStream.NewData" target="_rlIHVPvnEeqK3OVC6jJlVQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_DFKDIPvoEeqK3OVC6jJlVQ" incomingTransitions="_fNyhwPvoEeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_kvpn0PvoEeqK3OVC6jJlVQ" specification="[b_size-1==q_size]" target="_uPqa8PvnEeqK3OVC6jJlVQ"/>
+        <outgoingTransitions xmi:id="_1UEcYPvoEeqK3OVC6jJlVQ" specification="default" target="_rlIHVPvnEeqK3OVC6jJlVQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DPjDUPvqEeqK3OVC6jJlVQ" name="NoData" incomingTransitions="_rlLxsfvnEeqK3OVC6jJlVQ _k3_nUPvvEeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_LHgr0PvvEeqK3OVC6jJlVQ" specification="InStream.NewData/&#13;&#10;raise ToHW.NewData" target="_rlIHVPvnEeqK3OVC6jJlVQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_QPkx0PvvEeqK3OVC6jJlVQ" incomingTransitions="_9KowAPvoEeqK3OVC6jJlVQ">
+        <outgoingTransitions xmi:id="_j0xPwPvvEeqK3OVC6jJlVQ" specification="default/&#13;&#10;q_size-=1;&#13;&#10;raise ToHW.NewData" target="_rlIHVPvnEeqK3OVC6jJlVQ"/>
+        <outgoingTransitions xmi:id="_k3_nUPvvEeqK3OVC6jJlVQ" specification="[q_size==0]" target="_DPjDUPvqEeqK3OVC6jJlVQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,34 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_Irb9AWx0EeK7IYWlCJtDsw" specification="interface Safe:&#13;&#10;out event open&#13;&#10;out event close&#13;&#10;&#13;&#10;&#13;&#10;interface User:&#13;&#10;in event numberPressed: integer&#13;&#10;in event reset&#13;&#10;&#13;&#10;internal:&#13;&#10;var number1 :integer = 3&#13;&#10;var number2 : integer  = 7&#13;&#10;var number3 : integer = 5&#13;&#10;&#13;&#10;" name="NamedInterfaceAccess">
+    <regions xmi:id="_IsCZ8Gx0EeK7IYWlCJtDsw" name="region 1">
+      <vertices xsi:type="sgraph:State" xmi:id="_DwndTGx-EeKceIpq-RYuRw" specification="entry / raise Safe.close" name="Idle" incomingTransitions="_DwndUGx-EeKceIpq-RYuRw _DwndWmx-EeKceIpq-RYuRw _DwndV2x-EeKceIpq-RYuRw _DwndU2x-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_DwndTWx-EeKceIpq-RYuRw" specification="User.numberPressed &#13;&#10;[valueof(User.numberPressed) == number1]" target="_DwndUWx-EeKceIpq-RYuRw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_DwndT2x-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_DwndUGx-EeKceIpq-RYuRw" specification="" target="_DwndTGx-EeKceIpq-RYuRw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DwndUWx-EeKceIpq-RYuRw" specification="" name="Number1Pressed" incomingTransitions="_DwndTWx-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_DwndUmx-EeKceIpq-RYuRw" specification="User.numberPressed &#13;&#10;[valueof(User.numberPressed) == number2]" target="_DwndVWx-EeKceIpq-RYuRw"/>
+        <outgoingTransitions xmi:id="_DwndU2x-EeKceIpq-RYuRw" specification="User.numberPressed" target="_DwndTGx-EeKceIpq-RYuRw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DwndVWx-EeKceIpq-RYuRw" specification="" name="Number2Pressed" incomingTransitions="_DwndUmx-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_DwndVmx-EeKceIpq-RYuRw" specification="User.numberPressed &#13;&#10;[valueof(User.numberPressed) == number3]" target="_DwndWWx-EeKceIpq-RYuRw"/>
+        <outgoingTransitions xmi:id="_DwndV2x-EeKceIpq-RYuRw" specification="User.numberPressed" target="_DwndTGx-EeKceIpq-RYuRw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_DwndWWx-EeKceIpq-RYuRw" specification="entry / raise Safe.open" name="Number3Pressed" incomingTransitions="_DwndVmx-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_DwndWmx-EeKceIpq-RYuRw" specification="User.numberPressed" target="_DwndTGx-EeKceIpq-RYuRw"/>
+      </vertices>
+    </regions>
+    <regions xmi:id="_W81agGx-EeKceIpq-RYuRw">
+      <vertices xsi:type="sgraph:State" xmi:id="_XYfbwGx-EeKceIpq-RYuRw" name="Closed" incomingTransitions="_asHIoGx-EeKceIpq-RYuRw _eDpsMGx-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_ZnitQGx-EeKceIpq-RYuRw" specification="Safe.open" target="_X9BFIGx-EeKceIpq-RYuRw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_X9BFIGx-EeKceIpq-RYuRw" name="Open" incomingTransitions="_ZnitQGx-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_asHIoGx-EeKceIpq-RYuRw" specification="Safe.close" target="_XYfbwGx-EeKceIpq-RYuRw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_dmkHkGx-EeKceIpq-RYuRw">
+        <outgoingTransitions xmi:id="_eDpsMGx-EeKceIpq-RYuRw" specification="" target="_XYfbwGx-EeKceIpq-RYuRw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

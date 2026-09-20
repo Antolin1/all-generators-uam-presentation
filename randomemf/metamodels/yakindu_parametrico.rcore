@@ -1,0 +1,39 @@
+import static de.hub.randomemf.runtime.Random.*
+
+// Máquina de estados Yakindu con parámetros: la interfaz muestra un campo por cada uno junto a «Generate».
+//   states             estados de cada región
+//   extraTransitions   media de transiciones salientes por estado (además de la de entrada)
+//   nested             si un estado puede contener regiones anidadas
+generator YakinduParametrico(int states, double extraTransitions, boolean nested) for yakindumm
+    in "platform:/resource/metamodels/yakindu_simplified.ecore" {
+
+  Statechart: Statechart ->
+    regions += Region
+  ;
+
+  // Cada región: un estado inicial, `states` estados y un estado final
+  Region: Region ->
+    vertices += Entry
+    vertices += State#states
+    vertices += FinalState
+  ;
+
+  Entry: Entry ->
+    outgoingTransitions += Transition
+  ;
+
+  // Los parámetros del generador se pueden usar en cualquier expresión, y `depth` acota el anidamiento
+  State: State ->
+    outgoingTransitions += Transition#Poisson(extraTransitions)
+    regions += Region#(if (nested && depth < 7 && UniformBool(0.25)) 1 else 0)
+  ;
+
+  FinalState: FinalState ->
+  ;
+
+  // Cualquier vértice salvo los estados iniciales. Se resuelve al final, cuando ya existe el modelo entero
+  // (@(...)); `:State` es la clase concreta del marcador provisional.
+  Transition: Transition ->
+    target:State := @(Uniform(model.eAllContents.filter(typeof(mm.yakindumm.Vertex)).filter[!(it instanceof mm.yakindumm.Entry)].toList))
+  ;
+}

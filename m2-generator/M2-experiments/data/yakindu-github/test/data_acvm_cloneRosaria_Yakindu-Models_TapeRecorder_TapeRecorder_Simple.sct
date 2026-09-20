@@ -1,0 +1,25 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_CURN8Hm9EeaOOsULcx8fvw" specification="interface :&#10;in event stop&#10;in event rec&#10;in event rew_or_ff&#10;in event button_stop&#10;in event direction&#10;in event play" name="default">
+    <regions xmi:id="_CV5loHm9EeaOOsULcx8fvw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_CXcdwHm9EeaOOsULcx8fvw">
+        <outgoingTransitions xmi:id="_CXcd2nm9EeaOOsULcx8fvw" target="_CXcdzHm9EeaOOsULcx8fvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_CXcdzHm9EeaOOsULcx8fvw" name="Stop" incomingTransitions="_CXcd2nm9EeaOOsULcx8fvw _0HKZMLjtEeagZd9ZhYQg0Q _P0OEMLjwEeagZd9ZhYQg0Q _D4Q-MLlhEeagZd9ZhYQg0Q">
+        <outgoingTransitions xmi:id="_3XAOwLjsEeagZd9ZhYQg0Q" specification="rec" target="_xS6lYLjsEeagZd9ZhYQg0Q"/>
+        <outgoingTransitions xmi:id="_-9b_MLjtEeagZd9ZhYQg0Q" specification="play" target="_xg_oMLjtEeagZd9ZhYQg0Q"/>
+        <outgoingTransitions xmi:id="_iCWokLjwEeagZd9ZhYQg0Q" specification="rew_or_ff" target="_ubSbgLjtEeagZd9ZhYQg0Q"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_xS6lYLjsEeagZd9ZhYQg0Q" name="Record" incomingTransitions="_3XAOwLjsEeagZd9ZhYQg0Q">
+        <outgoingTransitions xmi:id="_D4Q-MLlhEeagZd9ZhYQg0Q" specification="stop" target="_CXcdzHm9EeaOOsULcx8fvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ubSbgLjtEeagZd9ZhYQg0Q" name="Rew_FF" incomingTransitions="_iCWokLjwEeagZd9ZhYQg0Q">
+        <outgoingTransitions xmi:id="_M0-E0LjwEeagZd9ZhYQg0Q" specification="play" target="_xg_oMLjtEeagZd9ZhYQg0Q"/>
+        <outgoingTransitions xmi:id="_P0OEMLjwEeagZd9ZhYQg0Q" specification="stop" target="_CXcdzHm9EeaOOsULcx8fvw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_xg_oMLjtEeagZd9ZhYQg0Q" name="Play" incomingTransitions="_-9b_MLjtEeagZd9ZhYQg0Q _F-hcULjuEeagZd9ZhYQg0Q _M0-E0LjwEeagZd9ZhYQg0Q">
+        <outgoingTransitions xmi:id="_0HKZMLjtEeagZd9ZhYQg0Q" specification="button_stop" target="_CXcdzHm9EeaOOsULcx8fvw"/>
+        <outgoingTransitions xmi:id="_F-hcULjuEeagZd9ZhYQg0Q" specification="direction" target="_xg_oMLjtEeagZd9ZhYQg0Q"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

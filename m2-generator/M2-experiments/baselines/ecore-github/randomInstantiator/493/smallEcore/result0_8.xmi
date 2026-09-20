@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="5rCjIc51Rt9jlbxG7jt1IclhD2fEUP81qwyKz4eZ5BPuOZUBPigAcDw0Jw8tE">
+  <eClassifiers xsi:type="smallEcore:EEnum" name="uM6ttlCVBSLVnjVxmy9ul7xHeTI3VvEiTIXtzflpAHCyQzpnStJx1dL1edUb2u4HMsxv">
+    <eLiterals name="uo9tPMY55TDm3TgP1DLNfuL8ducXv0QqpE1EQuE32ISC3Js9YROoWD7XBqYIg8Uzj"/>
+    <eLiterals name="BzEHHEcdPHyGsU8SgRARhIij0o3OmCotnvyIv6Ah0JvyRFWr5b9EGj3PUF7kllyMjPXA8"/>
+    <eLiterals name="ZDHH43OVIKeshfZhgaTfZKXKNyLaRgTCYEHPcv2OZsTWcJfimxcKXwNJ6QXAD4be"/>
+    <eLiterals name="S6r3RfmiYteoSomuF7ReFF0KM0YahWJRlkYWYdCNz4V98oqXNM8T0eZV6pXbKS2J"/>
+    <eLiterals name="OLkKH9YtHwTANhOJxD1ykSV71NE13wHPNI84xXhOLYO1u8RaSbuW0sNHX0"/>
+    <eLiterals name="2BZyQk2GMydxU2UT0YcdpcLD5er10aadJ2l8wDV04GUQR4mJmRJWvgfvmz"/>
+    <eLiterals name="pfIZzpSZCg8YTVmyqU1gqC9ZjW038VAHGmvAOD7nrvuSCQ49lJNYsMbg88qV5S"/>
+    <eLiterals name="I9ORxFjtwH3nygtOgVnhP5SrpfJRf8fgbH8EKTb9iUuCgk2g4BGs1Eeqm3lR"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="s47ZCL3FEwfIJB7q7qScMEsDIUH3eOqrOsSzGLcGKjS9JjAnOSkvaE8PIQWWB3oNty8f" abstract="true" eSuperTypes="//@eClassifiers.7 //@eClassifiers.1 //@eClassifiers.6"/>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="JnV5WwrfzMLBaobZ10lj1xilCNETt8yIjCHqueUdSvTrBQ35sx1TFOzVUfqm6gETcgtZdt"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="vupQaqmF4bPxsWNG1iERFCNEAf0Ytsy5HWNe1q7qmS6L3GuX5qDzJ9KG5knBea"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="kOXETae5YM7GcjyK0jFrarnFIqWw20LgLMWaDLaAHvgB2k71vnhaP3vzQxKw6o" abstract="true" eSuperTypes="//@eClassifiers.6 //@eClassifiers.4 //@eClassifiers.7"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="4LCfEpPrD38TtcrwsMbuSHmLa43dELpwrYl6fzdi32jarLz8uKUFbQYUIiRv"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="DFQd9kOzqyMfxJ2OMer3JCZ6MfkO0KaDfeCG7qR5uvJw0ex6lGqtEWfMDUYTIlrU" eSuperTypes="//@eClassifiers.1 //@eClassifiers.4 //@eClassifiers.7 //@eClassifiers.6"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="ERGx0PpohRhQALoddCUOIDYrD8hIVa7bwbKzqZ16uzTPVhamiMbAwgcZov8" abstract="true" eSuperTypes="//@eClassifiers.1 //@eClassifiers.6 //@eClassifiers.4 //@eClassifiers.7"/>
+</smallEcore:EPackage>

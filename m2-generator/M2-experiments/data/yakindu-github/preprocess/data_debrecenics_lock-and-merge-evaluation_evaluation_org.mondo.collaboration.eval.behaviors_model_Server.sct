@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_9IUhYATZEeipN580DMPBKA" specification="interface:&#10;&#10;in event commit&#10;in event success&#10;in event lockFailure&#10;in event mergeFailure&#10;in event request&#10;in event release&#10;&#10;operation lockRelease()&#10;operation lockRequest()&#10;&#10;operation conflict()&#10;operation violation()&#10;operation accepted()&#10;&#10;operation checkCommit()" name="Server">
+    <regions xmi:id="_9IUhZgTZEeipN580DMPBKA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_9IVIdgTZEeipN580DMPBKA">
+        <outgoingTransitions xmi:id="_9IW9oATZEeipN580DMPBKA" target="_9IVIggTZEeipN580DMPBKA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_9IVIggTZEeipN580DMPBKA" name="Idle" incomingTransitions="_9IW9oATZEeipN580DMPBKA _OZ4TUATbEeipN580DMPBKA _bffesATbEeipN580DMPBKA _hFjvUATbEeipN580DMPBKA _zqKe4AUbEeiC0-dnp5xPXg _BSWy4AUcEeiC0-dnp5xPXg">
+        <outgoingTransitions xmi:id="_fDeYQATaEeipN580DMPBKA" specification="commit" target="_bv2rYATaEeipN580DMPBKA"/>
+        <outgoingTransitions xmi:id="_zqKe4AUbEeiC0-dnp5xPXg" specification="request/lockRequest()" target="_9IVIggTZEeipN580DMPBKA"/>
+        <outgoingTransitions xmi:id="_BSWy4AUcEeiC0-dnp5xPXg" specification="release/lockRelease()" target="_9IVIggTZEeipN580DMPBKA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_bv2rYATaEeipN580DMPBKA" specification="entry / checkCommit" name="Accepting" incomingTransitions="_fDeYQATaEeipN580DMPBKA">
+        <outgoingTransitions xmi:id="_OZ4TUATbEeipN580DMPBKA" specification="success / accepted()" target="_9IVIggTZEeipN580DMPBKA"/>
+        <outgoingTransitions xmi:id="_bffesATbEeipN580DMPBKA" specification="lockFailure / violation()" target="_9IVIggTZEeipN580DMPBKA"/>
+        <outgoingTransitions xmi:id="_hFjvUATbEeipN580DMPBKA" specification="mergeFailure / conflict()" target="_9IVIggTZEeipN580DMPBKA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

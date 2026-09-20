@@ -1,0 +1,26 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_LV5o0PmpEeaK-eAH1-h7yw" specification="interface :&#10;in event messageReceived&#10;var engineOFF : boolean = false&#10;&#10;interface DataB:&#10;&#10;&#9;" name="ECU_B">
+    <regions xmi:id="_LV6P9PmpEeaK-eAH1-h7yw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_LV6P9fmpEeaK-eAH1-h7yw">
+        <outgoingTransitions xmi:id="_LV6P9vmpEeaK-eAH1-h7yw" target="_LV628PmpEeaK-eAH1-h7yw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_LV628PmpEeaK-eAH1-h7yw" specification="" name="Init" incomingTransitions="_LV6P9vmpEeaK-eAH1-h7yw">
+        <outgoingTransitions xmi:id="_D-j88PmrEeaK-eAH1-h7yw" specification="always" target="_5tANkPmqEeaK-eAH1-h7yw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_LV63BPmpEeaK-eAH1-h7yw" name="Operate" incomingTransitions="_2HNLkPmqEeaK-eAH1-h7yw">
+        <outgoingTransitions xmi:id="_l3G50PmtEeaK-eAH1-h7yw" specification="always" target="_iCDT0PmtEeaK-eAH1-h7yw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_gSHuoPmqEeaK-eAH1-h7yw" incomingTransitions="_F9lOYPmrEeaK-eAH1-h7yw">
+        <outgoingTransitions xmi:id="_v-ruIPmqEeaK-eAH1-h7yw" specification="[engineOFF]" target="_pJ5noPmqEeaK-eAH1-h7yw"/>
+        <outgoingTransitions xmi:id="_2HNLkPmqEeaK-eAH1-h7yw" specification="[!engineOFF]" target="_LV63BPmpEeaK-eAH1-h7yw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_pJ5noPmqEeaK-eAH1-h7yw" incomingTransitions="_v-ruIPmqEeaK-eAH1-h7yw"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_5tANkPmqEeaK-eAH1-h7yw" name="WaitForCANMsg" incomingTransitions="_D-j88PmrEeaK-eAH1-h7yw _K3dHYPmrEeaK-eAH1-h7yw">
+        <outgoingTransitions xmi:id="_F9lOYPmrEeaK-eAH1-h7yw" specification="messageReceived" target="_gSHuoPmqEeaK-eAH1-h7yw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_iCDT0PmtEeaK-eAH1-h7yw" name="Broadcast" incomingTransitions="_l3G50PmtEeaK-eAH1-h7yw">
+        <outgoingTransitions xmi:id="_K3dHYPmrEeaK-eAH1-h7yw" specification="always" target="_5tANkPmqEeaK-eAH1-h7yw"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

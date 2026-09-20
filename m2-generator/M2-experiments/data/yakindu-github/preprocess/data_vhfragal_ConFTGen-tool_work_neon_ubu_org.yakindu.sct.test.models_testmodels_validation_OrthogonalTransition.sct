@@ -1,0 +1,35 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_Lx-1QPf6EeWEP4pglzmtIA" specification="interface:&#10;// Define events and&#10;// and variables here" name="OrthogonalTransition">
+    <regions xmi:id="_LyCfoff6EeWEP4pglzmtIA" name="r1">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_LyGxEff6EeWEP4pglzmtIA">
+        <outgoingTransitions xmi:id="_LyJNU_f6EeWEP4pglzmtIA" target="_LyH_Mvf6EeWEP4pglzmtIA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_LyH_Mvf6EeWEP4pglzmtIA" name="A" incomingTransitions="_LyJNU_f6EeWEP4pglzmtIA">
+        <outgoingTransitions xmi:id="_cSJb8Pf6EeWEP4pglzmtIA" specification="always" target="_Z6vfs_f6EeWEP4pglzmtIA"/>
+      </vertices>
+    </regions>
+    <regions xmi:id="_Z6vfsPf6EeWEP4pglzmtIA" name="r2">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_Z6vfsff6EeWEP4pglzmtIA">
+        <outgoingTransitions xmi:id="_Z6vfsvf6EeWEP4pglzmtIA" target="_Z6vfs_f6EeWEP4pglzmtIA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Z6vfs_f6EeWEP4pglzmtIA" name="B" incomingTransitions="_Z6vfsvf6EeWEP4pglzmtIA _cSJb8Pf6EeWEP4pglzmtIA _wMOkwPf6EeWEP4pglzmtIA">
+        <regions xmi:id="_mARHEPf6EeWEP4pglzmtIA" name="">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_mARHEff6EeWEP4pglzmtIA">
+            <outgoingTransitions xmi:id="_mARHEvf6EeWEP4pglzmtIA" specification="" target="_mARHE_f6EeWEP4pglzmtIA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_mARHE_f6EeWEP4pglzmtIA" name="B1" incomingTransitions="_mARHEvf6EeWEP4pglzmtIA">
+            <outgoingTransitions xmi:id="_rPgzIPf6EeWEP4pglzmtIA" specification="always" target="_mcvAo_f6EeWEP4pglzmtIA"/>
+          </vertices>
+        </regions>
+        <regions xmi:id="_mcvAoPf6EeWEP4pglzmtIA" name="">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_mcvAoff6EeWEP4pglzmtIA">
+            <outgoingTransitions xmi:id="_mcvAovf6EeWEP4pglzmtIA" specification="" target="_mcvAo_f6EeWEP4pglzmtIA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_mcvAo_f6EeWEP4pglzmtIA" name="B2" incomingTransitions="_mcvAovf6EeWEP4pglzmtIA _rPgzIPf6EeWEP4pglzmtIA">
+            <outgoingTransitions xmi:id="_wMOkwPf6EeWEP4pglzmtIA" specification="always" target="_Z6vfs_f6EeWEP4pglzmtIA"/>
+          </vertices>
+        </regions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

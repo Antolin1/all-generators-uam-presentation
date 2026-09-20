@@ -1,0 +1,23 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_1HMLgATmEeqAfpezE2VmQg" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;interface:&#10;// Define events&#10;// and variables here. &#10;// Use CTRL + Space for content assist.&#10;var openWindow : boolean&#10;var tempSense : integer&#10;var tempTarget : integer&#10;var isRaining : boolean&#10;operation get_Temp() : integer&#10;&#10;&#10;&#10;" name="heating">
+    <regions xmi:id="_X7VfYAiWEeqxO47HGj-BGg" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_X7epWgiWEeqxO47HGj-BGg">
+        <outgoingTransitions xmi:id="_X7fQZwiWEeqxO47HGj-BGg" target="_X7a-8AiWEeqxO47HGj-BGg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_X7a-8AiWEeqxO47HGj-BGg" specification="every 120s/tempSense = get_Temp()" name="Idle" incomingTransitions="_X7fQZwiWEeqxO47HGj-BGg _X7Zw0AiWEeqxO47HGj-BGg _X7ZJzAiWEeqxO47HGj-BGg _9C5ggAiZEeqxO47HGj-BGg">
+        <outgoingTransitions xmi:id="_X7cNGgiWEeqxO47HGj-BGg" specification="[(tempSense &lt;= tempTarget) &amp;&amp; openWindow == false]" target="_X7XUngiWEeqxO47HGj-BGg"/>
+        <outgoingTransitions xmi:id="_X7bmAQiWEeqxO47HGj-BGg" specification="[(tempSense &gt;= tempTarget) &amp;&amp; openWindow == false]" target="_X7WGfQiWEeqxO47HGj-BGg"/>
+        <outgoingTransitions xmi:id="_bAyigAiYEeqxO47HGj-BGg" specification="[openWindow == true]" target="_YpG5cAiYEeqxO47HGj-BGg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_X7XUngiWEeqxO47HGj-BGg" specification="every 120s/tempSense = get_Temp()" name="Heating" incomingTransitions="_X7cNGgiWEeqxO47HGj-BGg">
+        <outgoingTransitions xmi:id="_X7ZJzAiWEeqxO47HGj-BGg" specification="[(tempSense &gt;= tempTarget)]" target="_X7a-8AiWEeqxO47HGj-BGg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_X7WGfQiWEeqxO47HGj-BGg" specification="every 120s/tempSense = get_Temp()" name="Cooling" incomingTransitions="_X7bmAQiWEeqxO47HGj-BGg">
+        <outgoingTransitions xmi:id="_X7Zw0AiWEeqxO47HGj-BGg" specification="[(tempSense &lt;= tempTarget)]" target="_X7a-8AiWEeqxO47HGj-BGg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_YpG5cAiYEeqxO47HGj-BGg" specification="every 120s/tempSense = get_Temp()" name="Window" incomingTransitions="_bAyigAiYEeqxO47HGj-BGg">
+        <outgoingTransitions xmi:id="_9C5ggAiZEeqxO47HGj-BGg" specification="[openWindow == false]" target="_X7a-8AiWEeqxO47HGj-BGg"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

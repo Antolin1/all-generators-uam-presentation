@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_KIoFEATREeipN580DMPBKA" specification="interface:&#10;&#10;in event request&#10;in event success&#10;in event failure&#10;in event finish&#10;&#10;operation lock()&#10;operation execute()&#10;operation release()&#10;operation commit()&#10;operation store()&#10;operation violationStart()&#10;operation violationEnd()&#10;&#10;" name="LockingClient">
+    <regions xmi:id="_KJQXMwTREeipN580DMPBKA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_KKJvEATREeipN580DMPBKA">
+        <outgoingTransitions xmi:id="_KKTgEATREeipN580DMPBKA" target="_KKMLUATREeipN580DMPBKA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_KKMLUATREeipN580DMPBKA" specification="entry / store()" name="Idle" incomingTransitions="_KKTgEATREeipN580DMPBKA _2DOwwAyqEei09JDzli-nVg">
+        <outgoingTransitions xmi:id="_iev-kATVEeipN580DMPBKA" specification="request/lock()" target="_Pw5fsATSEeipN580DMPBKA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_Pw5fsATSEeipN580DMPBKA" specification="exit / execute()" name="Execute" incomingTransitions="_iev-kATVEeipN580DMPBKA _ixfe8ATWEeipN580DMPBKA">
+        <outgoingTransitions xmi:id="_WPxOUATXEeipN580DMPBKA" specification="finish/commit()" target="_yUAF8AyqEei09JDzli-nVg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_1INNAATVEeipN580DMPBKA" specification="entry / violationStart()&#13;&#10;exit / violationEnd()" name="Violation" incomingTransitions="_SBxZUATWEeipN580DMPBKA">
+        <outgoingTransitions xmi:id="_ixfe8ATWEeipN580DMPBKA" specification="request/lock()" target="_Pw5fsATSEeipN580DMPBKA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_yUAF8AyqEei09JDzli-nVg" name="Committed" incomingTransitions="_WPxOUATXEeipN580DMPBKA">
+        <outgoingTransitions xmi:id="_2DOwwAyqEei09JDzli-nVg" specification="success/release()" target="_KKMLUATREeipN580DMPBKA"/>
+        <outgoingTransitions xmi:id="_SBxZUATWEeipN580DMPBKA" specification="failure/release()" target="_1INNAATVEeipN580DMPBKA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

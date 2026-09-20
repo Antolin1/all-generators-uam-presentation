@@ -1,0 +1,13 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_swne0CDuEeKN8YnMtOtGUA" specification="&#10;&#10;&#10;interface: &#10;&#9;in event e" name="ExitStatechart">
+    <regions xmi:id="_swos8iDuEeKN8YnMtOtGUA" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_swuMgyDuEeKN8YnMtOtGUA">
+        <outgoingTransitions xmi:id="_swwowyDuEeKN8YnMtOtGUA" specification="" target="_swvaoSDuEeKN8YnMtOtGUA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_swvaoSDuEeKN8YnMtOtGUA" name="A" incomingTransitions="_swwowyDuEeKN8YnMtOtGUA">
+        <outgoingTransitions xmi:id="_5dgWQCDwEeKswNUOmH6kuA" specification="e" target="_4bF3ACDwEeKswNUOmH6kuA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Exit" xmi:id="_4bF3ACDwEeKswNUOmH6kuA" incomingTransitions="_5dgWQCDwEeKswNUOmH6kuA"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

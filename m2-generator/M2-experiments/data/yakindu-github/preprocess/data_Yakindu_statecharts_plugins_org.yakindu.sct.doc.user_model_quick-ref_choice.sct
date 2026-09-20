@@ -1,0 +1,20 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_ekvWAAVZEeqBZcXUofMhBw" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;interface:&#10;  var x : integer&#10;  in event ev" name="choice">
+    <regions xmi:id="_ekv9GQVZEeqBZcXUofMhBw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_ekv9IwVZEeqBZcXUofMhBw">
+        <outgoingTransitions xmi:id="_ekwkOwVZEeqBZcXUofMhBw" target="_ekwkKwVZEeqBZcXUofMhBw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ekwkKwVZEeqBZcXUofMhBw" name="Init" incomingTransitions="_ekwkOwVZEeqBZcXUofMhBw">
+        <outgoingTransitions xmi:id="_hOauAAVZEeqBZcXUofMhBw" specification="ev" target="_foKh4AVZEeqBZcXUofMhBw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Choice" xmi:id="_foKh4AVZEeqBZcXUofMhBw" incomingTransitions="_hOauAAVZEeqBZcXUofMhBw">
+        <outgoingTransitions xmi:id="_od3-UAVZEeqBZcXUofMhBw" specification="[x &gt; 0]" target="_f9sF8AVZEeqBZcXUofMhBw"/>
+        <outgoingTransitions xmi:id="_npOOQAVZEeqBZcXUofMhBw" specification="[x &lt; 0]" target="_gPsb8AVZEeqBZcXUofMhBw"/>
+        <outgoingTransitions xmi:id="_r6dZ8AVZEeqBZcXUofMhBw" specification="else" target="_giifcAVZEeqBZcXUofMhBw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_f9sF8AVZEeqBZcXUofMhBw" name="A" incomingTransitions="_od3-UAVZEeqBZcXUofMhBw"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_gPsb8AVZEeqBZcXUofMhBw" specification="" name="B" incomingTransitions="_npOOQAVZEeqBZcXUofMhBw"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_giifcAVZEeqBZcXUofMhBw" name="C" incomingTransitions="_r6dZ8AVZEeqBZcXUofMhBw"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

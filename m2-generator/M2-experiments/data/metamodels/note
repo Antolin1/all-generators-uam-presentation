@@ -1,0 +1,6 @@
+yakindu_simplified.ecore -> the one used in VIATRA
+yakinduSimplified.ecore -> custom one which is a copy of the previous
+smallEcore.ecore -> custom one, simplified version of ecore
+rds_manual.ecore -> manual rds of genmymodel, TODO: do it again
+rdsSimplified.ecore -> simplified version of rds_manual
+yakinduComplete -> full metamodel of yakindu

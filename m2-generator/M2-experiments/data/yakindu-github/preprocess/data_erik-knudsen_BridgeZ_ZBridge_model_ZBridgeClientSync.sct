@@ -1,0 +1,19 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_UFiFYIwUEeOIyMmz9MpytQ" specification="interface:&#13;&#10;in event attemptSync&#13;&#10;out event sendAttemptSync&#13;&#10;in event confirmSync&#13;&#10;out event sendConfirmSync&#13;&#10;in event allSync&#13;&#10;out event okSync&#13;&#10;&#13;&#10;var syncState : integer&#13;&#10;&#13;&#10;" name="ZBridgeClientSync">
+    <regions xmi:id="_UFiscowUEeOIyMmz9MpytQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_UFjTgYwUEeOIyMmz9MpytQ">
+        <outgoingTransitions xmi:id="_UFkhqYwUEeOIyMmz9MpytQ" target="_UFjTjIwUEeOIyMmz9MpytQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_UFjTjIwUEeOIyMmz9MpytQ" specification="entry/&#13;&#10;raise sendAttemptSync" name="WaitForAttemptSync" incomingTransitions="_UFkhqYwUEeOIyMmz9MpytQ">
+        <outgoingTransitions xmi:id="_GifhsIwVEeOIyMmz9MpytQ" specification="attemptSync/raise sendAttemptSync" target="_-AYPUIwXEeOIyMmz9MpytQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_nLRKsIwVEeOIyMmz9MpytQ" incomingTransitions="_StiXkJANEeODK8BoL1mANA"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_-AYPUIwXEeOIyMmz9MpytQ" name="WaitForConfirmSync" incomingTransitions="_GifhsIwVEeOIyMmz9MpytQ">
+        <outgoingTransitions xmi:id="_JTF5sIwYEeOIyMmz9MpytQ" specification="confirmSync/raise sendConfirmSync" target="_LeKm0JANEeODK8BoL1mANA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_LeKm0JANEeODK8BoL1mANA" name="WaitForAllSync" incomingTransitions="_JTF5sIwYEeOIyMmz9MpytQ">
+        <outgoingTransitions xmi:id="_StiXkJANEeODK8BoL1mANA" specification="allSync/raise okSync" target="_nLRKsIwVEeOIyMmz9MpytQ"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="DZWrZ9VMGlyJ89CmOTKZwY1hqYvPR3tw8S8MUGUmS3xBYIAvVrhfPBdO87LGcJ8Q">
+  <eClassifiers xsi:type="smallEcore:EClass" name="IkiLZcCoYAdhsL2EQYHdozjtkdw7ogp0rSQmXPAqWNUg9lxOTVYPD1kN2D19xcTL8bl1i" abstract="true" eSuperTypes="//@eClassifiers.5 //@eClassifiers.7 //@eClassifiers.0">
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="4d2PXbIVbzpyWfxyr04AZwLpewAAMgVnwKMMcWUocPyD0Ma4m4bOC3uLyNmnZCgPeYmnpo" lowerBound="-544207312" upperBound="-336454292" eType="//@eClassifiers.4" containment="true" eOpposite="//@eClassifiers.0/@eStructuralFeatures.1"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="OdsllPQRQo94CGBx65FtDFlhEAcITyuKlhUP5IojboGUsO9TkGIMFZYAPmbVMTK4wUwN" lowerBound="284159237" upperBound="-1552514547" eType="//@eClassifiers.2" containment="true" eOpposite="//@eClassifiers.0/@eStructuralFeatures.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EAttribute" name="SIXhyUbtZaEPFe4E2JSVcSVLo5y2T8xofKO4B4YQtj6VlDslWpLZ2bkVoAcuk5ElH6MQ" lowerBound="-1753856673" upperBound="-831799538" eType="//@eClassifiers.4"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="HkTIchy7dGJG2C8YLmpXuZZs6pXrdI7wpKnuEvBLHJ2c18vr4509AVJJTRdXEzncF1Uc" lowerBound="-1246853295" upperBound="2115573427" eType="//@eClassifiers.3" containment="true" eOpposite="//@eClassifiers.0/@eStructuralFeatures.5"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="tkmjbRT591ipKK1p0rAyodaHt5L3jL0pg5vTcbPciHKvJe3EgTXgrc2r30vQxjX" lowerBound="1565345458" upperBound="-617867189" eType="//@eClassifiers.7" containment="true" eOpposite="//@eClassifiers.0/@eStructuralFeatures.0"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="jnxkNh9hb97g3IwkNWY1pWNGzeZ3fOjbBohvGuWlNUBmxjjLcJRKwzKwzJB103OJ6g" lowerBound="-317350156" upperBound="196352384" eType="//@eClassifiers.0" eOpposite="//@eClassifiers.0/@eStructuralFeatures.4"/>
+    <eStructuralFeatures xsi:type="smallEcore:EReference" name="E4oDkEx4VSIgzqaJKPkH7EzedZcJ445wOkkJvopsfpILlbQKdgWaAzSEGtbB" lowerBound="549716815" upperBound="1053900947" eType="//@eClassifiers.2" containment="true" eOpposite="//@eClassifiers.0/@eStructuralFeatures.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="Kz10gUwfOiwL4scJFbi93JyUBdnitON4dnTQxIZwsKHoY2FIZwHlsy9HEW3fACd0TKfvTk"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="IZqgXGY5xg1sQDl13Khgh7J2qAecACNO975sXXoULrQI0JfMyxgCs9GNfON7n92CmM8Tu">
+    <eLiterals name="8sI2sUvAeUIxxGI5HYbsbULWTKTS1tA6HiyRahdoSJShUkME55tvQUvhI3wNWb5"/>
+    <eLiterals name="WAGSsqzde8YFQK4Vblrq85ju98ttTqxkF2g2WJadwMAqou64Wq4waAt3X135ehb5"/>
+    <eLiterals name="0Q0Oy4ueuwT0K06xMX5LbjKxWueeu4OSM6E2baw3X8PV5hucfsVVUxivUo"/>
+    <eLiterals name="RrFyLiQgDQnTxjMKiWde0jEWE4Islf1RHik4bmHrYGiBKXCRZG4BEjygY0zuvB0hOM"/>
+    <eLiterals name="0Cx7mrFt56CWZCIAMexe9HpikirB6cjmiadk2g50D3mwO8cSkP9DmRmMZlEDKFl4qp"/>
+    <eLiterals name="3NQi4I1Ym1ywKpm6feOgWIl7rK4JZbDRyf3UM6RmqsjGS0h4BqAhAUKiy2"/>
+    <eLiterals name="x7mAocio0QVa4antGOBCNju9Cn35hz2ZAjcN7dxiSQMns7SpmCMf4SB51MSuOaN9tl0DQ5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EDataType" name="3xvyzXQqXeg170daDJ2FeNp0G0E0IsjNDgpRDuPjSo0ziNL8spgx2zx49QwkHaC"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="yTDKoOvLbc7MDuyQlZd3FCMHhWR2XXpGwZ8QTvFQJT0cNRkhatZsw5Xg4mUy3GEOxYxO7h"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="GLCFRY6ObWnAzfmOHrt4kPC6jU1TAnswDOfDhYuEX4Z6eEYw2pzoNtWUbjvVP05KXyVZ" abstract="true" eSuperTypes="//@eClassifiers.5 //@eClassifiers.7 //@eClassifiers.0"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="Bnj5WNRwOiT5wRvsrKB7jSLMZFxlmgg9FGZ8rxleegqiynDaxRhw2zoWx4IAkSsV98G"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="Ly1xVLWXEkA1EfIFymYmOm0v16I5hFlXTwsjQE4Ntz0V7bwQK4NhrZeZs7FVHY2UI3iA" eSuperTypes="//@eClassifiers.0 //@eClassifiers.5 //@eClassifiers.7"/>
+</smallEcore:EPackage>

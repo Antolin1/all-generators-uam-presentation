@@ -1,0 +1,27 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_bpJCkHoOEeiUL4La8lj9SQ" specification="@EventDriven&#10;&#10;@ChildFirstExecution&#10;&#10;import: &quot;../src/sct_import_header.h&quot;&#10;&#10;interface:&#10;in event start &#10;&#10;internal:&#10;event arr_full  &#10;event next    &#10;var i : integer    &#10;var b : bool       " name="InternalEventMachine" domainID="com.yakindu.domain.c">
+    <regions xmi:id="_bpKQs3oOEeiUL4La8lj9SQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_bpLe0XoOEeiUL4La8lj9SQ">
+        <outgoingTransitions xmi:id="_3PNKMHoPEeiUL4La8lj9SQ" specification="" target="_160xMHoPEeiUL4La8lj9SQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_160xMHoPEeiUL4La8lj9SQ" name="Wait" incomingTransitions="_3PNKMHoPEeiUL4La8lj9SQ">
+        <outgoingTransitions xmi:id="_4tu9sHoPEeiUL4La8lj9SQ" specification="start" target="_4RV8oHoPEeiUL4La8lj9SQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_4RV8oHoPEeiUL4La8lj9SQ" name="FillArray" incomingTransitions="_4tu9sHoPEeiUL4La8lj9SQ">
+        <outgoingTransitions xmi:id="_wT2wIHqoEeiucNOVpfhGqg" specification="arr_full" target="_v0R4MHqoEeiucNOVpfhGqg"/>
+        <regions xmi:id="_9IFpIHoPEeiUL4La8lj9SQ">
+          <vertices xsi:type="sgraph:Entry" xmi:id="_9vrNkHoPEeiUL4La8lj9SQ">
+            <outgoingTransitions xmi:id="_ATkGoHoQEeiUL4La8lj9SQ" specification="" target="_9_nuEHoPEeiUL4La8lj9SQ"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_9_nuEHoPEeiUL4La8lj9SQ" specification="entry [i &lt; ARR_SIZE] / raise next&#10;entry [i == ARR_SIZE] / raise arr_full" name="Check" incomingTransitions="_ATkGoHoQEeiUL4La8lj9SQ _YH9v8HoQEeiUL4La8lj9SQ">
+            <outgoingTransitions xmi:id="_BHrEIHoQEeiUL4La8lj9SQ" specification="next" target="_-Td3IHoPEeiUL4La8lj9SQ"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_-Td3IHoPEeiUL4La8lj9SQ" specification="entry / arr[i] = i; i++; raise next" name="Set" incomingTransitions="_BHrEIHoQEeiUL4La8lj9SQ">
+            <outgoingTransitions xmi:id="_YH9v8HoQEeiUL4La8lj9SQ" specification="next" target="_9_nuEHoPEeiUL4La8lj9SQ"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_v0R4MHqoEeiucNOVpfhGqg" incomingTransitions="_wT2wIHqoEeiucNOVpfhGqg"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

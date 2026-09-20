@@ -1,0 +1,28 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_eENYcD_IEeqqM953aO1YNQ" specification="interface ODC:&#13;&#10;&#9;in event getData : integer&#13;&#10;&#9;out event sendData : integer&#13;&#10;&#9;&#13;&#10;interface:&#13;&#10;&#9;var ODCGetData : integer&#13;&#10;&#9;var sendPL : integer&#13;&#10;&#9;var sendDataOBC : integer&#13;&#10;&#9;var PLBuffer : integer" name="SLP">
+    <regions xmi:id="_eEg6dz_IEeqqM953aO1YNQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_eFMP4z_IEeqqM953aO1YNQ">
+        <outgoingTransitions xmi:id="_eFYdID_IEeqqM953aO1YNQ" target="_eFSWgD_IEeqqM953aO1YNQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_eFSWgD_IEeqqM953aO1YNQ" name="SLP_ON" incomingTransitions="_eFYdID_IEeqqM953aO1YNQ">
+        <outgoingTransitions xmi:id="_fxi6oD_hEeqQfodg4bBv7w" specification="always / sendPL = 0;&#13;&#10;&#9;raise ODC.sendData : sendPL" target="_b83IED_hEeqQfodg4bBv7w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_b83IED_hEeqQfodg4bBv7w" name="SLP_Receive" incomingTransitions="_fxi6oD_hEeqQfodg4bBv7w _rlQswEBDEeq4L-hIj8p8Rg _wb6SoEBDEeq4L-hIj8p8Rg">
+        <outgoingTransitions xmi:id="_8LzTIEBBEeq4L-hIj8p8Rg" specification="ODC.getData [valueof(ODC.getData) == 1] / &#13;&#10;&#9;ODCGetData = valueof(ODC.getData);&#13;&#10;&#9;sendPL = 2;&#13;&#10;&#9;raise ODC.sendData : sendPL" target="_vpNVQEBBEeq4L-hIj8p8Rg"/>
+        <outgoingTransitions xmi:id="_Ftqq8EBCEeq4L-hIj8p8Rg" specification="ODC.getData [valueof(ODC.getData) == 0] /&#13;&#10;&#9;ODCGetData = valueof(ODC.getData); &#13;&#10;&#9;sendPL = 2;&#13;&#10;&#9;raise ODC.sendData : sendPL;&#13;&#10;&#9;sendDataOBC = 0" target="_vpNVQEBBEeq4L-hIj8p8Rg"/>
+        <outgoingTransitions xmi:id="_lgjNwEBCEeq4L-hIj8p8Rg" specification="ODC.getData [valueof(ODC.getData) != 1 &amp;&amp;&#13;&#10;&#9;valueof(ODC.getData) != 2] /&#13;&#10;&#9;ODCGetData = valueof(ODC.getData); &#13;&#10;&#9;sendPL = 0;&#13;&#10;&#9;raise ODC.sendData : sendPL" target="_vpNVQEBBEeq4L-hIj8p8Rg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_vpNVQEBBEeq4L-hIj8p8Rg" name="SLP_Send" incomingTransitions="_8LzTIEBBEeq4L-hIj8p8Rg _Ftqq8EBCEeq4L-hIj8p8Rg _lgjNwEBCEeq4L-hIj8p8Rg _WZq4wEBDEeq4L-hIj8p8Rg">
+        <outgoingTransitions xmi:id="_7_4hkEBCEeq4L-hIj8p8Rg" specification="always [sendPL == 2 &amp;&amp;&#13;&#10;&#9;ODCGetData != 0]" target="_27-_UEBBEeq4L-hIj8p8Rg"/>
+        <outgoingTransitions xmi:id="_wb6SoEBDEeq4L-hIj8p8Rg" specification="always&#13;&#10;[sendPL != 1 &amp;&amp;&#13;&#10;&#9;sendPL != 2 &amp;&amp;&#13;&#10;&#9;sendDataOBC == 0]  / &#13;&#10;&#9;sendPL = 0;&#13;&#10;&#9;raise ODC.sendData : sendPL" target="_b83IED_hEeqQfodg4bBv7w"/>
+        <outgoingTransitions xmi:id="_512dgEBDEeq4L-hIj8p8Rg" specification="always&#13;&#10;[sendPL == 1 ||&#13;&#10;&#9;sendDataOBC == 1] / &#13;&#10;&#9;sendPL = 1;&#13;&#10;&#9;raise ODC.sendData : sendPL" target="_zCkdwEBBEeq4L-hIj8p8Rg"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_zCkdwEBBEeq4L-hIj8p8Rg" name="SLP_Acquisition_Experiment" incomingTransitions="_512dgEBDEeq4L-hIj8p8Rg">
+        <outgoingTransitions xmi:id="_rlQswEBDEeq4L-hIj8p8Rg" specification="always / PLBuffer = 3" target="_b83IED_hEeqQfodg4bBv7w"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_27-_UEBBEeq4L-hIj8p8Rg" name="SLP_Read_Experiment" incomingTransitions="_7_4hkEBCEeq4L-hIj8p8Rg">
+        <outgoingTransitions xmi:id="_WZq4wEBDEeq4L-hIj8p8Rg" specification="always /&#13;&#10;&#9;sendPL = PLBuffer;&#13;&#10;&#9;raise ODC.sendData : sendPL;&#13;&#10;&#9;sendDataOBC = 1&#13;&#10;" target="_vpNVQEBBEeq4L-hIj8p8Rg"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

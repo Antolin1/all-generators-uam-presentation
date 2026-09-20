@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<smallEcore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smallEcore="http://www.example.org/smallEcore" name="qqKOVru0czMwA0XCJ1wLwYyIgcPJP1YePV6N4jtkKbfsW9nz74jTxW4lyg">
+  <eClassifiers xsi:type="smallEcore:EDataType" name="38EPUmHwhOl5x8pHwPPtRPrjSaHWHYsAPavUvKV6rRnk0tvrNyCl20zOgCE"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="bnY0ChMt7tZYt0WYkgr7A1m6Kcgqa61s8T5WgbzMYK0esDaeRpl1ASk3Hz">
+    <eLiterals name="Kkv0v5Oq8xMpbwzyGLbqO8NGKCEzyhoqHhwg5GoU3fcACdwW1hBQxfqKc708iTe1C"/>
+    <eLiterals name="z71SfWyY3G7TNP9f3culVVk6DNo7jivkAyfo8UanJwUFlvfMJZLFgIq0vRhUSLEA2L"/>
+    <eLiterals name="usTu2bzi9TxTImx7oKX2k2ZRUB8pIWt5qIVVqDCrS4V04Bflvtp03sE1A5"/>
+    <eLiterals name="qWeqtUy6cXOz3y4yzlHMR9pSnUqMfYdtyMSaWC9pe4p4jxqhyQ9s8T34f4kxJ"/>
+    <eLiterals name="SgxNnndkjaBLYmAIG0qXJl1c58V4TFAnnUvkz8YYb9UVIHFiemtQpbZeQWqrGn1"/>
+    <eLiterals name="2VFu1l5SpELNyjvaRkEHM8DitPRYlhcX9tAP8iRiWRurpTg4VgqkbdwoPImebl"/>
+    <eLiterals name="pmb7GTmgGJ4km3CVlK37lVmDedpFuYXO9oYQDmcr6BaXk3ZFfv3n06mMiw"/>
+    <eLiterals name="ybni0UFIvf47eHPGCaAypmBSnbJ0t0B4FhV3SxLwkqrVSwbXa08IX2vUOzmt9zKvM0a"/>
+    <eLiterals name="Yqp2qoBpIsnTLBszbjWmnLl140L3KZDfWg17BomtEJwAB3zYL54iA3vyWXLVsQ"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="smallEcore:EClass" name="fPEAvYnco2RNXE9m2Vju8bAsv3jAqLqek5O1XHJbPF33Kzh4W4JZMVkq4CBSe" abstract="true" eSuperTypes="//@eClassifiers.3 //@eClassifiers.2"/>
+  <eClassifiers xsi:type="smallEcore:EClass" name="Izz7VOsC66tgfpogyy33Mdujwh6gbhpwtaOcv0veGkjC8CGFqjuBccVlVcSxn80d" eSuperTypes="//@eClassifiers.3 //@eClassifiers.2"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="pkZW0tgax3R4286AffElLbYajpDO4LwxO4GIn9HLLVsPnOO4Q14s4xiruOm9Ub"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="m1UOUodIiLTvOXZspT11Tzi6LxCTz4lYcgjmvk1ErDqRplFcdzcinzEgLGNJv1"/>
+  <eClassifiers xsi:type="smallEcore:EEnum" name="ym3xI6WfKLCBDwFyvPNiGKP4qqrrQdusg1Out4HInWXFdLF8YSmwcFj3kYRSoXl92JAow"/>
+</smallEcore:EPackage>

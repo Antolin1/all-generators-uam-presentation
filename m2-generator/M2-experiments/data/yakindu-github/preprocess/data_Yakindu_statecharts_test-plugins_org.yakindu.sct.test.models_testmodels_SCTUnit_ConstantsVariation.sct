@@ -1,0 +1,13 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_e0YtkPb0Eeis3b0-VbsEIQ" specification="internal:&#10;const b:boolean = true&#10;const str:string = &quot;String&quot;&#10;const r:real = 5&#10;const i:integer = 5&#10;&#10;interface:&#10;const b2:boolean = true&#10;const str2:string = &quot;String&quot;&#10;const r2:real = 5&#10;const i2:integer = 5&#10;&#10;interface named:&#10;const b:boolean = true&#10;const str:string = &quot;String&quot;&#10;const r:real = 5&#10;const i:integer = 5" name="ConstantsVariation">
+    <regions xmi:id="_e0kTwPb0Eeis3b0-VbsEIQ" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_e0v58fb0Eeis3b0-VbsEIQ">
+        <outgoingTransitions xmi:id="_e02Akfb0Eeis3b0-VbsEIQ" target="_e0yWMPb0Eeis3b0-VbsEIQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_e0yWMPb0Eeis3b0-VbsEIQ" name="StateA" incomingTransitions="_e02Akfb0Eeis3b0-VbsEIQ">
+        <outgoingTransitions xmi:id="_61OiIPb0Eeis3b0-VbsEIQ" specification="[&#10;&#9;b == true &amp;&amp; str == &quot;String&quot; &amp;&amp; r == 5 &amp;&amp; i == 5 &amp;&amp;&#10;&#9;b2 == true &amp;&amp; str2 == &quot;String&quot; &amp;&amp; r2 == 5 &amp;&amp; i2 == 5 &amp;&amp;&#10;&#9;named.b == true &amp;&amp; named.str == &quot;String&quot; &amp;&amp; named.r == 5 &amp;&amp; named.i == 5&#10;]" target="_6V3soPb0Eeis3b0-VbsEIQ"/>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_6V3soPb0Eeis3b0-VbsEIQ" incomingTransitions="_61OiIPb0Eeis3b0-VbsEIQ"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

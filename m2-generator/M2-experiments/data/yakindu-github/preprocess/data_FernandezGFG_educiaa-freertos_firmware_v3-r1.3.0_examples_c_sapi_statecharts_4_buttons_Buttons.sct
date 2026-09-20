@@ -1,0 +1,22 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_IPEiAI_CEeaE_NItBGtDFQ" specification="/* Buttons EDU-CIAA-NXP */&#13;&#10;&#13;&#10;&#13;&#10;/* Using Time Events (Timer Ticks) */&#13;&#10;&#13;&#10;/* For each button pressed an operation  is done (opLED(LED3)), and its  ID (valueof) is stored in an internal variable (viTecla). Includes software debounce */&#13;&#10;&#13;&#10;&#13;&#10;interface:&#13;&#10;&#13;&#10;in event evTECXNoOprimido&#13;&#10;in event evTECXOprimido: integer&#13;&#10;&#13;&#10;operation opLED(LEDNumber:integer): void&#13;&#10;&#13;&#10;//const LEDR: integer = 0&#13;&#10;//const LEDG: integer = 1&#13;&#10;//const LEDB: integer = 2&#13;&#10;//const LED1: integer = 3&#13;&#10;//const LED2: integer = 4&#13;&#10;const LED3: integer = 5&#13;&#10;&#13;&#10;const LED_ON: boolean = true&#13;&#10;const LED_OFF: boolean = false&#13;&#10;&#13;&#10;const TEC1: integer = 1 &lt;&lt; 0&#13;&#10;const TEC2: integer = 1 &lt;&lt; 1&#13;&#10;const TEC3: integer = 1 &lt;&lt; 2&#13;&#10;const TEC4: integer = 1 &lt;&lt; 3&#13;&#10;&#13;&#10;internal:&#13;&#10;&#13;&#10;var viTecla: integer&#13;&#10;" name="buttons">
+    <regions xmi:id="_ECq5w0fOEeeJU45vckolSA" name="main region">
+      <vertices xsi:type="sgraph:State" xmi:id="_ECq5xEfOEeeJU45vckolSA" specification="" name="DEBOUNCE" incomingTransitions="_ECxAIUfOEeeJU45vckolSA">
+        <outgoingTransitions xmi:id="_ECq5xkfOEeeJU45vckolSA" specification="after 100 ms" target="_ECxAOUfOEeeJU45vckolSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ECq5y0fOEeeJU45vckolSA" specification="" name="NO_OPRIMIDO" incomingTransitions="_ECxAOEfOEeeJU45vckolSA _ECxAP0fOEeeJU45vckolSA _ECxAM0fOEeeJU45vckolSA">
+        <outgoingTransitions xmi:id="_ECxAIUfOEeeJU45vckolSA" specification="evTECXOprimido" target="_ECq5xEfOEeeJU45vckolSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ECxAJUfOEeeJU45vckolSA" specification="entry / opLED(LED3);&#13;&#10; viTecla = valueof (evTECXOprimido)" name="OPRIMIDO" incomingTransitions="_ECxAO0fOEeeJU45vckolSA">
+        <outgoingTransitions xmi:id="_ECxAM0fOEeeJU45vckolSA" specification="evTECXNoOprimido" target="_ECq5y0fOEeeJU45vckolSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:Entry" xmi:id="_ECxAN0fOEeeJU45vckolSA">
+        <outgoingTransitions xmi:id="_ECxAOEfOEeeJU45vckolSA" specification="" target="_ECq5y0fOEeeJU45vckolSA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_ECxAOUfOEeeJU45vckolSA" specification="" name="VALIDACION" incomingTransitions="_ECq5xkfOEeeJU45vckolSA">
+        <outgoingTransitions xmi:id="_ECxAO0fOEeeJU45vckolSA" specification="evTECXOprimido" target="_ECxAJUfOEeeJU45vckolSA"/>
+        <outgoingTransitions xmi:id="_ECxAP0fOEeeJU45vckolSA" specification="evTECXNoOprimido" target="_ECq5y0fOEeeJU45vckolSA"/>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>

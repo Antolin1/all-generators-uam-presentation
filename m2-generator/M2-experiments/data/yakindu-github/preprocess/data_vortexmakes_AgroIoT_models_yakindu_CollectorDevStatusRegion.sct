@@ -1,0 +1,24 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0" xmi:version="2.0">
+  <sgraph:Statechart xmi:id="_cNmXcP8iEemOF-Zd97UPAA" specification="@EventDriven&#10;// Use the event driven execution model.&#10;// Runs a run-to-completion step&#10;// each time an event is raised.&#10;// Switch to cycle based behavior&#10;// by specifying '@CycleBased(200)'&#10;// instead.&#10;&#10;@ChildFirstExecution&#10;// In composite states, execute&#10;// child states first.&#10;// @ParentFirstExecution does the opposite.&#10;&#10;interface:&#10;// Define events&#10;// and variables here. &#10;// Use CTRL + Space for content assist.&#10;internal:&#10;&#9;event evGeo&#10;&#9;event evGeoInvalid&#10;&#9;event evDigOutChanged&#10;&#9;event evDigInChanged&#10;&#9;event evDevData&#10;&#9;event evNoDev&#10;    event evUsbMounted&#10;    event evUsbUnmounted&#10;        event evTerminate&#10;&#9;&#10;&#9;operation init()&#10;&#9;operation getUpdatingStatusTime()&#10;&#9;operation updatePosition()&#10;&#9;operation updateDigOut()&#10;&#9;operation publishCurrStatus()&#10;&#9;operation initAndTestDevNull()&#10;&#9;operation updateDigInTestDevNull()&#10;&#9;operation updateAndTestDevData()&#10;&#9;operation updateDigIn()&#10;&#9;operation testDevNull()&#10;&#9;operation initBackup()&#10;&#9;operation deinitBackup()" name="CollectorDevStatusRegion">
+    <regions xmi:id="_cN_ZA_8iEemOF-Zd97UPAA" name="DevStatus">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_cOVXQP8iEemOF-Zd97UPAA">
+        <outgoingTransitions xmi:id="_0LWUkP8jEemOF-Zd97UPAA" specification="/ init()" target="_35P_IP8iEemOF-Zd97UPAA"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_35P_IP8iEemOF-Zd97UPAA" specification="evGeo / updatePosition()&#13;&#10;evGeoInvalid / updatePosition()&#13;&#10;evDigOutChanged / updateDigOut()&#13;&#10;every 1500ms /*UPDATING_STATUS_TIME*// &#13;&#10;publishCurrStatus()&#13;&#10;evUsbMounted / initBackup()&#13;&#10;evUsbUnmounted / deinitBackup()" name="Active" incomingTransitions="_0LWUkP8jEemOF-Zd97UPAA">
+        <outgoingTransitions xmi:id="_r_KLsLiuEeqmj4PiveOg9Q" specification="evTerminate" target="_ppkNULiuEeqmj4PiveOg9Q"/>
+        <regions xmi:id="_35RNQP8iEemOF-Zd97UPAA" name="r1">
+          <vertices xsi:type="sgraph:State" xmi:id="_8mH98P8iEemOF-Zd97UPAA" specification="entry / initAndTestDevNull()&#13;&#10;evDigInChanged / updateDigInTestDevNull()" name="DevNotConnected" incomingTransitions="_8mJzIf8iEemOF-Zd97UPAA _8mLBTf8iEemOF-Zd97UPAA">
+            <outgoingTransitions xmi:id="_8mIlGP8iEemOF-Zd97UPAA" specification="evDevData/&#13;&#10;updateAndTestDevData()" target="_8mKaMP8iEemOF-Zd97UPAA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:Entry" xmi:id="_8mJzIP8iEemOF-Zd97UPAA">
+            <outgoingTransitions xmi:id="_8mJzIf8iEemOF-Zd97UPAA" specification="" target="_8mH98P8iEemOF-Zd97UPAA"/>
+          </vertices>
+          <vertices xsi:type="sgraph:State" xmi:id="_8mKaMP8iEemOF-Zd97UPAA" specification="evDevData/ updateAndTestDevData()&#13;&#10;evDigInChanged / updateDigIn()" name="DevConnected" incomingTransitions="_8mIlGP8iEemOF-Zd97UPAA">
+            <outgoingTransitions xmi:id="_8mLBTf8iEemOF-Zd97UPAA" specification="evNoDev" target="_8mH98P8iEemOF-Zd97UPAA"/>
+          </vertices>
+        </regions>
+      </vertices>
+      <vertices xsi:type="sgraph:FinalState" xmi:id="_ppkNULiuEeqmj4PiveOg9Q" incomingTransitions="_r_KLsLiuEeqmj4PiveOg9Q"/>
+    </regions>
+  </sgraph:Statechart>
+  </xmi:XMI>
