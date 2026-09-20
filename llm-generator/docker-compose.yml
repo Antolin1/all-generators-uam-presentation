@@ -5,20 +5,30 @@
 #   → http://localhost:8110
 #
 # La clave de API solo se lee de la variable de entorno OPENAI_API_KEY; nunca se guarda ni se muestra.
-# Solo se publica en 127.0.0.1: ejecuta en el servidor el código Python que escribe el LLM (aislado en un
+# Solo se publica en 127.0.0.1: el backend ejecuta el código Python que escribe el LLM (aislado en un
 # subproceso, ver README), así que es una herramienta local. No la expongas a internet.
 
 name: llm-generator
 
 services:
-  app:
+  backend:
     build:
       context: ./mm-ocl-py
-    image: llm-generator
+    image: llm-generator-backend
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENAI_MODEL: ${OPENAI_MODEL:-}              # modelo por defecto de la interfaz (por defecto gpt-4.1)
       OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}        # opcional: un endpoint compatible con OpenAI
       OPENAI_TEMPERATURE: ${OPENAI_TEMPERATURE:-}  # opcional; los modelos de reasoning no la admiten
     ports:
-      - "127.0.0.1:8110:8000"
+      - "127.0.0.1:8111:8000"         # solo para depurar la API (curl) y para `npm run dev`; el front usa la red interna
+
+  frontend:
+    build:
+      context: ./frontend
+    image: llm-generator-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8110:80"

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de modelos con LLM</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23087f5b'/%3E%3Cpath d='M8 20l4-8 4 6 3-4 5 6' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='8' cy='11' r='2.4' fill='white'/%3E%3Ccircle cx='23' cy='10' r='2.4' fill='white'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>Generador de modelos</h1>
+          <span class="tagline">LangChain · OpenAI · Pydantic</span>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>Modelo de OpenAI</span>
+        <input id="llm-model" type="text" list="llm-model-list" spellcheck="false" />
+        <datalist id="llm-model-list"></datalist>
+      </label>
+
+      <label class="field" title="Cuántas veces puede intentarlo el LLM, corrigiéndose con el feedback">
+        <span>Intentos máx.</span>
+        <input id="llm-iterations" type="number" min="1" max="10" step="1" />
+      </label>
+
+      <div class="spacer"></div>
+
+      <span id="backend-status" class="pill" data-state="connecting">Conectando…</span>
+      <button id="cancel" class="ghost" type="button" hidden>Cancelar</button>
+      <button id="generate" class="primary" type="button" title="Generar un modelo (Ctrl+Enter)">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor" /></svg>
+        Generate
+      </button>
+    </header>
+
+    <main id="workspace">
+      <section class="panel config-panel" aria-label="Entrada">
+        <div class="config-body">
+          <h3 class="section first">1 · Metamodelo</h3>
+          <div class="load-row">
+            <select id="example" title="Cargar un metamodelo con sus restricciones de ejemplo"></select>
+            <label class="ghost-file" title="Subir un metamodelo .ecore">
+              Subir .ecore
+              <input id="ecore-file" type="file" accept=".ecore,.xmi,.xml" hidden />
+            </label>
+          </div>
+          <p id="mm-info" class="hint-text">Aún no hay ningún metamodelo.</p>
+
+          <h3 class="section">2 · Restricciones OCL</h3>
+          <div id="ocl-editor" class="ocl-editor"></div>
+          <p id="ocl-status" class="hint-text"></p>
+
+          <h3 class="section">3 · Scope</h3>
+          <label class="field-block">Clase raíz
+            <select id="root-class"></select>
+          </label>
+          <p class="hint-text">Número de objetos por clase (vacío = sin límite; se cuentan también las subclases).</p>
+          <table class="scope-table">
+            <thead><tr><th>Clase</th><th>Mín</th><th>Máx</th></tr></thead>
+            <tbody id="scope-body"></tbody>
+            <tfoot>
+              <tr><td>Total de objetos</td><td><input id="total-min" type="number" min="0" /></td><td><input id="total-max" type="number" min="0" /></td></tr>
+            </tfoot>
+          </table>
+          <p id="form-error" class="form-error" hidden></p>
+        </div>
+      </section>
+
+      <div class="splitter v" id="split-v" role="separator" aria-orientation="vertical" tabindex="0"></div>
+
+      <div class="right">
+        <section class="panel graph-panel" aria-label="Modelo generado">
+          <div class="panel-head">
+            <h2>Modelo generado</h2>
+            <div class="spacer"></div>
+            <div class="seg" role="group" aria-label="Orientación">
+              <button id="dir-down" type="button" data-dir="DOWN" title="Árbol de arriba abajo">↓</button>
+              <button id="dir-right" type="button" data-dir="RIGHT" title="Árbol de izquierda a derecha">→</button>
+            </div>
+            <button id="fit" class="ghost" type="button" title="Ajustar a la vista">Ajustar</button>
+          </div>
+          <div id="attempts-bar" class="attempts-bar" hidden>
+            <div id="attempts" class="attempts"></div>
+            <span id="job-status" class="job-status"></span>
+          </div>
+          <div id="graph" class="graph"></div>
+          <div class="graph-foot">
+            <span><svg width="34" height="10"><use href="#legend-containment" /></svg> hijos</span>
+            <span><svg width="34" height="10"><use href="#legend-reference" /></svg> referencia</span>
+            <span class="ext bad-key">objeto con problemas</span>
+            <div class="spacer"></div>
+            <span id="node-info" class="node-info"></span>
+            <span id="graph-stats"></span>
+          </div>
+        </section>
+
+        <div class="splitter h" id="split-h" role="separator" aria-orientation="horizontal" tabindex="0"></div>
+
+        <section class="panel rules-panel" aria-label="Detalle del intento">
+          <div class="panel-head tabs" role="tablist">
+            <button role="tab" data-tab="problems" aria-selected="true">Problemas <span id="problem-count" class="count-badge"></span></button>
+            <button role="tab" data-tab="prompt" aria-selected="false">Prompt</button>
+            <button role="tab" data-tab="feedback" aria-selected="false">Feedback al LLM</button>
+            <button role="tab" data-tab="script" aria-selected="false">Script del LLM</button>
+            <button role="tab" data-tab="module" aria-selected="false">Código Pydantic</button>
+            <button role="tab" data-tab="scope" aria-selected="false">Scope</button>
+            <button role="tab" data-tab="xmi" aria-selected="false">XMI</button>
+            <div class="spacer"></div>
+            <a id="export" class="ghost-link" hidden>Exportar XMI</a>
+          </div>
+          <div id="tab-problems" class="tab-body" role="tabpanel"></div>
+          <div id="tab-prompt" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-feedback" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-script" class="tab-body code" role="tabpanel" hidden></div>
+          <div id="tab-module" class="tab-body code" role="tabpanel" hidden></div>
+          <div id="tab-scope" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-xmi" class="tab-body code" role="tabpanel" hidden></div>
+        </section>
+      </div>
+    </main>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <g id="legend-containment"><line x1="8" y1="5" x2="34" y2="5" stroke="var(--edge)" stroke-width="1.6" /><path d="M0 5 L4 2 L8 5 L4 8 Z" fill="var(--edge)" /></g>
+        <g id="legend-reference"><line x1="0" y1="5" x2="27" y2="5" stroke="var(--ref)" stroke-width="1.6" stroke-dasharray="4 3" /><path d="M34 5 L27 1.8 L27 8.2 Z" fill="var(--ref)" /></g>
+      </defs>
+    </svg>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
