@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -31,8 +32,10 @@ import java.util.logging.Logger;
 import org.apache.commons.lang3.Range;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -45,19 +48,24 @@ import fr.obeo.emf.specimen.SpecimenGenerator;
 final class Runner {
 
 	static final int MAX_SIZE = 200000;
-	/** Fixed: average length of generated text values, and the +/- variation of it and of the degree. */
+	/** Fixed: average length of generated text values (only its +/- variation is below; the tolerance the UI exposes is size/degree). */
 	private static final int VALUES_SIZE = 12;
-	private static final float PROP_VARIATION = 0.1f;
-	/** Fixed: the model size varies +/- this much around the requested one. */
-	private static final float SIZE_VARIATION = 0.1f;
+	private static final float VALUES_VARIATION = 0.1f;
+	/** Defaults for the two tolerances the UI can change: how much the model size and the degree may vary around the requested value. */
+	static final float DEFAULT_SIZE_VARIATION = 0.1f;
+	static final float DEFAULT_DEGREE_VARIATION = 0.1f;
 	private static final int MAX_XMI_BYTES = 3 * 1024 * 1024;
 	private static final int MAX_GRAPH_OBJECTS = 300;
 	private static final int MAX_GRAPH_EDGES = 1500;
+	private static final int MAX_OCL_EXAMPLES = 8;
 
 	static final class Request {
 		String metamodel;
 		int size = 20;
 		int degree = 2;
+		/** +/- tolerance around `size` and `degree`, as a fraction (0.1 = 10 %). */
+		float sizeVariation = DEFAULT_SIZE_VARIATION;
+		float degreeVariation = DEFAULT_DEGREE_VARIATION;
 		Long seed;
 		Set<String> excluded = new HashSet<String>();
 		Set<String> roots = new LinkedHashSet<String>();
@@ -115,6 +123,8 @@ final class Runner {
 	private static void validate(Request r) throws Failure {
 		if (r.size < 1 || r.size > MAX_SIZE) throw new Failure("params", "El tamaño debe estar entre 1 y " + MAX_SIZE);
 		if (r.degree < 0 || r.degree > 200) throw new Failure("params", "El grado debe estar entre 0 y 200");
+		if (r.sizeVariation < 0 || r.sizeVariation > 1) throw new Failure("params", "La tolerancia del tamaño debe estar entre 0 % y 100 %");
+		if (r.degreeVariation < 0 || r.degreeVariation > 1) throw new Failure("params", "La tolerancia del grado debe estar entre 0 % y 100 %");
 	}
 
 	private Map<String, Object> generate(Request r) throws Exception {
@@ -135,7 +145,7 @@ final class Runner {
 		Set<EClass> excluded = classes(loaded, r.excluded, "excluida");
 
 		long seed = r.seed != null ? r.seed : System.currentTimeMillis();
-		Range<Integer> elements = Range.between(Math.round(r.size * (1 - SIZE_VARIATION)), Math.round(r.size * (1 + SIZE_VARIATION)));
+		Range<Integer> elements = Range.between(Math.round(r.size * (1 - r.sizeVariation)), Math.round(r.size * (1 + r.sizeVariation)));
 
 		// roots: the ones asked for, or the default candidates; never an excluded class
 		ConfigurableConfig probe = new ConfigurableConfig(loaded.resource, elements, seed, excluded, Collections.<EClass>emptySet());
@@ -147,9 +157,9 @@ final class Runner {
 
 		ConfigurableConfig config = new ConfigurableConfig(loaded.resource, elements, seed, excluded, roots);
 		// same derivation as the launcher: the "degree" sets both the number of references and of attribute values per object
-		config.setValuesRange(Math.round(VALUES_SIZE * (1 - PROP_VARIATION)), Math.round(VALUES_SIZE * (1 + PROP_VARIATION)));
-		config.setReferencesRange(Math.round(r.degree * (1 - PROP_VARIATION)), Math.round(r.degree * (1 + PROP_VARIATION)));
-		config.setPropertiesRange(Math.round(r.degree * (1 - PROP_VARIATION)), Math.round(r.degree * (1 + PROP_VARIATION)));
+		config.setValuesRange(Math.round(VALUES_SIZE * (1 - VALUES_VARIATION)), Math.round(VALUES_SIZE * (1 + VALUES_VARIATION)));
+		config.setReferencesRange(Math.round(r.degree * (1 - r.degreeVariation)), Math.round(r.degree * (1 + r.degreeVariation)));
+		config.setPropertiesRange(Math.round(r.degree * (1 - r.degreeVariation)), Math.round(r.degree * (1 + r.degreeVariation)));
 
 		Path out = Files.createTempDirectory("instantiator");
 		LogCapture log = new LogCapture();
@@ -159,29 +169,32 @@ final class Runner {
 			generator.setSamplesPath(out);
 			log.attach();
 			try {
-				generator.runGeneration(resourceSet, 1, r.size, SIZE_VARIATION);
+				generator.runGeneration(resourceSet, 1, r.size, r.sizeVariation);
 			} finally {
 				log.detach();
 			}
 			long generated = System.nanoTime();
 
 			Resource model = resourceSet.getResources().get(0);
-			int objects = 0;
+			List<EObject> objectList = new ArrayList<EObject>();
 			Map<String, Integer> byClass = new TreeMap<String, Integer>();
 			for (Iterator<EObject> it = model.getAllContents(); it.hasNext();) {
 				EObject object = it.next();
-				objects++;
+				objectList.add(object);
 				byClass.merge(object.eClass().getName(), 1, Integer::sum);
 			}
+			int objects = objectList.size();
 
 			Map<String, Object> diagnosis = diagnose(model);
+			Map<EObject, List<String>> violatedBy = new IdentityHashMap<EObject, List<String>>();
+			Map<String, Object> ocl = checkOcl(model, loaded, objectList, violatedBy);
 
 			Map<String, Object> graph = null;
 			String graphSkipped = null;
 			if (objects > MAX_GRAPH_OBJECTS) {
 				graphSkipped = "El modelo tiene " + objects + " objetos; se dibujan como máximo " + MAX_GRAPH_OBJECTS + ". Descarga el XMI o reduce el tamaño.";
 			} else {
-				graph = new GraphExporter().export(model);
+				graph = new GraphExporter().export(model, violatedBy);
 				if (((Number) ((Map<?, ?>) graph.get("stats")).get("edges")).intValue() > MAX_GRAPH_EDGES) {
 					graph = null;
 					graphSkipped = "Demasiadas aristas para dibujarlas (más de " + MAX_GRAPH_EDGES + "): reduce el grado o el tamaño.";
@@ -213,12 +226,68 @@ final class Runner {
 					"xmi", xmi,
 					"xmiBytes", xmiBytes,
 					"diagnosis", diagnosis,
+					"ocl", ocl,
 					"warnings", loaded.warnings.size(),
 					"log", log.lines,
 					"millis", Json.obj("generate", (generated - start) / 1000000, "total", (System.nanoTime() - start) / 1000000));
 		} finally {
 			delete(out.toFile());
 		}
+	}
+
+	/**
+	 * Checks every OCL invariant that applies to this metamodel against every instance of its context class
+	 * (and its subclasses) in the generated model, and collects which objects violate which rule (for the graph).
+	 */
+	private static Map<String, Object> checkOcl(Resource model, Metamodels.Loaded loaded, List<EObject> objects, Map<EObject, List<String>> violatedBy) {
+		List<Object> results = new ArrayList<Object>();
+		boolean ok = true;
+		for (Ocl.Constraint constraint : loaded.constraints) {
+			EClass contextClass = loaded.classesByName.get(constraint.context);
+			int instances = 0;
+			int violations = 0;
+			String error = null;
+			List<String> examples = new ArrayList<String>();
+			for (EObject object : objects) {
+				if (!contextClass.isSuperTypeOf(object.eClass())) continue;
+				instances++;
+				boolean holds;
+				String objectError = null;
+				try {
+					holds = Ocl.holds(constraint, object, loaded.lookup);
+				} catch (Ocl.OclError e) {
+					holds = false;
+					objectError = error = e.getMessage();
+				}
+				if (!holds) {
+					violations++;
+					if (examples.size() < MAX_OCL_EXAMPLES) {
+						examples.add(describe(model, object) + (objectError != null ? " — error de evaluación: " + objectError : ""));
+					}
+					List<String> tags = violatedBy.get(object);
+					if (tags == null) {
+						tags = new ArrayList<String>();
+						violatedBy.put(object, tags);
+					}
+					tags.add(constraint.context + "." + constraint.name);
+				}
+			}
+			if (violations > 0 || error != null) ok = false;
+			results.add(Json.obj("context", constraint.context, "name", constraint.name, "expression", constraint.source,
+					"instances", instances, "violations", violations, "examples", examples, "error", error));
+		}
+		if (!loaded.oclErrors.isEmpty()) ok = false;
+		return Json.obj("ok", ok, "constraints", results, "fileErrors", loaded.oclErrors);
+	}
+
+	/** A short, human label for an object in a violation message: its "name" attribute if it has one, else its position in the model. */
+	private static String describe(Resource model, EObject object) {
+		EStructuralFeature nameFeature = object.eClass().getEStructuralFeature("name");
+		if (nameFeature instanceof EAttribute && !nameFeature.isMany() && object.eIsSet(nameFeature)) {
+			Object value = object.eGet(nameFeature);
+			if (value != null) return object.eClass().getName() + " «" + value + "»";
+		}
+		return object.eClass().getName() + " (" + model.getURIFragment(object) + ")";
 	}
 
 	private static Map<String, Object> diagnose(Resource model) {

@@ -8,6 +8,8 @@ export interface GraphNode {
   attributes: { name: string; value: string }[];
   rule: string | null;
   app: string | null;
+  /** OCL invariants this object violates, as "Context.Name"; empty when it conforms. */
+  problems: string[];
 }
 
 export interface GraphEdge {
@@ -43,15 +45,37 @@ export interface MetamodelInfo {
   warnings: string[];
   packages: { name: string; nsURI: string }[];
   classes: ClassInfo[];
+  /** OCL invariants that apply to this metamodel (from every *.ocl file in metamodels/ whose context classes match). */
+  constraints: { context: string; name: string; expression: string }[];
+  oclErrors: string[];
 }
 
 export interface GenerateRequest {
   metamodel: string;
   size: number;
   degree: number;
+  /** +/- tolerance around size and degree, as a fraction (0.1 = 10 %). */
+  sizeVariation: number;
+  degreeVariation: number;
   seed?: number;
   excluded: string[];
   roots: string[];
+}
+
+export interface OclConstraint {
+  context: string;
+  name: string;
+  expression: string;
+  instances: number;
+  violations: number;
+  examples: string[];
+  error: string | null;
+}
+
+export interface OclResult {
+  ok: boolean;
+  constraints: OclConstraint[];
+  fileErrors: string[];
 }
 
 export interface GenerateOk {
@@ -66,6 +90,7 @@ export interface GenerateOk {
   xmi: string | null;
   xmiBytes: number;
   diagnosis: { ok: boolean; errors: number; messages: string[] } | null;
+  ocl: OclResult | null;
   warnings: number;
   log: { level: string; message: string }[];
   millis: { generate: number; total: number };

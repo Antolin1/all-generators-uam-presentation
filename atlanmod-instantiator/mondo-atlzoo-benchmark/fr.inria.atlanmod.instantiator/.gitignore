@@ -4,3 +4,5 @@
 /dist/fr.inria.atlanmod.instantiator.jar
 /dist/instantiator-dist.jar
 /target/**
+# generado por el IDE al indexar el proyecto Java; los demás .prefs sí vienen del repo original
+/.settings/org.eclipse.jdt.apt.core.prefs

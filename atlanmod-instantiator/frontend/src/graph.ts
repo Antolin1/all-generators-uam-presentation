@@ -337,6 +337,7 @@ export class GraphView {
     if (node.external) classes.push('external');
     if (node.implicit) classes.push('implicit');
     if (node.abstract) classes.push('abstract');
+    if (node.problems.length) classes.push('problem');
     const group = el('g', { class: classes.join(' '), 'data-id': node.id, transform: `translate(${box.x},${box.y})` });
 
     const color = typeColor(node.type);
@@ -349,6 +350,14 @@ export class GraphView {
     if (node.rule && node.rule !== node.type) {
       const rule = el('text', { class: 'rule-tag', x: width - PAD_X, y: HEADER_H / 2 + 3.5, 'text-anchor': 'end' }, node.rule);
       group.append(rule);
+    }
+    if (node.problems.length) {
+      const badge = el('g', { class: 'problem-badge', transform: `translate(${width},0)` });
+      badge.append(el('circle', { r: 8 }), el('text', { y: 3.5 }, String(node.problems.length)));
+      const title = el('title');
+      title.textContent = `Incumple ${node.problems.length === 1 ? 'la restricción' : 'las restricciones'}: ${node.problems.join(', ')}`;
+      badge.append(title);
+      group.append(badge);
     }
 
     let y = HEADER_H;

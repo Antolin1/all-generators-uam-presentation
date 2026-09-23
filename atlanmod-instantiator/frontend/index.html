@@ -51,10 +51,12 @@
 
           <h3 class="section">Parámetros</h3>
           <div class="params-grid">
-            <label title="Número medio de objetos del modelo (el tamaño real varía ±10 %)">Tamaño<input id="p-size" type="number" min="1" max="200000" step="1" /></label>
-            <label title="Número medio de referencias y de valores de atributo por objeto (±10 %)">Grado<input id="p-degree" type="number" min="0" max="200" step="1" /></label>
+            <label title="Número medio de objetos del modelo">Tamaño<input id="p-size" type="number" min="1" max="200000" step="1" /></label>
+            <label title="Número medio de referencias y de valores de atributo por objeto">Grado<input id="p-degree" type="number" min="0" max="200" step="1" /></label>
+            <label title="Cuánto puede variar el tamaño real respecto al pedido, de más o de menos">Tolerancia del tamaño (%)<input id="p-size-tol" type="number" min="0" max="100" step="1" /></label>
+            <label title="Cuánto puede variar el grado real (referencias y atributos) respecto al pedido, de más o de menos">Tolerancia del grado (%)<input id="p-degree-tol" type="number" min="0" max="100" step="1" /></label>
           </div>
-          
+
           <h3 class="section">Metaclases <span class="muted" id="class-count"></span></h3>
           <p class="hint-text">Las abstractas nunca se instancian. Desmarca una para no generarla, o elige qué clases pueden ser raíz del modelo.</p>
           <table id="classes" class="classes">
@@ -83,6 +85,7 @@
           <div class="graph-foot">
             <span><svg width="34" height="10"><use href="#legend-containment" /></svg> contención</span>
             <span><svg width="34" height="10"><use href="#legend-reference" /></svg> referencia</span>
+            <span class="legend-problem">incumple una restricción OCL</span>
             <span class="hint">rueda: zoom · arrastrar: mover · clic: seleccionar</span>
             <div class="spacer"></div>
             <span id="graph-stats"></span>
@@ -94,12 +97,14 @@
         <section class="panel rules-panel" aria-label="Resultado">
           <div class="panel-head tabs" role="tablist">
             <button role="tab" data-tab="summary" aria-selected="true">Resumen</button>
+            <button role="tab" data-tab="ocl" aria-selected="false">Restricciones OCL <span id="ocl-count" class="count-badge"></span></button>
             <button role="tab" data-tab="log" aria-selected="false">Registro</button>
             <button role="tab" data-tab="xmi" aria-selected="false">XMI</button>
             <div class="spacer"></div>
             <button id="download" class="ghost" type="button" hidden>Descargar XMI</button>
           </div>
           <div id="tab-summary" class="tab-body" role="tabpanel"></div>
+          <div id="tab-ocl" class="tab-body" role="tabpanel" hidden></div>
           <div id="tab-log" class="tab-body" role="tabpanel" hidden></div>
           <div id="tab-xmi" class="tab-body" role="tabpanel" hidden></div>
         </section>

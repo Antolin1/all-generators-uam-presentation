@@ -637,6 +637,11 @@ function promptView(note: string, messages: [Role, string, string][]): HTMLEleme
 function renderPrompt(attempt: Attempt | null) {
   if (!job) return; // no job yet: the preview (schedulePreview) fills the tab
   const prompt = job.prompt;
+  if (!prompt) {
+    // a backend from before the prompts were exposed: say so instead of breaking the rest of the panel
+    tabBodies.prompt.replaceChildren(el('p', 'empty', 'El backend no envía el prompt: es una versión anterior. Reconstruye los contenedores con «docker compose up --build» (o reinicia uvicorn).'));
+    return;
+  }
   const messages: [Role, string, string][] = [
     ['system', 'prompt de sistema', prompt.system],
     ['user', 'prompt de usuario · el módulo y el scope', prompt.task],

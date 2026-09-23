@@ -472,3 +472,27 @@ table.applied td:last-child { font-family: var(--mono); }
 .log-line.SEVERE .lvl, .log-line.SEVERE .msg { color: var(--danger); }
 .diag-list { margin: 4px 12px 0; padding-left: 18px; color: var(--danger); font-size: 12px; }
 #download { margin-left: 8px; }
+
+/* OCL results */
+.count-badge { margin-left: 4px; padding: 0 6px; border-radius: 99px; background: var(--surface-sunken); border: 1px solid var(--border); font-size: 11px; font-weight: 600; color: var(--text-muted); }
+.count-badge:empty { display: none; }
+.count-badge.bad { background: color-mix(in srgb, var(--danger) 16%, transparent); color: var(--danger); border-color: transparent; }
+.ocl-empty { margin: 12px; color: var(--text-muted); font-size: 12.5px; }
+.ocl-file-errors { margin: 10px 12px; padding: 8px 10px; border: 1px solid var(--danger); border-radius: 8px; font-size: 12px; white-space: pre-wrap; font-family: var(--mono); color: var(--danger); }
+table.ocl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.ocl th { text-align: left; padding: 6px 12px; color: var(--text-faint); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid var(--border); }
+table.ocl td { padding: 6px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.ocl tr:last-child td { border-bottom: none; }
+table.ocl .rule { font-family: var(--mono); }
+table.ocl .rule small { display: block; color: var(--text-faint); font-weight: 400; white-space: pre-wrap; }
+table.ocl .num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+table.ocl .status.ok { color: var(--ok); }
+table.ocl .status.bad { color: var(--danger); font-weight: 600; }
+table.ocl .status.error { color: var(--warn); font-weight: 600; }
+.ocl-examples { margin: 4px 0 0; padding-left: 16px; color: var(--text-muted); font-size: 11.5px; }
+.ocl-examples li { margin: 1px 0; }
+.legend-problem::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--danger); margin-right: 5px; vertical-align: middle; }
+
+.node.problem .frame { stroke: var(--danger); stroke-width: 2; }
+.node .problem-badge circle { fill: var(--danger); }
+.node .problem-badge text { fill: #fff; font-size: 10px; font-weight: 700; text-anchor: middle; }
