@@ -1,0 +1,58 @@
+model RiverCrossing
+
+abstract class Object
+attributes
+  eats: Set(Object)
+end
+
+class Farmer < Object
+end
+
+class Fox < Object
+end
+
+class Chicken < Object
+end
+
+class Grain < Object
+end
+
+class State
+attributes
+  near: Set(Object)
+  far: Set(Object)
+end
+
+association PrevNext between
+  State [0..1] role prev
+  State [0..1] role next
+end
+
+class System
+operations
+  farmer():Farmer=Farmer.allInstances()->any(true)
+  fox():Fox=Fox.allInstances()->any(true)
+  chicken():Chicken=Chicken.allInstances()->any(true)
+  grain():Grain=Grain.allInstances()->any(true)
+  prevPlus(aState:State):Set(State)
+  nextPlus(aState:State):Set(State)
+  first():State=State.allInstances()->any(s|s.prev->isEmpty())
+  last():State=State.allInstances()->any(s|s.next->isEmpty())
+  crossRiver(fromPrev:Set(Object),fromNext:Set(Object),
+             toPrev:Set(Object),toNext:Set(Object)):Boolean=
+    fromPrev->one(x|
+      fromNext=fromPrev->excluding(x)->excluding(farmer()) and -- !!!TODO !!!
+      toNext=toPrev->including(x)->including(farmer()))
+constraints
+inv SystemSingleton: System.allInstances()->size()=1
+inv FarmerSingleton: Farmer.allInstances()->size()=1
+inv FoxSingleton: Fox.allInstances()->size()=1
+inv ChickenSingleton: Chicken.allInstances()->size()=1
+inv GrainSingleton: Grain.allInstances()->size()=1
+inv FoxEatsChicken_ChickenEatsGrain:
+  Object.allInstances()->collectNested(o|Tuple{c1:o,c2:o.eats})=
+  Bag{Tuple{c1:fox(),c2:Set{chicken()}},Tuple{c1:chicken(),c2:Set{grain()}}}
+inv initialState:
+  first().near=Object.allInstances() and
+  first().far->isEmpty()
+end

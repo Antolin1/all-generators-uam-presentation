@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador SAT</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235f3dc4'/%3E%3Cpath d='M9 21V11h4a3 3 0 1 1 0 6H9M18 11v10M23 11h-4v10h4M19 16h3' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>Generador SAT</h1>
+          <span class="tagline">USE · SAT4J · OCL</span>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <span id="backend-status" class="pill" data-state="connecting">Conectando…</span>
+      <button id="generate" class="primary" type="button" title="Buscar un modelo que cumpla las restricciones (Ctrl+Enter)">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor" /></svg>
+        Generate
+      </button>
+    </header>
+
+    <main id="workspace">
+      <section class="panel config-panel" aria-label="Configuración">
+        <div class="panel-head">
+          <h2>Configuración</h2>
+          <div class="spacer"></div>
+          <button id="refresh" class="ghost" type="button" title="Volver a leer la carpeta de metamodelos">Actualizar</button>
+        </div>
+        <div class="config-body">
+          <h3 class="section first">1 · Metamodelo</h3>
+          <select id="metamodel"></select>
+          <p id="mm-info" class="hint-text"></p>
+          <div id="mm-problems" class="mm-problems" hidden></div>
+
+          <h3 class="section">2 · Restricciones OCL <span class="muted" id="ocl-source-count"></span></h3>
+          <div id="ocl-viewer" class="ocl-editor"></div>
+          <p class="hint-text">Se leen de los ficheros <code>.ocl</code> en la carpeta de metamodelos; una restricción cuenta para el metamodelo cargado si su clase de <code>context</code> existe en él.</p>
+
+          <h3 class="section">3 · Scope</h3>
+          <label class="field-block">Clase raíz
+            <select id="root-class"></select>
+          </label>
+          <p class="hint-text">Cotas de la búsqueda por clase (vacío = cota por defecto; se cuentan también las subclases). No es una generación aproximada: el resolutor SAT decide, dentro de estas cotas, si existe un modelo — y cuál.</p>
+          <table class="scope-table">
+            <thead><tr><th>Clase</th><th>Mín</th><th>Máx</th></tr></thead>
+            <tbody id="scope-body"></tbody>
+            <tfoot>
+              <tr><td>Total de objetos</td><td><input id="total-min" type="number" min="0" /></td><td><input id="total-max" type="number" min="0" /></td></tr>
+            </tfoot>
+          </table>
+          <p id="form-error" class="form-error" hidden></p>
+
+          <h3 class="section">Metaclases <span class="muted" id="class-count"></span></h3>
+          <table id="classes" class="classes">
+            <thead><tr><th>Metaclase</th><th title="Ninguna otra clase la contiene: candidata natural a raíz">Raíz natural</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="splitter v" id="split-v" role="separator" aria-orientation="vertical" tabindex="0"></div>
+
+      <div class="right">
+        <section class="panel graph-panel" aria-label="Modelo encontrado">
+          <div class="panel-head">
+            <h2>Modelo encontrado</h2>
+            <div class="spacer"></div>
+            <div class="seg" role="group" aria-label="Orientación">
+              <button id="dir-down" type="button" data-dir="DOWN" title="Árbol de arriba abajo">↓</button>
+              <button id="dir-right" type="button" data-dir="RIGHT" title="Árbol de izquierda a derecha">→</button>
+            </div>
+            <button id="fit" class="ghost" type="button" title="Ajustar a la vista">Ajustar</button>
+          </div>
+          <div id="graph" class="graph"></div>
+          <div class="graph-foot">
+            <span><svg width="34" height="10"><use href="#legend-containment" /></svg> contención</span>
+            <span><svg width="34" height="10"><use href="#legend-reference" /></svg> referencia</span>
+            <span class="legend-problem">incumple una restricción OCL</span>
+            <span class="hint">rueda: zoom · arrastrar: mover · clic: seleccionar</span>
+            <div class="spacer"></div>
+            <span id="graph-stats"></span>
+          </div>
+        </section>
+
+        <div class="splitter h" id="split-h" role="separator" aria-orientation="horizontal" tabindex="0"></div>
+
+        <section class="panel rules-panel" aria-label="Resultado">
+          <div class="panel-head tabs" role="tablist">
+            <button role="tab" data-tab="summary" aria-selected="true">Resumen</button>
+            <button role="tab" data-tab="ocl" aria-selected="false">Restricciones OCL <span id="ocl-count" class="count-badge"></span></button>
+            <button role="tab" data-tab="log" aria-selected="false">Diagnóstico USE</button>
+            <button role="tab" data-tab="cnf" aria-selected="false">Código SAT</button>
+            <button role="tab" data-tab="xmi" aria-selected="false">XMI</button>
+            <div class="spacer"></div>
+            <button id="download" class="ghost" type="button" hidden>Descargar XMI</button>
+          </div>
+          <div id="tab-summary" class="tab-body" role="tabpanel"></div>
+          <div id="tab-ocl" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-log" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-cnf" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-xmi" class="tab-body code" role="tabpanel" hidden></div>
+        </section>
+      </div>
+    </main>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <g id="legend-containment"><line x1="8" y1="5" x2="34" y2="5" stroke="var(--edge)" stroke-width="1.6" /><path d="M0 5 L4 2 L8 5 L4 8 Z" fill="var(--edge)" /></g>
+        <g id="legend-reference"><line x1="0" y1="5" x2="27" y2="5" stroke="var(--ref)" stroke-width="1.6" stroke-dasharray="4 3" /><path d="M34 5 L27 1.8 L27 8.2 Z" fill="var(--ref)" /></g>
+      </defs>
+    </svg>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

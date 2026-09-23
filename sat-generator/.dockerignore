@@ -1,0 +1,11 @@
+**/.git
+**/target
+**/node_modules
+**/dist
+frontend
+metamodels
+use/.idea
+use/.vscode
+use/manual
+use/docs
+use/documentation

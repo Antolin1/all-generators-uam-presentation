@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>playground.satgen</groupId>
+    <artifactId>sat-generator-playground</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>sat-generator-server</artifactId>
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <!-- USE (org.tzi.use), construido aparte desde ../../use/use-core y publicado en el repo Maven local -->
+    <dependency>
+      <groupId>org.tzi.use</groupId>
+      <artifactId>use-core</artifactId>
+      <version>7.5.0</version>
+    </dependency>
+    <!-- Ecore: para cargar el .ecore y exportar el modelo encontrado a XMI (mismas versiones que atlanmod-instantiator) -->
+    <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.ecore.xmi</artifactId><version>2.10.1</version></dependency>
+    <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.ecore</artifactId><version>2.10.1</version></dependency>
+    <dependency><groupId>org.eclipse.emf</groupId><artifactId>org.eclipse.emf.common</artifactId><version>2.10.1</version></dependency>
+    <!-- SAT4J: el resolutor SAT (puro Java, sin nada nativo) -->
+    <dependency><groupId>org.ow2.sat4j</groupId><artifactId>org.ow2.sat4j.core</artifactId><version>2.3.6</version></dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.17.2</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.6.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals><goal>copy-dependencies</goal></goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              <includeScope>runtime</includeScope>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,34 @@
+# SAT-based model generator (USE + SAT4J)
+#
+#   docker compose up --build
+#   → http://localhost:8120
+#
+# Puertos distintos a los de los demás generadores de este directorio para poder tenerlos todos en marcha.
+# Solo se publican en 127.0.0.1: es una herramienta local.
+
+name: sat-generator
+
+services:
+  backend:
+    build:
+      context: .                      # necesita use/ y backend/
+      dockerfile: backend/Dockerfile
+    image: sat-generator-backend
+    environment:
+      JAVA_OPTS: "-Xmx1g"
+      METAMODELS_DIR: /metamodels
+    volumes:
+      # tus metamodelos (*.ecore) y restricciones (*.ocl); se detectan sin reiniciar
+      - ./metamodels:/metamodels:ro
+    ports:
+      - "127.0.0.1:8121:8081"         # solo para depurar la API (curl); el front usa la red interna
+
+  frontend:
+    build:
+      context: ./frontend
+    image: sat-generator-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8120:80"

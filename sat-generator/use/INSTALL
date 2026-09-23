@@ -1,0 +1,65 @@
+
+			 How to install USE
+			 ==================
+			
+1. Requirements
+---------------
+
+USE is implemented in Java(tm). Therefore, it should run on any
+platform on which a Java runtime system (e.g. OpenJDK) is
+available. So far this has been tested mainly on Windows platforms
+but it should work also on Linux. If you're trying to install USE 
+on any other platform, you are on your own, although this should 
+not be too difficult.
+
+The distribution of USE comes with full sources. If you want to
+compile USE yourself, you will need a Java Development Kit (JDK)
+version 15 or later (see https://openjdk.org) and Apache Maven 3.8
+or later. Earlier versions of the JDK and Maven may work but have not
+been tested.
+
+
+2. Compilation
+--------------
+
+The distribution of USE comes with compiled sources. If you don't
+want or need to recompile them, you can skip this step!
+
+Otherwise, a simple "mvn compile" or "mwn verify" should compile 
+the whole USE package. "mvn verify" will run all tests whereas
+"mvn compile" just compiles.
+
+Interaction with USE is done via a command line interface. This will
+be much more comfortable if you have the GNU readline library
+available on your system. USE provides an interface to the readline
+library. For example, it allows bash or emacs-like editing of lines
+and keeps a history file of recent input. Since the readline library
+is platform dependent, the interface has to be compiled on your
+system. Changes to the build file may be necessary for your
+environment. If you don't have the readline library - don't worry.
+USE will fall back to a simple input mechanism if it cannot find or
+load the readline library at runtime.
+
+
+
+3. Basic Installation
+---------------------
+
+There are no additional libraries required. You should only make sure
+that the "java" program is in your program search path.
+
+
+4. Running USE
+--------------
+
+The easiest way to start USE, is to use the shell script supplied with
+this distribution (there is also a file use.bat for Windows). To use
+this wrapper script, add the bin directory to your PATH environment
+variable. Entering
+
+	use -h
+
+will give you a list of command line options. Also, look at the file
+use.properties in the etc directory to see if you have to adapt some
+settings to your environment. See the file README for a quick tour
+that will help you getting started.

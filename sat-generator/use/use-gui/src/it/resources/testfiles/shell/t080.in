@@ -1,0 +1,146 @@
+open relativepath/Szenario1/szenario1.cmd
+*open ../library.use
+*compiling specification...
+*done
+*Model Library (0 data types, 7 classes, 2 associations, 2 invariants, 21 operations, 18 pre-/postconditions, 0 state machines)
+*
+*!create ada:User
+*!openter ada init('Ada','NY')
+*precondition `freshUser' is true
+*open ../User/User_init.cmd
+*-- - - - - - - - - - - - - -  User::init(aName:String, anAddress:String)
+*!set self.name:=aName
+*!set self.address:=anAddress
+*
+*!opexit
+*postcondition `attrsAssigned' is true
+*
+*!create bob:User
+*!openter bob init('Bob','CA')
+*precondition `freshUser' is true
+*open ../User/User_init.cmd
+*-- - - - - - - - - - - - - -  User::init(aName:String, anAddress:String)
+*!set self.name:=aName
+*!set self.address:=anAddress
+*
+*!opexit
+*postcondition `attrsAssigned' is true
+*
+*!create date:Book
+*!openter date init('Intro to DBS',Sequence{'Date'},1983)
+*precondition `freshBook' is true
+*open ../Book/Book_init.cmd
+*--  Book::init(aTitle:String, anAuthSeq:Sequence(String), aYear:Integer)
+*!set self.title:=aTitle
+*!set self.authSeq:=anAuthSeq
+*!set self.year:=aYear
+*
+*!opexit
+*postcondition `attrsAssigned' is true
+*
+*!create dbs42:Copy
+*!openter dbs42 init('DBS42',date)
+*precondition `freshCopy' is true
+*precondition `bookOk' is true
+*open ../Copy/Copy_init.cmd
+*-- - - - - - - - - - - - - - - Copy::init(aSignature:String, aBook:Book)
+*!set self.signature:=aSignature
+*!set self.numReturns:=0
+*!insert (self,aBook) into BelongsTo
+*
+*!opexit
+*postcondition `attrsAndLinkAssigned' is true
+*
+*!openter dbs42 borrow(ada)
+*precondition `userOk' is true
+*precondition `notBorrowed' is true
+*open ../Copy/Copy_borrow.cmd
+*-- - - - - - - - - - - - - - - - - - - - - - -  Copy::borrow(aUser:User)
+*!insert (aUser,self) into Borrows
+*
+*!opexit
+*postcondition `linkAssigned' is true
+*
+*!create elNa:Book
+*!openter elNa init('Funds of DBS',Sequence{'Elmasri','Navathe'},1994)
+*precondition `freshBook' is true
+*open ../Book/Book_init.cmd
+*--  Book::init(aTitle:String, anAuthSeq:Sequence(String), aYear:Integer)
+*!set self.title:=aTitle
+*!set self.authSeq:=anAuthSeq
+*!set self.year:=aYear
+*
+*!opexit
+*postcondition `attrsAssigned' is true
+*
+*!create dbs43:Copy
+*!openter dbs43 init('DBS43',date)
+*precondition `freshCopy' is true
+*precondition `bookOk' is true
+*open ../Copy/Copy_init.cmd
+*-- - - - - - - - - - - - - - - Copy::init(aSignature:String, aBook:Book)
+*!set self.signature:=aSignature
+*!set self.numReturns:=0
+*!insert (self,aBook) into BelongsTo
+*
+*!opexit
+*postcondition `attrsAndLinkAssigned' is true
+*
+*!create dbs52:Copy
+*!openter dbs52 init('DBS52',elNa)
+*precondition `freshCopy' is true
+*precondition `bookOk' is true
+*open ../Copy/Copy_init.cmd
+*-- - - - - - - - - - - - - - - Copy::init(aSignature:String, aBook:Book)
+*!set self.signature:=aSignature
+*!set self.numReturns:=0
+*!insert (self,aBook) into BelongsTo
+*
+*!opexit
+*postcondition `attrsAndLinkAssigned' is true
+*
+*!openter bob borrow(dbs43)
+*precondition `copyOk' is true
+*open ../User/User_borrow.cmd
+*-- - - - - - - - - - - - - - - - - - - - - - -  User::borrow(aCopy:Copy)
+*!insert (self,aCopy) into Borrows
+*
+*!opexit
+*postcondition `linkAssigned' is true
+*
+*!openter dbs52 borrow(ada)
+*precondition `userOk' is true
+*precondition `notBorrowed' is true
+*open ../Copy/Copy_borrow.cmd
+*-- - - - - - - - - - - - - - - - - - - - - - -  Copy::borrow(aUser:User)
+*!insert (aUser,self) into Borrows
+*
+*!opexit
+*postcondition `linkAssigned' is true
+*
+*!openter dbs52 return()
+*precondition `copyOk' is true
+*open ../Copy/Copy_return.cmd
+*-- - - - - - - - - - - - - - - - - - - - - - - - - - - -  Copy::return()
+*!set self.numReturns:=self.numReturns+1
+*!delete (self.user,self) from Borrows
+*
+*!opexit
+*postcondition `linkRemoved' is true
+*postcondition `numReturnsIncreased' is true
+*
+*!openter dbs43.user return(dbs43)
+*precondition `aCopyOk' is true
+*open ../User/User_return.cmd
+*-- - - - - - - - - - - - - - - - - - - - - - -  User::return(aCopy:Copy)
+*!set aCopy.numReturns:=aCopy.numReturns+1
+*!delete (self,aCopy) from Borrows
+*
+*!opexit
+*postcondition `linkRemoved' is true
+*postcondition `numReturnsIncreased' is true
+*
+*!create ok:OnlyKeyed
+*!create of:OnlyFormatted
+*
+exit
