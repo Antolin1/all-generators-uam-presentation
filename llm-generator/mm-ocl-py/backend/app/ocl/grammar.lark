@@ -1,0 +1,84 @@
+// Minimal OCL grammar: a pragmatic subset covering invariants over a structural
+// (no-attribute-required) metamodel: navigation, collection operations, boolean
+// logic, arithmetic, comparisons, if/let, and basic type operations.
+
+start: constraint+
+
+constraint: "context" CNAME "inv" [CNAME] ":" expr           -> constraint
+
+?expr: let_expr
+
+?let_expr: "let" let_var ("," let_var)* "in" let_expr        -> let_expr
+         | if_expr
+
+let_var: CNAME (":" CNAME)? "=" expr                          -> let_var
+
+?if_expr: "if" expr "then" expr "else" expr "endif"           -> if_expr
+        | implies_expr
+
+?implies_expr: or_expr ("implies" or_expr)*                   -> implies_expr
+
+?or_expr: and_expr (OR_OP and_expr)*                           -> or_expr
+
+?and_expr: not_expr ("and" not_expr)*                          -> and_expr
+
+?not_expr: "not" not_expr                                      -> not_expr
+         | equality_expr
+
+?equality_expr: relational_expr (EQ_OP relational_expr)*       -> equality_expr
+
+?relational_expr: additive_expr (REL_OP additive_expr)*        -> relational_expr
+
+?additive_expr: mult_expr (ADD_OP mult_expr)*                  -> additive_expr
+
+?mult_expr: unary_expr (MUL_OP unary_expr)*                    -> mult_expr
+
+?unary_expr: "-" unary_expr                                    -> neg_expr
+           | postfix_expr
+
+?postfix_expr: primary trailer*                                -> postfix_expr
+
+trailer: DOT CNAME call_args?                                   -> dot_trailer
+       | ARROW CNAME call_args?                                 -> arrow_trailer
+
+call_args: "(" [call_arg ("," call_arg)*] ")"                  -> call_args
+
+?call_arg: lambda_arg
+         | expr
+
+lambda_arg: CNAME ("," CNAME)* "|" expr                        -> lambda_arg
+
+?primary: "self"                                                -> self_expr
+        | "true"                                                -> true_expr
+        | "false"                                                -> false_expr
+        | "null"                                                 -> null_expr
+        | NUMBER                                                 -> number_expr
+        | STRING                                                 -> string_expr
+        | CNAME                                                  -> name_expr
+        | "(" expr ")"                                           -> paren_expr
+        | collection_literal
+
+collection_literal: COLLTYPE "{" [coll_item ("," coll_item)*] "}" -> collection_literal
+
+?coll_item: expr RANGE expr                                     -> range_item
+          | expr
+
+COLLTYPE.2: "Set" | "OrderedSet" | "Sequence" | "Bag" | "Collection"
+
+ARROW.3: "->"
+RANGE.3: ".."
+DOT.1: "."
+OR_OP: "or" | "xor"
+EQ_OP.2: "=" | "<>"
+REL_OP: "<=" | ">=" | "<" | ">"
+ADD_OP: "+" | "-"
+MUL_OP.2: "mod" | "div" | "*" | "/"
+
+CNAME: /[a-zA-Z_][a-zA-Z0-9_]*/
+NUMBER: /\d+\.\d+([eE][+-]?\d+)?|\d+/
+STRING: /'[^']*'/
+
+COMMENT: /--[^\n]*/
+%import common.WS
+%ignore WS
+%ignore COMMENT
