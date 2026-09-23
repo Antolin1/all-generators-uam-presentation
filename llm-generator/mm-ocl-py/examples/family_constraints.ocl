@@ -1,0 +1,11 @@
+context Person inv NoSelfChild:
+  self.children->forAll(c | c <> self)
+
+context Person inv HasName:
+  self.name <> null and self.name <> ''
+
+context Person inv UniqueChildNames:
+  self.children->forAll(c1, c2 | c1 <> c2 implies c1.name <> c2.name)
+
+context Pet inv HasName:
+  self.name <> null and self.name <> ''

@@ -1,0 +1,46 @@
+-- Traducción a OCL de las restricciones VQL de
+-- hu.bme.mit.inf.dslreasoner.partialsnapshot_mavo.yakindu.
+-- Cada patrón VQL con @Constraint describe una situación de ERROR (un match
+-- indica un problema); cada invariante OCL de aquí expresa la condición
+-- "correcta" equivalente, es decir, se cumple exactamente cuando el patrón
+-- VQL NO encuentra ningún match.
+
+-- noEntryInRegion / multipleEntryInRegion: cada región debe tener
+-- exactamente una Entry.
+context Region inv HasEntry:
+  self.vertices->select(v | v.oclIsKindOf(Entry))->size() >= 1
+
+context Region inv AtMostOneEntry:
+  self.vertices->select(v | v.oclIsKindOf(Entry))->size() <= 1
+
+-- incomingToEntry: una Entry no puede tener transiciones entrantes.
+context Entry inv NoIncomingTransitions:
+  self.incomingTransitions->isEmpty()
+
+-- noOutgoingTransitionFromEntry / multipleTransitionFromEntry: una Entry
+-- debe tener exactamente una transición saliente.
+context Entry inv HasOutgoingTransition:
+  self.outgoingTransitions->notEmpty()
+
+context Entry inv AtMostOneOutgoingTransition:
+  self.outgoingTransitions->size() <= 1
+
+-- outgoingFromExit: un Exit no puede tener transiciones salientes.
+context Exit inv NoOutgoingTransitions:
+  self.outgoingTransitions->isEmpty()
+
+-- outgoingFromFinal: un FinalState no puede tener transiciones salientes.
+context FinalState inv NoOutgoingTransitions:
+  self.outgoingTransitions->isEmpty()
+
+-- noStateInRegion: cada región debe contener al menos un State.
+context Region inv HasState:
+  self.vertices->exists(v | v.oclIsKindOf(State))
+
+-- choiceHasNoOutgoing / choiceHasNoIncoming: un Choice necesita al menos
+-- una transición entrante y una saliente.
+context Choice inv HasOutgoingTransition:
+  self.outgoingTransitions->notEmpty()
+
+context Choice inv HasIncomingTransition:
+  self.incomingTransitions->notEmpty()

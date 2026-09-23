@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<family:Person xmlns:xmi="http://www.omg.org/XMI" xmlns:family="http://mm-ocl-py/family" name="Alice" xmi:version="2.0">
+  <children name="Bob"/>
+  <children name="Carol"/>
+  <pets name="Rex"/>
+</family:Person>

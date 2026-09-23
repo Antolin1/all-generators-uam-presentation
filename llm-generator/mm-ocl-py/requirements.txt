@@ -1,0 +1,8 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+pyecore>=0.15
+lark>=1.1
+pydantic>=2.5
+langchain-core>=0.3
+langchain-openai>=0.3

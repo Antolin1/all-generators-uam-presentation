@@ -1,6 +1,7 @@
 package de.hub.instantiator.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
@@ -36,7 +37,7 @@ final class GraphExporter {
 		return id;
 	}
 
-	Map<String, Object> export(Resource model) {
+	Map<String, Object> export(Resource model, Map<EObject, List<String>> violatedBy) {
 		List<EObject> objects = new ArrayList<EObject>();
 		for (EObject root : model.getContents()) {
 			objects.add(root);
@@ -51,7 +52,7 @@ final class GraphExporter {
 		int containments = 0;
 
 		for (EObject object : objects) {
-			nodes.add(node(object));
+			nodes.add(node(object, violatedBy.get(object)));
 			byType.merge(object.eClass().getName(), 1, Integer::sum);
 
 			EObject container = object.eContainer();
@@ -95,7 +96,7 @@ final class GraphExporter {
 		return single;
 	}
 
-	private Map<String, Object> node(EObject object) {
+	private Map<String, Object> node(EObject object, List<String> problems) {
 		EClass type = object.eClass();
 		List<Object> attributes = new ArrayList<Object>();
 		int hidden = 0;
@@ -120,6 +121,8 @@ final class GraphExporter {
 		// the "rule" that made the object is, for this generator, simply its metaclass
 		json.put("rule", type.getName());
 		json.put("app", null);
+		// OCL invariants this object violates (empty when it conforms, or when there are no invariants for its class)
+		json.put("problems", problems != null ? problems : Collections.emptyList());
 		return json;
 	}
 

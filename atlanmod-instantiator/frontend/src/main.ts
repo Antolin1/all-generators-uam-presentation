@@ -51,6 +51,9 @@ interface Settings {
   seedLocked: boolean;
   size: number;
   degree: number;
+  /** +/- tolerance around size and degree, as a percentage (10 = ±10 %). */
+  sizeVariation: number;
+  degreeVariation: number;
   direction: Direction;
 }
 
@@ -60,6 +63,8 @@ const settings: Settings = {
   seedLocked: false,
   size: 20,
   degree: 2,
+  sizeVariation: 10,
+  degreeVariation: 10,
   direction: 'RIGHT',
   ...stored<Partial<Settings>>('inst.settings', {}),
 };
@@ -79,11 +84,14 @@ const classCount = $<HTMLSpanElement>('#class-count');
 const graphStats = $<HTMLSpanElement>('#graph-stats');
 const downloadButton = $<HTMLButtonElement>('#download');
 const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role=tab]')];
-const tabBodies: Record<string, HTMLElement> = { summary: $('#tab-summary'), log: $('#tab-log'), xmi: $('#tab-xmi') };
+const tabBodies: Record<string, HTMLElement> = { summary: $('#tab-summary'), ocl: $('#tab-ocl'), log: $('#tab-log'), xmi: $('#tab-xmi') };
+const oclCount = $<HTMLSpanElement>('#ocl-count');
 
-const numericInputs: { input: HTMLInputElement; key: 'size' | 'degree' }[] = [
+const numericInputs: { input: HTMLInputElement; key: 'size' | 'degree' | 'sizeVariation' | 'degreeVariation' }[] = [
   { input: $('#p-size'), key: 'size' },
   { input: $('#p-degree'), key: 'degree' },
+  { input: $('#p-size-tol'), key: 'sizeVariation' },
+  { input: $('#p-degree-tol'), key: 'degreeVariation' },
 ];
 
 const graph = new GraphView($('#graph'), {
@@ -134,6 +142,7 @@ function selectMetamodel(file: string | null, keepState = false) {
   }
   renderClasses();
   renderMetamodelHeader();
+  renderOclTab();
 }
 
 function renderMetamodelHeader() {
@@ -309,6 +318,8 @@ function buildRequest(): GenerateRequest | null {
     metamodel: current.file,
     size: settings.size,
     degree: settings.degree,
+    sizeVariation: settings.sizeVariation / 100,
+    degreeVariation: settings.degreeVariation / 100,
     seed: settings.seedLocked && settings.seed !== null ? settings.seed : undefined,
     excluded,
     roots,
@@ -379,6 +390,94 @@ function clearResults() {
   tabBodies.log.replaceChildren(text('p', 'Aquí verás el registro del generador.', 'empty'));
   tabBodies.xmi.replaceChildren(text('p', 'Aquí verás el modelo serializado en XMI.', 'empty'));
   downloadButton.hidden = true;
+  renderOclTab();
+}
+
+// ---------- OCL results ----------
+
+/**
+ * The restrictions that apply to the current metamodel (from every *.ocl file in metamodels/ whose context
+ * classes match it): just their definitions before a model exists, and how the last generated model fares
+ * against each of them once it does.
+ */
+function renderOclTab() {
+  const info = current;
+  const check = result?.ocl ?? null;
+  const fileErrors = check?.fileErrors ?? info?.oclErrors ?? [];
+  const children: Node[] = [];
+
+  if (fileErrors.length) {
+    const pre = document.createElement('pre');
+    pre.className = 'ocl-file-errors';
+    pre.textContent = `No se pudieron leer algunas restricciones OCL:\n${fileErrors.join('\n')}`;
+    children.push(pre);
+  }
+
+  const definitions = info?.constraints ?? [];
+  if (!definitions.length) {
+    children.push(
+      text(
+        'p',
+        info
+          ? `No hay restricciones OCL para ${info.file}. Añade un fichero .ocl a la carpeta metamodels/ con reglas «context Clase inv Nombre: ...» sobre alguna de sus metaclases.`
+          : 'Elige un metamodelo.',
+        'ocl-empty',
+      ),
+    );
+    tabBodies.ocl.replaceChildren(...children);
+    oclCount.textContent = '';
+    oclCount.classList.remove('bad');
+    return;
+  }
+
+  const table = document.createElement('table');
+  table.className = 'ocl';
+  const head = document.createElement('thead');
+  head.innerHTML = check ? '<tr><th>Restricción</th><th class="num">Instancias</th><th class="num">Incumplen</th><th>Estado</th></tr>' : '<tr><th>Restricción</th><th>Estado</th></tr>';
+  table.append(head);
+  const body = document.createElement('tbody');
+  const byKey = new Map((check?.constraints ?? []).map((c) => [`${c.context}.${c.name}`, c]));
+  let violating = 0;
+
+  for (const def of definitions) {
+    const checked = byKey.get(`${def.context}.${def.name}`);
+    const row = document.createElement('tr');
+    const ruleCell = document.createElement('td');
+    ruleCell.className = 'rule';
+    ruleCell.append(text('b', `${def.context}::${def.name}`), text('small', def.expression));
+    row.append(ruleCell);
+    if (check) row.append(text('td', String(checked?.instances ?? 0), 'num'), text('td', String(checked?.violations ?? 0), 'num'));
+
+    const status = document.createElement('td');
+    if (!check) {
+      status.append(text('span', 'pendiente — genera un modelo', 'status'));
+    } else if ((checked?.violations ?? 0) > 0) {
+      violating++;
+      status.append(text('span', `✗ ${checked!.violations} incumplimiento(s)`, 'status bad'));
+      if (checked!.examples.length) {
+        const ul = document.createElement('ul');
+        ul.className = 'ocl-examples';
+        for (const example of checked!.examples) ul.append(text('li', example));
+        if (checked!.violations > checked!.examples.length) ul.append(text('li', `… y ${checked!.violations - checked!.examples.length} más`));
+        status.append(ul);
+      }
+    } else {
+      status.append(text('span', '✓ se cumple', 'status ok'));
+    }
+    row.append(status);
+    body.append(row);
+  }
+  table.append(body);
+  children.push(table);
+  tabBodies.ocl.replaceChildren(...children);
+
+  if (check) {
+    oclCount.textContent = String(violating);
+    oclCount.classList.toggle('bad', violating > 0 || fileErrors.length > 0);
+  } else {
+    oclCount.textContent = String(definitions.length);
+    oclCount.classList.remove('bad');
+  }
 }
 
 function kpi(label: string, value: string, kind = ''): HTMLElement {
@@ -400,6 +499,10 @@ function renderResults(r: GenerateOk) {
     kpi('Tiempo', `${r.millis.total} ms`),
   );
   if (r.diagnosis) kpis.append(kpi('Diagnóstico EMF', r.diagnosis.ok ? 'OK' : `${r.diagnosis.errors} errores`, r.diagnosis.ok ? 'good' : 'bad'));
+  if (r.ocl && r.ocl.constraints.length) {
+    const violating = r.ocl.constraints.filter((c) => c.violations > 0).length;
+    kpis.append(kpi('Restricciones OCL', r.ocl.ok ? 'OK' : `${violating}/${r.ocl.constraints.length} incumplidas`, r.ocl.ok ? 'good' : 'bad'));
+  }
 
   const applied = document.createElement('table');
   applied.className = 'applied';
@@ -464,6 +567,8 @@ function renderResults(r: GenerateOk) {
   } else {
     tabBodies.xmi.replaceChildren(text('p', `El XMI ocupa ${(r.xmiBytes / 1024 / 1024).toFixed(1)} MB: demasiado grande para mostrarlo o descargarlo desde aquí. Reduce el tamaño.`, 'empty'));
   }
+
+  renderOclTab();
   const active = tabs.find((t) => t.getAttribute('aria-selected') === 'true')?.dataset.tab ?? 'summary';
   showTab(active);
 }

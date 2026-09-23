@@ -40,11 +40,23 @@ final class Metamodels {
 		final List<String> errors = new ArrayList<String>();
 		final List<String> warnings = new ArrayList<String>();
 		final Map<String, EClass> classes = new LinkedHashMap<String, EClass>();
+		/** Unqualified class name -> EClass, for OCL's <code>context ClassName</code> and <code>oclIsKindOf(ClassName)</code>. */
+		final Map<String, EClass> classesByName = new LinkedHashMap<String, EClass>();
+		/** OCL constraints from every *.ocl file in the directory whose "context" classes all exist in this metamodel. */
+		final List<Ocl.Constraint> constraints = new ArrayList<Ocl.Constraint>();
+		/** .ocl files that failed to parse (shown once, not tied to any one metamodel). */
+		final List<String> oclErrors = new ArrayList<String>();
 
 		Loaded(String file, Resource resource) {
 			this.file = file;
 			this.resource = resource;
 		}
+
+		final Ocl.ClassLookup lookup = new Ocl.ClassLookup() {
+			public EClass find(String simpleName) {
+				return classesByName.get(simpleName);
+			}
+		};
 	}
 
 	private final File directory;
@@ -99,9 +111,48 @@ final class Metamodels {
 				if (ePackage.getNsURI() != null) EPackage.Registry.INSTANCE.put(ePackage.getNsURI(), ePackage);
 			} else if (object instanceof EClass) {
 				loaded.classes.put(qualifiedName((EClass) object), (EClass) object);
+				loaded.classesByName.put(((EClass) object).getName(), (EClass) object);
 			}
 		}
+		loadConstraints(loaded);
 		return loaded;
+	}
+
+	/**
+	 * OCL invariants for this metamodel: every *.ocl file in the directory is parsed, and a constraint is kept
+	 * when its <code>context</code> class exists here (by simple name) — this is how an .ocl file gets
+	 * associated with "its" metamodel, without requiring matching file names.
+	 */
+	private void loadConstraints(Loaded loaded) {
+		for (String oclFile : oclFiles()) {
+			List<Ocl.Constraint> parsed;
+			try {
+				parsed = Ocl.parse(new String(readAll(new File(directory, oclFile)), java.nio.charset.StandardCharsets.UTF_8));
+			} catch (Exception e) {
+				loaded.oclErrors.add(oclFile + ": " + rootMessage(e));
+				continue;
+			}
+			for (Ocl.Constraint constraint : parsed) {
+				if (loaded.classesByName.containsKey(constraint.context)) loaded.constraints.add(constraint);
+			}
+		}
+	}
+
+	/** The *.ocl files directly inside the metamodels directory. */
+	List<String> oclFiles() {
+		List<String> names = new ArrayList<String>();
+		File[] all = directory.listFiles();
+		if (all != null) {
+			for (File f : all) {
+				if (f.isFile() && f.getName().endsWith(".ocl")) names.add(f.getName());
+			}
+		}
+		Collections.sort(names);
+		return names;
+	}
+
+	private static byte[] readAll(File file) throws java.io.IOException {
+		return java.nio.file.Files.readAllBytes(file.toPath());
 	}
 
 	static String qualifiedName(EClass eClass) {
@@ -148,11 +199,17 @@ final class Metamodels {
 					EObject o = it.next();
 					if (o instanceof EPackage) packages.add(Json.obj("name", ((EPackage) o).getName(), "nsURI", ((EPackage) o).getNsURI()));
 				}
+				List<Object> constraints = new ArrayList<Object>();
+				for (Ocl.Constraint constraint : loaded.constraints) {
+					constraints.add(Json.obj("context", constraint.context, "name", constraint.name, "expression", constraint.source));
+				}
 				items.add(Json.obj("file", file, "status", loaded.errors.isEmpty() ? "ok" : "invalid", "errors", loaded.errors,
-						"warnings", loaded.warnings, "packages", packages, "classes", classes));
+						"warnings", loaded.warnings, "packages", packages, "classes", classes,
+						"constraints", constraints, "oclErrors", loaded.oclErrors));
 			} catch (Throwable t) {
 				items.add(Json.obj("file", file, "status", "error", "errors", Collections.singletonList(String.valueOf(rootMessage(t))),
-						"warnings", new ArrayList<String>(), "packages", new ArrayList<Object>(), "classes", new ArrayList<Object>()));
+						"warnings", new ArrayList<String>(), "packages", new ArrayList<Object>(), "classes", new ArrayList<Object>(),
+						"constraints", new ArrayList<Object>(), "oclErrors", new ArrayList<String>()));
 			}
 		}
 		return items;

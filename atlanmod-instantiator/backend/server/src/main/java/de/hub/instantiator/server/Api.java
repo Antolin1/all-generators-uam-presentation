@@ -58,6 +58,8 @@ final class Api {
 		request.metamodel = string(body, "metamodel");
 		request.size = integer(body, "size", request.size);
 		request.degree = integer(body, "degree", request.degree);
+		request.sizeVariation = number(body, "sizeVariation", request.sizeVariation);
+		request.degreeVariation = number(body, "degreeVariation", request.degreeVariation);
 		if (body.get("seed") instanceof Number) request.seed = ((Number) body.get("seed")).longValue();
 		if (body.get("excluded") instanceof Iterable) {
 			for (Object o : (Iterable<?>) body.get("excluded")) request.excluded.add(String.valueOf(o));
@@ -85,6 +87,10 @@ final class Api {
 
 	private static int integer(Map<String, Object> request, String key, int fallback) {
 		return request.get(key) instanceof Number ? ((Number) request.get(key)).intValue() : fallback;
+	}
+
+	private static float number(Map<String, Object> request, String key, float fallback) {
+		return request.get(key) instanceof Number ? ((Number) request.get(key)).floatValue() : fallback;
 	}
 
 	private static byte[] readAll(InputStream in, int limit) throws IOException {
