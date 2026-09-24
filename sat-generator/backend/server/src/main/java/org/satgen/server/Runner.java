@@ -33,7 +33,9 @@ import org.tzi.use.uml.ocl.value.Value;
  */
 final class Runner {
 
-	static final long TIMEOUT_SECONDS = 20;
+	static final long DEFAULT_TIMEOUT_SECONDS = 20;
+	/** A hard ceiling on the timeout the request can ask for, so one request can't tie up a worker thread indefinitely. */
+	static final long MAX_TIMEOUT_SECONDS = 300;
 	static final int MAX_OCL_EXAMPLES = 8;
 	static final int MAX_DIMACS_CLAUSE_LINES = 50_000;
 
@@ -75,9 +77,14 @@ final class Runner {
 			throw new Failure("params", e.getMessage());
 		}
 
+		Long seed = payload.get("seed") instanceof Number n ? n.longValue() : null;
+		long timeoutSeconds = payload.get("timeoutSeconds") instanceof Number n ? n.longValue() : DEFAULT_TIMEOUT_SECONDS;
+		if (timeoutSeconds <= 0 || timeoutSeconds > MAX_TIMEOUT_SECONDS) {
+			throw new Failure("params", "El timeout debe estar entre 1 y " + MAX_TIMEOUT_SECONDS + " segundos.");
+		}
 		Solver.Result sol;
 		try {
-			sol = Solver.solve(enc.cnf, TIMEOUT_SECONDS);
+			sol = Solver.solve(enc.cnf, timeoutSeconds, seed);
 		} catch (RuntimeException e) {
 			throw new Failure("run", e.getMessage());
 		}

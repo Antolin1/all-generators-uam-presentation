@@ -46,6 +46,17 @@
           <label class="field-block">Clase raíz
             <select id="root-class"></select>
           </label>
+          <label class="field-block">Seed <span class="muted">(opcional)</span>
+            <div class="seed-row">
+              <input id="seed" type="number" min="0" step="1" placeholder="determinista si se deja vacío" />
+              <button id="seed-reroll" class="ghost small" type="button" title="Poner una seed aleatoria">🎲</button>
+            </div>
+          </label>
+          <p class="hint-text">Cuando hay varios modelos posibles dentro de estas cotas, la seed decide a cuál llega el resolutor: misma seed, mismo modelo; vacío usa siempre el mismo orden de búsqueda (determinista); otra seed puede dar otro modelo igualmente válido.</p>
+          <label class="field-block">Timeout del resolutor <span class="muted">(segundos, opcional)</span>
+            <input id="timeout" type="number" min="1" max="300" step="1" placeholder="20" />
+          </label>
+          <p class="hint-text">Cuánto puede tardar el resolutor SAT antes de rendirse. Cotas más grandes o restricciones más complejas pueden necesitar más tiempo; vacío usa el valor por defecto del servidor.</p>
           <p class="hint-text">Cotas de la búsqueda por clase (vacío = cota por defecto; se cuentan también las subclases). No es una generación aproximada: el resolutor SAT decide, dentro de estas cotas, si existe un modelo — y cuál.</p>
           <table class="scope-table">
             <thead><tr><th>Clase</th><th>Mín</th><th>Máx</th></tr></thead>
@@ -95,7 +106,8 @@
             <button role="tab" data-tab="summary" aria-selected="true">Resumen</button>
             <button role="tab" data-tab="ocl" aria-selected="false">Restricciones OCL <span id="ocl-count" class="count-badge"></span></button>
             <button role="tab" data-tab="log" aria-selected="false">Diagnóstico USE</button>
-            <button role="tab" data-tab="cnf" aria-selected="false">Código SAT</button>
+            <button role="tab" data-tab="satvars" aria-selected="false">SAT variables</button>
+            <button role="tab" data-tab="satformulas" aria-selected="false">SAT fórmulas</button>
             <button role="tab" data-tab="xmi" aria-selected="false">XMI</button>
             <div class="spacer"></div>
             <button id="download" class="ghost" type="button" hidden>Descargar XMI</button>
@@ -103,7 +115,8 @@
           <div id="tab-summary" class="tab-body" role="tabpanel"></div>
           <div id="tab-ocl" class="tab-body" role="tabpanel" hidden></div>
           <div id="tab-log" class="tab-body" role="tabpanel" hidden></div>
-          <div id="tab-cnf" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-satvars" class="tab-body" role="tabpanel" hidden></div>
+          <div id="tab-satformulas" class="tab-body" role="tabpanel" hidden></div>
           <div id="tab-xmi" class="tab-body code" role="tabpanel" hidden></div>
         </section>
       </div>

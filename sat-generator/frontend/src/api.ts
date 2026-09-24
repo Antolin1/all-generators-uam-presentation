@@ -58,6 +58,10 @@ export interface GenerateRequest {
   classBounds: Record<string, { min?: number; max?: number }>;
   totalMin?: number | null;
   totalMax?: number | null;
+  /** Picks which satisfying model the solver lands on, when the scope allows more than one; omitted (or empty) keeps the solver's deterministic default. */
+  seed?: number | null;
+  /** How long the solver may search before giving up, in seconds; omitted (or empty) keeps the backend's default. */
+  timeoutSeconds?: number | null;
 }
 
 export interface SatStats {

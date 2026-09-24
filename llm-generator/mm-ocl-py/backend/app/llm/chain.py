@@ -46,6 +46,10 @@ donde el campo es `List[...]`).
 7. Al final del script, asigna a la variable `model` el objeto raíz. No llames a `print` ni a `validate_all`: el script se valida por fuera.
 8. Usa datos plausibles y distintos entre sí (nombres con sentido, no `x1`, `x2`).
 9. Cumple exactamente el scope indicado. Puedes usar bucles y funciones auxiliares para no repetir código.
+10. No definas clases nuevas ni redefinas las que ya vienen en `{MODULE_NAME}`: instancia únicamente las clases tal como están importadas del módulo.
+11. Antes de escribir datos, identifica el dominio real que describen las clases y campos del módulo (a partir de sus nombres) y genera \
+un modelo realista para ese dominio: valores, relaciones y proporciones que tendrían sentido en un caso real, no solo datos sintácticamente \
+válidos.
 
 Si después recibes una lista de fallos, corrígelos TODOS y devuelve de nuevo el script completo."""
 

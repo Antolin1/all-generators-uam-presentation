@@ -52,6 +52,8 @@ interface ScopeForm {
   bounds: Record<string, { min?: number; max?: number }>;
   totalMin: number | null;
   totalMax: number | null;
+  seed: number | null;
+  timeoutSeconds: number | null;
 }
 
 interface Settings {
@@ -80,13 +82,39 @@ const rootSelect = $<HTMLSelectElement>('#root-class');
 const scopeBody = $<HTMLTableSectionElement>('#scope-body');
 const totalMin = $<HTMLInputElement>('#total-min');
 const totalMax = $<HTMLInputElement>('#total-max');
+const seedInput = $<HTMLInputElement>('#seed');
+const seedReroll = $<HTMLButtonElement>('#seed-reroll');
+const timeoutInput = $<HTMLInputElement>('#timeout');
 const formError = $<HTMLParagraphElement>('#form-error');
 const classesBody = $<HTMLTableSectionElement>('#classes tbody');
 const classCount = $<HTMLSpanElement>('#class-count');
 const graphStats = $<HTMLSpanElement>('#graph-stats');
 const downloadButton = $<HTMLButtonElement>('#download');
 const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role=tab]')];
-const tabBodies: Record<string, HTMLElement> = { summary: $('#tab-summary'), ocl: $('#tab-ocl'), log: $('#tab-log'), cnf: $('#tab-cnf'), xmi: $('#tab-xmi') };
+const tabBodies: Record<string, HTMLElement> = {
+  summary: $('#tab-summary'),
+  ocl: $('#tab-ocl'),
+  log: $('#tab-log'),
+  satvars: $('#tab-satvars'),
+  satformulas: $('#tab-satformulas'),
+  xmi: $('#tab-xmi'),
+};
+
+/**
+ * `r.cnf` is one DIMACS text block: intro comments, then one "c <var> <name>" comment per named
+ * (existe/enlace) variable, then the "p cnf ..." header and the clause lines themselves. Split it
+ * into the named-variable comments (SAT variables tab) and everything else — header + clauses —
+ * (SAT fórmulas tab), so each tab shows one of the two instead of one long dump.
+ */
+function splitCnf(cnfText: string): { variables: string; formulas: string } {
+  const namedVarLine = /^c \d+ /;
+  const varLines: string[] = [];
+  const formulaLines: string[] = [];
+  for (const line of cnfText.split('\n')) {
+    (namedVarLine.test(line) ? varLines : formulaLines).push(line);
+  }
+  return { variables: varLines.join('\n'), formulas: formulaLines.join('\n') };
+}
 const oclCount = $<HTMLSpanElement>('#ocl-count');
 
 const oclViewer = new CodeView($('#ocl-viewer'), 'ocl');
@@ -254,7 +282,14 @@ function readScope(): ScopeForm {
     if (input.value === '') continue;
     (bounds[input.dataset.class!] ??= {})[input.dataset.bound as 'min' | 'max'] = Number(input.value);
   }
-  return { root: rootSelect.value, bounds, totalMin: totalMin.value === '' ? null : Number(totalMin.value), totalMax: totalMax.value === '' ? null : Number(totalMax.value) };
+  return {
+    root: rootSelect.value,
+    bounds,
+    totalMin: totalMin.value === '' ? null : Number(totalMin.value),
+    totalMax: totalMax.value === '' ? null : Number(totalMax.value),
+    seed: seedInput.value === '' ? null : Number(seedInput.value),
+    timeoutSeconds: timeoutInput.value === '' ? null : Number(timeoutInput.value),
+  };
 }
 
 function persistScope() {
@@ -299,8 +334,14 @@ function renderScopeForm(force: boolean) {
   );
   totalMin.value = previous?.totalMin != null ? String(previous.totalMin) : '';
   totalMax.value = previous?.totalMax != null ? String(previous.totalMax) : '';
+  seedInput.value = previous?.seed != null ? String(previous.seed) : '';
+  timeoutInput.value = previous?.timeoutSeconds != null ? String(previous.timeoutSeconds) : '';
 }
-for (const input of [rootSelect, totalMin, totalMax]) input.addEventListener('input', persistScope);
+for (const input of [rootSelect, totalMin, totalMax, seedInput, timeoutInput]) input.addEventListener('input', persistScope);
+seedReroll.addEventListener('click', () => {
+  seedInput.value = String(Math.floor(Math.random() * 1_000_000_000));
+  persistScope();
+});
 
 // ---------- generate ----------
 
@@ -313,7 +354,15 @@ function buildRequest(): GenerateRequest | null {
   if (!current) return null;
   const scope = readScope();
   if (!scope.root) return null;
-  return { metamodel: current.file, rootClass: scope.root, classBounds: scope.bounds, totalMin: scope.totalMin, totalMax: scope.totalMax };
+  return {
+    metamodel: current.file,
+    rootClass: scope.root,
+    classBounds: scope.bounds,
+    totalMin: scope.totalMin,
+    totalMax: scope.totalMax,
+    seed: scope.seed,
+    timeoutSeconds: scope.timeoutSeconds,
+  };
 }
 
 async function generate() {
@@ -384,7 +433,8 @@ function clearResults() {
   tabBodies.summary.replaceChildren(text('p', 'Aquí verás si existe un modelo dentro de este scope (SAT/UNSAT) y su resumen.', 'empty'));
   tabBodies.ocl.replaceChildren(text('p', 'Aquí verás, restricción a restricción, cuántas instancias se comprobaron y cuántas la incumplen.', 'empty'));
   tabBodies.log.replaceChildren(text('p', 'Aquí verás el registro de la comprobación estructural y de invariantes de USE.', 'empty'));
-  tabBodies.cnf.replaceChildren(text('p', 'Aquí verás el código SAT (CNF en formato DIMACS) que se le pasó al resolutor.', 'empty'));
+  tabBodies.satvars.replaceChildren(text('p', 'Aquí verás las variables booleanas (existe/enlace) que codifican el problema.', 'empty'));
+  tabBodies.satformulas.replaceChildren(text('p', 'Aquí verás la fórmula SAT (CNF en formato DIMACS) que se le pasó al resolutor.', 'empty'));
   xmiView.setText('');
   downloadButton.hidden = true;
   oclCount.textContent = '';
@@ -471,7 +521,9 @@ function renderResults(r: GenerateOk) {
 
   renderOclResultsTab(r);
   tabBodies.log.replaceChildren(text('pre', r.sat ? r.diagnosis.log || '(sin salida)' : 'No se llegó a comprobar con USE: no hay ningún modelo que reproducir.', 'java'));
-  tabBodies.cnf.replaceChildren(text('pre', r.cnf || '(sin datos)', 'java'));
+  const { variables: satVarsText, formulas: satFormulasText } = splitCnf(r.cnf || '');
+  tabBodies.satvars.replaceChildren(text('pre', satVarsText || '(sin datos)', 'java'));
+  tabBodies.satformulas.replaceChildren(text('pre', satFormulasText || '(sin datos)', 'java'));
   xmiView.setText(r.sat ? r.xmi : '');
   downloadButton.hidden = !r.sat;
 

@@ -5,6 +5,8 @@ import java.util.Set;
 
 import org.sat4j.core.VecInt;
 import org.sat4j.minisat.SolverFactory;
+import org.sat4j.minisat.orders.RandomLiteralSelectionStrategy;
+import org.sat4j.minisat.orders.VarOrderHeap;
 import org.sat4j.specs.ContradictionException;
 import org.sat4j.specs.IProblem;
 import org.sat4j.specs.ISolver;
@@ -32,9 +34,20 @@ final class Solver {
 		}
 	}
 
-	static Result solve(Cnf cnf, long timeoutSeconds) {
+	/**
+	 * {@code seed}, when given, picks which satisfying model SAT4J lands on: for a scope with several valid
+	 * models, the CNF is the same either way, but the seed drives the polarity SAT4J's search guesses first
+	 * at each decision ({@link RandomLiteralSelectionStrategy}, seeded through its shared {@code RAND} field —
+	 * there is no per-solver-instance seed in this SAT4J version), so different seeds tend to land on different
+	 * models. {@code null} keeps the solver's own default (deterministic) decision order.
+	 */
+	static Result solve(Cnf cnf, long timeoutSeconds, Long seed) {
 		long start = System.currentTimeMillis();
 		ISolver solver = SolverFactory.newDefault();
+		if (seed != null) {
+			RandomLiteralSelectionStrategy.RAND.setSeed(seed);
+			((org.sat4j.minisat.core.Solver<?>) solver).setOrder(new VarOrderHeap(new RandomLiteralSelectionStrategy()));
+		}
 		solver.setTimeout((int) timeoutSeconds);
 		solver.newVar(cnf.variableCount());
 		solver.setExpectedNumberOfClauses(cnf.clauses().size());
